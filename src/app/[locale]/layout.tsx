@@ -4,7 +4,6 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { mulish, ptSerif } from '@/lib/fonts'
-import '../globals.css'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
