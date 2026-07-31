@@ -48,7 +48,7 @@ Görevlere geçmeden önce hangi dosyanın neden sorumlu olduğu:
 | `src/i18n/routing.ts` | Dil listesi, varsayılan dil, önek politikası |
 | `src/i18n/request.ts` | İstek başına mesaj yükleme |
 | `src/i18n/navigation.ts` | Dil farkında `Link`, `redirect`, `usePathname` |
-| `src/middleware.ts` | Dil yönlendirmesi |
+| `src/proxy.ts` | Dil yönlendirmesi (Next 16 `middleware.ts`'i `proxy.ts` olarak yeniden adlandırdı) |
 | `src/content/types.ts` | Tüm içerik tipleri — başka hiçbir dosya tip tanımlamaz |
 | `src/content/camps.ts` | Kamp dönemi verisi (veri, mantık yok) |
 | `src/content/teachers.ts` | Hoca verisi |
