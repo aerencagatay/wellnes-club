@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Zeminler — sıcak krem ailesi */
+  --color-cream:        #faf6f2;
+  --color-cream-2:      #f0ece9;
+  --color-cream-3:      #ebe7e4;
+
+  /* Metin ve koyu yüzeyler — derin erik-siyah */
+  --color-ink:          #221c25;
+  --color-ink-2:        #1a151c;
+  --color-ink-3:        #423c45;
+
+  /* Gövde metni. --color-body-muted YALNIZCA büyük metinde (≥24px). */
+  --color-body:         #6f6f6f;
+  --color-body-muted:   #7a7a7a;
+  --color-body-light:   #a4a4a4;
+  --color-border:       #e5e5e5;
+
+  /* Vurgu. --color-accent ASLA metin rengi değildir; metin için -deep. */
+  --color-accent:       #3cc4b2;
+  --color-accent-hover: #2fa697;
+  --color-accent-deep:  #1d6b61;
+
+  --color-coral:        #f56c6d;
+  --color-olive:        #5e844b;
+  --color-amber:        #e9aa35;
+
+  --font-heading: var(--font-pt-serif), Georgia, serif;
+  --font-body:    var(--font-mulish), system-ui, sans-serif;
+}
+
+:root {
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 2px rgba(34,28,37,.05), 0 8px 28px rgba(34,28,37,.07);
+  --shadow-lift: 0 2px 6px rgba(34,28,37,.06), 0 16px 48px rgba(34,28,37,.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-body);
+  background: var(--color-cream);
+  line-height: 1.7;
+  overflow-x: hidden;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* @layer base içinde: Tailwind text-* yardımcıları başlık rengini ezebilsin */
+@layer base {
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+    line-height: 1.25;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 2px;
+}
+
+/* ===== TİPOGRAFİ ÖLÇEĞİ ===== */
+.type-display {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+.type-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.2vw, 2.65rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.type-lede {
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.75;
+  color: var(--color-body);
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-accent-deep);
+  margin-bottom: 12px;
+}
+
+/* ===== RİTİM ===== */
+.section-py { padding: clamp(72px, 12vw, 112px) 0; }
+.section-sm { padding: clamp(48px, 8vw, 80px) 0; }
+.container-page { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+
+/* ===== HAREKET TERCİHİ ===== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
