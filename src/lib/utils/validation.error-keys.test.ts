@@ -77,6 +77,19 @@ const invalidCases: Array<[string, unknown]> = [
   ['camp: consent false', { ...validCamp, consent: false }],
   ['camp: turnstileToken yanlış tip', { ...validCamp, turnstileToken: 12345 }],
 
+  // camp: Task 12 uzantısı — yalnızca campInquiry.message ve turnstileToken için
+  // test edilen "yanlış tip" kapsaması geri kalan alanlara genişletiliyor. Amaç:
+  // her alanın taban tip mesajının (z.string/z.number({ message }) ilk argümanı)
+  // hâlâ yerinde olduğunu, birinin bunu sessizce silmesi durumunda testin
+  // yakalayacağını garanti etmek.
+  ['camp: name yanlış tip', { ...validCamp, name: 12345 }],
+  ['camp: email yanlış tip', { ...validCamp, email: 12345 }],
+  ['camp: phone yanlış tip', { ...validCamp, phone: 12345 }],
+  ['camp: campSlug yanlış tip', { ...validCamp, campSlug: 12345 }],
+  ['camp: guests yanlış tip', { ...validCamp, guests: 'iki' }],
+  ['camp: roomPreference yanlış tip', { ...validCamp, roomPreference: 12345 }],
+  ['camp: consent yanlış tip', { ...validCamp, consent: 'evet' }],
+
   // contact
   ['contact: name eksik', (() => { const { name: _n, ...rest } = validContact; return rest })()],
   ['contact: email eksik', (() => { const { email: _e, ...rest } = validContact; return rest })()],
@@ -84,6 +97,9 @@ const invalidCases: Array<[string, unknown]> = [
   ['contact: consent eksik', (() => { const { consent: _cs, ...rest } = validContact; return rest })()],
   ['contact: message boş', { ...validContact, message: '' }],
   ['contact: consent false', { ...validContact, consent: false }],
+  // contact.message kendi ayrı z.string() zincirine sahip ve başka hiçbir case
+  // tarafından dolaylı olarak kapsanmıyor — taban mesajı silinirse burada yakalanır.
+  ['contact: message yanlış tip', { ...validContact, message: 12345 }],
 
   // newsletter
   ['newsletter: email eksik', (() => { const { email: _e, ...rest } = validNewsletter; return rest })()],
