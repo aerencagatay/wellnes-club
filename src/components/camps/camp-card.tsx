@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation'
 import { Badge } from '@/components/ui/badge'
 import { getCampBadge, type CampBadge } from '@/lib/utils/camp-status'
 import { formatDateRange } from '@/lib/utils/dates'
+import { formatPrice } from '@/lib/utils/price'
 
 const BADGE_TONE: Record<CampBadge, 'olive' | 'coral' | 'amber' | 'neutral'> = {
   open: 'olive',
@@ -17,11 +18,7 @@ const BADGE_TONE: Record<CampBadge, 'olive' | 'coral' | 'amber' | 'neutral'> = {
 export function CampCard({ camp, locale }: { camp: CampSession; locale: AppLocale }) {
   const t = useTranslations('camp')
   const badge = getCampBadge(camp)
-  const price = new Intl.NumberFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', {
-    style: 'currency',
-    currency: camp.currency,
-    maximumFractionDigits: 0,
-  }).format(camp.priceFrom)
+  const price = formatPrice(camp.priceFrom, camp.currency, locale)
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-md bg-cream shadow-[var(--shadow-soft)]">

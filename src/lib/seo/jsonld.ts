@@ -8,7 +8,8 @@ const EVENT_STATUS: Record<CampStatus, string> = {
   closed: 'https://schema.org/EventCancelled',
 }
 
-function trimSlash(url: string): string {
+/** Sonundaki eğik çizgi(ler)i kaldırır — `${trimSlash(url)}/...` birleştirmelerinde çift `//` üretmez. */
+export function trimSlash(url: string): string {
   return url.replace(/\/+$/, '')
 }
 

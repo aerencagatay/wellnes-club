@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { buildWhatsAppUrl } from '@/lib/config/whatsapp'
 import { getCampBadge, type CampBadge } from '@/lib/utils/camp-status'
 import { formatDateRange } from '@/lib/utils/dates'
+import { formatPrice } from '@/lib/utils/price'
 
 const BADGE_TONE: Record<CampBadge, 'olive' | 'coral' | 'amber' | 'neutral'> = {
   open: 'olive',
@@ -20,13 +21,10 @@ export function CampCtaCard({ camp, locale }: { camp: CampSession; locale: AppLo
   const t = useTranslations('campDetail')
   const tCamp = useTranslations('camp')
   const badge = getCampBadge(camp)
-  const price = new Intl.NumberFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', {
-    style: 'currency',
-    currency: camp.currency,
-    maximumFractionDigits: 0,
-  }).format(camp.priceFrom)
+  const price = formatPrice(camp.priceFrom, camp.currency, locale)
   const whatsappUrl = buildWhatsAppUrl(t('whatsappMessage', { camp: camp.title[locale] }))
-  const showSpotsLeft = camp.status === 'open' && camp.spotsLeft > 0
+  // badge tek doğruluk kaynağıdır: 'open'/'last-spots' spotsLeft > 0'ı zaten garanti eder.
+  const showSpotsLeft = badge === 'open' || badge === 'last-spots'
 
   return (
     <aside className="sticky top-24 rounded-md bg-cream p-8 shadow-[var(--shadow-soft)]">
@@ -51,13 +49,13 @@ export function CampCtaCard({ camp, locale }: { camp: CampSession; locale: AppLo
       {showSpotsLeft && <p className="mt-4 text-xs text-coral">{t('spotsLeft', { count: camp.spotsLeft })}</p>}
 
       <div className="mt-6 flex flex-col gap-3">
-        {camp.status === 'closed' ? (
+        {badge === 'closed' ? (
           <Button className="w-full" disabled size="lg" type="button">
             {t('closed')}
           </Button>
         ) : (
           <Button className="w-full" href={`/basvuru?kamp=${camp.slug}`} size="lg">
-            {camp.status === 'waitlist' ? t('joinWaitlist') : t('bookNow')}
+            {badge === 'waitlist' ? t('joinWaitlist') : t('bookNow')}
           </Button>
         )}
         {whatsappUrl && (

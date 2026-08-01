@@ -12,7 +12,7 @@ import { Accordion } from '@/components/ui/accordion'
 import { GalleryStrip } from '@/components/ui/gallery-strip'
 import { Section } from '@/components/ui/section'
 import { site } from '@/lib/config/site'
-import { buildCampEventJsonLd } from '@/lib/seo/jsonld'
+import { buildCampEventJsonLd, trimSlash } from '@/lib/seo/jsonld'
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) => getAllCamps().map((camp) => ({ locale, slug: camp.slug })))
@@ -35,8 +35,11 @@ export async function generateMetadata({
     openGraph: {
       title: camp.title[locale],
       description: camp.summary[locale],
-      images: [camp.heroImage],
-      url: `${site.url}${path}`,
+      // Bu proje henüz kök layout'ta metadataBase tanımlamıyor (Task 15), bu yüzden
+      // next/metadata bağıl görsel yollarını localhost'a çözer. jsonld.ts'teki aynı
+      // kalıpla mutlak URL üretilir.
+      images: [`${trimSlash(site.url)}${camp.heroImage}`],
+      url: `${trimSlash(site.url)}${path}`,
       type: 'website',
     },
   }

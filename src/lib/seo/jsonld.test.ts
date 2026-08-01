@@ -55,6 +55,23 @@ describe('buildCampEventJsonLd', () => {
     const withSlash = buildCampEventJsonLd({ camp, venue, locale: 'tr', siteUrl: `${SITE}/` })
     expect(withSlash.url).toBe(`${SITE}/tr/kamplar/${camp.slug}`)
   })
+
+  it('teklifin uygunluğunu duruma ve boş yere göre ayarlar', () => {
+    const openWithSpots = buildCampEventJsonLd({
+      camp: { ...camp, status: 'open', spotsLeft: 5 }, venue, locale: 'tr', siteUrl: SITE,
+    })
+    expect(openWithSpots.offers).toMatchObject({ availability: 'https://schema.org/InStock' })
+
+    const openNoSpots = buildCampEventJsonLd({
+      camp: { ...camp, status: 'open', spotsLeft: 0 }, venue, locale: 'tr', siteUrl: SITE,
+    })
+    expect(openNoSpots.offers).toMatchObject({ availability: 'https://schema.org/SoldOut' })
+
+    const waitlisted = buildCampEventJsonLd({
+      camp: { ...camp, status: 'waitlist', spotsLeft: 0 }, venue, locale: 'tr', siteUrl: SITE,
+    })
+    expect(waitlisted.offers).toMatchObject({ availability: 'https://schema.org/SoldOut' })
+  })
 })
 
 describe('buildOrganizationJsonLd', () => {
