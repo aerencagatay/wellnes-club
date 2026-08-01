@@ -3,5 +3,23 @@
     "eyebrow": "ASSOS · ÇANAKKALE",
     "heroTitle": "Train your body, explore your soul",
     "heroLede": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos."
+  },
+  "camp": {
+    "badge": {
+      "open": "Spots open",
+      "last-spots": "Last spots",
+      "waitlist": "Waitlist",
+      "closed": "Registration closed"
+    },
+    "program": {
+      "yoga": "Yoga",
+      "pilates": "Pilates",
+      "yoga-pilates": "Yoga & Pilates"
+    },
+    "level": {
+      "baslangic": "Beginner",
+      "tum-seviyeler": "All levels",
+      "ileri": "Advanced"
+    }
   }
 }

@@ -3,5 +3,23 @@
     "eyebrow": "ASSOS · ÇANAKKALE",
     "heroTitle": "Bedenini eğit, ruhunu keşfet",
     "heroLede": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları."
+  },
+  "camp": {
+    "badge": {
+      "open": "Kayıtlar açık",
+      "last-spots": "Son yerler",
+      "waitlist": "Yedek liste",
+      "closed": "Kayıtlar kapandı"
+    },
+    "program": {
+      "yoga": "Yoga",
+      "pilates": "Pilates",
+      "yoga-pilates": "Yoga & Pilates"
+    },
+    "level": {
+      "baslangic": "Başlangıç",
+      "tum-seviyeler": "Tüm seviyeler",
+      "ileri": "İleri"
+    }
   }
 }
