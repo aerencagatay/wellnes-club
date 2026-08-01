@@ -129,6 +129,27 @@
     "duration": "Duration",
     "spotsLeft": "{count, plural, one {# spot left} other {# spots left}}"
   },
+  "teachers": {
+    "eyebrow": "OUR TEAM",
+    "title": "Our Teachers",
+    "lede": "Meet the yoga and pilates teachers who lead our camps.",
+    "campsWithTeacher": "Camps with {name}",
+    "certifications": "Certifications",
+    "instagram": "Follow on Instagram"
+  },
+  "venue": {
+    "eyebrow": "THE VENUE",
+    "title": "Karadut Taş Otel",
+    "lede": "A refuge in the stone architecture of Assos, surrounded by olive groves and Aegean light.",
+    "body1": "Karadut Taş Otel is a small stone building woven from the local stone of Büyükhusun village, surrounded by olive groves. Thick walls hold in summer's cool and winter's warmth; the same plain language of stone and wood carries through every corner.",
+    "body2": "Within walking distance of ancient Assos, and a short drive from Kadırga Bay. In the day's free hours you can head to the ancient city, the olive groves, or the bay's clear water.",
+    "highlightsTitle": "Highlights",
+    "officialSite": "The Hotel's Official Site",
+    "mapTitle": "Map of {name}",
+    "campsHere": "Camps at This Venue",
+    "accommodationNote": "For room types and accommodation details, please see the hotel's official site.",
+    "cta": "View All Camps"
+  },
   "nav": {
     "primary": "Main navigation",
     "camps": "Camps",

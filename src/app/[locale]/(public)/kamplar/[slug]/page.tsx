@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getAllCamps, getCampBySlug, getFaq, getTeachersForCamp, getVenueForCamp } from '@/content'
@@ -8,9 +7,11 @@ import { CampCtaCard } from '@/components/camps/camp-cta-card'
 import { CampDetailHero } from '@/components/camps/camp-detail-hero'
 import { DailyFlow } from '@/components/camps/daily-flow'
 import { IncludesExcludes } from '@/components/camps/includes-excludes'
+import { TeacherCard } from '@/components/teachers/teacher-card'
 import { Accordion } from '@/components/ui/accordion'
 import { GalleryStrip } from '@/components/ui/gallery-strip'
 import { Section } from '@/components/ui/section'
+import { VenueLocation } from '@/components/venue/venue-location'
 import { site } from '@/lib/config/site'
 import { buildCampEventJsonLd, trimSlash } from '@/lib/seo/jsonld'
 
@@ -83,41 +84,16 @@ export default async function CampDetailPage({
               <h2 className="type-section-title">{t('teachers')}</h2>
               <div className="mt-8 grid gap-8 sm:grid-cols-2">
                 {teachers.map((teacher) => (
-                  <div className="flex gap-4" key={teacher.slug}>
-                    <div className="relative size-20 shrink-0 overflow-hidden rounded-full bg-cream-3">
-                      {/* Yer tutucu hoca fotoğrafları SVG'dir; unoptimized ile doğrudan
-                          sunulur (bkz. teachers-preview.tsx). */}
-                      <Image
-                        alt={teacher.name}
-                        className="object-cover"
-                        fill
-                        sizes="80px"
-                        src={teacher.photo}
-                        unoptimized
-                      />
-                    </div>
-                    <div>
-                      <p className="font-heading text-lg text-ink">{teacher.name}</p>
-                      <p className="text-sm text-body">{teacher.title[locale]}</p>
-                      <p className="mt-2 text-sm">{teacher.bio[locale]}</p>
-                    </div>
-                  </div>
+                  <TeacherCard key={teacher.slug} locale={locale} teacher={teacher} />
                 ))}
               </div>
             </section>
 
             <section>
               <h2 className="type-section-title">{t('venue')}</h2>
-              <p className="mt-4 text-sm text-body">{venue.location[locale]}</p>
-              <p className="mt-4 text-sm">{venue.shortDescription[locale]}</p>
-              <ul className="mt-6 flex flex-col gap-2 text-sm text-ink-3">
-                {venue.highlights[locale].map((item) => (
-                  <li className="flex items-center gap-2" key={item}>
-                    <span aria-hidden className="size-1 shrink-0 rounded-full bg-accent-deep" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-8">
+                <VenueLocation locale={locale} venue={venue} />
+              </div>
             </section>
 
             <section>

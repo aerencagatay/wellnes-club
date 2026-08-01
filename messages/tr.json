@@ -129,6 +129,27 @@
     "duration": "Süre",
     "spotsLeft": "{count} yer kaldı"
   },
+  "teachers": {
+    "eyebrow": "EKİBİMİZ",
+    "title": "Hocalarımız",
+    "lede": "Kamplarımızı yöneten yoga ve pilates eğitmenleriyle tanışın.",
+    "campsWithTeacher": "{name} ile kamplar",
+    "certifications": "Sertifikalar",
+    "instagram": "Instagram'da Takip Et"
+  },
+  "venue": {
+    "eyebrow": "MEKAN",
+    "title": "Karadut Taş Otel",
+    "lede": "Assos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili bir sığınak.",
+    "body1": "Karadut Taş Otel, Büyükhusun köyünün yerel taşından örülmüş, zeytinliklerle çevrili küçük bir yapı. Kalın duvarlar yazın serinliği, kışın sıcaklığı içeride tutar; taş ve ahşabın sade dili her köşede sürer.",
+    "body2": "Antik Assos'a yürüme mesafesinde, Kadırga Koyu'na birkaç dakikalık bir sürüş uzaklığında. Günün boş saatlerinde antik kente, zeytinliklere ya da koyun berrak suyuna gidebilirsiniz.",
+    "highlightsTitle": "Öne Çıkanlar",
+    "officialSite": "Otelin Resmi Sitesi",
+    "mapTitle": "{name} konum haritası",
+    "campsHere": "Bu Mekandaki Kamplar",
+    "accommodationNote": "Oda tipleri ve konaklama detayları için otelin resmi sitesine bakabilirsiniz.",
+    "cta": "Tüm Kampları Gör"
+  },
   "nav": {
     "primary": "Ana gezinme",
     "camps": "Kamplar",
