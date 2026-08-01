@@ -111,6 +111,24 @@
       "all": "All"
     }
   },
+  "campDetail": {
+    "dailyFlow": "Daily Flow",
+    "includes": "What's Included",
+    "excludes": "Not Included",
+    "teachers": "Retreat Teachers",
+    "venue": "Where You'll Stay",
+    "gallery": "Snapshots from the Camp",
+    "faq": "Frequently Asked Questions",
+    "bookNow": "Book a Place",
+    "joinWaitlist": "Join the Waitlist",
+    "closed": "Registration Closed",
+    "whatsappCta": "Ask on WhatsApp",
+    "whatsappMessage": "I'd like more information about the {camp} retreat.",
+    "perPerson": "per person",
+    "level": "Level",
+    "duration": "Duration",
+    "spotsLeft": "{count, plural, one {# spot left} other {# spots left}}"
+  },
   "nav": {
     "primary": "Main navigation",
     "camps": "Camps",

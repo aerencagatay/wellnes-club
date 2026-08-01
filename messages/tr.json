@@ -111,6 +111,24 @@
       "all": "Tümü"
     }
   },
+  "campDetail": {
+    "dailyFlow": "Günün Akışı",
+    "includes": "Dahil Olanlar",
+    "excludes": "Dahil Olmayanlar",
+    "teachers": "Kampın Hocaları",
+    "venue": "Kalacağınız Yer",
+    "gallery": "Kamptan Kareler",
+    "faq": "Sıkça Sorulan Sorular",
+    "bookNow": "Yer Ayır",
+    "joinWaitlist": "Yedek Listeye Yazıl",
+    "closed": "Kayıtlar Kapandı",
+    "whatsappCta": "WhatsApp'tan Sor",
+    "whatsappMessage": "{camp} kampı hakkında bilgi almak istiyorum.",
+    "perPerson": "kişi başı",
+    "level": "Seviye",
+    "duration": "Süre",
+    "spotsLeft": "{count} yer kaldı"
+  },
   "nav": {
     "primary": "Ana gezinme",
     "camps": "Kamplar",
