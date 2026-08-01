@@ -33,13 +33,19 @@ export function Button({ variant = 'primary', size = 'md', href, children, class
     const external = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
     if (external) {
       return (
-        <a className={classes} href={href} rel="noopener noreferrer" target="_blank">
+        <a
+          className={classes}
+          href={href}
+          rel="noopener noreferrer"
+          target="_blank"
+          {...(rest as Omit<ComponentPropsWithoutRef<'a'>, 'href'>)}
+        >
           {children}
         </a>
       )
     }
     return (
-      <Link className={classes} href={href}>
+      <Link className={classes} href={href} {...(rest as Omit<ComponentPropsWithoutRef<typeof Link>, 'href'>)}>
         {children}
       </Link>
     )

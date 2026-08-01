@@ -4,7 +4,7 @@ const BACKGROUNDS = {
   cream: 'bg-cream',
   'cream-2': 'bg-cream-2',
   'cream-3': 'bg-cream-3',
-  ink: 'bg-ink text-cream',
+  ink: 'bg-ink text-cream [&_:where(h1,h2,h3,h4,h5)]:text-cream',
 } as const
 
 export function Section({
