@@ -5,9 +5,11 @@ import { useTranslations } from 'next-intl'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { Chip } from '@/components/ui/chip'
 import type { Level, Program } from '@/content'
+import { LEVELS as LEVEL_VALUES, PROGRAMS as PROGRAM_VALUES } from '@/lib/utils/camp-status'
 
-const PROGRAMS: (Program | 'all')[] = ['all', 'yoga', 'pilates', 'yoga-pilates']
-const LEVELS: (Level | 'all')[] = ['all', 'baslangic', 'tum-seviyeler', 'ileri']
+// 'all' sentinel'i yalnızca bu filtre arayüzüne ait; kanonik listeler camp-status'tan gelir.
+const PROGRAMS: (Program | 'all')[] = ['all', ...PROGRAM_VALUES]
+const LEVELS: (Level | 'all')[] = ['all', ...LEVEL_VALUES]
 
 export function CampFilters() {
   const t = useTranslations('camp')

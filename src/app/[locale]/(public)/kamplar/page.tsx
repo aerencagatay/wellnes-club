@@ -6,17 +6,27 @@ import { CampCard } from '@/components/camps/camp-card'
 import { CampFilters } from '@/components/camps/camp-filters'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/ui/section'
-import { filterCamps } from '@/lib/utils/camp-status'
+import { filterCamps, LEVELS, PROGRAMS } from '@/lib/utils/camp-status'
 
-const PROGRAMS = new Set<string>(['yoga', 'pilates', 'yoga-pilates'])
-const LEVELS = new Set<string>(['baslangic', 'tum-seviyeler', 'ileri'])
+function isProgram(value: string): value is Program {
+  return (PROGRAMS as readonly string[]).includes(value)
+}
+
+function isLevel(value: string): value is Level {
+  return (LEVELS as readonly string[]).includes(value)
+}
+
+/** `?program=a&program=b` gibi tekrarlanan anahtarlarda Next `string[]` verir; bunu kasıtlı olarak geçersiz sayarız. */
+function asSingleValue(value: string | string[] | undefined): string | undefined {
+  return typeof value === 'string' ? value : undefined
+}
 
 export default async function CampsPage({
   params,
   searchParams,
 }: {
   params: Promise<{ locale: AppLocale }>
-  searchParams: Promise<{ program?: string; level?: string }>
+  searchParams: Promise<{ program?: string | string[]; level?: string | string[] }>
 }) {
   const { locale } = await params
   setRequestLocale(locale)
@@ -24,9 +34,11 @@ export default async function CampsPage({
   const t = await getTranslations('camps')
   const today = new Date().toISOString().slice(0, 10)
 
-  // Bilinmeyen sorgu değerleri sessizce "hepsi" olarak ele alınır.
-  const program = query.program && PROGRAMS.has(query.program) ? (query.program as Program) : 'all'
-  const level = query.level && LEVELS.has(query.level) ? (query.level as Level) : 'all'
+  // Bilinmeyen veya tekrarlanan sorgu değerleri sessizce "hepsi" olarak ele alınır.
+  const rawProgram = asSingleValue(query.program)
+  const rawLevel = asSingleValue(query.level)
+  const program = rawProgram && isProgram(rawProgram) ? rawProgram : 'all'
+  const level = rawLevel && isLevel(rawLevel) ? rawLevel : 'all'
 
   const upcoming = filterCamps(getUpcomingCamps(today), { program, level })
   const past = getPastCamps(today)

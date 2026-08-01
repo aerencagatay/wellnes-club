@@ -1,5 +1,9 @@
 import type { CampSession, Level, Program } from '@/content'
 
+/** Tek doğruluk kaynağı: geçerli program/seviye değerleri. `'all'` sentinel'i filtre arayüzünün kendi kaygısıdır, burada yer almaz. */
+export const PROGRAMS: readonly Program[] = ['yoga', 'pilates', 'yoga-pilates']
+export const LEVELS: readonly Level[] = ['baslangic', 'tum-seviyeler', 'ileri']
+
 /** Bu sayı ve altındaki boş yer "son yerler" uyarısını tetikler. */
 export const LAST_SPOTS_THRESHOLD = 4
 
