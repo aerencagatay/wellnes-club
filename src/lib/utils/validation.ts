@@ -7,11 +7,24 @@ import { getCampBySlug } from '@/content'
  * vermek diğerini kapsamaz. Her string/number alanına taban `message` de vererek
  * alan tamamen eksik gönderildiğinde de zod'un İngilizce varsayılan cümlesi değil,
  * anahtar dönmesini garantiliyoruz (bkz. flattenZodErrors sözleşmesi).
+ *
+ * Bu, YALNIZCA taban tip kontrolünü kapsar. Zincirdeki HER `.min()/.max()/.email()/
+ * .int()/.refine()` çağrısının da kendi `message`'ı olmalı — birini atlamak (ör.
+ * `.min(1)` mesajsız bırakmak) o kontrol tetiklendiğinde zod'un İngilizce varsayılan
+ * cümlesini sızdırır. `validation.error-keys.test.ts` tam bunu, gerçek girdilerle
+ * tarayarak denetler; "anahtar var mı" araması bunu asla yakalayamaz çünkü sorun bir
+ * mesajın *var olması* değil, *hiç olmaması*dır.
+ *
+ * Taban tip mesajları için özel bir "alan eksik" anahtarı icat etmek yerine, o alanın
+ * zaten var olan anahtarlarından birini yeniden kullanıyoruz: ör. `guests` tamamen
+ * eksikse de `guestsInteger` döner, ayrı bir "guestsRequired" anahtarı yoktur. Bu
+ * bilinçli bir sadeleştirme (YAGNI) — sonraki okuyucu için not düşülüyor.
  */
 const phone = z
   .string({ message: 'invalidPhone' })
   .trim()
-  .min(1)
+  .min(1, { message: 'invalidPhone' })
+  .max(32, { message: 'invalidPhone' })
   .refine((value) => /^[\d\s+()./-]+$/.test(value) && (value.match(/\d/g)?.length ?? 0) >= 7, {
     message: 'invalidPhone',
   })
@@ -27,7 +40,8 @@ const name = z
   .min(2, { message: 'nameTooShort' })
   .max(80, { message: 'nameTooLong' })
 const consent = z.literal(true, { message: 'consentRequired' })
-const turnstileToken = z.string().optional()
+/** Turnstile jetonu makine tarafından üretilir; kullanıcıya gösterilen bir alan değildir, bu yüzden `generic`'e düşer. */
+const turnstileToken = z.string({ message: 'generic' }).optional()
 
 const campInquiry = z.object({
   kind: z.literal('camp'),
@@ -43,7 +57,11 @@ const campInquiry = z.object({
     .min(1, { message: 'guestsMin' })
     .max(8, { message: 'guestsMax' }),
   roomPreference: z.enum(['paylasimli', 'tek-kisilik'], { message: 'invalidRoomPreference' }),
-  message: z.string().trim().max(1000, { message: 'messageTooLong' }).optional(),
+  message: z
+    .string({ message: 'messageTooLong' })
+    .trim()
+    .max(1000, { message: 'messageTooLong' })
+    .optional(),
   consent,
   turnstileToken,
 })
@@ -78,12 +96,17 @@ export type ContactInquiry = z.infer<typeof contactInquiry>
 export type NewsletterInquiry = z.infer<typeof newsletterInquiry>
 export type InquiryInput = z.infer<typeof inquirySchema>
 
-/** Alan başına ilk hata mesajını döner — arayüz alan altına tek satır basar. */
+/**
+ * Alan başına ilk hata mesajını döner — arayüz alan altına tek satır basar.
+ * Kök seviyesindeki hatalar (ör. gövde hiç nesne değilse) boş bir `path` taşır;
+ * bunlar `form` anahtarı altında toplanır — Task 12'nin `{ ok: false, errors: {
+ * form: 'generic' } }` sözleşmesi ve Task 13'ün üst banner'ı bu anahtarı okur.
+ */
 export function flattenZodErrors(error: z.ZodError): Record<string, string> {
   const result: Record<string, string> = {}
   for (const issue of error.issues) {
-    const field = issue.path[0]
-    if (typeof field === 'string' && !(field in result)) {
+    const field = typeof issue.path[0] === 'string' ? issue.path[0] : 'form'
+    if (!(field in result)) {
       result[field] = issue.message
     }
   }
