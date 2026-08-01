@@ -31,7 +31,7 @@
         "1": "Taş otelde konaklama, paylaşımlı oda",
         "2": "Günde iki yoga veya pilates seansı",
         "3": "Üç öğün ev yapımı, mevsimlik beslenme",
-        "4": "12-16 kişilik küçük gruplar",
+        "4": "12–16 kişilik küçük gruplar",
         "5": "Assos ve Kadırga Koyu'na yürüyüşler",
         "6": "Nefes çalışmaları ve dinlenme zamanı"
       }
@@ -68,7 +68,8 @@
     },
     "testimonials": {
       "eyebrow": "KATILIMCI SESLERİ",
-      "title": "Kamplardan izlenimler"
+      "title": "Kamplardan izlenimler",
+      "devWarning": "Geliştirme uyarısı: bu yorumlar ÖRNEKTİR. Yayına almadan önce gerçek yorumlarla değiştirin veya bu bölümü kaldırın."
     },
     "newsletter": {
       "title": "Yeni kampları ilk öğrenen siz olun",
@@ -95,7 +96,7 @@
       "tum-seviyeler": "Tüm seviyeler",
       "ileri": "İleri"
     },
-    "priceFromSuffix": "kişi başı",
+    "priceFromSuffix": "kişi başı başlangıç fiyatı",
     "nights": "{count} gece"
   },
   "nav": {

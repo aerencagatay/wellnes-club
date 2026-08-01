@@ -68,7 +68,8 @@
     },
     "testimonials": {
       "eyebrow": "IN THEIR WORDS",
-      "title": "Impressions from past camps"
+      "title": "Impressions from past camps",
+      "devWarning": "Development notice: these testimonials are PLACEHOLDERS. Replace them with real testimonials before launch, or remove this section."
     },
     "newsletter": {
       "title": "Be the first to hear about new camps",
@@ -95,7 +96,7 @@
       "tum-seviyeler": "All levels",
       "ileri": "Advanced"
     },
-    "priceFromSuffix": "per person",
+    "priceFromSuffix": "starting price per person",
     "nights": "{count, plural, one {# night} other {# nights}}"
   },
   "nav": {

@@ -17,10 +17,7 @@ export function Testimonials({ locale }: { locale: AppLocale }) {
       <h2 className="type-section-title max-w-2xl">{t('title')}</h2>
 
       {process.env.NODE_ENV !== 'production' && items.some((i) => i.isPlaceholder) && (
-        <p className="mt-6 rounded-sm border border-coral bg-coral/10 p-4 text-sm text-ink">
-          Geliştirme uyarısı: bu yorumlar ÖRNEKTİR. Yayına almadan önce gerçek yorumlarla değiştirin
-          veya bu bölümü kaldırın.
-        </p>
+        <p className="mt-6 rounded-sm border border-coral bg-coral/10 p-4 text-sm text-ink">{t('devWarning')}</p>
       )}
 
       <ul className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">

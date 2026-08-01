@@ -64,33 +64,44 @@ body {
   outline-offset: 2px;
 }
 
-/* ===== TİPOGRAFİ ÖLÇEĞİ ===== */
-.type-display {
-  font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.06;
-  letter-spacing: -0.02em;
-  font-weight: 400;
-}
-.type-section-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.2vw, 2.65rem);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-.type-lede {
-  font-size: clamp(1rem, 1.35vw, 1.125rem);
-  line-height: 1.75;
-  color: var(--color-body);
-}
-.eyebrow {
-  display: inline-block;
-  font-size: 10px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--color-accent-deep);
-  margin-bottom: 12px;
+/* ===== TİPOGRAFİ ÖLÇEĞİ =====
+   @layer components içindedir: Tailwind v4 katman sırası theme → base →
+   components → utilities'tir, bu yüzden bu sınıflar katmansız (unlayered)
+   olsaydı Tailwind'in utilities katmanındaki text-* yardımcılarını (ör.
+   text-cream) her zaman yenerlerdi — kaynak sırası veya özgüllük fark etmez.
+   Katmansızken bu, koyu zeminlerde text-cream ile ezilmeye çalışılan
+   .eyebrow/.type-lede metninin görünmez kalmasına yol açan gerçek bir
+   kontrast tuzağıydı. components katmanına taşımak bu tuzağı kapatır:
+   artık utilities katmanı kazanır, hiçbir yardımcı sınıf eklemeyen
+   sayfalarda ise görünüm birebir aynı kalır. */
+@layer components {
+  .type-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .type-section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3.2vw, 2.65rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .type-lede {
+    font-size: clamp(1rem, 1.35vw, 1.125rem);
+    line-height: 1.75;
+    color: var(--color-body);
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-accent-deep);
+    margin-bottom: 12px;
+  }
 }
 
 /* ===== RİTİM ===== */
