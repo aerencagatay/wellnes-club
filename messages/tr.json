@@ -175,5 +175,23 @@
     "navTitle": "Keşfet",
     "contactTitle": "İletişim",
     "instagram": "Instagram"
+  },
+  "form": {
+    "errors": {
+      "invalidEmail": "Geçerli bir e-posta adresi girin.",
+      "invalidPhone": "Geçerli bir telefon numarası girin.",
+      "nameTooShort": "Ad en az 2 karakter olmalı.",
+      "nameTooLong": "Ad en fazla 80 karakter olabilir.",
+      "consentRequired": "Devam etmek için KVKK Aydınlatma Metni'ni onaylamalısınız.",
+      "unknownCamp": "Seçilen kamp bulunamadı.",
+      "guestsInteger": "Kişi sayısı tam sayı olmalı.",
+      "guestsMin": "En az 1 kişi girmelisiniz.",
+      "guestsMax": "En fazla 8 kişi için başvurabilirsiniz.",
+      "invalidRoomPreference": "Geçerli bir oda tercihi seçin.",
+      "messageRequired": "Lütfen bir mesaj yazın.",
+      "messageTooLong": "Mesaj en fazla 1000 karakter olabilir.",
+      "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+      "rateLimited": "Çok fazla deneme yaptınız. Lütfen birkaç dakika sonra tekrar deneyin."
+    }
   }
 }

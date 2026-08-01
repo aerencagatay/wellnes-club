@@ -175,5 +175,23 @@
     "navTitle": "Explore",
     "contactTitle": "Contact",
     "instagram": "Instagram"
+  },
+  "form": {
+    "errors": {
+      "invalidEmail": "Enter a valid email address.",
+      "invalidPhone": "Enter a valid phone number.",
+      "nameTooShort": "Name must be at least 2 characters.",
+      "nameTooLong": "Name can be at most 80 characters.",
+      "consentRequired": "You must accept the KVKK Privacy Notice to continue.",
+      "unknownCamp": "The selected camp could not be found.",
+      "guestsInteger": "Number of guests must be a whole number.",
+      "guestsMin": "You must enter at least 1 guest.",
+      "guestsMax": "You can apply for at most 8 guests.",
+      "invalidRoomPreference": "Select a valid room preference.",
+      "messageRequired": "Please write a message.",
+      "messageTooLong": "Message can be at most 1000 characters.",
+      "generic": "Something went wrong. Please try again.",
+      "rateLimited": "Too many attempts. Please try again in a few minutes."
+    }
   }
 }
