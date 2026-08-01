@@ -1521,7 +1521,7 @@ git commit -m "feat: add camp badge derivation and filtering"
   <Section as?="section" background="cream" | "cream-2" | "ink" size="py" | "sm" />
   <Eyebrow>{children}</Eyebrow>
   <Badge tone="olive" | "coral" | "amber" | "neutral">{children}</Badge>
-  <Chip active={boolean} as="button" | "span" />
+  <Chip active={boolean} />   {/* always a <button>; no consumer needs a span */}
   <Accordion items={{ id, question, answer }[]} />
   <GalleryStrip images={{ src, alt }[]} />
   ```
