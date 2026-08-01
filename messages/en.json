@@ -21,5 +21,31 @@
       "tum-seviyeler": "All levels",
       "ileri": "Advanced"
     }
+  },
+  "nav": {
+    "primary": "Main navigation",
+    "camps": "Camps",
+    "teachers": "Our Teachers",
+    "venue": "Venue",
+    "experience": "Experience",
+    "about": "About Us",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Reserve a Spot",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "common": {
+    "whatsapp": "Message us on WhatsApp",
+    "backToTop": "Back to top",
+    "readMore": "Read more",
+    "allRightsReserved": "All rights reserved."
+  },
+  "footer": {
+    "kvkk": "KVKK Notice",
+    "privacy": "Privacy Policy",
+    "navTitle": "Explore",
+    "contactTitle": "Contact",
+    "instagram": "Instagram"
   }
 }

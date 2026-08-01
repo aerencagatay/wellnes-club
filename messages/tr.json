@@ -21,5 +21,31 @@
       "tum-seviyeler": "Tüm seviyeler",
       "ileri": "İleri"
     }
+  },
+  "nav": {
+    "primary": "Ana gezinme",
+    "camps": "Kamplar",
+    "teachers": "Hocalarımız",
+    "venue": "Mekan",
+    "experience": "Deneyim",
+    "about": "Hakkımızda",
+    "faq": "SSS",
+    "contact": "İletişim",
+    "cta": "Yer Ayır",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat"
+  },
+  "common": {
+    "whatsapp": "WhatsApp'tan yazın",
+    "backToTop": "Başa dön",
+    "readMore": "Devamını oku",
+    "allRightsReserved": "Tüm hakları saklıdır."
+  },
+  "footer": {
+    "kvkk": "KVKK",
+    "privacy": "Gizlilik Politikası",
+    "navTitle": "Keşfet",
+    "contactTitle": "İletişim",
+    "instagram": "Instagram"
   }
 }
