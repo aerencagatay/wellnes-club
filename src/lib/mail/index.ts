@@ -34,11 +34,6 @@ export async function sendInquiryEmails(
   // biçimde patlaması, ziyaretçinin isteğini 500'e düşürmemeli: referans numarası zaten
   // üretildi, talep organizatöre ulaşmasa bile ziyaretçi elinde bir referansla kalmalı.
   try {
-    // 'resend' isteğe bağlı bağımlılık; kurulu değilken tsc'nin modül çözümleme
-    // hatasını burada bilerek bastırıyoruz. Paket gerçekten kurulduğunda alttaki
-    // satır artık hata üretmeyeceği için derleyici bu yönergeyi kullanılmamış
-    // sayıp hata verecek — o an bu yorum ve yönerge birlikte kaldırılmalı.
-    // @ts-expect-error resend paketi kurulu değil (bkz. yukarıdaki not)
     const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
 
@@ -47,13 +42,26 @@ export async function sendInquiryEmails(
       resend.emails.send({ from: FROM, to: input.email, ...autoReply }),
     ])
 
-    const failed = results.filter((r) => r.status === 'rejected')
-    if (failed.length > 0) {
-      console.error('[inquiry] E-posta gönderimi kısmen başarısız', { referenceId, failed })
+    // ÖNEMLİ: Resend SDK'sı API düzeyinde bir hatada (ör. geçersiz anahtar, kota
+    // aşımı) promise'i reddetmez — `{ data: null, error: {...} }` ile "başarıyla"
+    // çözümler. Bu yüzden yalnızca `status === 'rejected'` bakmak (ağ/istisna
+    // düzeyi hataları) yetmez; her çözümlenen sonucun içindeki `error` alanını da
+    // kontrol etmek gerekir, yoksa gerçek bir gönderim başarısızlığı sessizce
+    // `delivered: true` olarak raporlanır — organizatör talebi asla görmez ama
+    // sistem her şey yolundaymış gibi davranır.
+    const failures = results.flatMap((result, index) => {
+      if (result.status === 'rejected') return [{ index, reason: result.reason }]
+      if (result.value.error) return [{ index, reason: result.value.error }]
+      return []
+    })
+    if (failures.length > 0) {
+      console.error('[inquiry] E-posta gönderimi kısmen başarısız', { referenceId, failures })
     }
-    // Kurum bildirimi (ilk gönderim) gittiyse teslim edilmiş sayılır — asıl iş
-    // organizatörün talebi görmesidir, otomatik yanıtın başarısız olması ikincildir.
-    return { delivered: results[0].status === 'fulfilled' }
+    // Kurum bildirimi (ilk gönderim) gerçekten gittiyse teslim edilmiş sayılır — asıl
+    // iş organizatörün talebi görmesidir, otomatik yanıtın başarısız olması ikincildir.
+    const internalResult = results[0]
+    const internalDelivered = internalResult.status === 'fulfilled' && internalResult.value.error === null
+    return { delivered: internalDelivered }
   } catch (error) {
     console.error('[inquiry] E-posta gönderim katmanı başlatılamadı', { referenceId, error })
     return { delivered: false }

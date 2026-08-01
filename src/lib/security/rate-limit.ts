@@ -30,14 +30,7 @@ export async function checkRateLimit(key: string): Promise<{ allowed: boolean }>
   if (!url || !token) return inMemoryCheck(key)
 
   try {
-    // Bu iki paket "optional dependency" — yüklenmemiş bir ortamda tsc'nin modül
-    // çözümlemesi başarısız olur, bu yüzden @ts-expect-error kullanılıyor. Paketler
-    // gerçekten kurulduğunda bu satırlar hata üretmeyi bırakır ve derleyici
-    // "kullanılmayan @ts-expect-error yönergesi" olarak işaretler — o zaman bu
-    // yorumları kaldırmak gerekir.
-    // @ts-expect-error - '@upstash/ratelimit' isteğe bağlı bağımlılık, kurulu değilse çözümlenmez
     const { Ratelimit } = await import('@upstash/ratelimit')
-    // @ts-expect-error - '@upstash/redis' isteğe bağlı bağımlılık, kurulu değilse çözümlenmez
     const { Redis } = await import('@upstash/redis')
     const limiter = new Ratelimit({
       redis: new Redis({ url, token }),
