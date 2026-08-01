@@ -8,19 +8,25 @@ import { NAV_ITEMS, site } from '@/lib/config/site'
 import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from './language-switcher'
 
+const MOBILE_PANEL_ID = 'mobile-nav-panel'
+
 export function Navbar() {
   const t = useTranslations('nav')
   const [open, setOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
-  // Menü açıkken Escape kapatır, gövde kaydırması durur, odak panelde kalır.
+  // Menü açıkken odak panele taşınır, Escape kapatır, gövde kaydırması durur,
+  // Tab panelde döner; kapanışta (Escape / X / bağlantı) odak tetikleyiciye döner.
   useEffect(() => {
     if (!open) return
     document.body.style.overflow = 'hidden'
+    closeButtonRef.current?.focus()
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false)
       if (event.key !== 'Tab') return
-      const focusables = panelRef.current?.querySelectorAll<HTMLElement>('a, button')
+      const focusables = panelRef.current?.querySelectorAll<HTMLElement>('a, button:not([disabled])')
       if (!focusables?.length) return
       const first = focusables[0]
       const last = focusables[focusables.length - 1]
@@ -36,6 +42,7 @@ export function Navbar() {
     return () => {
       document.body.style.overflow = ''
       document.removeEventListener('keydown', onKeyDown)
+      triggerRef.current?.focus()
     }
   }, [open])
 
@@ -62,10 +69,12 @@ export function Navbar() {
         </div>
 
         <button
+          aria-controls={MOBILE_PANEL_ID}
           aria-expanded={open}
           aria-label={t('openMenu')}
           className="lg:hidden"
           onClick={() => setOpen(true)}
+          ref={triggerRef}
           type="button"
         >
           <Menu className="size-6 text-ink" />
@@ -73,10 +82,16 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-cream lg:hidden" ref={panelRef}>
+        <div
+          aria-modal="true"
+          className="fixed inset-0 z-50 bg-cream lg:hidden"
+          id={MOBILE_PANEL_ID}
+          ref={panelRef}
+          role="dialog"
+        >
           <div className="container-page flex h-18 items-center justify-between">
             <span className="font-heading text-xl text-ink">{site.name}</span>
-            <button aria-label={t('closeMenu')} onClick={() => setOpen(false)} type="button">
+            <button aria-label={t('closeMenu')} onClick={() => setOpen(false)} ref={closeButtonRef} type="button">
               <X className="size-6 text-ink" />
             </button>
           </div>
