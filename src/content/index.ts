@@ -35,7 +35,7 @@ export function getFeaturedCamps(): CampSession[] {
 }
 
 export function getAllTeachers(): Teacher[] {
-  return teachers
+  return [...teachers]
 }
 
 export function getTeacherBySlug(slug: string): Teacher | undefined {
@@ -53,7 +53,7 @@ export function getCampsForTeacher(teacherSlug: string): CampSession[] {
 }
 
 export function getAllVenues(): Venue[] {
-  return venues
+  return [...venues]
 }
 
 export function getVenueBySlug(slug: string): Venue | undefined {
@@ -71,11 +71,11 @@ export function getVenueForCamp(camp: CampSession): Venue {
 }
 
 export function getFaq(): FaqItem[] {
-  return faq
+  return [...faq]
 }
 
 export function getTestimonials(): Testimonial[] {
-  return testimonials
+  return [...testimonials]
 }
 
 export function getAllPosts(): BlogPost[] {

@@ -1,13 +1,16 @@
 import { describe, expect, it } from 'vitest'
 import {
   getAllCamps, getAllTeachers, getAllVenues, getCampBySlug, getCampsForTeacher,
-  getFeaturedCamps, getPastCamps, getTeachersForCamp, getUpcomingCamps, getVenueForCamp,
+  getFaq, getFeaturedCamps, getPastCamps, getTeachersForCamp, getTestimonials,
+  getUpcomingCamps, getVenueForCamp,
 } from './index'
 import type { Localized, LocalizedList } from './types'
 
 const camps = getAllCamps()
 const teachers = getAllTeachers()
 const venues = getAllVenues()
+const faqItems = getFaq()
+const testimonialItems = getTestimonials()
 
 function expectLocalized(value: Localized, label: string) {
   expect(value.tr?.trim(), `${label}.tr boş`).toBeTruthy()
@@ -100,6 +103,13 @@ describe('içerik bütünlüğü', () => {
       expectLocalized(v.location, `${v.slug}.location`)
       expectLocalizedList(v.highlights, `${v.slug}.highlights`)
       expect(v.gallery.length, `${v.slug} galeri kısa`).toBeGreaterThanOrEqual(4)
+    }
+    for (const f of faqItems) {
+      expectLocalized(f.question, `faq[${f.id}].question`)
+      expectLocalized(f.answer, `faq[${f.id}].answer`)
+    }
+    for (const t of testimonialItems) {
+      expectLocalized(t.quote, `testimonial[${t.id}].quote`)
     }
   })
 
