@@ -99,6 +99,18 @@
     "priceFromSuffix": "starting price per person",
     "nights": "{count, plural, one {# night} other {# nights}}"
   },
+  "camps": {
+    "eyebrow": "THE CALENDAR",
+    "title": "Camps",
+    "lede": "Filter our upcoming yoga and pilates retreats by programme and level.",
+    "empty": "No upcoming camps match these filters.",
+    "pastTitle": "Past Camps",
+    "filters": {
+      "program": "Programme",
+      "level": "Level",
+      "all": "All"
+    }
+  },
   "nav": {
     "primary": "Main navigation",
     "camps": "Camps",

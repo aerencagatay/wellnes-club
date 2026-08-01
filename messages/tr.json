@@ -99,6 +99,18 @@
     "priceFromSuffix": "kişi başı başlangıç fiyatı",
     "nights": "{count} gece"
   },
+  "camps": {
+    "eyebrow": "TAKVİM",
+    "title": "Kamplar",
+    "lede": "Yaklaşan yoga ve pilates kamplarımızı program ve seviyeye göre filtreleyin.",
+    "empty": "Bu filtrelere uyan yaklaşan kamp yok.",
+    "pastTitle": "Geçmiş kamplar",
+    "filters": {
+      "program": "Program",
+      "level": "Seviye",
+      "all": "Tümü"
+    }
+  },
   "nav": {
     "primary": "Ana gezinme",
     "camps": "Kamplar",
