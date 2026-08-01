@@ -1,8 +1,82 @@
 {
   "home": {
-    "eyebrow": "ASSOS · ÇANAKKALE",
-    "heroTitle": "Bedenini eğit, ruhunu keşfet",
-    "heroLede": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları."
+    "hero": {
+      "eyebrow": "ASSOS · ÇANAKKALE",
+      "title": "Bedenini eğit, ruhunu keşfet",
+      "lede": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları.",
+      "ctaPrimary": "Kampları Keşfet",
+      "ctaSecondary": "Mekanı Gör"
+    },
+    "trust": {
+      "assos": { "value": "7 dk", "label": "Antik Assos'a" },
+      "bay": { "value": "5 km", "label": "Kadırga Koyu'na" },
+      "groupSize": { "value": "12–16", "label": "Kişilik gruplar" },
+      "stone": { "value": "Taş", "label": "Otantik yerel mimari" }
+    },
+    "manifesto": {
+      "eyebrow": "FELSEFEMİZ",
+      "title": "Dinlenmek bir lüks değil, bir ihtiyaçtır.",
+      "body1": "Serenity Retreats, kalabalık programların ve sıkışık günlerin tam tersini vaat eder: sabah pratiği, uzun öğünler, deniz ve zeytinlik arasında geçen sessiz saatler. Her kampımız aynı taş otelde, aynı küçük ekiple, aynı sakinlikle kurulur.",
+      "body2": "Buraya bir sınıfa değil, bir sığınağa geliyorsunuz. Programı biz kuruyoruz; geri kalanını — nefesinizi, hızınızı, sessizliğinizi — siz belirliyorsunuz."
+    },
+    "upcoming": {
+      "eyebrow": "TAKVİM",
+      "title": "Yaklaşan Kamplar",
+      "viewAll": "Tüm Kampları Gör"
+    },
+    "includes": {
+      "eyebrow": "HER KAMPTA",
+      "title": "Neler Dahil?",
+      "items": {
+        "1": "Taş otelde konaklama, paylaşımlı oda",
+        "2": "Günde iki yoga veya pilates seansı",
+        "3": "Üç öğün ev yapımı, mevsimlik beslenme",
+        "4": "12-16 kişilik küçük gruplar",
+        "5": "Assos ve Kadırga Koyu'na yürüyüşler",
+        "6": "Nefes çalışmaları ve dinlenme zamanı"
+      }
+    },
+    "benefits": {
+      "deepenPractice": {
+        "eyebrow": "PRATİK",
+        "title": "Pratiğini Derinleştir",
+        "body": "Sabah ve akşam seansları, on altı kişiyi geçmeyen gruplarla yürütülür. Hocalarımız her bedenin farklı bir noktadan başladığını bilir; program başlangıç seviyesinden ileri seviyeye kadar herkese açıktır.",
+        "imageAlt": "Taş otelin balkonundan zeytinliklere bakan manzara"
+      },
+      "nourishBody": {
+        "eyebrow": "BESLENME",
+        "title": "Bedenini Besle",
+        "body": "Mutfağımız mevsime göre şekillenir: zeytinyağı, ev peyniri, bahçeden sebze. Üç öğün de ortak masada, aceleye getirilmeden yenir.",
+        "imageAlt": "Otelin zeytin ağaçlarıyla çevrili bahçesi"
+      },
+      "resetMind": {
+        "eyebrow": "DİNLENME",
+        "title": "Zihnini Sıfırla",
+        "body": "Telefonlar bir kenara bırakılır. Nefes çalışmaları, uzun sessizlikler ve havuz kenarında geçen boş saatler zihne asıl dinlenmeyi verir.",
+        "imageAlt": "Otelin havuzu ve dinlenme alanı"
+      }
+    },
+    "teachers": {
+      "eyebrow": "EKİBİMİZ",
+      "title": "Hocalarımız",
+      "viewAll": "Tüm Hocaları Gör"
+    },
+    "venue": {
+      "eyebrow": "MEKAN",
+      "title": "Karadut Taş Otel'de Kalış",
+      "cta": "Mekanı Keşfet"
+    },
+    "testimonials": {
+      "eyebrow": "KATILIMCI SESLERİ",
+      "title": "Kamplardan izlenimler"
+    },
+    "newsletter": {
+      "title": "Yeni kampları ilk öğrenen siz olun",
+      "lede": "Tarihler açıklandığında, kontenjanlar dolmadan önce e-posta ile haber verelim.",
+      "placeholder": "E-posta adresiniz",
+      "consent": "KVKK Aydınlatma Metni'ni okudum, e-posta ile iletişime geçilmesini kabul ediyorum.",
+      "submit": "Abone Ol"
+    }
   },
   "camp": {
     "badge": {
@@ -20,7 +94,9 @@
       "baslangic": "Başlangıç",
       "tum-seviyeler": "Tüm seviyeler",
       "ileri": "İleri"
-    }
+    },
+    "priceFromSuffix": "kişi başı",
+    "nights": "{count} gece"
   },
   "nav": {
     "primary": "Ana gezinme",

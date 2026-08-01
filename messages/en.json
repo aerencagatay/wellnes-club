@@ -1,8 +1,82 @@
 {
   "home": {
-    "eyebrow": "ASSOS · ÇANAKKALE",
-    "heroTitle": "Train your body, explore your soul",
-    "heroLede": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos."
+    "hero": {
+      "eyebrow": "ASSOS · ÇANAKKALE",
+      "title": "Train your body, explore your soul",
+      "lede": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos.",
+      "ctaPrimary": "Explore the Camps",
+      "ctaSecondary": "See the Venue"
+    },
+    "trust": {
+      "assos": { "value": "7 min", "label": "to ancient Assos" },
+      "bay": { "value": "5 km", "label": "to Kadırga Bay" },
+      "groupSize": { "value": "12–16", "label": "guests per group" },
+      "stone": { "value": "Stone", "label": "authentic local architecture" }
+    },
+    "manifesto": {
+      "eyebrow": "OUR PHILOSOPHY",
+      "title": "Rest is not a luxury. It is a necessity.",
+      "body1": "Serenity Retreats promises the opposite of a crowded schedule: morning practice, long meals, and quiet hours spent between the sea and the olive groves. Every camp is held at the same stone hotel, with the same small team, at the same unhurried pace.",
+      "body2": "You are not arriving at a class — you are arriving at a retreat. We set the structure; you set the rest — your breath, your pace, your quiet."
+    },
+    "upcoming": {
+      "eyebrow": "THE CALENDAR",
+      "title": "Upcoming Camps",
+      "viewAll": "View All Camps"
+    },
+    "includes": {
+      "eyebrow": "IN EVERY CAMP",
+      "title": "What's Included",
+      "items": {
+        "1": "Accommodation in a stone hotel, shared room",
+        "2": "Two yoga or pilates sessions a day",
+        "3": "Three home-style, seasonal meals a day",
+        "4": "Small groups of 12–16",
+        "5": "Walks to Assos and Kadırga Bay",
+        "6": "Breathwork and time to rest"
+      }
+    },
+    "benefits": {
+      "deepenPractice": {
+        "eyebrow": "PRACTICE",
+        "title": "Deepen Your Practice",
+        "body": "Morning and evening sessions run in groups that never exceed sixteen people. Our teachers know every body starts from a different place; the program is open from complete beginners to advanced practitioners.",
+        "imageAlt": "View over the olive groves from the stone hotel's balcony"
+      },
+      "nourishBody": {
+        "eyebrow": "NOURISHMENT",
+        "title": "Nourish Your Body",
+        "body": "Our kitchen follows the season: olive oil, homemade cheese, vegetables from the garden. All three meals are eaten at a shared table, unhurried.",
+        "imageAlt": "The hotel's garden, surrounded by olive trees"
+      },
+      "resetMind": {
+        "eyebrow": "STILLNESS",
+        "title": "Reset Your Mind",
+        "body": "Phones are set aside. Breathwork, long silences and empty hours by the pool give the mind the rest it actually needs.",
+        "imageAlt": "The hotel's pool and rest area"
+      }
+    },
+    "teachers": {
+      "eyebrow": "OUR TEAM",
+      "title": "Our Teachers",
+      "viewAll": "Meet All Teachers"
+    },
+    "venue": {
+      "eyebrow": "THE VENUE",
+      "title": "Staying at Karadut Taş Otel",
+      "cta": "Explore the Venue"
+    },
+    "testimonials": {
+      "eyebrow": "IN THEIR WORDS",
+      "title": "Impressions from past camps"
+    },
+    "newsletter": {
+      "title": "Be the first to hear about new camps",
+      "lede": "We'll email you as soon as new dates are announced — before spots fill up.",
+      "placeholder": "Your email address",
+      "consent": "I have read the KVKK Privacy Notice and consent to being contacted by email.",
+      "submit": "Subscribe"
+    }
   },
   "camp": {
     "badge": {
@@ -20,7 +94,9 @@
       "baslangic": "Beginner",
       "tum-seviyeler": "All levels",
       "ileri": "Advanced"
-    }
+    },
+    "priceFromSuffix": "per person",
+    "nights": "{count, plural, one {# night} other {# nights}}"
   },
   "nav": {
     "primary": "Main navigation",
