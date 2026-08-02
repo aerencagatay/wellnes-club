@@ -168,6 +168,7 @@
     "teachers": "Retreat Teachers",
     "venue": "Where You'll Stay",
     "gallery": "Snapshots from the Camp",
+    "galleryImageAlt": "{title} — photo {index} of {total}",
     "faq": "Frequently Asked Questions",
     "bookNow": "Book a Place",
     "joinWaitlist": "Join the Waitlist",
@@ -194,6 +195,7 @@
     "body1": "Karadut Taş Otel is a small stone building woven from the local stone of Büyükhusun village, surrounded by olive groves. Thick walls hold in summer's cool and winter's warmth; the same plain language of stone and wood carries through every corner.",
     "body2": "Within walking distance of ancient Assos, and a short drive from Kadırga Bay. In the day's free hours you can head to the ancient city, the olive groves, or the bay's clear water.",
     "highlightsTitle": "Highlights",
+    "galleryImageAlt": "{name} — photo {index} of {total}",
     "officialSite": "The Hotel's Official Site",
     "mapTitle": "Map of {name}",
     "campsHere": "Camps at This Venue",
@@ -301,6 +303,7 @@
     "closeMenu": "Close menu"
   },
   "common": {
+    "skipToContent": "Skip to content",
     "whatsapp": "Message us on WhatsApp",
     "backToTop": "Back to top",
     "readMore": "Read more",

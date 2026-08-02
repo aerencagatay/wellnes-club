@@ -18,7 +18,9 @@ export async function Footer() {
           <Link className="font-heading text-xl tracking-tight text-ink" href="/">
             {site.name}
           </Link>
-          <p className="mt-3 max-w-xs text-sm text-body">{site.tagline[locale]}</p>
+          {/* text-body-deep: footer bg-cream-2 zemininde, düz text-body orada WCAG AA
+              eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+          <p className="mt-3 max-w-xs text-sm text-body-deep">{site.tagline[locale]}</p>
         </div>
 
         <div>
@@ -74,7 +76,8 @@ export async function Footer() {
       </div>
 
       <div className="border-t border-border">
-        <div className="container-page py-6 text-xs text-body">
+        {/* text-body-deep: bkz. yukarıdaki tagline notu — aynı cream-2 zemini. */}
+        <div className="container-page py-6 text-xs text-body-deep">
           © {year} {site.name}. {tCommon('allRightsReserved')}
         </div>
       </div>

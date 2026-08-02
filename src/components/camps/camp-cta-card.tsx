@@ -46,7 +46,7 @@ export function CampCtaCard({ camp, locale }: { camp: CampSession; locale: AppLo
         </div>
       </dl>
 
-      {showSpotsLeft && <p className="mt-4 text-xs text-coral">{t('spotsLeft', { count: camp.spotsLeft })}</p>}
+      {showSpotsLeft && <p className="mt-4 text-xs text-coral-deep">{t('spotsLeft', { count: camp.spotsLeft })}</p>}
 
       <div className="mt-6 flex flex-col gap-3">
         {badge === 'closed' ? (

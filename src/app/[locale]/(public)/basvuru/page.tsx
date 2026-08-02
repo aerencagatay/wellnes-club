@@ -67,12 +67,17 @@ export default async function InquiryPage({
               <div>
                 <Eyebrow>{t('summaryTitle')}</Eyebrow>
                 <div className="mt-4">
-                  <CampCard camp={selectedCamp} locale={locale} />
+                  {/* Bu kart sayfanın h1'inden (PageHero) sonra ara bir h2 olmadan
+                      geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar. */}
+                  <CampCard camp={selectedCamp} headingLevel="h2" locale={locale} />
                 </div>
               </div>
               <div className="rounded-md bg-cream-2 p-6">
                 <h2 className="font-heading text-lg text-ink">{t('whyTitle')}</h2>
-                <p className="mt-2 text-sm text-body">{t('whyBody')}</p>
+                {/* text-body-deep: bu kutu bg-cream-2 zemininde, düz text-body orada
+                    WCAG AA eşiğinin altında kalır (bkz. globals.css'teki -deep token
+                    yorumu). */}
+                <p className="mt-2 text-sm text-body-deep">{t('whyBody')}</p>
               </div>
             </aside>
           </div>

@@ -3,9 +3,9 @@ import { Award, ExternalLink } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import type { Teacher } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
+import { DisciplineChips } from './discipline-chips'
 
 export function TeacherBio({ teacher, locale }: { teacher: Teacher; locale: AppLocale }) {
-  const t = useTranslations('camp')
   const tTeachers = useTranslations('teachers')
 
   return (
@@ -26,16 +26,7 @@ export function TeacherBio({ teacher, locale }: { teacher: Teacher; locale: AppL
       <div>
         <h1 className="font-heading text-3xl text-ink md:text-4xl">{teacher.name}</h1>
         <p className="mt-2 text-body">{teacher.title[locale]}</p>
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {teacher.disciplines.map((discipline) => (
-            <li
-              className="rounded-full bg-cream-3 px-3 py-1 text-[11px] tracking-widest text-ink-3 uppercase"
-              key={discipline}
-            >
-              {t(`program.${discipline}`)}
-            </li>
-          ))}
-        </ul>
+        <DisciplineChips className="mt-4" disciplines={teacher.disciplines} />
         <p className="type-lede mt-6">{teacher.bio[locale]}</p>
 
         <h2 className="mt-8 text-sm font-semibold tracking-[0.12em] text-ink-3 uppercase">

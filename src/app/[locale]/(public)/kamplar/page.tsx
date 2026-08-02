@@ -68,7 +68,9 @@ export default async function CampsPage({
         ) : (
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {upcoming.map((camp) => (
-              <CampCard camp={camp} key={camp.slug} locale={locale} />
+              // Bu grid, sayfanın h1'inden (PageHero) sonra ara bir h2 bölüm başlığı
+              // olmadan geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar.
+              <CampCard camp={camp} headingLevel="h2" key={camp.slug} locale={locale} />
             ))}
           </div>
         )}
@@ -77,7 +79,13 @@ export default async function CampsPage({
       {past.length > 0 && (
         <Section background="cream-2">
           <h2 className="type-section-title">{t('pastTitle')}</h2>
-          <div className="mt-10 grid gap-6 opacity-65 md:grid-cols-2 lg:grid-cols-3">
+          {/* `opacity-65` KULLANILMIYOR: opaklık, kartın içindeki TÜM metni de zeminle
+              birlikte soldurur — metin ve zemin aynı arka plana doğru harmanlandığı için
+              aralarındaki kontrast oranı da çöker (Lighthouse'ta gerçek, ölçülebilir bir
+              WCAG AA ihlali olarak yakalandı: ör. #9c9b9a/#f7f3ef ~2.51:1). Bölümün kendi
+              başlığı ("Geçmiş kamplar") ve cream-2 zemini bu kartları "geçmiş" olarak
+              ayırt etmek için zaten yeterli; kontrastı bozmadan bunu yapıyor. */}
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {past.map((camp) => (
               <CampCard camp={camp} key={camp.slug} locale={locale} />
             ))}

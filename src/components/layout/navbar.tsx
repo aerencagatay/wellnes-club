@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from './language-switcher'
 
 const MOBILE_PANEL_ID = 'mobile-nav-panel'
+const MOBILE_PANEL_TITLE_ID = 'mobile-nav-panel-title'
 
 export function Navbar() {
   const t = useTranslations('nav')
@@ -83,6 +84,7 @@ export function Navbar() {
 
       {open && (
         <div
+          aria-labelledby={MOBILE_PANEL_TITLE_ID}
           aria-modal="true"
           className="fixed inset-0 z-50 bg-cream lg:hidden"
           id={MOBILE_PANEL_ID}
@@ -90,7 +92,9 @@ export function Navbar() {
           role="dialog"
         >
           <div className="container-page flex h-18 items-center justify-between">
-            <span className="font-heading text-xl text-ink">{site.name}</span>
+            <span className="font-heading text-xl text-ink" id={MOBILE_PANEL_TITLE_ID}>
+              {site.name}
+            </span>
             <button aria-label={t('closeMenu')} onClick={() => setOpen(false)} ref={closeButtonRef} type="button">
               <X className="size-6 text-ink" />
             </button>

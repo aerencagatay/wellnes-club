@@ -34,7 +34,9 @@ export function TeachersPreview({ locale }: { locale: AppLocale }) {
               />
             </div>
             <p className="mt-4 font-heading text-lg text-ink group-hover:text-accent-deep">{teacher.name}</p>
-            <p className="text-sm text-body">{teacher.title[locale]}</p>
+            {/* text-body-deep: bu bölüm cream-2 zemininde, düz text-body orada WCAG AA
+                eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+            <p className="text-sm text-body-deep">{teacher.title[locale]}</p>
           </Link>
         ))}
       </div>

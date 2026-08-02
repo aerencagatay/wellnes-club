@@ -94,7 +94,11 @@ export default async function ContactPage({
       <Section background="cream-2">
         <Eyebrow>{t('venueTitle')}</Eyebrow>
         <div className="mt-6">
-          <VenueLocation locale={locale} venue={venue} />
+          {/* Eyebrow bir başlık değildir; bu bileşen sayfanın h1'inden (PageHero) sonra
+              ara bir h2 olmadan geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar.
+              onTintedBackground: bu Section cream-2 zemininde (bkz. VenueLocation'daki
+              kontrast notu). */}
+          <VenueLocation headingLevel="h2" locale={locale} onTintedBackground venue={venue} />
         </div>
       </Section>
     </>

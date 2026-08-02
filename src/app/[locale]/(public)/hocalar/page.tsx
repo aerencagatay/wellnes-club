@@ -32,7 +32,9 @@ export default async function TeachersPage({
       <Section size="sm">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {teachers.map((teacher) => (
-            <TeacherCard key={teacher.slug} locale={locale} teacher={teacher} />
+            // Bu grid, sayfanın h1'inden (PageHero) sonra ara bir h2 bölüm başlığı
+            // olmadan geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar.
+            <TeacherCard headingLevel="h2" key={teacher.slug} locale={locale} teacher={teacher} />
           ))}
         </div>
       </Section>

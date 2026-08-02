@@ -15,10 +15,24 @@ const BADGE_TONE: Record<CampBadge, 'olive' | 'coral' | 'amber' | 'neutral'> = {
   closed: 'neutral',
 }
 
-export function CampCard({ camp, locale }: { camp: CampSession; locale: AppLocale }) {
+export function CampCard({
+  camp,
+  locale,
+  headingLevel = 'h3',
+}: {
+  camp: CampSession
+  locale: AppLocale
+  /** Bu kart, sayfanın kendi `h1`'inden sonra ARA bir `h2` bölüm başlığı olmadan
+   *  doğrudan yerleştirildiğinde (ör. `/kamplar` listesinin üst gridi, `/basvuru`daki
+   *  özet kartı) `h2` verilmelidir — aksi halde başlık seviyeleri `h1 → h3` atlar.
+   *  Bir `h2` bölüm başlığının (ör. "Yaklaşan Kamplar") altına yerleştirilen çağrılarda
+   *  varsayılan `h3` doğru iç içe geçmeyi korur. */
+  headingLevel?: 'h2' | 'h3'
+}) {
   const t = useTranslations('camp')
   const badge = getCampBadge(camp)
   const price = formatPrice(camp.priceFrom, camp.currency, locale)
+  const Heading = headingLevel
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-md bg-cream shadow-[var(--shadow-soft)]">
@@ -36,11 +50,11 @@ export function CampCard({ camp, locale }: { camp: CampSession; locale: AppLocal
           <Badge tone={BADGE_TONE[badge]}>{t(`badge.${badge}`)}</Badge>
           <span className="text-xs tracking-widest text-body uppercase">{t(`program.${camp.program}`)}</span>
         </div>
-        <h3 className="mt-4 font-heading text-xl text-ink">
+        <Heading className="mt-4 font-heading text-xl text-ink">
           <Link className="hover:text-accent-deep" href={`/kamplar/${camp.slug}`}>
             {camp.title[locale]}
           </Link>
-        </h3>
+        </Heading>
         <p className="mt-2 text-sm">{formatDateRange(camp.startDate, camp.endDate, locale)}</p>
         <p className="mt-3 line-clamp-3 text-sm">{camp.summary[locale]}</p>
         <div className="mt-auto flex items-end justify-between pt-6">

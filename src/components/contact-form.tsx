@@ -67,7 +67,9 @@ export function ContactForm() {
     return (
       <div className="rounded-md bg-cream-2 p-8" role="status">
         <h2 className="font-heading text-2xl text-ink">{t('successTitle')}</h2>
-        <p className="mt-3 text-sm">{t('successBody')}</p>
+        {/* text-body-deep: bu kutu bg-cream-2 zemininde, düz gövde metni orada WCAG AA
+            eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+        <p className="mt-3 text-sm text-body-deep">{t('successBody')}</p>
         <p className="mt-6 inline-block rounded-sm bg-cream px-6 py-4 text-sm">
           {t('successReference')} <strong className="font-mono tracking-wider text-ink">{referenceId}</strong>
         </p>

@@ -51,7 +51,9 @@ export default async function VenuePage({
       />
 
       <Section>
-        <VenueGallery venue={venue} />
+        {/* PageHero yukarıda zaten `venue.gallery[0]`'ı gösteriyor; galeriyi bir kaydırarak
+            aynı görselin ikinci kez (ve ikisi de `priority` ile) gösterilmesini önlüyoruz. */}
+        <VenueGallery images={venue.gallery.slice(1)} name={venue.name} />
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           <p>{t('body1')}</p>
           <p>{t('body2')}</p>

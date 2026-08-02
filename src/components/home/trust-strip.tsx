@@ -12,7 +12,9 @@ export function TrustStrip() {
         {items.map((key) => (
           <li className="text-center" key={key}>
             <p className="font-heading text-2xl text-ink">{t(`${key}.value`)}</p>
-            <p className="mt-1 text-xs tracking-widest text-body uppercase">{t(`${key}.label`)}</p>
+            {/* text-body-deep: bu bölüm cream-2 zemininde, düz text-body orada WCAG AA
+                eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+            <p className="mt-1 text-xs tracking-widest text-body-deep uppercase">{t(`${key}.label`)}</p>
           </li>
         ))}
       </ul>

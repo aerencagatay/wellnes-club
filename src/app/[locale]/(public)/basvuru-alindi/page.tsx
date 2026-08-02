@@ -35,7 +35,9 @@ export default async function InquiryReceivedPage({
         <h1 className="type-section-title">{t('title')}</h1>
         <p className="type-lede mt-5">{t('lede')}</p>
         {ref && (
-          <p className="mt-8 inline-block rounded-sm bg-cream-2 px-6 py-4 text-sm">
+          // text-body-deep: bu kutu bg-cream-2 zemininde, düz gövde metni orada WCAG AA
+          // eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu).
+          <p className="mt-8 inline-block rounded-sm bg-cream-2 px-6 py-4 text-sm text-body-deep">
             {t('reference')} <strong className="font-mono tracking-wider text-ink">{ref}</strong>
           </p>
         )}

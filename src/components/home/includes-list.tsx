@@ -20,7 +20,10 @@ export function IncludesList() {
           return (
             <li className="flex items-start gap-4" key={n}>
               <Icon aria-hidden className="mt-1 size-6 shrink-0 text-accent-deep" />
-              <p>{t(`items.${n}`)}</p>
+              {/* text-body-deep: bu bölüm cream-3 zemininde (Section background="cream-3"),
+                  düz gövde metni (body'den miras) orada WCAG AA eşiğinin altında kalır
+                  (bkz. globals.css'teki -deep token yorumu). */}
+              <p className="text-body-deep">{t(`items.${n}`)}</p>
             </li>
           )
         })}

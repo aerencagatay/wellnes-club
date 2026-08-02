@@ -4,8 +4,10 @@ import type { CampSession, Venue } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
 import { formatDateRange } from '@/lib/utils/dates'
 
-// Koyu fotoğraf bindirmesi üzerinde `.eyebrow`/`.type-lede` KULLANILMIYOR
-// (katmansız kurallar Tailwind'in text-cream yardımcısını ezer); bkz. hero-home.tsx.
+// `.eyebrow`/`.type-lede` artık globals.css'te `@layer components` içindedir (Task 7),
+// bu yüzden Tailwind'in text-* yardımcıları bunların rengini ezebilir. Koyu fotoğraf
+// bindirmesi üzerinde yine de bu sınıflar KULLANILMIYOR; ayrıntılı gerekçe için bkz.
+// hero-home.tsx.
 export function CampDetailHero({ camp, venue, locale }: { camp: CampSession; venue: Venue; locale: AppLocale }) {
   const t = useTranslations('camp')
 

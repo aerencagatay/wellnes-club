@@ -49,7 +49,9 @@ export default async function AboutPage({
           {APPROACH_ITEMS.map((item) => (
             <li className="flex items-start gap-4" key={item}>
               <Check aria-hidden className="mt-1 size-5 shrink-0 text-accent-deep" />
-              <p className="text-base">{t(`approachItems.${item}`)}</p>
+              {/* text-body-deep: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG
+                  AA eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+              <p className="text-base text-body-deep">{t(`approachItems.${item}`)}</p>
             </li>
           ))}
         </ul>

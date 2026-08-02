@@ -59,7 +59,11 @@ export function NewsletterCta() {
     <Section background="cream-3" size="sm">
       <div className="mx-auto max-w-xl text-center">
         <h2 className="type-section-title">{t('title')}</h2>
-        <p className="type-lede mt-4">{t('lede')}</p>
+        {/* text-body-deep: bu bölüm cream-3 zemininde (Section background="cream-3"),
+            .type-lede'in varsayılan --color-body'si orada WCAG AA eşiğinin altında
+            kalır (bkz. globals.css'teki -deep token yorumu). utilities katmanındaki bu
+            sınıf, .type-lede'in components katmanındaki rengini güvenle ezer. */}
+        <p className="type-lede mt-4 text-body-deep">{t('lede')}</p>
 
         {subscribed ? (
           <p className="mt-8 rounded-sm bg-cream p-6 text-sm font-semibold text-ink" role="status">
@@ -87,12 +91,14 @@ export function NewsletterCta() {
               </Button>
             </div>
             {emailError && (
-              <p className="text-xs font-semibold text-coral" id="newsletter-email-error" role="alert">
+              <p className="text-xs font-semibold text-coral-deep" id="newsletter-email-error" role="alert">
                 {emailError}
               </p>
             )}
 
-            <label className="flex items-start gap-2 text-left text-xs text-body" htmlFor="newsletter-consent">
+            {/* text-body-deep: bu bölüm cream-3 zemininde, düz text-body orada WCAG AA
+                eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+            <label className="flex items-start gap-2 text-left text-xs text-body-deep" htmlFor="newsletter-consent">
               <input
                 aria-describedby={consentError ? 'newsletter-consent-error' : undefined}
                 aria-invalid={Boolean(consentError)}
@@ -105,13 +111,13 @@ export function NewsletterCta() {
               {t('consent')}
             </label>
             {consentError && (
-              <p className="text-xs font-semibold text-coral" id="newsletter-consent-error" role="alert">
+              <p className="text-xs font-semibold text-coral-deep" id="newsletter-consent-error" role="alert">
                 {consentError}
               </p>
             )}
 
             {formError && (
-              <p className="text-xs font-semibold text-coral" role="alert">
+              <p className="text-xs font-semibold text-coral-deep" role="alert">
                 {formError}
               </p>
             )}

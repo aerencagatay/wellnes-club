@@ -25,7 +25,7 @@ export function Field({
         </p>
       )}
       {error && (
-        <p className="text-xs font-semibold text-coral" id={`${htmlFor}-error`} role="alert">
+        <p className="text-xs font-semibold text-coral-deep" id={`${htmlFor}-error`} role="alert">
           {error}
         </p>
       )}

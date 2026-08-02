@@ -168,6 +168,7 @@
     "teachers": "Kampın Hocaları",
     "venue": "Kalacağınız Yer",
     "gallery": "Kamptan Kareler",
+    "galleryImageAlt": "{title} — görsel {index} / {total}",
     "faq": "Sıkça Sorulan Sorular",
     "bookNow": "Yer Ayır",
     "joinWaitlist": "Yedek Listeye Yazıl",
@@ -194,6 +195,7 @@
     "body1": "Karadut Taş Otel, Büyükhusun köyünün yerel taşından örülmüş, zeytinliklerle çevrili küçük bir yapı. Kalın duvarlar yazın serinliği, kışın sıcaklığı içeride tutar; taş ve ahşabın sade dili her köşede sürer.",
     "body2": "Antik Assos'a yürüme mesafesinde, Kadırga Koyu'na birkaç dakikalık bir sürüş uzaklığında. Günün boş saatlerinde antik kente, zeytinliklere ya da koyun berrak suyuna gidebilirsiniz.",
     "highlightsTitle": "Öne Çıkanlar",
+    "galleryImageAlt": "{name} — görsel {index} / {total}",
     "officialSite": "Otelin Resmi Sitesi",
     "mapTitle": "{name} konum haritası",
     "campsHere": "Bu Mekandaki Kamplar",
@@ -301,6 +303,7 @@
     "closeMenu": "Menüyü kapat"
   },
   "common": {
+    "skipToContent": "İçeriğe geç",
     "whatsapp": "WhatsApp'tan yazın",
     "backToTop": "Başa dön",
     "readMore": "Devamını oku",

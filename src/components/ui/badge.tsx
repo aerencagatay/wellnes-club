@@ -1,8 +1,11 @@
 import type { ReactNode } from 'react'
 
+// text-olive/text-coral (Tailwind'in düz vurgu tonları) kendi arka planlarında WCAG
+// AA'nın 4.5:1 eşiğini karşılamaz (bkz. globals.css'teki -deep token yorumu); -deep
+// sürümleri kullanılır — bu, --color-accent için zaten uygulanan kuralın aynısı.
 const TONES = {
-  olive: 'bg-olive/12 text-olive',
-  coral: 'bg-coral/14 text-coral',
+  olive: 'bg-olive/12 text-olive-deep',
+  coral: 'bg-coral/14 text-coral-deep',
   amber: 'bg-amber/16 text-ink-3',
   neutral: 'bg-ink/8 text-ink-3',
 } as const

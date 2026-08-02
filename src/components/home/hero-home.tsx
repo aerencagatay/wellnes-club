@@ -2,11 +2,14 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 
-// Not: `.eyebrow` ve `.type-lede` globals.css'te katmansız (unlayered) tanımlıdır,
-// bu yüzden Tailwind'in text-* yardımcıları onların rengini ezemez (katmansız
-// kurallar her zaman Tailwind'in utilities katmanını yener). Koyu fotoğraf
-// bindirmesi üzerinde bu iki sınıfı KULLANMIYORUZ; okunabilirlik için burada
-// kendi açık renkli metin stillerimizi kuruyoruz.
+// Not: `.eyebrow` ve `.type-lede` globals.css'te `@layer components` içinde tanımlıdır
+// (Task 7'den beri) — bu yüzden Tailwind'in utilities katmanındaki text-* yardımcıları
+// (ör. text-cream) artık bu sınıfların rengini ezebilir; katman sırası (theme → base →
+// components → utilities) kaynak sırasından veya özgüllükten bağımsızdır. Koyu fotoğraf
+// bindirmesi üzerinde yine de bu iki sınıfı KULLANMIYORUZ: varsayılan renkleri
+// (accent-deep / body) açık zeminler içindir, burada kendi krem tonlu metin
+// stillerimizi doğrudan kurmak paylaşılan sınıfları her yerde override etmekten
+// daha basittir.
 export function HeroHome() {
   const t = useTranslations('home.hero')
 

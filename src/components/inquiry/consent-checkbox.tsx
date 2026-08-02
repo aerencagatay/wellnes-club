@@ -29,7 +29,7 @@ export function ConsentCheckbox({ error }: { error?: string }) {
         </span>
       </label>
       {error && (
-        <p className="text-xs font-semibold text-coral" id="consent-error" role="alert">
+        <p className="text-xs font-semibold text-coral-deep" id="consent-error" role="alert">
           {error}
         </p>
       )}

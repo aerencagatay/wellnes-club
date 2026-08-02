@@ -12,10 +12,15 @@ const VENUE_SLUG = 'karadut-tas-otel'
 // çıkanlar listesi (bkz. src/content/venues.ts). Detaylar /mekan sayfasındadır.
 export function VenuePreview({ locale }: { locale: AppLocale }) {
   const t = useTranslations('home.venue')
+  const tVenue = useTranslations('venue')
   const venue = getVenueBySlug(VENUE_SLUG)
   if (!venue) return null
 
-  const images = venue.gallery.slice(0, 3).map((src) => ({ src, alt: venue.name }))
+  const preview = venue.gallery.slice(0, 3)
+  const images = preview.map((src, index) => ({
+    src,
+    alt: tVenue('galleryImageAlt', { name: venue.name, index: index + 1, total: preview.length }),
+  }))
 
   return (
     <Section>

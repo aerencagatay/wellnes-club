@@ -14,7 +14,7 @@ import { Section } from '@/components/ui/section'
 import { VenueLocation } from '@/components/venue/venue-location'
 import { site } from '@/lib/config/site'
 import { buildCampEventJsonLd, trimSlash } from '@/lib/seo/jsonld'
-import { buildAlternates } from '@/lib/seo/metadata'
+import { buildAlternates, localeToOgLocale } from '@/lib/seo/metadata'
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) => getAllCamps().map((camp) => ({ locale, slug: camp.slug })))
@@ -32,6 +32,13 @@ export async function generateMetadata({
     description: camp.summary[locale],
     alternates: buildAlternates(path),
     openGraph: {
+      // `[locale]/layout.tsx`'in generateMetadata'sı zaten `siteName`/`locale` alanlarını
+      // kurar, ama Next.js'in metadata birleştirmesi `openGraph` nesnesinde SIĞ'dır: bu
+      // sayfa kendi `openGraph` nesnesini döndürünce üst katmanınkinin YERİNE geçer,
+      // üstüne eklenmez. Paylaşılan alanları burada da açıkça tekrarlamazsak
+      // `og:locale`/`og:site_name` bu sayfada hiç render edilmez.
+      siteName: site.name,
+      locale: localeToOgLocale(locale),
       title: camp.title[locale],
       description: camp.summary[locale],
       // metadataBase kök layout'ta tanımlı (Task 15) ama burada yine de mutlak URL
@@ -97,7 +104,16 @@ export default async function CampDetailPage({
             <section>
               <h2 className="type-section-title">{t('gallery')}</h2>
               <div className="mt-8">
-                <GalleryStrip images={camp.gallery.map((src) => ({ src, alt: camp.title[locale] }))} />
+                {/* Galerideki her görsele aynı alt (kamp başlığı) verilmesi ekran okuyucu
+                    kullanıcısının görselleri birbirinden ayırt etmesini imkansız kılardı.
+                    İçerik katmanında görsel başına açıklama yok; dürüst ve ayırt edici
+                    tek seçenek indeksli bir biçim ("<başlık> — görsel N / M"). */}
+                <GalleryStrip
+                  images={camp.gallery.map((src, index) => ({
+                    src,
+                    alt: t('galleryImageAlt', { title: camp.title[locale], index: index + 1, total: camp.gallery.length }),
+                  }))}
+                />
               </div>
             </section>
           </div>
@@ -117,6 +133,7 @@ export default async function CampDetailPage({
               question: item.question[locale],
               answer: item.answer[locale],
             }))}
+            onTintedBackground
           />
         </div>
       </Section>

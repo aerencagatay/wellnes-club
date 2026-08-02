@@ -1,11 +1,23 @@
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
 import type { Teacher } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
 import { Link } from '@/i18n/navigation'
+import { DisciplineChips } from './discipline-chips'
 
-export function TeacherCard({ teacher, locale }: { teacher: Teacher; locale: AppLocale }) {
-  const t = useTranslations('camp')
+export function TeacherCard({
+  teacher,
+  locale,
+  headingLevel = 'h3',
+}: {
+  teacher: Teacher
+  locale: AppLocale
+  /** `/hocalar` listesi bu kartı sayfanın `h1`'inden hemen sonra, ARA bir `h2` bölüm
+   *  başlığı olmadan yerleştirir — orada `h2` verilmelidir, aksi halde `h1 → h3` atlar.
+   *  Bir `h2` bölüm başlığının (ör. "Hocalarımız") altına yerleştirilen çağrılarda
+   *  varsayılan `h3` doğru iç içe geçmeyi korur. */
+  headingLevel?: 'h2' | 'h3'
+}) {
+  const Heading = headingLevel
   return (
     <article className="group">
       <Link className="relative block aspect-3/4 overflow-hidden rounded-md" href={`/hocalar/${teacher.slug}`}>
@@ -22,22 +34,13 @@ export function TeacherCard({ teacher, locale }: { teacher: Teacher; locale: App
           unoptimized
         />
       </Link>
-      <h3 className="mt-4 font-heading text-lg text-ink">
+      <Heading className="mt-4 font-heading text-lg text-ink">
         <Link className="hover:text-accent-deep" href={`/hocalar/${teacher.slug}`}>
           {teacher.name}
         </Link>
-      </h3>
+      </Heading>
       <p className="text-sm">{teacher.title[locale]}</p>
-      <ul className="mt-2 flex flex-wrap gap-2">
-        {teacher.disciplines.map((discipline) => (
-          <li
-            className="rounded-full bg-cream-3 px-3 py-1 text-[11px] tracking-widest text-ink-3 uppercase"
-            key={discipline}
-          >
-            {t(`program.${discipline}`)}
-          </li>
-        ))}
-      </ul>
+      <DisciplineChips className="mt-2" disciplines={teacher.disciplines} />
     </article>
   )
 }

@@ -49,8 +49,10 @@ export default async function ExperiencePage({
       <Section background="cream-2">
         <div className="max-w-2xl">
           <h2 className="type-section-title">{t('nutritionTitle')}</h2>
-          <p className="mt-5">{t('nutritionBody1')}</p>
-          <p className="mt-4">{t('nutritionBody2')}</p>
+          {/* text-body-deep: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG AA
+              eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+          <p className="mt-5 text-body-deep">{t('nutritionBody1')}</p>
+          <p className="mt-4 text-body-deep">{t('nutritionBody2')}</p>
         </div>
       </Section>
 
@@ -72,7 +74,9 @@ export default async function ExperiencePage({
       <Section background="cream-2">
         <div className="max-w-2xl">
           <h2 className="type-section-title">{t('levelsTitle')}</h2>
-          <p className="mt-5">{t('levelsBody')}</p>
+          {/* text-body-deep: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG AA
+              eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
+          <p className="mt-5 text-body-deep">{t('levelsBody')}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {LEVELS.map((level) => (
               <Badge key={level} tone="neutral">
