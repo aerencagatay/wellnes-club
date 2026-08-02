@@ -4,6 +4,17 @@ import type { AppLocale } from '@/i18n/routing'
 import { TeacherCard } from '@/components/teachers/teacher-card'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('hocalar.title'),
+    description: t('hocalar.description'),
+    alternates: buildAlternates(`/${locale}/hocalar`),
+  }
+}
 
 export default async function TeachersPage({
   params,

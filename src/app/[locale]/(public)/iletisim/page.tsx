@@ -10,8 +10,19 @@ import { Section } from '@/components/ui/section'
 import { VenueLocation } from '@/components/venue/venue-location'
 import { site } from '@/lib/config/site'
 import { buildWhatsAppUrl } from '@/lib/config/whatsapp'
+import { buildAlternates } from '@/lib/seo/metadata'
 
 const VENUE_SLUG = 'karadut-tas-otel'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('iletisim.title'),
+    description: t('iletisim.description'),
+    alternates: buildAlternates(`/${locale}/iletisim`),
+  }
+}
 
 export default async function ContactPage({
   params,

@@ -2,6 +2,17 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import type { AppLocale } from '@/i18n/routing'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('gizlilik.title'),
+    description: t('gizlilik.description'),
+    alternates: buildAlternates(`/${locale}/gizlilik`),
+  }
+}
 
 export default async function PrivacyPage({
   params,

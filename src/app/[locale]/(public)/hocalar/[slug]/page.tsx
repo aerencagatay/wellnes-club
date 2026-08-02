@@ -5,6 +5,7 @@ import { routing, type AppLocale } from '@/i18n/routing'
 import { CampCard } from '@/components/camps/camp-card'
 import { TeacherBio } from '@/components/teachers/teacher-bio'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -21,10 +22,7 @@ export async function generateMetadata({
   return {
     title: `${teacher.name} — ${teacher.title[locale]}`,
     description: teacher.bio[locale].slice(0, 155),
-    alternates: {
-      canonical: `/${locale}/hocalar/${slug}`,
-      languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}/hocalar/${slug}`])),
-    },
+    alternates: buildAlternates(`/${locale}/hocalar/${slug}`),
   }
 }
 

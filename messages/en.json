@@ -1,4 +1,52 @@
 {
+  "meta": {
+    "defaultTitle": "Serenity Retreats — Yoga & Pilates Retreats in Assos",
+    "defaultDescription": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos. Explore upcoming dates and reserve your place.",
+    "kamplar": {
+      "title": "Camps",
+      "description": "Browse our upcoming yoga and pilates retreats by programme and level, and find the right date for you."
+    },
+    "hocalar": {
+      "title": "Our Teachers",
+      "description": "Meet the yoga and pilates teachers who lead our camps."
+    },
+    "mekan": {
+      "title": "Karadut Taş Otel",
+      "description": "Discover our retreat venue in the stone architecture of Assos, surrounded by olive groves and Aegean light."
+    },
+    "deneyim": {
+      "title": "A Day at Camp",
+      "description": "From morning practice to the shared table at night, discover what a day at our camps looks like."
+    },
+    "hakkimizda": {
+      "title": "About Us",
+      "description": "Learn the story of Serenity Retreats and our approach to running retreats in Assos."
+    },
+    "sss": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to the questions we hear most about our camps."
+    },
+    "iletisim": {
+      "title": "Get in Touch",
+      "description": "Have a question about a camp? Fill in the form or message us directly."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Read our writing on our camps, Assos, and the yoga and pilates practice."
+    },
+    "basvuru": {
+      "title": "Reserve Your Place",
+      "description": "Fill in the retreat application form and our team will review your request and get back to you."
+    },
+    "kvkk": {
+      "title": "KVKK Privacy Notice",
+      "description": "Our notice explaining what purposes your personal data is collected for and how it is processed."
+    },
+    "gizlilik": {
+      "title": "Privacy Policy",
+      "description": "Learn about the data our site collects, our use of cookies, and any third-party sharing."
+    }
+  },
   "home": {
     "hero": {
       "eyebrow": "ASSOS · ÇANAKKALE",

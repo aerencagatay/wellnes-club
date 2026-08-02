@@ -5,6 +5,7 @@ import { getAllPosts, getPostBySlug } from '@/content'
 import { routing, type AppLocale } from '@/i18n/routing'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 import { formatDateLong } from '@/lib/utils/dates'
 
 export function generateStaticParams() {
@@ -17,7 +18,11 @@ export async function generateMetadata({
   const { locale, slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
-  return { title: post.title[locale], description: post.excerpt[locale] }
+  return {
+    title: post.title[locale],
+    description: post.excerpt[locale],
+    alternates: buildAlternates(`/${locale}/blog/${slug}`),
+  }
 }
 
 /**

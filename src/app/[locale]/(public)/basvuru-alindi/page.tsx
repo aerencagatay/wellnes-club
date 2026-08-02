@@ -6,7 +6,7 @@ import { Section } from '@/components/ui/section'
 // Bu sayfaya yalnızca başarılı bir gönderimin ardından ulaşılır ve içeriği tekildir
 // (referans numarası) — arama sonuçlarında görünmesinin hiçbir değeri yoktur.
 export const metadata = {
-  robots: { index: false },
+  robots: { index: false, follow: false },
 }
 
 export default async function InquiryReceivedPage({

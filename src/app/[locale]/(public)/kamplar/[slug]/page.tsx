@@ -14,6 +14,7 @@ import { Section } from '@/components/ui/section'
 import { VenueLocation } from '@/components/venue/venue-location'
 import { site } from '@/lib/config/site'
 import { buildCampEventJsonLd, trimSlash } from '@/lib/seo/jsonld'
+import { buildAlternates } from '@/lib/seo/metadata'
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) => getAllCamps().map((camp) => ({ locale, slug: camp.slug })))
@@ -29,16 +30,13 @@ export async function generateMetadata({
   return {
     title: camp.title[locale],
     description: camp.summary[locale],
-    alternates: {
-      canonical: path,
-      languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}/kamplar/${slug}`])),
-    },
+    alternates: buildAlternates(path),
     openGraph: {
       title: camp.title[locale],
       description: camp.summary[locale],
-      // Bu proje henüz kök layout'ta metadataBase tanımlamıyor (Task 15), bu yüzden
-      // next/metadata bağıl görsel yollarını localhost'a çözer. jsonld.ts'teki aynı
-      // kalıpla mutlak URL üretilir.
+      // metadataBase kök layout'ta tanımlı (Task 15) ama burada yine de mutlak URL
+      // kuruyoruz: jsonld.ts'teki Event JSON-LD'nin `image` alanıyla aynı kalıp,
+      // tek bir doğru kaynaktan (site.url) türetilir ve metadataBase'e bağımlı kalmaz.
       images: [`${trimSlash(site.url)}${camp.heroImage}`],
       url: `${trimSlash(site.url)}${path}`,
       type: 'website',

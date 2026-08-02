@@ -9,8 +9,19 @@ import { Section } from '@/components/ui/section'
 import { VenueGallery } from '@/components/venue/venue-gallery'
 import { VenueHighlights } from '@/components/venue/venue-highlights'
 import { VenueLocation } from '@/components/venue/venue-location'
+import { buildAlternates } from '@/lib/seo/metadata'
 
 const VENUE_SLUG = 'karadut-tas-otel'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('mekan.title'),
+    description: t('mekan.description'),
+    alternates: buildAlternates(`/${locale}/mekan`),
+  }
+}
 
 // Bu sayfa bilinçli olarak kısa tutulur: oda tipi, oda fiyatı ve müsaitlik
 // burada YER ALMAZ. Otelin kendi sitesi bu bilgileri zaten yönetiyor; burada

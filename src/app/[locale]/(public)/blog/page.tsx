@@ -6,7 +6,18 @@ import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/layout/page-hero'
 import { Button } from '@/components/ui/button'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 import { formatDateLong } from '@/lib/utils/dates'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('blog.title'),
+    description: t('blog.description'),
+    alternates: buildAlternates(`/${locale}/blog`),
+  }
+}
 
 export default async function BlogPage({
   params,

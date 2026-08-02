@@ -5,6 +5,17 @@ import { Accordion } from '@/components/ui/accordion'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/ui/section'
 import { buildFaqJsonLd } from '@/lib/seo/jsonld'
+import { buildAlternates } from '@/lib/seo/metadata'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('sss.title'),
+    description: t('sss.description'),
+    alternates: buildAlternates(`/${locale}/sss`),
+  }
+}
 
 export default async function FaqPage({ params }: { params: Promise<{ locale: AppLocale }> }) {
   const { locale } = await params

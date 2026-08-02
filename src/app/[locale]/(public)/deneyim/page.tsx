@@ -7,9 +7,20 @@ import { PageHero } from '@/components/layout/page-hero'
 import { Badge } from '@/components/ui/badge'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 import { LEVELS } from '@/lib/utils/camp-status'
 
 const BRING_ITEMS = ['1', '2', '3', '4', '5', '6'] as const
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('deneyim.title'),
+    description: t('deneyim.description'),
+    alternates: buildAlternates(`/${locale}/deneyim`),
+  }
+}
 
 export default async function ExperiencePage({
   params,

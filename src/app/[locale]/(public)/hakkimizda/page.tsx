@@ -7,8 +7,19 @@ import { PageHero } from '@/components/layout/page-hero'
 import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 
 const APPROACH_ITEMS = ['1', '2', '3'] as const
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('hakkimizda.title'),
+    description: t('hakkimizda.description'),
+    alternates: buildAlternates(`/${locale}/hakkimizda`),
+  }
+}
 
 export default async function AboutPage({
   params,

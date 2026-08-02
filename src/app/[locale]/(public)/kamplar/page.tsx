@@ -6,6 +6,7 @@ import { CampCard } from '@/components/camps/camp-card'
 import { CampFilters } from '@/components/camps/camp-filters'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 import { filterCamps, LEVELS, PROGRAMS } from '@/lib/utils/camp-status'
 
 function isProgram(value: string): value is Program {
@@ -14,6 +15,16 @@ function isProgram(value: string): value is Program {
 
 function isLevel(value: string): value is Level {
   return (LEVELS as readonly string[]).includes(value)
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('kamplar.title'),
+    description: t('kamplar.description'),
+    alternates: buildAlternates(`/${locale}/kamplar`),
+  }
 }
 
 /** `?program=a&program=b` gibi tekrarlanan anahtarlarda Next `string[]` verir; bunu kasıtlı olarak geçersiz sayarız. */

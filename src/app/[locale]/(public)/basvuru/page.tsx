@@ -8,6 +8,17 @@ import { PageHero } from '@/components/layout/page-hero'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
 import { site } from '@/lib/config/site'
+import { buildAlternates } from '@/lib/seo/metadata'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('basvuru.title'),
+    description: t('basvuru.description'),
+    alternates: buildAlternates(`/${locale}/basvuru`),
+  }
+}
 
 export default async function InquiryPage({
   params,

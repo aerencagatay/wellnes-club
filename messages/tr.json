@@ -1,4 +1,52 @@
 {
+  "meta": {
+    "defaultTitle": "Serenity Retreats — Assos'ta Yoga ve Pilates Kampları",
+    "defaultDescription": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları. Yaklaşan kamp tarihlerini keşfedin ve yerinizi ayırtın.",
+    "kamplar": {
+      "title": "Kamplar",
+      "description": "Yaklaşan yoga ve pilates kamplarımızı program ve seviyeye göre inceleyin, size uygun tarihi seçin."
+    },
+    "hocalar": {
+      "title": "Hocalarımız",
+      "description": "Kamplarımızı yöneten yoga ve pilates eğitmenleriyle tanışın."
+    },
+    "mekan": {
+      "title": "Karadut Taş Otel",
+      "description": "Assos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili kamp mekanımızı keşfedin."
+    },
+    "deneyim": {
+      "title": "Kampta Bir Gün",
+      "description": "Sabah pratiğinden akşamın ortak sofrasına, kamplarımızda bir günün nasıl geçtiğini keşfedin."
+    },
+    "hakkimizda": {
+      "title": "Hakkımızda",
+      "description": "Serenity Retreats'in hikayesini ve Assos'ta kamp düzenleme yaklaşımımızı öğrenin."
+    },
+    "sss": {
+      "title": "Sıkça Sorulan Sorular",
+      "description": "Kamplarımızla ilgili en çok sorulan soruların yanıtlarını burada bulabilirsiniz."
+    },
+    "iletisim": {
+      "title": "Bize Ulaşın",
+      "description": "Bir kamp hakkında sorunuz mu var? Formu doldurun ya da doğrudan bize yazın."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Kamplarımız, Assos ve yoga-pilates pratiği üzerine yazılarımızı okuyun."
+    },
+    "basvuru": {
+      "title": "Yerinizi Ayırtın",
+      "description": "Kamp başvuru formunu doldurun, ekibimiz talebinizi inceleyip size dönüş yapsın."
+    },
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni",
+      "description": "Kişisel verilerinizin hangi amaçla toplandığını ve nasıl işlendiğini açıklayan aydınlatma metni."
+    },
+    "gizlilik": {
+      "title": "Gizlilik Politikası",
+      "description": "Sitemizin topladığı veriler, çerez kullanımı ve üçüncü taraflarla paylaşım hakkında bilgi alın."
+    }
+  },
   "home": {
     "hero": {
       "eyebrow": "ASSOS · ÇANAKKALE",
