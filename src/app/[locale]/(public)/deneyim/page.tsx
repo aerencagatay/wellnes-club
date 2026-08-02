@@ -1,14 +1,14 @@
 import { Check } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { getFeaturedCamps, type Level } from '@/content'
+import { getFeaturedCamps } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
 import { DailyFlow } from '@/components/camps/daily-flow'
 import { PageHero } from '@/components/layout/page-hero'
 import { Badge } from '@/components/ui/badge'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
+import { LEVELS } from '@/lib/utils/camp-status'
 
-const LEVELS: Level[] = ['baslangic', 'tum-seviyeler', 'ileri']
 const BRING_ITEMS = ['1', '2', '3', '4', '5', '6'] as const
 
 export default async function ExperiencePage({
@@ -31,13 +31,7 @@ export default async function ExperiencePage({
 
       {sampleCamp && (
         <Section>
-          <div className="max-w-2xl">
-            <h2 className="type-section-title">{t('dailyFlowTitle')}</h2>
-            <p className="type-lede mt-4">{t('dailyFlowNote')}</p>
-          </div>
-          <div className="mt-10">
-            <DailyFlow items={sampleCamp.dailyFlow} locale={locale} />
-          </div>
+          <DailyFlow items={sampleCamp.dailyFlow} locale={locale} note={t('dailyFlowNote')} />
         </Section>
       )}
 

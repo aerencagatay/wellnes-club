@@ -2,11 +2,23 @@ import { useTranslations } from 'next-intl'
 import type { DailyFlowItem } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
 
-export function DailyFlow({ items, locale }: { items: DailyFlowItem[]; locale: AppLocale }) {
+export function DailyFlow({
+  items,
+  locale,
+  note,
+}: {
+  items: DailyFlowItem[]
+  locale: AppLocale
+  /** Başlığın hemen altında gösterilen, çağıran tarafından zaten çevrilmiş isteğe
+   *  bağlı bir not (bkz. deneyim/page.tsx). Verilmezse hiçbir şey render edilmez —
+   *  kamp detay sayfası bu prop'u hiç geçmediği için görünümü değişmez. */
+  note?: string
+}) {
   const t = useTranslations('campDetail')
   return (
     <div>
       <h2 className="type-section-title">{t('dailyFlow')}</h2>
+      {note && <p className="type-lede mt-5 max-w-2xl">{note}</p>}
       <ol className="mt-8 border-l border-border">
         {items.map((item) => (
           <li className="relative pb-8 pl-8 last:pb-0" key={`${item.time}-${item.title[locale]}`}>
