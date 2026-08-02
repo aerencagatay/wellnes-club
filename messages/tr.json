@@ -152,6 +152,94 @@
     "accommodationNote": "Oda tipleri ve konaklama detayları için otelin resmi sitesine bakabilirsiniz.",
     "cta": "Tüm Kampları Gör"
   },
+  "experience": {
+    "eyebrow": "DENEYİM",
+    "title": "Kampta Bir Gün",
+    "lede": "Sabahın sessizliğinden akşamın ortak sofrasına — her kampın kendi programı vardır, ama hepsi aynı yavaşlıkla kurulur.",
+    "dailyFlowTitle": "Bir gün nasıl geçer",
+    "dailyFlowNote": "Aşağıdaki akış, öne çıkan kampımızdan örnek bir gündür. Her kampın kendi programı, o kampın detay sayfasında yer alır.",
+    "nutritionTitle": "Beslenme Yaklaşımımız",
+    "nutritionBody1": "Öğünler otelin kendi mutfağında, mevsimin getirdiğiyle hazırlanır: zeytinyağı, bahçeden sebze, ev yapımı peynir. Menü genellikle vejetaryen ağırlıklıdır ve üç öğün de ortak masada, aceleye getirilmeden yenir.",
+    "nutritionBody2": "Vegan, glutensiz veya alerjiye bağlı bir kısıtlaman varsa başvuru formunda belirtmen yeterli; mutfakla birlikte önceden düzenleriz.",
+    "bringEyebrow": "HAZIRLIK",
+    "bringTitle": "Ne Getirmeli",
+    "bringItems": {
+      "1": "Rahat, katmanlı kıyafetler",
+      "2": "Mayo ve havlu",
+      "3": "Güneş kremi ve şapka",
+      "4": "Kişisel ilaçların",
+      "5": "Akşamlar için hafif bir dış ceket",
+      "6": "Kendi yoga matın (istersen — kampta da sağlanır)"
+    },
+    "levelsTitle": "Seviye Beklentileri",
+    "levelsBody": "Kampların çoğu her seviyeye açıktır; hocalarımız her pozu bedenine göre uyarlar. Bir kampın açıklamasında ileri seviye vurgusu varsa bunu ayrıca belirtiriz — aksi halde daha önce hiç yoga veya pilates yapmamış olman katılmana engel değildir."
+  },
+  "about": {
+    "eyebrow": "HAKKIMIZDA",
+    "title": "Serenity Retreats",
+    "lede": "Kalabalık bir ajans değil, aynı taş otelde, aynı küçük ekiple çalışan bir kamp organizasyonuyuz.",
+    "storyBody1": "Serenity Retreats, İstanbul'da yoga ve pilates dersleri veren küçük bir eğitmen ekibinin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. Assos'taki Karadut Taş Otel'i ilk ziyaretimizde aradığımız sessizliği ve taş mimariyi burada bulduk; kamplarımızı o günden beri aynı otelde düzenliyoruz.",
+    "storyBody2": "Otelin sahibi değiliz — orada misafiriz, tıpkı katılımcılarımız gibi. İşimiz programı kurmak, hocaları seçmek ve grubun küçük kalmasını sağlamak; geri kalanını otel ve Assos'un kendisi hallediyor.",
+    "approachEyebrow": "YAKLAŞIMIMIZ",
+    "approachTitle": "Nasıl Çalışıyoruz",
+    "approachItems": {
+      "1": "Küçük gruplar: her kampta en fazla on altı kişi, herkesin ismini bildiğimiz bir ölçek.",
+      "2": "Sabit ekip: aynı hocalar, aynı otel, kamptan kampa değişmeyen bir güven.",
+      "3": "Boş zaman bırakmak: program doldurmak değil, dinlenmeye yer açmak asıl amacımız."
+    },
+    "whyAssosEyebrow": "MEKAN",
+    "whyAssosTitle": "Neden Assos",
+    "whyAssosBody": "Assos, kalabalık tatil beldelerinin aksine hâlâ sakin. Antik kent, zeytinlikler ve Kadırga Koyu birbirine yürüme mesafesinde; taş mimari yazın serinliği, kışın sıcaklığı içeride tutuyor. Kamplarımızı başka bir yerde değil, tam burada kurmamızın nedeni bu.",
+    "whyAssosImageAlt": "Büyükhusun köyünün ve zeytinliklerin kuşbakışı görünümü",
+    "ctaTitle": "Sorunuz mu var?",
+    "ctaBody": "Kamp seçimi, seviye uygunluğu ya da Assos'a ulaşım hakkında merak ettiğin her şeyi doğrudan bize sorabilirsin.",
+    "ctaButton": "İletişime Geç"
+  },
+  "faq": {
+    "eyebrow": "SSS",
+    "title": "Sıkça Sorulan Sorular",
+    "lede": "Kamplarımızla ilgili en çok sorulan sorular ve yanıtları. Aradığını bulamazsan bize doğrudan yazabilirsin."
+  },
+  "contact": {
+    "eyebrow": "İLETİŞİM",
+    "title": "Bize Ulaşın",
+    "lede": "Bir kamp hakkında sorunuz mu var? Formu doldurun ya da doğrudan yazın — size en kısa sürede dönüyoruz.",
+    "detailsTitle": "İletişim Bilgileri",
+    "instagramLabel": "Instagram'da Takip Et",
+    "whatsappMessage": "Merhaba, bir sorum var.",
+    "venueTitle": "Kampların Yapıldığı Yer",
+    "form": {
+      "title": "Mesaj Gönderin",
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "message": "Mesajınız",
+      "submit": "Mesajı Gönder",
+      "submitting": "Gönderiliyor…",
+      "successTitle": "Mesajınız İletildi",
+      "successBody": "İlginiz için teşekkürler. Ekibimiz mesajınızı inceleyip en kısa sürede size dönüş yapacak.",
+      "successReference": "Referans numaranız:"
+    }
+  },
+  "blog": {
+    "eyebrow": "BLOG",
+    "title": "Blog",
+    "empty": "Henüz yayınlanmış bir yazımız yok. Yakında kamplarımız, Assos ve pratik üzerine yazılarla burada olacağız.",
+    "emptyCta": "Bu Arada Kamplarımıza Göz Atın"
+  },
+  "legal": {
+    "eyebrow": "YASAL",
+    "placeholderWarning": "Bu metin bir yer tutucudur ve hukuki geçerliliği yoktur. Yayına almadan önce hukuk danışmanınızın hazırladığı metinle değiştirilmelidir.",
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni",
+      "body1": "Bu bölüm, katılımcıların kişisel verilerinin hangi amaçla toplandığını ve nasıl işlendiğini açıklayan KVKK Aydınlatma Metni için ayrılmıştır.",
+      "body2": "Nihai metin hukuk danışmanı tarafından hazırlanana kadar bu sayfa yayına alınmamalı, yalnızca geliştirme ortamında görüntülenmelidir."
+    },
+    "privacy": {
+      "title": "Gizlilik Politikası",
+      "body1": "Bu bölüm, sitenin topladığı veriler, çerez kullanımı ve varsa üçüncü taraflarla paylaşımı açıklayan Gizlilik Politikası için ayrılmıştır.",
+      "body2": "Nihai metin hukuk danışmanı tarafından hazırlanana kadar bu sayfa yayına alınmamalı, yalnızca geliştirme ortamında görüntülenmelidir."
+    }
+  },
   "nav": {
     "primary": "Ana gezinme",
     "camps": "Kamplar",
@@ -225,5 +313,11 @@
     "lede": "İlginiz için teşekkür ederiz. Ekibimiz talebinizi inceleyip en kısa sürede size dönüş yapacak.",
     "reference": "Referans numaranız:",
     "otherCamps": "Diğer Kampları Gör"
+  },
+  "notFound": {
+    "title": "Bu sayfa bulunamadı",
+    "body": "Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir. Ana sayfaya dönebilir ya da kamplarımıza göz atabilirsiniz.",
+    "home": "Ana Sayfaya Dön",
+    "camps": "Kampları Gör"
   }
 }

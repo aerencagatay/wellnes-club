@@ -72,13 +72,17 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
       consent: (data.get('consent') === 'on') as true,
     })
 
-    setSubmitting(false)
-
     if (result.ok) {
+      // `submitting` KASITLI olarak burada temizlenmez: önce temizleyip sonra
+      // yönlendirmek arada bir an için düğmeyi tekrar tıklanabilir bırakır — hızlı bir
+      // ikinci tık organizatöre aynı başvurunun ikinci bir e-postasını gönderebilir.
+      // Sayfa zaten `router.push` ile değişeceği için `submitting`'i true bırakmanın
+      // hiçbir görsel maliyeti yok.
       router.push(`/basvuru-alindi?ref=${result.referenceId}`)
       return
     }
 
+    setSubmitting(false)
     setFailedOnce(true)
     // Form verisi korunur: tüm alanlar denetimsiz (uncontrolled) — bileşen yeniden
     // bağlanmadığı (remount) sürece kullanıcının girdiği değerler DOM'da kalır, yalnızca

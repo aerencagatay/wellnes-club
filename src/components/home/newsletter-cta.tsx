@@ -39,15 +39,17 @@ export function NewsletterCta() {
       consent: (data.get('consent') === 'on') as true,
     })
 
-    setSubmitting(false)
-
     if (result.ok) {
-      // Yönlendirme yok: bülten kaydı Ana Sayfa'nın küçük bir alt bölümü, form yerine
-      // aynı yerde bir teşekkür mesajıyla değiştirilir.
+      // `submitting` KASITLI olarak burada temizlenmez: önce temizleyip sonra formu
+      // teşekkür mesajıyla değiştirmek arada bir an için düğmeyi tekrar tıklanabilir
+      // bırakır — hızlı bir ikinci tık organizatöre aynı kaydın ikinci bir e-postasını
+      // gönderebilir. Form zaten `subscribed` ile kaldırılacağı için `submitting`'i
+      // true bırakmanın hiçbir görsel maliyeti yok.
       setSubscribed(true)
       return
     }
 
+    setSubmitting(false)
     // Form verisi korunur: e-posta alanı denetimsiz (uncontrolled) olduğu için yeniden
     // render, kullanıcının girdiği değeri silmez — yalnızca hata durumu eklenir.
     setErrors(result.errors ?? { form: result.error === 'rate_limited' ? 'rateLimited' : 'generic' })
