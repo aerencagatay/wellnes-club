@@ -6,7 +6,7 @@ import { routing, type AppLocale } from '@/i18n/routing'
 import { mulish, ptSerif } from '@/lib/fonts'
 import { site } from '@/lib/config/site'
 import { buildOrganizationJsonLd } from '@/lib/seo/jsonld'
-import { buildAlternates, localeToHtmlLang } from '@/lib/seo/metadata'
+import { buildAlternates, localeToOgLocale } from '@/lib/seo/metadata'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: buildAlternates(`/${locale}`),
     openGraph: {
       siteName: site.name,
-      locale: localeToHtmlLang(locale as AppLocale),
+      locale: localeToOgLocale(locale as AppLocale),
       type: 'website',
     },
     robots: { index: true, follow: true },

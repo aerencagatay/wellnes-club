@@ -16,6 +16,7 @@ function stripLocale(path: string): string {
   return match ? (match[2] ?? '') : path
 }
 
-export function localeToHtmlLang(locale: AppLocale): string {
-  return locale === 'tr' ? 'tr-TR' : 'en-GB'
+/** Open Graph `og:locale` biçimi alt çizgi kullanır (`tr_TR`); `<html lang>` içinse ham `locale` değeri (`tr`) zaten yeterlidir — bu yardımcı yalnızca `openGraph.locale` için kullanılır. */
+export function localeToOgLocale(locale: AppLocale): string {
+  return locale === 'tr' ? 'tr_TR' : 'en_GB'
 }

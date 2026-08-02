@@ -55,6 +55,15 @@ export function buildCampEventJsonLd({
   }
 }
 
+/** Yol içermeyen bir profil URL'si (ör. "https://instagram.com/") gerçek bir hesaba işaret etmez — yer tutucudur. */
+export function isRealProfileUrl(url: string): boolean {
+  try {
+    return new URL(url).pathname.replace(/^\/+/, '') !== ''
+  } catch {
+    return false
+  }
+}
+
 export function buildOrganizationJsonLd({
   siteUrl, locale,
 }: { siteUrl: string; locale: AppLocale }): Record<string, unknown> {
@@ -64,7 +73,10 @@ export function buildOrganizationJsonLd({
     name: site.name,
     url: `${trimSlash(siteUrl)}/${locale}`,
     email: site.email,
-    sameAs: [site.instagram],
+    // Yer tutucu bir profile "sameAs" ile işaret etmek yanlış bir iddia üretir (ör.
+    // Instagram'ın kendi ana sayfası hesabımızmış gibi görünür) — eksik alan dürüst,
+    // yanlış alan değildir. Gerçek bir profil bağlanana kadar alan tamamen atlanır.
+    ...(isRealProfileUrl(site.instagram) ? { sameAs: [site.instagram] } : {}),
   }
 }
 

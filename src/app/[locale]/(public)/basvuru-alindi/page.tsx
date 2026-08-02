@@ -2,11 +2,19 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import type { AppLocale } from '@/i18n/routing'
 import { Button } from '@/components/ui/button'
 import { Section } from '@/components/ui/section'
+import { buildAlternates } from '@/lib/seo/metadata'
 
 // Bu sayfaya yalnızca başarılı bir gönderimin ardından ulaşılır ve içeriği tekildir
 // (referans numarası) — arama sonuçlarında görünmesinin hiçbir değeri yoktur.
-export const metadata = {
-  robots: { index: false, follow: false },
+// `alternates` yine de kendi yoluna göre kurulur: yoksa Next, layout'un `/${locale}`
+// için ürettiği alternates'e düşer ve bu sayfa ana sayfanın canonical/hreflang'ını
+// taşımış olurdu — noindex olsa bile yanlıştır.
+export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
+  const { locale } = await params
+  return {
+    robots: { index: false, follow: false },
+    alternates: buildAlternates(`/${locale}/basvuru-alindi`),
+  }
 }
 
 export default async function InquiryReceivedPage({

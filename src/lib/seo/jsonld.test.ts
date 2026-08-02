@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { getAllCamps, getFaq, getVenueForCamp } from '@/content'
-import { buildCampEventJsonLd, buildFaqJsonLd, buildOrganizationJsonLd } from './jsonld'
+import { site } from '@/lib/config/site'
+import { buildCampEventJsonLd, buildFaqJsonLd, buildOrganizationJsonLd, isRealProfileUrl } from './jsonld'
 
 const camp = getAllCamps()[0]
 const venue = getVenueForCamp(camp)
@@ -80,6 +81,30 @@ describe('buildOrganizationJsonLd', () => {
     expect(jsonLd['@type']).toBe('Organization')
     expect(jsonLd.name).toBe('Serenity Retreats')
     expect(jsonLd.url).toBe(`${SITE}/tr`)
+  })
+
+  it('yer tutucu Instagram URL için sameAs alanını hiç üretmez', () => {
+    // site.instagram şu an "https://instagram.com/" — yol içermeyen bir yer tutucu.
+    // Gerçek bir profile bağlanana kadar `sameAs` yanlış bir iddia üretmemek için
+    // tamamen atlanmalı (bkz. isRealProfileUrl testleri).
+    expect(isRealProfileUrl(site.instagram)).toBe(false)
+    const jsonLd = buildOrganizationJsonLd({ siteUrl: SITE, locale: 'tr' })
+    expect(jsonLd).not.toHaveProperty('sameAs')
+  })
+})
+
+describe('isRealProfileUrl', () => {
+  it('yol içermeyen bir URL için false döner (yer tutucu)', () => {
+    expect(isRealProfileUrl('https://instagram.com/')).toBe(false)
+    expect(isRealProfileUrl('https://instagram.com')).toBe(false)
+  })
+
+  it('gerçek bir profil yolu için true döner', () => {
+    expect(isRealProfileUrl('https://instagram.com/serenityretreats')).toBe(true)
+  })
+
+  it('geçersiz bir URL için false döner', () => {
+    expect(isRealProfileUrl('not-a-url')).toBe(false)
   })
 })
 
