@@ -6,8 +6,11 @@ const MAX_TRACKED_KEYS = 5000
 type Bucket = { count: number; resetAt: number }
 const buckets = new Map<string, Bucket>()
 
-/** Süresi dolmuş kovaları haritadan temizler; yalnızca kendi anahtarı yeniden
- * sorgulanan kovalar "dokunulmuş" sayılır, bu yüzden her çağrıda tüm harita taranır. */
+/** Süresi dolmuş kovaları haritadan temizler. Yalnızca YENİ bir kova eklenmek üzereyken
+ * çağrılır (bkz. inMemoryCheck) — her istekte tüm haritayı taramak, saldırganın
+ * haritayı büyütmesini her MEŞRU isteği de yavaşlatan bir maliyete çevirirdi; var olan,
+ * süresi dolmamış bir kovayı artıran istekler (ortak durum: aynı pencerede tekrar eden
+ * ziyaretçi) haritayı büyütmez, bu yüzden süpürmeye ihtiyaç duymaz. */
 function sweepExpired(now: number): void {
   for (const [key, bucket] of buckets) {
     if (bucket.resetAt <= now) buckets.delete(key)
@@ -16,13 +19,14 @@ function sweepExpired(now: number): void {
 
 function inMemoryCheck(key: string): { allowed: boolean } {
   const now = Date.now()
-  sweepExpired(now)
 
   const bucket = buckets.get(key)
   if (!bucket || bucket.resetAt <= now) {
-    // Süpürmeden sonra bile harita üst sınırdaysa (ör. aktif pencerede çok sayıda
-    // benzersiz anahtar), en eski girdileri atarak büyümeyi sınırlı tut. Map ekleme
-    // sırasını korur, bu yüzden ilk anahtar her zaman en eskisidir.
+    // Yalnızca burada, yeni bir kova eklerken süpür ve üst sınırı uygula: süpürmeden
+    // sonra bile harita üst sınırdaysa (ör. aktif pencerede çok sayıda benzersiz
+    // anahtar), en eski girdileri atarak büyümeyi sınırlı tut. Map ekleme sırasını
+    // korur, bu yüzden ilk anahtar her zaman en eskisidir.
+    sweepExpired(now)
     while (buckets.size >= MAX_TRACKED_KEYS) {
       const oldestKey = buckets.keys().next().value
       if (oldestKey === undefined) break
@@ -53,9 +57,12 @@ export function resetRateLimitStateForTests(): void {
  * anahtar yalnızca yeniden sorgulandığında "dokunulur" ve süresi dolmuş kovası
  * silinebilir; hiç geri dönmeyen anahtarlar (ör. bir kerelik ziyaretçiler, ya da
  * `clientIp()` düzeltilmeden önceki gibi anahtar başına sahte IP saldırıları)
- * teorik olarak süresiz birikir. Bunu her çağrıda opportunistic bir süpürme
+ * teorik olarak süresiz birikir. Bunu yalnızca yeni bir kova eklenirken (ör. ilk kez
+ * görülen bir anahtar ya da süresi dolmuş bir kova) çalışan opportunistic bir süpürme
  * (`sweepExpired`) ve sert bir üst sınırla (`MAX_TRACKED_KEYS`, en eski anahtarları
- * atarak) sınırlıyoruz — yine de kilitlemek yerine gevşemeyi tercih eden aynı felsefe.
+ * atarak) sınırlıyoruz; var olan bir kovayı artırmak haritayı büyütmediği için süpürme
+ * tetiklemez — bu maliyeti her isteğe değil, yalnızca haritanın gerçekten büyüdüğü ana
+ * bağlar. Yine de kilitlemek yerine gevşemeyi tercih eden aynı felsefe geçerli.
  */
 export async function checkRateLimit(key: string): Promise<{ allowed: boolean }> {
   const url = process.env.UPSTASH_REDIS_REST_URL

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { getAllCamps } from '@/content'
 import { resetRateLimitStateForTests } from '@/lib/security/rate-limit'
 import { POST } from './route'
@@ -29,6 +29,10 @@ beforeEach(() => {
   // Süreç içi sayaç testler arasında paylaşılan modül durumudur (bkz. rate-limit.ts) —
   // her testin kendi IP anahtarını taze bir sayaçla görmesi için sıfırlanır.
   resetRateLimitStateForTests()
+})
+
+afterEach(() => {
+  vi.unstubAllEnvs()
 })
 
 describe('POST /api/inquiry', () => {
@@ -96,5 +100,81 @@ describe('POST /api/inquiry', () => {
 
     expect(statuses.slice(0, 5), JSON.stringify(statuses)).toEqual([200, 200, 200, 200, 200])
     expect(statuses[5], JSON.stringify(statuses)).toBe(429)
+  })
+
+  it('VERCEL ortam değişkeni yokken x-vercel-forwarded-for yok sayılır (spoofing)', async () => {
+    // Vercel'in kenarı bu başlığı istemcinin gönderdiği her şeyin üzerine kendi
+    // gözlemiyle yazar — ama SADECE istek gerçekten Vercel'in altyapısından geçtiğinde.
+    // Başka bir yerde bu, istemcinin serbestçe ayarlayabileceği sıradan bir başlıktır.
+    // VERCEL ortam değişkeni yokken (Vercel dışı bir çalışma zamanı) her istekte farklı
+    // bir değer göndermek yine de aynı geri dönüş anahtarına ('unknown', başka hiçbir
+    // başlık yok) düşmeli ve altıncı istek 429 almalı.
+    vi.stubEnv('VERCEL', '')
+    const claimed = ['11.0.0.1', '11.0.0.2', '11.0.0.3', '11.0.0.4', '11.0.0.5', '11.0.0.6']
+
+    const statuses: number[] = []
+    for (const value of claimed) {
+      const res = await POST(
+        makeRequest(
+          { kind: 'newsletter', email: 'vercel-spoof@example.com', consent: true },
+          { 'x-vercel-forwarded-for': value },
+        ),
+      )
+      statuses.push(res.status)
+    }
+
+    expect(statuses.slice(0, 5), JSON.stringify(statuses)).toEqual([200, 200, 200, 200, 200])
+    expect(statuses[5], JSON.stringify(statuses)).toBe(429)
+  })
+
+  it('VERCEL=1 iken x-vercel-forwarded-for güvenilir kabul edilir: farklı değerler farklı kovalara düşer', async () => {
+    vi.stubEnv('VERCEL', '1')
+    const distinctValues = ['12.0.0.1', '12.0.0.2', '12.0.0.3', '12.0.0.4', '12.0.0.5', '12.0.0.6']
+
+    for (const value of distinctValues) {
+      const res = await POST(
+        makeRequest(
+          { kind: 'newsletter', email: 'vercel-distinct@example.com', consent: true },
+          { 'x-vercel-forwarded-for': value },
+        ),
+      )
+      expect(res.status, value).toBe(200)
+    }
+  })
+
+  it('VERCEL=1 iken aynı x-vercel-forwarded-for değerinden altıncı istek 429 döner', async () => {
+    vi.stubEnv('VERCEL', '1')
+    const value = '13.0.0.1'
+
+    for (let i = 0; i < 5; i++) {
+      const res = await POST(
+        makeRequest(
+          { kind: 'newsletter', email: 'vercel-repeat@example.com', consent: true },
+          { 'x-vercel-forwarded-for': value },
+        ),
+      )
+      expect(res.status, `istek ${i + 1}`).toBe(200)
+    }
+    const res = await POST(
+      makeRequest(
+        { kind: 'newsletter', email: 'vercel-repeat@example.com', consent: true },
+        { 'x-vercel-forwarded-for': value },
+      ),
+    )
+    expect(res.status).toBe(429)
+  })
+
+  it('x-real-ip ile aynı IP\'den altıncı istek 429 döner', async () => {
+    const ip = '14.0.0.1'
+    for (let i = 0; i < 5; i++) {
+      const res = await POST(
+        makeRequest({ kind: 'newsletter', email: 'realip@example.com', consent: true }, { 'x-real-ip': ip }),
+      )
+      expect(res.status, `istek ${i + 1}`).toBe(200)
+    }
+    const res = await POST(
+      makeRequest({ kind: 'newsletter', email: 'realip@example.com', consent: true }, { 'x-real-ip': ip }),
+    )
+    expect(res.status).toBe(429)
   })
 })

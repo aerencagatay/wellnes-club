@@ -16,17 +16,34 @@ import { flattenZodErrors, inquirySchema } from '@/lib/utils/validation'
  * SONUNA ekler. İLK halka bağlanan istemcinin İDDİA ettiği değerdir — güvenilir bir ara
  * katman yoksa saldırgan bunu her istekte değiştirerek sınırsız yeni "IP" üretebilir ve
  * hız sınırını atlar. Bu yüzden ilk halkaya asla güvenilmez; öncelik sırası:
- *   1. `x-vercel-forwarded-for` — Vercel'in kenarı tarafından enjekte edilir, istemci
- *      tarafından ayarlanamaz (plan dağıtım hedefi Vercel'dir).
+ *   1. `x-vercel-forwarded-for` — YALNIZCA istek gerçekten Vercel'in altyapısından
+ *      geçtiğinde güvenilirdir (Vercel bu başlığı kendi gözlemiyle üzerine yazar).
+ *      Bunun dışında istemcinin serbestçe ayarlayabileceği sıradan bir başlıktır —
+ *      hatta `X-Forwarded-For`/`X-Real-IP`'in aksine, sıradan ters proxy yazılımları
+ *      bu Vercel'e özgü adı tanımadığı ve normalize/temizlemediği için ORADA bile daha
+ *      risklidir. Bu yüzden yalnızca `process.env.VERCEL === '1'` (Vercel'in çalışma
+ *      zamanına enjekte ettiği standart sinyal) iken dikkate alınır; aksi halde bu dal
+ *      tamamen atlanır. Segmentin ilk parçası alınıyor — biçimin sözleşmeli olduğuna
+ *      dair resmi bir garanti bulamadık, bu yüzden savunmacı davranıyoruz; tek bir
+ *      değer olduğu durumda bunun bir maliyeti yok.
  *   2. `x-real-ip` — tipik olarak güvenilir bir ters proxy tarafından ayarlanır.
  *   3. `x-forwarded-for` zincirinin SON halkası — en yakın güvenilir proxy'nin
  *      eklediği değer (ilk halka değil).
  *   4. `'unknown'`.
+ *
+ * ÖNEMLİ — dağıtım varsayımı: bu sıralamanın tamamı, isteğin istemciyle uygulama
+ * arasında en az bir güvenilir katmandan (Vercel'in kenarı ya da eşdeğer bir ters
+ * proxy) geçtiğini varsayar. Tamamen açık bir origin'de (aradaki hiçbir katman
+ * güvenilir değilse) başlık tabanlı IP tespitinin hiçbir biçimi saldırganı gerçek
+ * kaynaktan ayırt edemez — bu, bu koda özgü bir eksiklik değil, tekniğin doğasıdır.
+ * O topolojide asıl savunma `TURNSTILE_SECRET_KEY` ve Upstash'i yapılandırmaktır.
  */
 function clientIp(request: Request): string {
-  const vercelForwarded = request.headers.get('x-vercel-forwarded-for')
-  const vercelIp = vercelForwarded?.split(',')[0]?.trim()
-  if (vercelIp) return vercelIp
+  if (process.env.VERCEL === '1') {
+    const vercelForwarded = request.headers.get('x-vercel-forwarded-for')
+    const vercelIp = vercelForwarded?.split(',')[0]?.trim()
+    if (vercelIp) return vercelIp
+  }
 
   const realIp = request.headers.get('x-real-ip')?.trim()
   if (realIp) return realIp
