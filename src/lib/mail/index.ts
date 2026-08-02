@@ -15,25 +15,26 @@ export async function sendInquiryEmails(
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.INQUIRY_TO_EMAIL
 
-  const internal = renderInternalNotification(input, referenceId)
-  const autoReply = renderAutoReply(input, referenceId)
-
-  // Yapılandırma eksikken formu kırmak yerine akışı loglayarak devam et: geliştirme
-  // ortamında ve yanlış yapılandırılmış üretimde talep formu görünürde çalışmaya
-  // devam eder, kayıp yalnızca sunucu konsolunda görülür.
-  if (!apiKey || !to) {
-    console.info('[inquiry] E-posta yapılandırılmadı, gönderim atlandı.', {
-      referenceId,
-      kind: input.kind,
-      subject: internal.subject,
-    })
-    return { delivered: false }
-  }
-
-  // 'resend' SDK'sının yüklenememesi (paket eksik/bozuk) veya yollarken beklenmedik
-  // biçimde patlaması, ziyaretçinin isteğini 500'e düşürmemeli: referans numarası zaten
-  // üretildi, talep organizatöre ulaşmasa bile ziyaretçi elinde bir referansla kalmalı.
+  // Şablon render'ları da dahil tüm gövde tek bir try içinde: bir render hatası
+  // (ör. templates.ts'te beklenmedik bir istisna) bu fonksiyonun dışına, route.ts'in
+  // genel yakalayıcısına kaçarsa istek 500'e düşer ve zaten üretilmiş referans numarası
+  // ziyaretçiye asla ulaşmaz — bu tasarımın tam olarak önlemeye çalıştığı şey.
   try {
+    const internal = renderInternalNotification(input, referenceId)
+    const autoReply = renderAutoReply(input, referenceId)
+
+    // Yapılandırma eksikken formu kırmak yerine akışı loglayarak devam et: geliştirme
+    // ortamında ve yanlış yapılandırılmış üretimde talep formu görünürde çalışmaya
+    // devam eder, kayıp yalnızca sunucu konsolunda görülür.
+    if (!apiKey || !to) {
+      console.info('[inquiry] E-posta yapılandırılmadı, gönderim atlandı.', {
+        referenceId,
+        kind: input.kind,
+        subject: internal.subject,
+      })
+      return { delivered: false }
+    }
+
     const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
 

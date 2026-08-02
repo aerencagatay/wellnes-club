@@ -56,4 +56,11 @@ describe('renderAutoReply', () => {
     expect(mail.subject).toBeTruthy()
     expect(mail.text).toContain(REF)
   })
+
+  it('HTML gövdesinde kullanıcı girdisi kaçırılır', () => {
+    const xss = { ...inquiry, name: '<script>alert(1)</script>' }
+    const mail = renderAutoReply(xss, REF)
+    expect(mail.html).not.toContain('<script>')
+    expect(mail.html).toContain('&lt;script&gt;')
+  })
 })
