@@ -76,7 +76,9 @@
       "lede": "Tarihler açıklandığında, kontenjanlar dolmadan önce e-posta ile haber verelim.",
       "placeholder": "E-posta adresiniz",
       "consent": "KVKK Aydınlatma Metni'ni okudum, e-posta ile iletişime geçilmesini kabul ediyorum.",
-      "submit": "Abone Ol"
+      "submit": "Abone Ol",
+      "submitting": "Gönderiliyor…",
+      "success": "Teşekkürler! Yeni kamp tarihlerini ilk siz öğreneceksiniz."
     }
   },
   "camp": {
@@ -177,6 +179,22 @@
     "instagram": "Instagram"
   },
   "form": {
+    "name": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "camp": "Kamp",
+    "guests": "Kişi sayısı",
+    "roomPreference": "Oda tercihi",
+    "roomShared": "Paylaşımlı oda",
+    "roomSingle": "Tek kişilik oda",
+    "message": "Mesajınız",
+    "messageHint": "Beslenme tercihiniz, sağlık notunuz veya sorunuz.",
+    "consent": "<kvkk>KVKK Aydınlatma Metni'ni</kvkk> okudum ve kişisel verilerimin işlenmesine onay veriyorum.",
+    "submit": "Talebimi Gönder",
+    "submitting": "Gönderiliyor…",
+    "whatsappFallback": "WhatsApp'tan yazın",
+    "whatsappFallbackMessage": "Merhaba, kamp başvurusu yapmak istiyorum.",
+    "noCamps": "Şu anda planlanmış yaklaşan bir kamp yok. Yeni tarihler için bizimle doğrudan iletişime geçebilirsiniz.",
     "errors": {
       "invalidEmail": "Geçerli bir e-posta adresi girin.",
       "invalidPhone": "Geçerli bir telefon numarası girin.",
@@ -193,5 +211,19 @@
       "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
       "rateLimited": "Çok fazla deneme yaptınız. Lütfen birkaç dakika sonra tekrar deneyin."
     }
+  },
+  "inquiryPage": {
+    "eyebrow": "BAŞVURU",
+    "title": "Yerinizi Ayırtın",
+    "lede": "Aşağıdaki formu doldurun, ekibimiz talebinizi inceleyip size dönüş yapsın. Ödeme bu aşamada alınmaz.",
+    "summaryTitle": "Seçtiğiniz Kamp",
+    "whyTitle": "Bundan sonra ne olur?",
+    "whyBody": "Formu gönderdiğinizde talebiniz doğrudan ekibimize e-posta ile ulaşır. Genellikle 24 saat içinde size dönüş yaparak kontenjan ve ödeme detaylarını birlikte netleştiririz."
+  },
+  "inquiryReceived": {
+    "title": "Talebiniz Alındı",
+    "lede": "İlginiz için teşekkür ederiz. Ekibimiz talebinizi inceleyip en kısa sürede size dönüş yapacak.",
+    "reference": "Referans numaranız:",
+    "otherCamps": "Diğer Kampları Gör"
   }
 }

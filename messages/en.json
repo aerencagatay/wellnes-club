@@ -76,7 +76,9 @@
       "lede": "We'll email you as soon as new dates are announced — before spots fill up.",
       "placeholder": "Your email address",
       "consent": "I have read the KVKK Privacy Notice and consent to being contacted by email.",
-      "submit": "Subscribe"
+      "submit": "Subscribe",
+      "submitting": "Submitting…",
+      "success": "Thank you! You'll be the first to hear about new camp dates."
     }
   },
   "camp": {
@@ -177,6 +179,22 @@
     "instagram": "Instagram"
   },
   "form": {
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "camp": "Camp",
+    "guests": "Number of guests",
+    "roomPreference": "Room preference",
+    "roomShared": "Shared room",
+    "roomSingle": "Single room",
+    "message": "Your message",
+    "messageHint": "Any dietary preferences, health notes, or questions.",
+    "consent": "I have read the <kvkk>KVKK Privacy Notice</kvkk> and consent to the processing of my personal data.",
+    "submit": "Send My Request",
+    "submitting": "Submitting…",
+    "whatsappFallback": "Message us on WhatsApp",
+    "whatsappFallbackMessage": "Hello, I'd like to apply for a camp.",
+    "noCamps": "There are no upcoming camps scheduled right now. Please reach out to us directly for new dates.",
     "errors": {
       "invalidEmail": "Enter a valid email address.",
       "invalidPhone": "Enter a valid phone number.",
@@ -193,5 +211,19 @@
       "generic": "Something went wrong. Please try again.",
       "rateLimited": "Too many attempts. Please try again in a few minutes."
     }
+  },
+  "inquiryPage": {
+    "eyebrow": "APPLY",
+    "title": "Reserve Your Place",
+    "lede": "Fill in the form below and our team will review your request and get back to you. No payment is taken at this stage.",
+    "summaryTitle": "Your Selected Camp",
+    "whyTitle": "What happens next?",
+    "whyBody": "Once you submit the form, your request reaches our team directly by email. We usually reply within 24 hours to confirm availability and payment details together."
+  },
+  "inquiryReceived": {
+    "title": "Your Request Has Been Received",
+    "lede": "Thank you for your interest. Our team will review your request and get back to you shortly.",
+    "reference": "Your reference number:",
+    "otherCamps": "View Other Camps"
   }
 }
