@@ -85,7 +85,16 @@ export async function POST(request: Request) {
     }
 
     const referenceId = generateReferenceId(new Date())
-    await sendInquiryEmails(parsed.data, referenceId)
+    const { delivered } = await sendInquiryEmails(parsed.data, referenceId)
+    // `delivered` ziyaretçiye giden 200 yanıtını ASLA değiştirmez — referans numarası
+    // zaten üretildi ve ziyaretçi tarafında form her koşulda "başarılı" görünür (bkz.
+    // mail/index.ts'teki tasarım notu). Burada yalnızca üretim loglarında "gerçekten
+    // gönderildi" ile "sessizce loglandı" arasındaki farkı ayırt edilebilir kılmak için
+    // ayrı bir seviyede logluyoruz — `sendInquiryEmails` zaten kendi içinde
+    // `console.error` ile ayrıntı basıyor, bu yalnızca tarama için ek bir sinyal.
+    if (!delivered) {
+      console.warn('[inquiry] E-posta teslim edilmedi (delivered: false)', { referenceId })
+    }
 
     return NextResponse.json({ ok: true, referenceId }, { status: 200 })
   } catch (error) {

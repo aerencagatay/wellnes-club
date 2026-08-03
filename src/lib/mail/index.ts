@@ -2,7 +2,26 @@ import { site } from '@/lib/config/site'
 import type { InquiryInput } from '@/lib/utils/validation'
 import { renderAutoReply, renderInternalNotification } from './templates'
 
-const FROM = `Serenity Retreats <bilgi@${new URL(site.url).hostname.replace(/^www\./, '')}>`
+const FALLBACK_HOSTNAME = 'serenityretreats.com'
+
+// `NEXT_PUBLIC_SITE_URL` şema içermeden (ör. "serenityretreats.com" yerine
+// "https://serenityretreats.com") ayarlanırsa `new URL()` fırlatır. Bu hesaplama
+// eskiden modül kapsamında yapılıyordu, yani import sırasında fırlar ve
+// route.ts'in try/catch'ine hiç girmeden her talebi 500'e düşürürdü. Artık
+// çağrı zamanında hesaplanıp hatası yutulur; diğer opsiyonel yapılandırmalar
+// (Resend anahtarı, Upstash, Turnstile) gibi zarifçe geri düşer.
+function resolveFromAddress(): string {
+  let hostname = FALLBACK_HOSTNAME
+  try {
+    hostname = new URL(site.url).hostname.replace(/^www\./, '')
+  } catch (error) {
+    console.error('[inquiry] NEXT_PUBLIC_SITE_URL geçersiz, varsayılan gönderen alan adı kullanılıyor', {
+      siteUrl: site.url,
+      error,
+    })
+  }
+  return `Serenity Retreats <bilgi@${hostname}>`
+}
 
 /**
  * `input` çağıran tarafından zaten `parsed.data` (zod çıktısı) olarak verilmelidir —
@@ -37,10 +56,11 @@ export async function sendInquiryEmails(
 
     const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
+    const from = resolveFromAddress()
 
     const results = await Promise.allSettled([
-      resend.emails.send({ from: FROM, to, replyTo: input.email, ...internal }),
-      resend.emails.send({ from: FROM, to: input.email, ...autoReply }),
+      resend.emails.send({ from, to, replyTo: input.email, ...internal }),
+      resend.emails.send({ from, to: input.email, ...autoReply }),
     ])
 
     // ÖNEMLİ: Resend SDK'sı API düzeyinde bir hatada (ör. geçersiz anahtar, kota
