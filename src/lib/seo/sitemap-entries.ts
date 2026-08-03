@@ -1,7 +1,18 @@
 import { getAllCamps, getAllPosts, getAllTeachers } from '@/content'
 import { routing } from '@/i18n/routing'
+import { trimSlash } from '@/lib/utils/locale'
 
-/** Dizine girmesi istenen statik yollar. /basvuru-alindi bilinçli olarak yok. */
+/**
+ * Dizine girmesi istenen statik yollar. /basvuru-alindi bilinçli olarak yok.
+ *
+ * /blog de bilinçli olarak burada değil: `getAllPosts()` şu an boş dizi döndürür,
+ * yani /blog boş, sitede hiçbir yerden bağlantı verilmeyen (nav/footer'da yok) ince
+ * bir sayfadır. Yeni bir sitenin arama motorlarına böyle bir sayfayı sunması SEO
+ * açısından zarar verir. Tekil yazı yolları (`/blog/[slug]`) zaten aşağıda
+ * `getAllPosts()`'a koşullu — ilk yazı eklendiğinde otomatik olarak eklenir. /blog
+ * listeleme sayfasının kendisini geri eklemek, ilk yazıyı yayınlayacak kişinin
+ * ürün kararıdır, bu düzeltmenin kapsamında değildir.
+ */
 export const STATIC_PATHS = [
   '',
   '/kamplar',
@@ -11,7 +22,6 @@ export const STATIC_PATHS = [
   '/hakkimizda',
   '/sss',
   '/iletisim',
-  '/blog',
   '/basvuru',
   '/kvkk',
   '/gizlilik',
@@ -20,10 +30,6 @@ export const STATIC_PATHS = [
 export type SitemapEntry = {
   url: string
   alternates: { languages: Record<string, string> }
-}
-
-function trimSlash(url: string): string {
-  return url.replace(/\/+$/, '')
 }
 
 export function buildSitemapEntries(siteUrl: string): SitemapEntry[] {

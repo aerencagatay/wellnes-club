@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getAllCamps, getAllTeachers } from '@/content'
+import { getAllCamps, getAllPosts, getAllTeachers } from '@/content'
 import { buildSitemapEntries, STATIC_PATHS } from './sitemap-entries'
 
 const SITE = 'https://serenityretreats.com'
@@ -29,8 +29,16 @@ describe('buildSitemapEntries', () => {
   })
 
   it('beklenen toplam kayıt sayısını üretir', () => {
-    const dynamicCount = getAllCamps().length + getAllTeachers().length
+    // getAllPosts() dahil: /blog listeleme sayfası STATIC_PATHS'te bilinçli olarak
+    // yok (bkz. sitemap-entries.ts yorumu), ama tekil yazı yolları her zaman
+    // sayılmalı — aksi halde bu test yalnızca posts boşken doğru sonuç verir ve ilk
+    // yazı eklendiğinde yanlış nedenle (formül eksikliği, sitemap kodu değil) kırılır.
+    const dynamicCount = getAllCamps().length + getAllTeachers().length + getAllPosts().length
     expect(entries).toHaveLength((STATIC_PATHS.length + dynamicCount) * 2)
+  })
+
+  it('boş olduğu sürece /blog listeleme sayfasını dışlar', () => {
+    expect(urls.some((u) => /\/blog$/.test(u))).toBe(false)
   })
 
   it('yinelenen URL içermez', () => {
