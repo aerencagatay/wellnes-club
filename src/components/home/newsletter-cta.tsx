@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Section } from '@/components/ui/section'
+import { fieldDescribedBy } from '@/components/inquiry/field'
 import { resolveErrorMessage, submitInquiry } from '@/lib/inquiry-client'
 
 export function NewsletterCta() {
@@ -76,7 +77,7 @@ export function NewsletterCta() {
                 {t('placeholder')}
               </label>
               <input
-                aria-describedby={emailError ? 'newsletter-email-error' : undefined}
+                aria-describedby={fieldDescribedBy('newsletter-email', { error: emailError })}
                 aria-invalid={Boolean(emailError)}
                 autoComplete="email"
                 className="w-full rounded-full border border-border bg-cream px-5 py-3 text-sm text-ink placeholder:text-body focus-visible:border-accent-deep sm:flex-1"
@@ -100,7 +101,7 @@ export function NewsletterCta() {
                 eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
             <label className="flex items-start gap-2 text-left text-xs text-body-deep" htmlFor="newsletter-consent">
               <input
-                aria-describedby={consentError ? 'newsletter-consent-error' : undefined}
+                aria-describedby={fieldDescribedBy('newsletter-consent', { error: consentError })}
                 aria-invalid={Boolean(consentError)}
                 className="mt-0.5 accent-accent-deep"
                 id="newsletter-consent"

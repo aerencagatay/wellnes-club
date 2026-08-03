@@ -16,9 +16,11 @@ export type SubmitResult =
  * Task 14'ün `kind: 'contact'` gövdesi burada değişiklik gerektirmez.
  *
  * Ağ hatası (fetch reddi — sunucu kapalı, DNS, CORS, vb. — ya da yanıt gövdesi hiç JSON
- * değilse) `error: 'network'` olarak ele alınır. Çağıran taraf (inquiry-form,
- * newsletter-cta) form verisini KORUMALI ve WhatsApp alternatifini öne çıkarmalıdır —
- * bu fonksiyon hiçbir state'e dokunmaz, yalnızca sonucu döner.
+ * değilse) `error: 'network'` olarak ele alınır. Çağıran taraf form verisini KORUMALI;
+ * `inquiry-form` bu durumda ayrıca bir WhatsApp alternatifini öne çıkarır (kamp talebi
+ * için mantıklı bir yedek kanal). `newsletter-cta` tek alanlık bir abonelik formu olduğu
+ * için WhatsApp yedeği göstermez — yalnızca hatayı gösterir. Bu fonksiyon hiçbir state'e
+ * dokunmaz, yalnızca sonucu döner.
  */
 export async function submitInquiry(input: InquiryInput): Promise<SubmitResult> {
   try {
