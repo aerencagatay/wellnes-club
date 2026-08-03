@@ -11,6 +11,14 @@ import { VenuePreview } from '@/components/home/venue-preview'
 import { Testimonials } from '@/components/home/testimonials'
 import { NewsletterCta } from '@/components/home/newsletter-cta'
 
+// `today` aşağıda `getUpcomingCamps` için render anında hesaplanır — ama sayfa artık
+// statik render edildiği için (bkz. (public)/layout.tsx → setRequestLocale) bu değer
+// build zamanında donar ve bir sonraki deploy'a kadar asla yenilenmez. `revalidate`
+// olmadan geçmiş bir kamp, tarihi geçtikten sonra bile "yaklaşan" olarak görünmeye
+// devam eder ve canlı başvuru CTA'sına bağlantı vermeyi sürdürür. Saatlik yenileme,
+// build hızını korurken bu içeriği makul bir tazelikte tutar.
+export const revalidate = 3600
+
 export default async function HomePage({ params }: { params: Promise<{ locale: AppLocale }> }) {
   const { locale } = await params
   setRequestLocale(locale)

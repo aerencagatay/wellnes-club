@@ -12,6 +12,13 @@ import { VenueLocation } from '@/components/venue/venue-location'
 import { PRIMARY_VENUE_SLUG } from '@/lib/config/site'
 import { buildAlternates } from '@/lib/seo/metadata'
 
+// `today` aşağıda `getUpcomingCamps` için render anında hesaplanır — ama sayfa artık
+// statik render edildiği için bu değer build zamanında donar ve bir sonraki deploy'a
+// kadar asla yenilenmez. `revalidate` olmadan geçmiş bir kamp, tarihi geçtikten sonra
+// bile "yaklaşan" olarak görünmeye devam eder. Saatlik yenileme, build hızını
+// korurken bu içeriği makul bir tazelikte tutar.
+export const revalidate = 3600
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'meta' })
