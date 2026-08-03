@@ -7,12 +7,12 @@ tek bir başvuru formu ve WhatsApp'tır. İçerik statik TypeScript dosyalarınd
 
 ## Gereksinimler
 
-- **Node.js ≥ 20.** `resend` paketi (`package.json` → `dependencies`) kendi `engines`
-  alanında `node >= 20` talep eder; bu projenin kendi `package.json`'ında ise henüz bir
-  `engines` alanı **tanımlı değildir**. Bu, npm'in düşük bir Node sürümünü otomatik
-  reddetmeyeceği, ama `resend`'in gerçek çalışma zamanı davranışının bu sürümün altında
-  garanti edilmediği anlamına gelir. CI/CD veya barındırma platformunuzda Node sürümünü
-  elle 20+ olarak sabitleyin.
+- **Node.js ≥ 22.** `resend` paketi (`package.json` → `dependencies`) kendi `engines`
+  alanında `node >= 20` talep eder, ancak proje test paketindeki
+  `src/lib/utils/contrast-guard.test.ts` `node:fs/promises`'ın `glob` üyesini kullanır —
+  bu, Node 22+'da eklenmiş bir API'dir. Proje `package.json`'ı bunu `engines: { "node":
+  ">=22" }` ile beyan eder; npm bu alanı zorunlu kılmaz, bu yüzden CI/CD veya barındırma
+  platformunuzda Node sürümünü elle 22+ olarak sabitleyin.
 - npm (proje `package-lock.json` ile birlikte gelir).
 
 ## Kurulum
@@ -38,6 +38,7 @@ dağıtık hız sınırlama gibi opsiyonel/entegrasyon özellikleri devre dış�
 | `npm test` | Vitest ile tüm testleri bir kez çalıştırır (bkz. "Yayına hazırlık testi"). |
 | `npm run test:watch` | Testleri izleme modunda çalıştırır. |
 | `npm run lint` | ESLint (Next.js kuralları + TypeScript) çalıştırır. |
+| `npm run typecheck` | `tsc --noEmit` ile tüm proje ve testler için tip denetimi yapar. |
 
 ## Ortam değişkenleri
 
@@ -209,9 +210,10 @@ sürümde `TURNSTILE_SECRET_KEY`'i tek başına tanımlarsanız **her gerçek zi
 başvurusu reddedilir** ve form fiilen kilitlenir. Bir client-side Turnstile widget'ı
 eklenip `turnstileToken` doldurulmadan bu değişkeni üretimde tanımlamayın.
 
-### `resend`'in Node sürümü gereksinimi
+### `resend`'in ve test paketinin Node sürümü gereksinimi
 
-`resend` paketi kendi `package.json`'ında `engines: { node: ">=20" }` beyan eder; bu
-projenin `package.json`'ı ise bir `engines` alanı tanımlamaz. npm bu farkı zorunlu
-kılmaz — barındırma platformunuzda Node sürümünü elle 20+ olarak sabitleyin (bkz.
-"Gereksinimler").
+`resend` paketi kendi `package.json`'ında `engines: { node: ">=20" }` beyan eder; ancak
+bu projenin kendi `package.json`'ı `engines: { "node": ">=22" }` talep eder, çünkü test
+paketi (`contrast-guard.test.ts`) Node 22'de eklenen `node:fs/promises`'ın `glob`
+üyesini kullanır. npm bu alanı zorunlu kılmaz — barındırma platformunuzda Node sürümünü
+elle 22+ olarak sabitleyin (bkz. "Gereksinimler").
