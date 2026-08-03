@@ -23,7 +23,15 @@ function stripLocale(path: string): string {
  * için kullanılır. `LOCALE_TAG`'ın BCP-47 biçiminden (`tr-TR`) türetilir ki tek bir
  * `Record<AppLocale, string>` kaynağı olsun — üçüncü bir locale eklendiğinde bu
  * eşleme otomatik güncellenir, ayrı bir üçlü operatörün eksik kalma riski olmaz.
+ *
+ * `LOCALE_TAG[locale] ?? ...` fallback'i BİLİNÇLİDİR: eski üçlü operatör
+ * (`locale === 'tr' ? ... : 'en_GB'`) her girdi için TOTAL bir fonksiyondu — hiçbir
+ * girdide fırlamazdı. Salt `LOCALE_TAG[locale].replace(...)` tip düzeyinde `AppLocale`
+ * dışına çıkan bir çağrıda (ör. dış bir kaynaktan gelen doğrulanmamış bir locale
+ * dizesi) `undefined.replace`'e çarpıp fırlar. Bu yardımcı da aynı şekilde total
+ * kalsın diye varsayılan yerele düşülür.
  */
 export function localeToOgLocale(locale: AppLocale): string {
-  return LOCALE_TAG[locale].replace('-', '_')
+  const tag = LOCALE_TAG[locale] ?? LOCALE_TAG[routing.defaultLocale]
+  return tag.replace('-', '_')
 }
