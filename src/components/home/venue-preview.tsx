@@ -5,15 +5,14 @@ import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { GalleryStrip } from '@/components/ui/gallery-strip'
 import { Section } from '@/components/ui/section'
-
-const VENUE_SLUG = 'karadut-tas-otel'
+import { PRIMARY_VENUE_SLUG } from '@/lib/config/site'
 
 // Oda tipi veya fiyat burada gösterilmez — yalnızca kısa açıklama ve öne
 // çıkanlar listesi (bkz. src/content/venues.ts). Detaylar /mekan sayfasındadır.
 export function VenuePreview({ locale }: { locale: AppLocale }) {
   const t = useTranslations('home.venue')
   const tVenue = useTranslations('venue')
-  const venue = getVenueBySlug(VENUE_SLUG)
+  const venue = getVenueBySlug(PRIMARY_VENUE_SLUG)
   if (!venue) return null
 
   const preview = venue.gallery.slice(0, 3)

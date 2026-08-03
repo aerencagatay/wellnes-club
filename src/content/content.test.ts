@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest'
 import {
   getAllCamps, getAllTeachers, getAllVenues, getCampBySlug, getCampsForTeacher,
   getFaq, getFeaturedCamps, getPastCamps, getTeachersForCamp, getTestimonials,
-  getUpcomingCamps, getVenueForCamp,
+  getUpcomingCamps, getVenueBySlug, getVenueForCamp,
 } from './index'
 import type { Localized, LocalizedList } from './types'
+import { PRIMARY_VENUE_SLUG } from '@/lib/config/site'
 
 const camps = getAllCamps()
 const teachers = getAllTeachers()
@@ -44,6 +45,15 @@ describe('içerik bütünlüğü', () => {
 
   it('her kampın venueSlug değeri çözülür', () => {
     for (const camp of camps) expect(() => getVenueForCamp(camp)).not.toThrow()
+  })
+
+  // `PRIMARY_VENUE_SLUG` (src/lib/config/site.ts), venues.ts'teki slug'lardan bağımsız
+  // bir literal olarak `iletisim/page.tsx`, `mekan/page.tsx` ve `venue-preview.tsx`
+  // içinde `notFound()`'a düşen bir çözümleme için kullanılır. `venues.ts`'te bu slug
+  // yeniden adlandırılırsa bu test kırılır — aksi halde sitenin birincil dönüşüm
+  // sayfası (iletişim) sessizce 404 vermeye başlardı.
+  it('PRIMARY_VENUE_SLUG bir mekana çözülür', () => {
+    expect(getVenueBySlug(PRIMARY_VENUE_SLUG)).not.toBeUndefined()
   })
 
   it('her kampın tüm teacherSlugs değerleri çözülür', () => {

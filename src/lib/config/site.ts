@@ -1,3 +1,13 @@
+/**
+ * `iletisim/page.tsx`, `mekan/page.tsx` ve `venue-preview.tsx` sitenin tek mekanını
+ * ayrı ayrı bu literal ile arıyor ve bulunamazsa `notFound()` çağırıyordu — üçü de
+ * kendi kopyasını tutuyordu, yani `venues.ts`'te bu slug yeniden adlandırılsaydı üç
+ * sayfa da (iletişim dahil, sitenin birincil dönüşüm sayfası) test tarafından
+ * yakalanmadan 404 verirdi. Tek kaynak burada; `content.test.ts` bu sabitin
+ * `getVenueBySlug` ile çözüldüğünü doğrular.
+ */
+export const PRIMARY_VENUE_SLUG = 'karadut-tas-otel'
+
 /** YER TUTUCU: telefon, e-posta ve Instagram değerlerini yayın öncesi güncelleyin. */
 export const site = {
   name: 'Serenity Retreats',

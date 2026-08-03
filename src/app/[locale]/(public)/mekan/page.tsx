@@ -9,9 +9,8 @@ import { Section } from '@/components/ui/section'
 import { VenueGallery } from '@/components/venue/venue-gallery'
 import { VenueHighlights } from '@/components/venue/venue-highlights'
 import { VenueLocation } from '@/components/venue/venue-location'
+import { PRIMARY_VENUE_SLUG } from '@/lib/config/site'
 import { buildAlternates } from '@/lib/seo/metadata'
-
-const VENUE_SLUG = 'karadut-tas-otel'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
   const { locale } = await params
@@ -34,7 +33,7 @@ export default async function VenuePage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const venue = getVenueBySlug(VENUE_SLUG)
+  const venue = getVenueBySlug(PRIMARY_VENUE_SLUG)
   if (!venue) notFound()
 
   const t = await getTranslations('venue')
