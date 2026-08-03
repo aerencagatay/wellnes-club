@@ -1,10 +1,9 @@
 import type { AppLocale } from '@/i18n/routing'
-
-const INTL_LOCALE: Record<AppLocale, string> = { tr: 'tr-TR', en: 'en-GB' }
+import { LOCALE_TAG } from '@/lib/utils/locale'
 
 /** Kişi başı fiyatı yerel para birimi biçiminde, ondalıksız gösterir. */
 export function formatPrice(amount: number, currency: string, locale: AppLocale): string {
-  return new Intl.NumberFormat(INTL_LOCALE[locale], {
+  return new Intl.NumberFormat(LOCALE_TAG[locale], {
     style: 'currency',
     currency,
     maximumFractionDigits: 0,

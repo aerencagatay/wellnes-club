@@ -1,16 +1,17 @@
 import type { CampSession, CampStatus, FaqItem, Venue } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
 import { site } from '@/lib/config/site'
+import { trimSlash } from '@/lib/utils/locale'
+
+// `trimSlash` burada yeniden dışa aktarılır: bu dosyanın çağıranları (ör.
+// `kamplar/[slug]/page.tsx`) onu `@/lib/seo/jsonld`'den içe aktarıyordu; tek kaynak artık
+// `@/lib/utils/locale`, ama mevcut import yolunu kırmamak için burada re-export ediyoruz.
+export { trimSlash }
 
 const EVENT_STATUS: Record<CampStatus, string> = {
   open: 'https://schema.org/EventScheduled',
   waitlist: 'https://schema.org/EventScheduled',
   closed: 'https://schema.org/EventCancelled',
-}
-
-/** Sonundaki eğik çizgi(ler)i kaldırır — `${trimSlash(url)}/...` birleştirmelerinde çift `//` üretmez. */
-export function trimSlash(url: string): string {
-  return url.replace(/\/+$/, '')
 }
 
 export function buildCampEventJsonLd({

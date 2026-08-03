@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { routing } from '@/i18n/routing'
 import { site } from '@/lib/config/site'
+import { trimSlash } from '@/lib/utils/locale'
 
 export default function robots(): MetadataRoute.Robots {
   // localePrefix: 'always' anlamına gelir ki /basvuru-alindi hiçbir zaman tek başına var
@@ -15,6 +16,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', ...routing.locales.map((locale) => `/${locale}/basvuru-alindi`)],
       },
     ],
-    sitemap: `${site.url.replace(/\/+$/, '')}/sitemap.xml`,
+    sitemap: `${trimSlash(site.url)}/sitemap.xml`,
   }
 }
