@@ -57,7 +57,7 @@ export function NewsletterCta() {
   }
 
   return (
-    <Section background="cream-3" size="sm">
+    <Section background="surface" size="sm">
       <div className="mx-auto max-w-xl text-center">
         <h2 className="type-title">{t('title')}</h2>
         {/* .type-lede'in varsayılan rengi zaten --color-muted'tir (arka planda ve

@@ -7,7 +7,7 @@ export function TrustStrip() {
   const t = useTranslations('home.trust')
   const items = ['assos', 'bay', 'groupSize', 'stone'] as const
   return (
-    <Section background="cream-2" size="sm">
+    <Section background="surface" size="sm">
       <ul className="grid grid-cols-2 gap-8 md:grid-cols-4">
         {items.map((key) => (
           <li className="text-center" key={key}>

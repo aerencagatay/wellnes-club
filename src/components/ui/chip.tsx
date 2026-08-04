@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-const BASE = 'inline-flex items-center rounded-full border px-4 py-2 text-sm transition-colors duration-200'
+const BASE = 'inline-flex items-center rounded-none border px-4 py-2 text-sm transition-colors duration-200'
 
 export function Chip({
   active = false,
@@ -10,7 +10,7 @@ export function Chip({
   return (
     <button
       aria-pressed={active}
-      className={`${BASE} ${active ? 'border-olive bg-olive text-background font-semibold' : 'border-sand text-muted hover:border-text/40'}`}
+      className={`${BASE} ${active ? 'border-text bg-text text-background font-semibold' : 'border-text/20 text-muted hover:border-text/40'}`}
       type="button"
       {...rest}
     >

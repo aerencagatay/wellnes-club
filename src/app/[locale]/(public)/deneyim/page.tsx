@@ -46,7 +46,7 @@ export default async function ExperiencePage({
         </Section>
       )}
 
-      <Section background="cream-2">
+      <Section background="surface">
         <div className="max-w-2xl">
           <h2 className="type-title">{t('nutritionTitle')}</h2>
           {/* text-muted: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG AA
@@ -71,7 +71,7 @@ export default async function ExperiencePage({
         </ul>
       </Section>
 
-      <Section background="cream-2">
+      <Section background="surface">
         <div className="max-w-2xl">
           <h2 className="type-title">{t('levelsTitle')}</h2>
           {/* text-muted: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG AA

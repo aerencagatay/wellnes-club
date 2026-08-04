@@ -40,7 +40,7 @@ export default async function AboutPage({
         </div>
       </Section>
 
-      <Section background="cream-2">
+      <Section background="surface">
         <div className="max-w-xl">
           <Eyebrow>{t('approachEyebrow')}</Eyebrow>
           <h2 className="type-title">{t('approachTitle')}</h2>

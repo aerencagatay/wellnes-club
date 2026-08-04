@@ -66,7 +66,7 @@ export default async function VenuePage({
         </div>
       </Section>
 
-      <Section background="cream-2">
+      <Section background="surface">
         <VenueHighlights locale={locale} venue={venue} />
       </Section>
 
@@ -75,7 +75,7 @@ export default async function VenuePage({
         <p className="mt-6 text-sm text-muted">{t('accommodationNote')}</p>
       </Section>
 
-      <Section background="cream-2">
+      <Section background="surface">
         <h2 className="type-title">{t('campsHere')}</h2>
         {camps.length > 0 && (
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

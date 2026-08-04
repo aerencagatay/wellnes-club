@@ -89,7 +89,7 @@ export default async function ContactPage({
         </div>
       </Section>
 
-      <Section background="cream-2">
+      <Section background="surface">
         <Eyebrow>{t('venueTitle')}</Eyebrow>
         <div className="mt-6">
           {/* Eyebrow bir başlık değildir; bu bileşen sayfanın h1'inden (PageHero) sonra

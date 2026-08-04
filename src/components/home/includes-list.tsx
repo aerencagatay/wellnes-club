@@ -9,7 +9,7 @@ export function IncludesList() {
   const t = useTranslations('home.includes')
 
   return (
-    <Section background="cream-3">
+    <Section background="surface">
       <div className="max-w-xl">
         <Eyebrow>{t('eyebrow')}</Eyebrow>
         <h2 className="type-title">{t('title')}</h2>
@@ -20,7 +20,7 @@ export function IncludesList() {
           return (
             <li className="flex items-start gap-4" key={n}>
               <Icon aria-hidden className="mt-1 size-6 shrink-0 text-olive" />
-              {/* text-muted: bu bölüm cream-3 zemininde (Section background="cream-3"),
+              {/* text-muted: bu bölüm surface zemininde (Section background="surface"),
                   düz gövde metni (body'den miras) orada WCAG AA eşiğinin altında kalır
                   (bkz. globals.css'teki --color-muted token yorumu). */}
               <p className="text-muted">{t(`items.${n}`)}</p>

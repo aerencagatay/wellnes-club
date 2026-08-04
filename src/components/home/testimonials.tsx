@@ -12,7 +12,7 @@ export function Testimonials({ locale }: { locale: AppLocale }) {
   if (items.length === 0) return null
 
   return (
-    <Section background="cream-2">
+    <Section background="surface">
       <Eyebrow>{t('eyebrow')}</Eyebrow>
       <h2 className="type-title max-w-2xl">{t('title')}</h2>
 

@@ -12,7 +12,7 @@ export function TeachersPreview({ locale }: { locale: AppLocale }) {
   const teachers = getAllTeachers().slice(0, 3)
 
   return (
-    <Section background="cream-2">
+    <Section background="surface">
       <div className="max-w-xl">
         <Eyebrow>{t('eyebrow')}</Eyebrow>
         <h2 className="type-title">{t('title')}</h2>

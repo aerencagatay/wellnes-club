@@ -16,7 +16,7 @@ export function VenueLocation({
    *  detay sayfası kendi `h2`'sinin ("Kalacağınız Yer") altına yerleştirdiği için
    *  varsayılan `h3` orada doğru iç içe geçmeyi korur. */
   headingLevel?: 'h2' | 'h3'
-  /** `/iletisim` bu bileşeni bir `Section background="cream-2"` içine yerleştirir;
+  /** `/iletisim` bu bileşeni bir `Section background="surface"` içine yerleştirir;
    *  orada düz gövde metni (ve `.type-lede`'in varsayılan rengi) WCAG AA eşiğinin
    *  altına düşer (bkz. globals.css'teki --color-muted token yorumu). Kamp detay ve `/mekan`
    *  sayfaları bu bileşeni düz krem zeminde kullandığı için varsayılan `false` kalır. */

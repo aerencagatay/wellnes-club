@@ -6,18 +6,18 @@ type Size = 'md' | 'lg'
 
 const VARIANTS: Record<Variant, string> = {
   // Zeytin dolgu + krem metin = 5.90:1 (bkz. editorial redesign brief §2)
-  primary: 'bg-olive text-background hover:bg-olive/90',
-  secondary: 'bg-dark text-background hover:bg-dark/90',
-  ghost: 'bg-transparent text-text border border-text/20 hover:border-text/50',
+  primary: 'bg-olive text-background hover:bg-olive/85',
+  secondary: 'bg-text text-background hover:bg-text/85',
+  ghost: 'bg-transparent text-text border border-text/25 hover:border-text/60',
 }
 
 const SIZES: Record<Size, string> = {
-  md: 'px-6 py-3 text-sm',
-  lg: 'px-8 py-4 text-base',
+  md: 'px-8 py-4',
+  lg: 'px-10 py-5',
 }
 
 const BASE =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-wide transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none'
+  'rounded-none inline-flex items-center justify-center gap-2 text-xs font-normal uppercase tracking-[0.08em] transition-[background-color,border-color,color] duration-200 disabled:opacity-50 disabled:pointer-events-none'
 
 type Props = {
   variant?: Variant

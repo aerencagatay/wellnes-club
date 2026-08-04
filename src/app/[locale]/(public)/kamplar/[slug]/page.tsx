@@ -124,7 +124,7 @@ export default async function CampDetailPage({
         </div>
       </Section>
 
-      <Section background="cream-2" className="pb-28 lg:pb-0">
+      <Section background="surface" className="pb-28 lg:pb-0">
         <h2 className="type-title">{t('faq')}</h2>
         <div className="mt-10">
           <Accordion
