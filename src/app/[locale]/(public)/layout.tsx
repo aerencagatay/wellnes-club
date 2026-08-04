@@ -4,6 +4,7 @@ import { BackToTop } from '@/components/layout/back-to-top'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { WhatsAppFab } from '@/components/layout/whatsapp-fab'
+import { SmoothScroll } from '@/components/motion/smooth-scroll'
 
 export default async function PublicLayout({
   children,
@@ -21,7 +22,9 @@ export default async function PublicLayout({
         {t('skipToContent')}
       </a>
       <Navbar />
-      <main id="main">{children}</main>
+      <main id="main">
+        <SmoothScroll>{children}</SmoothScroll>
+      </main>
       <Footer />
       <WhatsAppFab />
       <BackToTop />
