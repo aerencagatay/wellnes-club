@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Children, type ReactNode } from 'react'
+import { Children, createElement, useMemo, type ReactNode } from 'react'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
 
 const DURATION = 0.7
@@ -44,23 +44,60 @@ export function Reveal({ children, delay = 0, y = 24, className }: RevealProps) 
   )
 }
 
+type IntrinsicTag = keyof React.JSX.IntrinsicElements
+
 type RevealGroupProps = {
   children: ReactNode
   /** Çocuklar arası gecikme (saniye). */
   stagger?: number
+  /** Grup sarmalayıcısına uygulanan sınıf. */
   className?: string
+  /**
+   * Her çocuğu saran öğe; varsayılan `div`. Liste düzenleri için `li` verin
+   * (ör. Daily Flow zaman çizelgesi bir `<ul>` içinde anlamsal `<li>` öğeleri
+   * gerektirir — `div` `ul` içinde geçersiz işaretleme olur).
+   */
+  itemAs?: IntrinsicTag
+  /**
+   * Her çocuk sarmalayıcısına uygulanan sınıf (ör. flex/grid item sınıfları).
+   * Sarmalayıcı, ebeveynin doğrudan çocuğu olduğu için düzen sınıfları
+   * `className` yerine buraya verilmelidir.
+   */
+  itemClassName?: string
 }
 
 /**
- * Doğrudan çocuklarını (her biri bir `motion.div`'e sarılarak) sırayla
- * açan grup. `Reveal` ile aynı görsel dile sahiptir ama zamanlamayı
- * `staggerChildren` ile merkezîleştirir.
+ * Doğrudan çocuklarını (her biri `itemAs` ile belirtilen bir öğeye
+ * sarılarak) sırayla açan grup. `Reveal` ile aynı görsel dile sahiptir ama
+ * zamanlamayı `staggerChildren` ile merkezîleştirir.
+ *
+ * Hareket azaltma istendiğinde de her çocuk aynı `itemAs`/`itemClassName`
+ * ile sarılır — yalnızca animasyon kaldırılır — böylece ebeveynin flex/grid
+ * düzeni her iki durumda da aynı DOM şekline güvenebilir.
  */
-export function RevealGroup({ children, stagger = DEFAULT_STAGGER, className }: RevealGroupProps) {
+export function RevealGroup({
+  children,
+  stagger = DEFAULT_STAGGER,
+  className,
+  itemAs = 'div',
+  itemClassName,
+}: RevealGroupProps) {
   const reduced = useReducedMotion()
+  // `motion.create` bilinen bir HTML etiketinden (dize) veya bir bileşenden
+  // resmi olarak desteklenen, tipli bir `motion` bileşeni üretir. Her
+  // render'da yeniden oluşturmamak için `itemAs` değişmediği sürece
+  // hafızada tutulur (aksi hâlde her render'da yeni bir bileşen kimliği
+  // React'in çocukları yeniden bağlamasına yol açardı).
+  const MotionItem = useMemo(() => motion.create(itemAs), [itemAs])
 
   if (reduced) {
-    return <div className={className}>{children}</div>
+    return (
+      <div className={className}>
+        {Children.toArray(children).map((child, index) =>
+          createElement(itemAs, { key: index, className: itemClassName }, child)
+        )}
+      </div>
+    )
   }
 
   return (
@@ -75,15 +112,16 @@ export function RevealGroup({ children, stagger = DEFAULT_STAGGER, className }: 
       }}
     >
       {Children.toArray(children).map((child, index) => (
-        <motion.div
+        <MotionItem
           key={index}
+          className={itemClassName}
           variants={{
             hidden: { opacity: 0, y: 24 },
             visible: { opacity: 1, y: 0, transition: { duration: DURATION, ease: EASE } },
           }}
         >
           {child}
-        </motion.div>
+        </MotionItem>
       ))}
     </motion.div>
   )

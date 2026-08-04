@@ -4,14 +4,20 @@ import { useSyncExternalStore } from 'react'
 
 const QUERY = '(prefers-reduced-motion: reduce)'
 
+// Modül kapsamında bir kez oluşturulur — her render'da yeniden
+// `matchMedia` çağırmak yerine tek bir `MediaQueryList` yeniden kullanılır.
+// SSR'de (Node ortamında modül değerlendirilirken) `window` yok, bu yüzden
+// `null` ile korunur.
+const mediaQuery = typeof window === 'undefined' ? null : window.matchMedia(QUERY)
+
 function subscribe(onChange: () => void): () => void {
-  const mediaQuery = window.matchMedia(QUERY)
+  if (!mediaQuery) return () => {}
   mediaQuery.addEventListener('change', onChange)
   return () => mediaQuery.removeEventListener('change', onChange)
 }
 
 function getSnapshot(): boolean {
-  return window.matchMedia(QUERY).matches
+  return mediaQuery ? mediaQuery.matches : false
 }
 
 function getServerSnapshot(): boolean {
