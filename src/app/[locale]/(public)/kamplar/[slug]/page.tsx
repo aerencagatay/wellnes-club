@@ -86,7 +86,7 @@ export default async function CampDetailPage({
             <IncludesExcludes excludes={camp.excludes[locale]} includes={camp.includes[locale]} />
 
             <section>
-              <h2 className="type-section-title">{t('teachers')}</h2>
+              <h2 className="type-title">{t('teachers')}</h2>
               <div className="mt-8 grid gap-8 sm:grid-cols-2">
                 {teachers.map((teacher) => (
                   <TeacherCard key={teacher.slug} locale={locale} teacher={teacher} />
@@ -95,14 +95,14 @@ export default async function CampDetailPage({
             </section>
 
             <section>
-              <h2 className="type-section-title">{t('venue')}</h2>
+              <h2 className="type-title">{t('venue')}</h2>
               <div className="mt-8">
                 <VenueLocation locale={locale} venue={venue} />
               </div>
             </section>
 
             <section>
-              <h2 className="type-section-title">{t('gallery')}</h2>
+              <h2 className="type-title">{t('gallery')}</h2>
               <div className="mt-8">
                 {/* Galerideki her görsele aynı alt (kamp başlığı) verilmesi ekran okuyucu
                     kullanıcısının görselleri birbirinden ayırt etmesini imkansız kılardı.
@@ -125,7 +125,7 @@ export default async function CampDetailPage({
       </Section>
 
       <Section background="cream-2" className="pb-28 lg:pb-0">
-        <h2 className="type-section-title">{t('faq')}</h2>
+        <h2 className="type-title">{t('faq')}</h2>
         <div className="mt-10">
           <Accordion
             items={faqItems.map((item) => ({

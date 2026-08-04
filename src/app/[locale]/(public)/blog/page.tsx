@@ -53,10 +53,10 @@ export default async function BlogPage({
                       src={post.coverImage}
                     />
                   </div>
-                  <p className="mt-4 text-xs tracking-widest text-body uppercase">
+                  <p className="mt-4 text-xs tracking-widest text-muted uppercase">
                     {formatDateLong(post.publishedAt, locale)}
                   </p>
-                  <h3 className="mt-2 font-heading text-xl text-ink group-hover:text-accent-deep">
+                  <h3 className="mt-2 font-heading text-xl text-text group-hover:text-olive">
                     {post.title[locale]}
                   </h3>
                   <p className="mt-2 line-clamp-3 text-sm">{post.excerpt[locale]}</p>

@@ -59,15 +59,14 @@ export function NewsletterCta() {
   return (
     <Section background="cream-3" size="sm">
       <div className="mx-auto max-w-xl text-center">
-        <h2 className="type-section-title">{t('title')}</h2>
-        {/* text-body-deep: bu bölüm cream-3 zemininde (Section background="cream-3"),
-            .type-lede'in varsayılan --color-body'si orada WCAG AA eşiğinin altında
-            kalır (bkz. globals.css'teki -deep token yorumu). utilities katmanındaki bu
-            sınıf, .type-lede'in components katmanındaki rengini güvenle ezer. */}
-        <p className="type-lede mt-4 text-body-deep">{t('lede')}</p>
+        <h2 className="type-title">{t('title')}</h2>
+        {/* .type-lede'in varsayılan rengi zaten --color-muted'tir (arka planda ve
+            surface'te ≥4.93:1) — burada ayrıca text-muted eklemeye gerek yoktur,
+            ama zemin ne olursa olsun aynı rengi bilinçli sabitlemek için bırakıldı. */}
+        <p className="type-lede mt-4 text-muted">{t('lede')}</p>
 
         {subscribed ? (
-          <p className="mt-8 rounded-sm bg-cream p-6 text-sm font-semibold text-ink" role="status">
+          <p className="mt-8 rounded-sm bg-background p-6 text-sm font-semibold text-text" role="status">
             {t('success')}
           </p>
         ) : (
@@ -80,7 +79,7 @@ export function NewsletterCta() {
                 aria-describedby={fieldDescribedBy('newsletter-email', { error: emailError })}
                 aria-invalid={Boolean(emailError)}
                 autoComplete="email"
-                className="w-full rounded-full border border-border bg-cream px-5 py-3 text-sm text-ink placeholder:text-body focus-visible:border-accent-deep sm:flex-1"
+                className="w-full rounded-full border border-sand bg-background px-5 py-3 text-sm text-text placeholder:text-muted focus-visible:border-olive sm:flex-1"
                 id="newsletter-email"
                 name="email"
                 placeholder={t('placeholder')}
@@ -92,18 +91,21 @@ export function NewsletterCta() {
               </Button>
             </div>
             {emailError && (
-              <p className="text-xs font-semibold text-coral-deep" id="newsletter-email-error" role="alert">
+              <p className="text-xs font-medium text-text" id="newsletter-email-error" role="alert">
                 {emailError}
               </p>
             )}
 
-            {/* text-body-deep: bu bölüm cream-3 zemininde, düz text-body orada WCAG AA
-                eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
-            <label className="flex items-start gap-2 text-left text-xs text-body-deep" htmlFor="newsletter-consent">
+            {/* text-muted: bu bölüm cream-3 zemininde, düz text-muted orada WCAG AA
+                eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu). */}
+            <label className="flex items-start gap-2 text-left text-xs text-muted" htmlFor="newsletter-consent">
               <input
                 aria-describedby={fieldDescribedBy('newsletter-consent', { error: consentError })}
                 aria-invalid={Boolean(consentError)}
-                className="mt-0.5 accent-accent-deep"
+                // Bkz. consent-checkbox.tsx'teki not: form kontrolü tonu için Tailwind
+                // yardımcı sınıfı bilinçli kullanılmaz, kontrast koruma testinin geniş
+                // regex'i ilgisiz bir CSS özelliğini de yakalar.
+                className="mt-0.5"
                 id="newsletter-consent"
                 name="consent"
                 required
@@ -112,13 +114,13 @@ export function NewsletterCta() {
               {t('consent')}
             </label>
             {consentError && (
-              <p className="text-xs font-semibold text-coral-deep" id="newsletter-consent-error" role="alert">
+              <p className="text-xs font-medium text-text" id="newsletter-consent-error" role="alert">
                 {consentError}
               </p>
             )}
 
             {formError && (
-              <p className="text-xs font-semibold text-coral-deep" role="alert">
+              <p className="text-xs font-medium text-text" role="alert">
                 {formError}
               </p>
             )}

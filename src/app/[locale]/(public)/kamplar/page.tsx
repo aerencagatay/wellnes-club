@@ -78,7 +78,7 @@ export default async function CampsPage({
 
       {past.length > 0 && (
         <Section background="cream-2">
-          <h2 className="type-section-title">{t('pastTitle')}</h2>
+          <h2 className="type-title">{t('pastTitle')}</h2>
           {/* `opacity-65` KULLANILMIYOR: opaklık, kartın içindeki TÜM metni de zeminle
               birlikte soldurur — metin ve zemin aynı arka plana doğru harmanlandığı için
               aralarındaki kontrast oranı da çöker (Lighthouse'ta gerçek, ölçülebilir bir

@@ -12,15 +12,15 @@ export async function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border bg-cream-2">
+    <footer className="border-t border-sand bg-surface">
       <div className="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         <div>
-          <Link className="font-heading text-xl tracking-tight text-ink" href="/">
+          <Link className="font-heading text-xl tracking-tight text-text" href="/">
             {site.name}
           </Link>
-          {/* text-body-deep: footer bg-cream-2 zemininde, düz text-body orada WCAG AA
-              eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
-          <p className="mt-3 max-w-xs text-sm text-body-deep">{site.tagline[locale]}</p>
+          {/* text-muted: footer bg-surface zemininde, düz text-muted orada WCAG AA
+              eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu). */}
+          <p className="mt-3 max-w-xs text-sm text-muted">{site.tagline[locale]}</p>
         </div>
 
         <div>
@@ -28,7 +28,7 @@ export async function Footer() {
           <ul className="mt-2 flex flex-col gap-2">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
-                <Link className="text-sm text-ink-3 transition-colors hover:text-ink" href={item.href}>
+                <Link className="text-sm text-muted transition-colors hover:text-text" href={item.href}>
                   {tNav(item.key)}
                 </Link>
               </li>
@@ -38,20 +38,20 @@ export async function Footer() {
 
         <div>
           <Eyebrow>{tFooter('contactTitle')}</Eyebrow>
-          <ul className="mt-2 flex flex-col gap-2 text-sm text-ink-3">
+          <ul className="mt-2 flex flex-col gap-2 text-sm text-muted">
             <li>
-              <a className="transition-colors hover:text-ink" href={`mailto:${site.email}`}>
+              <a className="transition-colors hover:text-text" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
             </li>
             <li>
-              <a className="transition-colors hover:text-ink" href={site.phoneHref}>
+              <a className="transition-colors hover:text-text" href={site.phoneHref}>
                 {site.phone}
               </a>
             </li>
             <li>
               <a
-                className="transition-colors hover:text-ink"
+                className="transition-colors hover:text-text"
                 href={site.instagram}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -63,10 +63,10 @@ export async function Footer() {
         </div>
 
         <div>
-          <ul className="flex flex-col gap-2 text-sm text-ink-3">
+          <ul className="flex flex-col gap-2 text-sm text-muted">
             {FOOTER_LEGAL.map((item) => (
               <li key={item.href}>
-                <Link className="transition-colors hover:text-ink" href={item.href}>
+                <Link className="transition-colors hover:text-text" href={item.href}>
                   {tFooter(item.key)}
                 </Link>
               </li>
@@ -75,9 +75,9 @@ export async function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border">
-        {/* text-body-deep: bkz. yukarıdaki tagline notu — aynı cream-2 zemini. */}
-        <div className="container-page py-6 text-xs text-body-deep">
+      <div className="border-t border-sand">
+        {/* text-muted: bkz. yukarıdaki tagline notu — aynı cream-2 zemini. */}
+        <div className="container-page py-6 text-xs text-muted">
           © {year} {site.name}. {tCommon('allRightsReserved')}
         </div>
       </div>

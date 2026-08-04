@@ -16,7 +16,7 @@ export function UpcomingCamps({ locale, today }: { locale: AppLocale; today: str
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
           <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h2 className="type-section-title">{t('title')}</h2>
+          <h2 className="type-title">{t('title')}</h2>
         </div>
         <Button href="/kamplar" variant="ghost">
           {t('viewAll')}

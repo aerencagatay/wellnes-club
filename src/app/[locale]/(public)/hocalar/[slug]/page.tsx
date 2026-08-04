@@ -45,7 +45,7 @@ export default async function TeacherPage({
       </Section>
       {camps.length > 0 && (
         <Section background="cream-2">
-          <h2 className="type-section-title">{t('campsWithTeacher', { name: teacher.name })}</h2>
+          <h2 className="type-title">{t('campsWithTeacher', { name: teacher.name })}</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {camps.map((camp) => (
               <CampCard camp={camp} key={camp.slug} locale={locale} />

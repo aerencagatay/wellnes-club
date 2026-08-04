@@ -29,7 +29,7 @@ export function BenefitBlock({
       </div>
       <div>
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h3 className="type-section-title">{title}</h3>
+        <h3 className="type-title">{title}</h3>
         <div className="type-lede mt-5">{body}</div>
       </div>
     </div>

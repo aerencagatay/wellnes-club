@@ -1,45 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Zeminler — sıcak krem ailesi */
-  --color-cream:        #faf6f2;
-  --color-cream-2:      #f0ece9;
-  --color-cream-3:      #ebe7e4;
+  --color-background: #F1EDE4;
+  --color-surface:    #E5DED2;
+  --color-text:       #1B211D;
+  --color-muted:      #5F5D57;
+  --color-muted-soft: #77756E;
+  --color-olive:      #555D49;
+  --color-sand:       #C9B99F;
+  --color-dark:       #171B18;
 
-  /* Metin ve koyu yüzeyler — derin erik-siyah */
-  --color-ink:          #221c25;
-  --color-ink-2:        #1a151c;
-  --color-ink-3:        #423c45;
-
-  /* Gövde metni. --color-body-muted YALNIZCA büyük metinde (≥24px). --color-body
-     (#6f6f6f) --color-cream (#faf6f2) üzerinde 4.67:1 ile geçer, ama --color-cream-2
-     (#f0ece9, 4.28:1) ve --color-cream-3 (#ebe7e4, 4.09:1) üzerinde WCAG AA'nın 4.5:1
-     eşiğinin altına düşer — bunlar gerçek Lighthouse erişilebilirlik denetiminde
-     (Task 16) yakalandı. --color-body-deep bu iki koyu krem zemini için: her üç krem
-     tonunda da ≥5.4:1. */
-  --color-body:         #6f6f6f;
-  --color-body-deep:    #5c5c5c;
-  --color-body-muted:   #7a7a7a;
-  --color-body-light:   #a4a4a4;
-  --color-border:       #e5e5e5;
-
-  /* Vurgu. --color-accent ASLA metin rengi değildir; metin için -deep. */
-  --color-accent:       #3cc4b2;
-  --color-accent-hover: #2fa697;
-  --color-accent-deep:  #1d6b61;
-
-  /* --color-coral/--color-olive de aynı nedenle metin için güvenli değildir: ör.
-     --color-coral üzerinde --color-cream'de yalnızca 2.69:1 verir (Badge/hata metni
-     kullanımı Task 16'nın Lighthouse denetiminde başarısız oldu). -deep sürümleri
-     Badge'in yarı saydam zeminlerinde ve düz krem zeminde ≥4.5:1 sağlar. */
-  --color-coral:        #f56c6d;
-  --color-coral-deep:   #934141;
-  --color-olive:        #5e844b;
-  --color-olive-deep:   #476338;
-  --color-amber:        #e9aa35;
-
-  --font-heading: var(--font-pt-serif), Georgia, serif;
-  --font-body:    var(--font-mulish), system-ui, sans-serif;
+  --font-heading: var(--font-instrument-serif), Georgia, serif;
+  --font-body:    var(--font-manrope), system-ui, sans-serif;
 }
 
 :root {
@@ -47,33 +19,41 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-pill: 999px;
-  --shadow-soft: 0 1px 2px rgba(34,28,37,.05), 0 8px 28px rgba(34,28,37,.07);
-  --shadow-lift: 0 2px 6px rgba(34,28,37,.06), 0 16px 48px rgba(34,28,37,.12);
+  --shadow-soft: 0 1px 2px rgba(27,33,29,.05), 0 8px 28px rgba(27,33,29,.07);
+  --shadow-lift: 0 2px 6px rgba(27,33,29,.06), 0 16px 48px rgba(27,33,29,.12);
 }
-
-html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-body);
-  background: var(--color-cream);
-  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.65;
   overflow-x: hidden;
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
-/* @layer base içinde: Tailwind text-* yardımcıları başlık rengini ezebilsin */
+/* @layer base içinde: Tailwind text-* yardımcıları başlık rengini ezebilsin.
+   Instrument Serif yalnızca 400 ağırlığında yayınlanıyor — font-weight burada
+   açıkça 400'e sabitlenir ki hiçbir şey daha kalın bir değeri devralıp
+   tarayıcının taklit-bold üretmesine yol açmasın. */
 @layer base {
   h1, h2, h3, h4, h5 {
     font-family: var(--font-heading);
-    color: var(--color-ink);
-    line-height: 1.25;
+    font-weight: 400;
+    color: var(--color-text);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
   }
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-deep);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-olive);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-sand);
+  color: var(--color-text);
 }
 
 /* ===== ATLA BAĞLANTISI (SKIP LINK) =====
@@ -85,8 +65,8 @@ body {
   left: -9999px;
   z-index: 100;
   padding: 12px 20px;
-  background: var(--color-ink);
-  color: var(--color-cream);
+  background: var(--color-text);
+  color: var(--color-background);
   border-radius: var(--radius-sm);
 }
 .skip-link:focus {
@@ -97,51 +77,67 @@ body {
 /* ===== TİPOGRAFİ ÖLÇEĞİ =====
    @layer components içindedir: Tailwind v4 katman sırası theme → base →
    components → utilities'tir, bu yüzden bu sınıflar katmansız (unlayered)
-   olsaydı Tailwind'in utilities katmanındaki text-* yardımcılarını (ör.
-   text-cream) her zaman yenerlerdi — kaynak sırası veya özgüllük fark etmez.
-   Katmansızken bu, koyu zeminlerde text-cream ile ezilmeye çalışılan
-   .eyebrow/.type-lede metninin görünmez kalmasına yol açan gerçek bir
-   kontrast tuzağıydı. components katmanına taşımak bu tuzağı kapatır:
-   artık utilities katmanı kazanır, hiçbir yardımcı sınıf eklemeyen
-   sayfalarda ise görünüm birebir aynı kalır. */
+   olsaydı Tailwind'in utilities katmanındaki text-* yardımcılarını her zaman
+   yenerlerdi — kaynak sırası veya özgüllük fark etmez. Katmansızken bu, koyu
+   zeminlerde text-background ile ezilmeye çalışılan .type-eyebrow/.type-lede
+   metninin görünmez kalmasına yol açan gerçek bir kontrast tuzağıydı.
+   components katmanına taşımak bu tuzağı kapatır: artık utilities katmanı
+   kazanır, hiçbir yardımcı sınıf eklemeyen sayfalarda görünüm birebir aynı
+   kalır. */
 @layer components {
   .type-display {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.06;
-    letter-spacing: -0.02em;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
     font-weight: 400;
   }
-  .type-section-title {
+  .type-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 3.2vw, 2.65rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    font-weight: 400;
   }
   .type-lede {
-    font-size: clamp(1rem, 1.35vw, 1.125rem);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
     line-height: 1.75;
-    color: var(--color-body);
+    color: var(--color-muted);
+    font-weight: 300;
   }
-  .eyebrow {
+  .type-eyebrow {
     display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.35em;
+    font-size: 11px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    font-weight: 600;
-    color: var(--color-accent-deep);
-    margin-bottom: 12px;
+    font-weight: 500;
+    color: var(--color-muted);
   }
 }
 
 /* ===== RİTİM ===== */
-.section-py { padding: clamp(72px, 12vw, 112px) 0; }
-.section-sm { padding: clamp(48px, 8vw, 80px) 0; }
-.container-page { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+.section-py { padding: clamp(96px, 14vw, 180px) 0; }
+.section-sm { padding: clamp(56px, 9vw, 96px) 0; }
+.container-page { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: clamp(24px, 6vw, 80px); }
+
+/* ===== GRAIN =====
+   İnce bir noise doku overlay'i — dış dosya yok, inline SVG data: URI.
+   mix-blend-mode + çok düşük opaklık ile zemin rengini boğmadan doku katar. */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
 /* ===== HAREKET TERCİHİ ===== */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

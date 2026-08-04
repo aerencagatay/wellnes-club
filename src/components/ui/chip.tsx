@@ -10,7 +10,7 @@ export function Chip({
   return (
     <button
       aria-pressed={active}
-      className={`${BASE} ${active ? 'border-accent bg-accent text-ink font-semibold' : 'border-border text-ink-3 hover:border-ink/40'}`}
+      className={`${BASE} ${active ? 'border-olive bg-olive text-background font-semibold' : 'border-sand text-muted hover:border-text/40'}`}
       type="button"
       {...rest}
     >

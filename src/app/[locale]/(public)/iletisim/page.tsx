@@ -43,20 +43,20 @@ export default async function ContactPage({
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <Eyebrow>{t('detailsTitle')}</Eyebrow>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-ink-3">
+            <ul className="mt-4 flex flex-col gap-3 text-sm text-muted">
               <li>
-                <a className="transition-colors hover:text-ink" href={`mailto:${site.email}`}>
+                <a className="transition-colors hover:text-text" href={`mailto:${site.email}`}>
                   {site.email}
                 </a>
               </li>
               <li>
-                <a className="transition-colors hover:text-ink" href={site.phoneHref}>
+                <a className="transition-colors hover:text-text" href={site.phoneHref}>
                   {site.phone}
                 </a>
               </li>
               <li>
                 <a
-                  className="transition-colors hover:text-ink"
+                  className="transition-colors hover:text-text"
                   href={site.instagram}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -67,12 +67,12 @@ export default async function ContactPage({
               {whatsappUrl && (
                 <li>
                   <a
-                    className="flex items-center gap-2 transition-colors hover:text-ink"
+                    className="flex items-center gap-2 transition-colors hover:text-text"
                     href={whatsappUrl}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <MessageCircle aria-hidden className="size-4 text-accent-deep" />
+                    <MessageCircle aria-hidden className="size-4 text-olive" />
                     {tCommon('whatsapp')}
                   </a>
                 </li>

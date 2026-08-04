@@ -26,7 +26,7 @@ export default async function PrivacyPage({
       <PageHero eyebrow={t('eyebrow')} title={t('privacy.title')} />
       <Section size="sm">
         <div className="flex max-w-2xl flex-col gap-6">
-          <p className="rounded-sm border border-amber bg-amber/12 p-4 text-sm text-ink">
+          <p className="rounded-sm rounded-sm bg-sand/40 p-4 text-sm font-medium text-text">
             {t('placeholderWarning')}
           </p>
           <p>{t('privacy.body1')}</p>

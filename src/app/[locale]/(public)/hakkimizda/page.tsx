@@ -43,15 +43,15 @@ export default async function AboutPage({
       <Section background="cream-2">
         <div className="max-w-xl">
           <Eyebrow>{t('approachEyebrow')}</Eyebrow>
-          <h2 className="type-section-title">{t('approachTitle')}</h2>
+          <h2 className="type-title">{t('approachTitle')}</h2>
         </div>
         <ul className="mt-10 flex flex-col gap-6">
           {APPROACH_ITEMS.map((item) => (
             <li className="flex items-start gap-4" key={item}>
-              <Check aria-hidden className="mt-1 size-5 shrink-0 text-accent-deep" />
-              {/* text-body-deep: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG
-                  AA eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
-              <p className="text-base text-body-deep">{t(`approachItems.${item}`)}</p>
+              <Check aria-hidden className="mt-1 size-5 shrink-0 text-olive" />
+              {/* text-muted: bu bölüm cream-2 zemininde, düz gövde metni orada WCAG
+                  AA eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu). */}
+              <p className="text-base text-muted">{t(`approachItems.${item}`)}</p>
             </li>
           ))}
         </ul>
@@ -70,7 +70,7 @@ export default async function AboutPage({
 
       <Section>
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="type-section-title">{t('ctaTitle')}</h2>
+          <h2 className="type-title">{t('ctaTitle')}</h2>
           <p className="type-lede mt-4">{t('ctaBody')}</p>
           <div className="mt-8">
             <Button href="/iletisim">{t('ctaButton')}</Button>

@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
       {routing.locales.map((locale) => (
         <button
           aria-current={locale === current ? 'true' : undefined}
-          className={`px-2 py-1 transition-opacity ${locale === current ? 'text-ink' : 'text-body hover:text-ink'} ${isPending ? 'opacity-50' : ''}`}
+          className={`px-2 py-1 transition-opacity ${locale === current ? 'text-text' : 'text-muted hover:text-text'} ${isPending ? 'opacity-50' : ''}`}
           disabled={isPending || locale === current}
           key={locale}
           onClick={() => startTransition(() => router.replace(pathname, { locale }))}

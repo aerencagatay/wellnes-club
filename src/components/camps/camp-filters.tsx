@@ -32,7 +32,7 @@ export function CampFilters() {
   return (
     <div className="flex flex-col gap-5">
       <fieldset className="flex flex-wrap items-center gap-2">
-        <legend className="mr-2 text-xs tracking-widest text-body uppercase">{tf('program')}</legend>
+        <legend className="mr-2 text-xs tracking-widest text-muted uppercase">{tf('program')}</legend>
         {PROGRAMS.map((value) => (
           <Chip active={program === value} key={value} onClick={() => setParam('program', value)}>
             {value === 'all' ? tf('all') : t(`program.${value}`)}
@@ -40,7 +40,7 @@ export function CampFilters() {
         ))}
       </fieldset>
       <fieldset className="flex flex-wrap items-center gap-2">
-        <legend className="mr-2 text-xs tracking-widest text-body uppercase">{tf('level')}</legend>
+        <legend className="mr-2 text-xs tracking-widest text-muted uppercase">{tf('level')}</legend>
         {LEVELS.map((value) => (
           <Chip active={level === value} key={value} onClick={() => setParam('level', value)}>
             {value === 'all' ? tf('all') : t(`level.${value}`)}

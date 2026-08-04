@@ -35,7 +35,7 @@ export function CampCard({
   const Heading = headingLevel
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-md bg-cream shadow-[var(--shadow-soft)]">
+    <article className="group flex flex-col overflow-hidden rounded-md bg-background shadow-[var(--shadow-soft)]">
       <Link className="relative aspect-3/2 overflow-hidden" href={`/kamplar/${camp.slug}`}>
         <Image
           alt={camp.title[locale]}
@@ -48,10 +48,10 @@ export function CampCard({
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center gap-2">
           <Badge tone={BADGE_TONE[badge]}>{t(`badge.${badge}`)}</Badge>
-          <span className="text-xs tracking-widest text-body uppercase">{t(`program.${camp.program}`)}</span>
+          <span className="text-xs tracking-widest text-muted uppercase">{t(`program.${camp.program}`)}</span>
         </div>
-        <Heading className="mt-4 font-heading text-xl text-ink">
-          <Link className="hover:text-accent-deep" href={`/kamplar/${camp.slug}`}>
+        <Heading className="mt-4 font-heading text-xl text-text">
+          <Link className="hover:text-olive" href={`/kamplar/${camp.slug}`}>
             {camp.title[locale]}
           </Link>
         </Heading>
@@ -59,10 +59,10 @@ export function CampCard({
         <p className="mt-3 line-clamp-3 text-sm">{camp.summary[locale]}</p>
         <div className="mt-auto flex items-end justify-between pt-6">
           <span className="text-sm">
-            <span className="font-semibold text-ink">{price}</span>{' '}
-            <span className="text-body">{t('priceFromSuffix')}</span>
+            <span className="font-semibold text-text">{price}</span>{' '}
+            <span className="text-muted">{t('priceFromSuffix')}</span>
           </span>
-          <span className="text-xs text-body">{t('nights', { count: camp.nights })}</span>
+          <span className="text-xs text-muted">{t('nights', { count: camp.nights })}</span>
         </div>
       </div>
     </article>

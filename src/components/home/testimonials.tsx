@@ -14,19 +14,19 @@ export function Testimonials({ locale }: { locale: AppLocale }) {
   return (
     <Section background="cream-2">
       <Eyebrow>{t('eyebrow')}</Eyebrow>
-      <h2 className="type-section-title max-w-2xl">{t('title')}</h2>
+      <h2 className="type-title max-w-2xl">{t('title')}</h2>
 
       {process.env.NODE_ENV !== 'production' && items.some((i) => i.isPlaceholder) && (
-        <p className="mt-6 rounded-sm border border-coral bg-coral/10 p-4 text-sm text-ink">{t('devWarning')}</p>
+        <p className="mt-6 rounded-sm bg-sand/40 p-4 text-sm font-medium text-text">{t('devWarning')}</p>
       )}
 
       <ul className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">
         {items.map((item) => (
-          <li className="min-w-72 flex-1 snap-start rounded-md bg-cream p-8 md:min-w-96" key={item.id}>
-            <blockquote className="font-heading text-xl leading-snug text-ink">
+          <li className="min-w-72 flex-1 snap-start rounded-md bg-background p-8 md:min-w-96" key={item.id}>
+            <blockquote className="font-heading text-xl leading-snug text-text">
               “{item.quote[locale]}”
             </blockquote>
-            <cite className="mt-5 block text-xs tracking-widest text-body uppercase not-italic">
+            <cite className="mt-5 block text-xs tracking-widest text-muted uppercase not-italic">
               {item.author}
             </cite>
           </li>

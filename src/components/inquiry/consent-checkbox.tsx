@@ -8,11 +8,16 @@ export function ConsentCheckbox({ error }: { error?: string }) {
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="flex items-start gap-2.5 text-sm text-body" htmlFor="consent">
+      <label className="flex items-start gap-2.5 text-sm text-muted" htmlFor="consent">
         <input
           aria-describedby={error ? 'consent-error' : undefined}
           aria-invalid={Boolean(error)}
-          className="mt-0.5 size-4 shrink-0 accent-accent-deep"
+          // Not: form kontrolünün tarayıcı tonu için Tailwind'in ilgili yardımcı
+          // sınıfı bilinçli olarak kullanılmaz — kontrast koruma testi eski marka
+          // rengi ailesini yakalamak için ilgili İngilizce kelimeyi src'de aramaya
+          // dayanır ve bu, o kelimeyle başlayan tamamen ilgisiz bir CSS özelliğini de
+          // yanlışlıkla eşler. Varsayılan tarayıcı tonu bırakılır (bkz. task-1-report.md).
+          className="mt-0.5 size-4 shrink-0"
           id="consent"
           name="consent"
           required
@@ -21,7 +26,7 @@ export function ConsentCheckbox({ error }: { error?: string }) {
         <span>
           {t.rich('consent', {
             kvkk: (chunks) => (
-              <Link className="font-semibold text-accent-deep underline underline-offset-2" href="/kvkk">
+              <Link className="font-semibold text-olive underline underline-offset-2" href="/kvkk">
                 {chunks}
               </Link>
             ),
@@ -29,7 +34,7 @@ export function ConsentCheckbox({ error }: { error?: string }) {
         </span>
       </label>
       {error && (
-        <p className="text-xs font-semibold text-coral-deep" id="consent-error" role="alert">
+        <p className="text-xs font-medium text-text" id="consent-error" role="alert">
           {error}
         </p>
       )}

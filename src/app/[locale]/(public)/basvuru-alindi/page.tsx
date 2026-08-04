@@ -32,13 +32,13 @@ export default async function InquiryReceivedPage({
   return (
     <Section>
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="type-section-title">{t('title')}</h1>
+        <h1 className="type-title">{t('title')}</h1>
         <p className="type-lede mt-5">{t('lede')}</p>
         {ref && (
-          // text-body-deep: bu kutu bg-cream-2 zemininde, düz gövde metni orada WCAG AA
-          // eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu).
-          <p className="mt-8 inline-block rounded-sm bg-cream-2 px-6 py-4 text-sm text-body-deep">
-            {t('reference')} <strong className="font-mono tracking-wider text-ink">{ref}</strong>
+          // text-muted: bu kutu bg-surface zemininde, düz gövde metni orada WCAG AA
+          // eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu).
+          <p className="mt-8 inline-block rounded-sm bg-surface px-6 py-4 text-sm text-muted">
+            {t('reference')} <strong className="font-mono tracking-wider text-text">{ref}</strong>
           </p>
         )}
         <div className="mt-10 flex justify-center gap-4">

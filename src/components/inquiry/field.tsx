@@ -15,17 +15,17 @@ export function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-ink" htmlFor={htmlFor}>
+      <label className="text-sm font-semibold text-text" htmlFor={htmlFor}>
         {label}
       </label>
       {children}
       {hint && !error && (
-        <p className="text-xs text-body" id={`${htmlFor}-hint`}>
+        <p className="text-xs text-muted" id={`${htmlFor}-hint`}>
           {hint}
         </p>
       )}
       {error && (
-        <p className="text-xs font-semibold text-coral-deep" id={`${htmlFor}-error`} role="alert">
+        <p className="text-xs font-medium text-text" id={`${htmlFor}-error`} role="alert">
           {error}
         </p>
       )}
@@ -34,7 +34,7 @@ export function Field({
 }
 
 export const inputClass =
-  'w-full rounded-sm border border-border bg-cream px-4 py-3 text-ink placeholder:text-body-light focus:border-accent-deep focus:outline-2 focus:outline-offset-1 focus:outline-accent-deep'
+  'w-full rounded-sm border border-sand bg-background px-4 py-3 text-text placeholder:text-muted focus:border-olive focus:outline-2 focus:outline-offset-1 focus:outline-olive'
 
 /**
  * `Field` yukarıda hata/hint paragraflarının kimliğini `${htmlFor}-error` /

@@ -26,12 +26,12 @@ export function VenuePreview({ locale }: { locale: AppLocale }) {
       <div className="grid gap-10 md:grid-cols-2 md:gap-16">
         <div>
           <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h2 className="type-section-title">{t('title')}</h2>
+          <h2 className="type-title">{t('title')}</h2>
           <p className="type-lede mt-5">{venue.shortDescription[locale]}</p>
-          <ul className="mt-6 flex flex-col gap-2 text-sm text-ink-3">
+          <ul className="mt-6 flex flex-col gap-2 text-sm text-muted">
             {venue.highlights[locale].map((item) => (
               <li className="flex items-center gap-2" key={item}>
-                <span aria-hidden className="size-1 shrink-0 rounded-full bg-accent-deep" />
+                <span aria-hidden className="size-1 shrink-0 rounded-full bg-olive" />
                 {item}
               </li>
             ))}

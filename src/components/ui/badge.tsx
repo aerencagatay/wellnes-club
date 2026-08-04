@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react'
 
-// text-olive/text-coral (Tailwind'in düz vurgu tonları) kendi arka planlarında WCAG
-// AA'nın 4.5:1 eşiğini karşılamaz (bkz. globals.css'teki -deep token yorumu); -deep
-// sürümleri kullanılır — bu, --color-accent için zaten uygulanan kuralın aynısı.
+// Palette'te kırmızı/amber tonu yok (bkz. editorial redesign brief §2). Vurgu
+// renkle değil dolgu/kenarlık ve ağırlıkla yapılır: "coral" (aciliyet) dolu bir
+// kum şeridi + kalın metin alır, "amber" (bekleme listesi) ince bir zeytin
+// çerçeve alır — ikisi de yalnızca izin verilen metin token'larını kullanır.
 const TONES = {
-  olive: 'bg-olive/12 text-olive-deep',
-  coral: 'bg-coral/14 text-coral-deep',
-  amber: 'bg-amber/16 text-ink-3',
-  neutral: 'bg-ink/8 text-ink-3',
+  olive: 'bg-olive/12 text-olive',
+  coral: 'bg-sand/40 text-text font-semibold',
+  amber: 'border border-olive text-olive',
+  neutral: 'bg-dark/8 text-muted',
 } as const
 
 export function Badge({ tone = 'neutral', children }: { tone?: keyof typeof TONES; children: ReactNode }) {

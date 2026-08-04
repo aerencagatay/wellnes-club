@@ -34,8 +34,8 @@ export function TeacherCard({
           unoptimized
         />
       </Link>
-      <Heading className="mt-4 font-heading text-lg text-ink">
-        <Link className="hover:text-accent-deep" href={`/hocalar/${teacher.slug}`}>
+      <Heading className="mt-4 font-heading text-lg text-text">
+        <Link className="hover:text-olive" href={`/hocalar/${teacher.slug}`}>
           {teacher.name}
         </Link>
       </Heading>

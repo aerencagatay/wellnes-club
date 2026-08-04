@@ -5,10 +5,10 @@ type Variant = 'primary' | 'secondary' | 'ghost'
 type Size = 'md' | 'lg'
 
 const VARIANTS: Record<Variant, string> = {
-  // Turkuaz zemin + koyu metin = 7.72:1
-  primary: 'bg-accent text-ink hover:bg-accent-hover',
-  secondary: 'bg-ink text-cream hover:bg-ink-2',
-  ghost: 'bg-transparent text-ink border border-ink/20 hover:border-ink/50',
+  // Zeytin dolgu + krem metin = 5.90:1 (bkz. editorial redesign brief §2)
+  primary: 'bg-olive text-background hover:bg-olive/90',
+  secondary: 'bg-dark text-background hover:bg-dark/90',
+  ghost: 'bg-transparent text-text border border-text/20 hover:border-text/50',
 }
 
 const SIZES: Record<Size, string> = {

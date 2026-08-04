@@ -51,7 +51,7 @@ export default async function InquiryPage({
           <div className="max-w-xl">
             <p className="type-lede">{tForm('noCamps')}</p>
             <a
-              className="mt-4 inline-block font-semibold text-accent-deep hover:underline"
+              className="mt-4 inline-block font-semibold text-olive hover:underline"
               href={`mailto:${site.email}`}
             >
               {site.email}
@@ -72,12 +72,12 @@ export default async function InquiryPage({
                   <CampCard camp={selectedCamp} headingLevel="h2" locale={locale} />
                 </div>
               </div>
-              <div className="rounded-md bg-cream-2 p-6">
-                <h2 className="font-heading text-lg text-ink">{t('whyTitle')}</h2>
-                {/* text-body-deep: bu kutu bg-cream-2 zemininde, düz text-body orada
+              <div className="rounded-md bg-surface p-6">
+                <h2 className="font-heading text-lg text-text">{t('whyTitle')}</h2>
+                {/* text-muted: bu kutu bg-surface zemininde, düz text-muted orada
                     WCAG AA eşiğinin altında kalır (bkz. globals.css'teki -deep token
                     yorumu). */}
-                <p className="mt-2 text-sm text-body-deep">{t('whyBody')}</p>
+                <p className="mt-2 text-sm text-muted">{t('whyBody')}</p>
               </div>
             </aside>
           </div>

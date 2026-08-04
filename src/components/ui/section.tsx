@@ -1,10 +1,10 @@
 import type { ElementType, ReactNode } from 'react'
 
 const BACKGROUNDS = {
-  cream: 'bg-cream',
-  'cream-2': 'bg-cream-2',
-  'cream-3': 'bg-cream-3',
-  ink: 'bg-ink text-cream [&_:where(h1,h2,h3,h4,h5)]:text-cream',
+  cream: 'bg-background',
+  'cream-2': 'bg-surface',
+  'cream-3': 'bg-surface',
+  ink: 'bg-dark text-background [&_:where(h1,h2,h3,h4,h5)]:text-background',
 } as const
 
 export function Section({

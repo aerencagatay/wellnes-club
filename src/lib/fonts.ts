@@ -1,16 +1,18 @@
-import { PT_Serif, Mulish } from 'next/font/google'
+import { Instrument_Serif, Manrope } from 'next/font/google'
 
-export const ptSerif = PT_Serif({
+// Instrument Serif yalnızca 400 ağırlığında yayınlanıyor. Başlıklarda
+// font-bold/semibold kullanmayın — tarayıcı taklit-bold üretir.
+export const instrumentSerif = Instrument_Serif({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400', '700'],
+  weight: ['400'],
   style: ['normal', 'italic'],
   display: 'swap',
-  variable: '--font-pt-serif',
+  variable: '--font-instrument-serif',
 })
 
-export const mulish = Mulish({
+export const manrope = Manrope({
   subsets: ['latin', 'latin-ext'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['200', '300', '400', '500', '600'],
   display: 'swap',
-  variable: '--font-mulish',
+  variable: '--font-manrope',
 })

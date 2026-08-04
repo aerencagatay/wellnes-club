@@ -17,14 +17,14 @@ export function DailyFlow({
   const t = useTranslations('campDetail')
   return (
     <div>
-      <h2 className="type-section-title">{t('dailyFlow')}</h2>
+      <h2 className="type-title">{t('dailyFlow')}</h2>
       {note && <p className="type-lede mt-5 max-w-2xl">{note}</p>}
-      <ol className="mt-8 border-l border-border">
+      <ol className="mt-8 border-l border-sand">
         {items.map((item) => (
           <li className="relative pb-8 pl-8 last:pb-0" key={`${item.time}-${item.title[locale]}`}>
-            <span aria-hidden className="absolute top-1.5 -left-[5px] size-2.5 rounded-full bg-accent" />
-            <span className="block text-xs font-semibold tracking-widest text-accent-deep">{item.time}</span>
-            <h3 className="mt-1 font-heading text-lg text-ink">{item.title[locale]}</h3>
+            <span aria-hidden className="absolute top-1.5 -left-[5px] size-2.5 rounded-full bg-olive" />
+            <span className="block text-xs font-semibold tracking-widest text-olive">{item.time}</span>
+            <h3 className="mt-1 font-heading text-lg text-text">{item.title[locale]}</h3>
             <p className="mt-1 text-sm">{item.desc[locale]}</p>
           </li>
         ))}

@@ -15,12 +15,12 @@ export function TeachersPreview({ locale }: { locale: AppLocale }) {
     <Section background="cream-2">
       <div className="max-w-xl">
         <Eyebrow>{t('eyebrow')}</Eyebrow>
-        <h2 className="type-section-title">{t('title')}</h2>
+        <h2 className="type-title">{t('title')}</h2>
       </div>
       <div className="mt-12 grid gap-8 sm:grid-cols-3">
         {teachers.map((teacher) => (
           <Link className="group block" href={`/hocalar/${teacher.slug}`} key={teacher.slug}>
-            <div className="relative aspect-square overflow-hidden rounded-md bg-cream-3">
+            <div className="relative aspect-square overflow-hidden rounded-md bg-surface">
               {/* Yer tutucu hoca fotoğrafları SVG'dir; Next.js görüntü eniyileyicisi
                   varsayılan olarak SVG'yi reddeder, bu yüzden unoptimized ile
                   doğrudan dosyadan sunulur (bkz. next/dist/server/image-optimizer.js). */}
@@ -33,10 +33,10 @@ export function TeachersPreview({ locale }: { locale: AppLocale }) {
                 unoptimized
               />
             </div>
-            <p className="mt-4 font-heading text-lg text-ink group-hover:text-accent-deep">{teacher.name}</p>
-            {/* text-body-deep: bu bölüm cream-2 zemininde, düz text-body orada WCAG AA
-                eşiğinin altında kalır (bkz. globals.css'teki -deep token yorumu). */}
-            <p className="text-sm text-body-deep">{teacher.title[locale]}</p>
+            <p className="mt-4 font-heading text-lg text-text group-hover:text-olive">{teacher.name}</p>
+            {/* text-muted: bu bölüm cream-2 zemininde, düz text-muted orada WCAG AA
+                eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu). */}
+            <p className="text-sm text-muted">{teacher.title[locale]}</p>
           </Link>
         ))}
       </div>

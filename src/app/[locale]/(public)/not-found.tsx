@@ -15,7 +15,7 @@ export default async function NotFound() {
   return (
     <Section>
       <div className="mx-auto max-w-xl text-center">
-        <h1 className="type-section-title">{t('title')}</h1>
+        <h1 className="type-title">{t('title')}</h1>
         <p className="type-lede mt-5">{t('body')}</p>
         <div className="mt-10 flex justify-center gap-4">
           <Button href="/">{t('home')}</Button>

@@ -28,7 +28,7 @@ export function BackToTop() {
   return (
     <button
       aria-label={t('backToTop')}
-      className="fixed bottom-24 left-5 z-40 flex size-13 items-center justify-center rounded-full bg-ink text-cream shadow-[var(--shadow-lift)] transition-transform hover:scale-105 lg:bottom-5"
+      className="fixed bottom-24 left-5 z-40 flex size-13 items-center justify-center rounded-full bg-dark text-background shadow-[var(--shadow-lift)] transition-transform hover:scale-105 lg:bottom-5"
       onClick={handleClick}
       type="button"
     >

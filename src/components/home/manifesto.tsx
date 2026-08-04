@@ -8,7 +8,7 @@ export function Manifesto() {
     <Section>
       <div className="mx-auto max-w-[65ch]">
         <Eyebrow>{t('eyebrow')}</Eyebrow>
-        <h2 className="type-section-title">{t('title')}</h2>
+        <h2 className="type-title">{t('title')}</h2>
         <p className="type-lede mt-6">{t('body1')}</p>
         <p className="type-lede mt-4">{t('body2')}</p>
       </div>

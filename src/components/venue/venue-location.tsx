@@ -18,24 +18,24 @@ export function VenueLocation({
   headingLevel?: 'h2' | 'h3'
   /** `/iletisim` bu bileşeni bir `Section background="cream-2"` içine yerleştirir;
    *  orada düz gövde metni (ve `.type-lede`'in varsayılan rengi) WCAG AA eşiğinin
-   *  altına düşer (bkz. globals.css'teki -deep token yorumu). Kamp detay ve `/mekan`
+   *  altına düşer (bkz. globals.css'teki --color-muted token yorumu). Kamp detay ve `/mekan`
    *  sayfaları bu bileşeni düz krem zeminde kullandığı için varsayılan `false` kalır. */
   onTintedBackground?: boolean
 }) {
   const t = useTranslations('venue')
   const Heading = headingLevel
-  const mutedClass = onTintedBackground ? 'text-body-deep' : ''
+  const mutedClass = onTintedBackground ? 'text-muted' : ''
   return (
     <div className="grid gap-8 md:grid-cols-2 md:items-center">
       <div>
         <p className={`flex items-center gap-2 text-sm ${mutedClass}`.trim()}>
-          <MapPin aria-hidden className="size-4 text-accent-deep" />
+          <MapPin aria-hidden className="size-4 text-olive" />
           {venue.location[locale]}
         </p>
-        <Heading className="mt-3 font-heading text-2xl text-ink">{venue.name}</Heading>
+        <Heading className="mt-3 font-heading text-2xl text-text">{venue.name}</Heading>
         <p className={`type-lede mt-3 ${mutedClass}`.trim()}>{venue.shortDescription[locale]}</p>
         <a
-          className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent-deep hover:underline"
+          className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-olive hover:underline"
           href={venue.websiteUrl}
           rel="noopener noreferrer"
           target="_blank"
@@ -44,7 +44,7 @@ export function VenueLocation({
           <ExternalLink aria-hidden className="size-4" />
         </a>
       </div>
-      <div className="overflow-hidden rounded-md border border-border">
+      <div className="overflow-hidden rounded-md border border-sand">
         <iframe
           allowFullScreen
           className="h-70 w-full"

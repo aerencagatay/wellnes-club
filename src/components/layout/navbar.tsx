@@ -48,15 +48,15 @@ export function Navbar() {
   }, [open])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-cream/90 backdrop-blur-[2px]">
+    <header className="sticky top-0 z-50 border-b border-sand/60 bg-background/90 backdrop-blur-[2px]">
       <div className="container-page flex h-18 items-center justify-between gap-8">
-        <Link className="font-heading text-xl tracking-tight text-ink" href="/">
+        <Link className="font-heading text-xl tracking-tight text-text" href="/">
           {site.name}
         </Link>
 
         <nav aria-label={t('primary')} className="hidden items-center gap-7 lg:flex">
           {NAV_ITEMS.map((item) => (
-            <Link className="text-sm text-ink-3 transition-colors hover:text-ink" href={item.href} key={item.href}>
+            <Link className="text-sm text-muted transition-colors hover:text-text" href={item.href} key={item.href}>
               {t(item.key)}
             </Link>
           ))}
@@ -78,7 +78,7 @@ export function Navbar() {
           ref={triggerRef}
           type="button"
         >
-          <Menu className="size-6 text-ink" />
+          <Menu className="size-6 text-text" />
         </button>
       </div>
 
@@ -86,23 +86,23 @@ export function Navbar() {
         <div
           aria-labelledby={MOBILE_PANEL_TITLE_ID}
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-cream lg:hidden"
+          className="fixed inset-0 z-50 bg-background lg:hidden"
           id={MOBILE_PANEL_ID}
           ref={panelRef}
           role="dialog"
         >
           <div className="container-page flex h-18 items-center justify-between">
-            <span className="font-heading text-xl text-ink" id={MOBILE_PANEL_TITLE_ID}>
+            <span className="font-heading text-xl text-text" id={MOBILE_PANEL_TITLE_ID}>
               {site.name}
             </span>
             <button aria-label={t('closeMenu')} onClick={() => setOpen(false)} ref={closeButtonRef} type="button">
-              <X className="size-6 text-ink" />
+              <X className="size-6 text-text" />
             </button>
           </div>
           <nav aria-label={t('primary')} className="container-page mt-6 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <Link
-                className="border-b border-border py-4 font-heading text-2xl text-ink"
+                className="border-b border-sand py-4 font-heading text-2xl text-text"
                 href={item.href}
                 key={item.href}
                 onClick={() => setOpen(false)}

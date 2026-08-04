@@ -27,26 +27,26 @@ export function CampCtaCard({ camp, locale }: { camp: CampSession; locale: AppLo
   const showSpotsLeft = badge === 'open' || badge === 'last-spots'
 
   return (
-    <aside className="sticky top-24 rounded-md bg-cream p-8 shadow-[var(--shadow-soft)]">
+    <aside className="sticky top-24 rounded-md bg-background p-8 shadow-[var(--shadow-soft)]">
       <Badge tone={BADGE_TONE[badge]}>{tCamp(`badge.${badge}`)}</Badge>
 
-      <p className="mt-5 text-2xl font-semibold text-ink">
-        {price} <span className="text-sm font-normal text-body">{t('perPerson')}</span>
+      <p className="mt-5 text-2xl font-semibold text-text">
+        {price} <span className="text-sm font-normal text-muted">{t('perPerson')}</span>
       </p>
-      <p className="mt-2 text-sm text-body">{formatDateRange(camp.startDate, camp.endDate, locale)}</p>
+      <p className="mt-2 text-sm text-muted">{formatDateRange(camp.startDate, camp.endDate, locale)}</p>
 
-      <dl className="mt-6 flex flex-col gap-3 border-t border-border pt-6 text-sm">
+      <dl className="mt-6 flex flex-col gap-3 border-t border-sand pt-6 text-sm">
         <div className="flex justify-between">
-          <dt className="text-body">{t('duration')}</dt>
-          <dd className="text-ink-3">{tCamp('nights', { count: camp.nights })}</dd>
+          <dt className="text-muted">{t('duration')}</dt>
+          <dd className="text-muted">{tCamp('nights', { count: camp.nights })}</dd>
         </div>
         <div className="flex justify-between">
-          <dt className="text-body">{t('level')}</dt>
-          <dd className="text-ink-3">{tCamp(`level.${camp.level}`)}</dd>
+          <dt className="text-muted">{t('level')}</dt>
+          <dd className="text-muted">{tCamp(`level.${camp.level}`)}</dd>
         </div>
       </dl>
 
-      {showSpotsLeft && <p className="mt-4 text-xs text-coral-deep">{t('spotsLeft', { count: camp.spotsLeft })}</p>}
+      {showSpotsLeft && <p className="mt-4 text-xs text-text font-semibold">{t('spotsLeft', { count: camp.spotsLeft })}</p>}
 
       <div className="mt-6 flex flex-col gap-3">
         {badge === 'closed' ? (

@@ -196,7 +196,7 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
       <ConsentCheckbox error={consentError} />
 
       {formError && (
-        <p className="rounded-sm border border-coral bg-coral/10 p-4 text-sm text-ink" role="alert">
+        <p className="rounded-sm bg-sand/40 p-4 text-sm font-medium text-text" role="alert">
           {formError}
         </p>
       )}
@@ -207,7 +207,7 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
         </Button>
         {failedOnce && whatsappUrl && (
           <a
-            className="text-sm font-semibold text-accent-deep hover:underline"
+            className="text-sm font-semibold text-olive hover:underline"
             href={whatsappUrl}
             rel="noopener noreferrer"
             target="_blank"

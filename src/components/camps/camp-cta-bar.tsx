@@ -15,9 +15,9 @@ export function CampCtaBar({ camp, locale }: { camp: CampSession; locale: AppLoc
   const price = formatPrice(camp.priceFrom, camp.currency, locale)
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-4 border-t border-border bg-cream/95 px-5 py-4 backdrop-blur-[2px] lg:hidden">
-      <span className="text-sm font-semibold text-ink">
-        {price} <span className="font-normal text-body">{t('perPerson')}</span>
+    <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-4 border-t border-sand bg-background/95 px-5 py-4 backdrop-blur-[2px] lg:hidden">
+      <span className="text-sm font-semibold text-text">
+        {price} <span className="font-normal text-muted">{t('perPerson')}</span>
       </span>
       {badge === 'closed' ? (
         <Button disabled size="md" type="button">
