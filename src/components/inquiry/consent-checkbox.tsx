@@ -12,12 +12,7 @@ export function ConsentCheckbox({ error }: { error?: string }) {
         <input
           aria-describedby={error ? 'consent-error' : undefined}
           aria-invalid={Boolean(error)}
-          // Not: form kontrolünün tarayıcı tonu için Tailwind'in ilgili yardımcı
-          // sınıfı bilinçli olarak kullanılmaz — kontrast koruma testi eski marka
-          // rengi ailesini yakalamak için ilgili İngilizce kelimeyi src'de aramaya
-          // dayanır ve bu, o kelimeyle başlayan tamamen ilgisiz bir CSS özelliğini de
-          // yanlışlıkla eşler. Varsayılan tarayıcı tonu bırakılır (bkz. task-1-report.md).
-          className="mt-0.5 size-4 shrink-0"
+          className="mt-0.5 size-4 shrink-0 accent-olive"
           id="consent"
           name="consent"
           required

@@ -44,7 +44,7 @@ describe('kontrast koruması', () => {
     const offenders: string[] = []
     for (const file of await sourceFiles()) {
       for (const [i, line] of readFileSync(file, 'utf8').split('\n').entries()) {
-        if (/accent|#3cc4b2|#2fa697|#1d6b61/i.test(line)) {
+        if (/--color-accent|\btext-accent\b|\bbg-accent\b|\bborder-accent\b|accent-deep|accent-hover|#3cc4b2|#2fa697|#1d6b61/i.test(line)) {
           offenders.push(`${relative(ROOT, file)}:${i + 1} — eski accent token'ı`)
         }
       }

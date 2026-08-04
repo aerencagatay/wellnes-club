@@ -26,7 +26,7 @@ export default async function KvkkPage({
       <PageHero eyebrow={t('eyebrow')} title={t('kvkk.title')} />
       <Section size="sm">
         <div className="flex max-w-2xl flex-col gap-6">
-          <p className="rounded-sm rounded-sm bg-sand/40 p-4 text-sm font-medium text-text">
+          <p className="bg-sand/40 p-4 text-sm font-medium text-text">
             {t('placeholderWarning')}
           </p>
           <p>{t('kvkk.body1')}</p>

@@ -102,10 +102,7 @@ export function NewsletterCta() {
               <input
                 aria-describedby={fieldDescribedBy('newsletter-consent', { error: consentError })}
                 aria-invalid={Boolean(consentError)}
-                // Bkz. consent-checkbox.tsx'teki not: form kontrolü tonu için Tailwind
-                // yardımcı sınıfı bilinçli kullanılmaz, kontrast koruma testinin geniş
-                // regex'i ilgisiz bir CSS özelliğini de yakalar.
-                className="mt-0.5"
+                className="mt-0.5 accent-olive"
                 id="newsletter-consent"
                 name="consent"
                 required
