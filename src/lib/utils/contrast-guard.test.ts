@@ -15,13 +15,24 @@ async function sourceFiles(): Promise<string[]> {
   return found
 }
 
+// Kum'u metin rengi olarak kullanmanın üç yazılışı da yakalanır: çıplak
+// yardımcı sınıf (`text-sand`, `hover:text-sand` gibi önekliler dahil —
+// `\b` sınırı önek ayracının (`:`) hemen ardından da tetiklenir), rastgele
+// değer olarak CSS değişkeni (`text-[var(--color-sand)]`) ve ham hex
+// (`text-[#C9B99F]`). İkinci ve üçüncü biçim, `text-sand` yardımcı adını
+// hiç yazmadan aynı rengi üretmenin bir yolu olduğu için ayrıca
+// kontrol edilmezse guard'ı komple atlatır.
+const SAND_TEXT_RE = /\btext-(?:sand\b|\[[^\]]*(?:--color-sand|#c9b99f)[^\]]*\])/i
+
 describe('kontrast koruması', () => {
-  it('kum asla metin rengi olarak kullanılmaz', async () => {
+  it('kum asla metin rengi olarak kullanılmaz (hiçbir yazılışla)', async () => {
     const offenders: string[] = []
     for (const file of await sourceFiles()) {
       for (const [i, line] of readFileSync(file, 'utf8').split('\n').entries()) {
-        if (/\btext-sand\b/.test(line)) {
-          offenders.push(`${relative(ROOT, file)}:${i + 1} — text-sand (kremde 1.65:1; kum yalnızca dolgu/çizgi)`)
+        if (SAND_TEXT_RE.test(line) && !line.includes('contrast-guard-allow')) {
+          offenders.push(
+            `${relative(ROOT, file)}:${i + 1} — kum metin olarak kullanılıyor (kremde 1.65:1; kum yalnızca dolgu/çizgi, ya da koyu zeminde satıra "contrast-guard-allow" ekleyin)`,
+          )
         }
       }
     }

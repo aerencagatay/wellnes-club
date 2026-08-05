@@ -27,9 +27,16 @@ type Props = {
   className?: string
 } & Omit<ComponentPropsWithoutRef<'button'>, 'children' | 'className'>
 
-export function Button({ variant = 'primary', size = 'md', href, children, className = '', ...rest }: Props) {
+export function Button({ variant = 'primary', size = 'md', href, disabled, children, className = '', ...rest }: Props) {
   const classes = `${BASE} ${VARIANTS[variant]} ${SIZES[size]} ${className}`
-  if (href) {
+  // `disabled` bir `href` ile birlikte gelirse href yok sayılır: gerçek, tam
+  // işlevsiz bir `<button disabled>` her zaman kazanır. Aksi halde `<a
+  // disabled>` / `<Link disabled>` üretilirdi — `disabled` niteliği anchor'da
+  // hiçbir şey yapmaz ve CSS'teki `:disabled` sözde sınıfı da anchor'ları
+  // eşlemez, yani hem normal görünen hem de hâlâ tıklanabilir kalan, yanıltıcı
+  // bir kontrol ortaya çıkardı. Bugünkü tek `disabled` kullanım yerleri zaten
+  // `href` geçmiyor; bu yalnızca gelecekteki çağıranlara karşı bir güvenlik.
+  if (href && !disabled) {
     const external = href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
     if (external) {
       return (
@@ -51,7 +58,7 @@ export function Button({ variant = 'primary', size = 'md', href, children, class
     )
   }
   return (
-    <button className={classes} {...rest}>
+    <button className={classes} disabled={disabled} {...rest}>
       {children}
     </button>
   )
