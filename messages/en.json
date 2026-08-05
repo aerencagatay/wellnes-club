@@ -50,10 +50,17 @@
   "home": {
     "hero": {
       "eyebrow": "ASSOS · ÇANAKKALE",
-      "title": "Train your body, explore your soul",
-      "lede": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos.",
-      "ctaPrimary": "Explore the Camps",
-      "ctaSecondary": "See the Venue"
+      "titleLine1": "A slower",
+      "titleLine2": "way of living.",
+      "subtitle": "Three days in Assos.",
+      "tags": "Yoga · Pilates · Nature · Rest",
+      "cta": "Discover the retreat",
+      "imageAlt": "A pool on the Assos coast, looking out over the village and hills."
+    },
+    "campPanel": {
+      "guests": "{count, plural, one {# guest} other {# guests}}",
+      "duration": "{days, plural, one {# day} other {# days}} / {nights, plural, one {# night} other {# nights}}",
+      "cta": "Reserve your place"
     },
     "trust": {
       "assos": { "value": "7 min", "label": "to ancient Assos" },

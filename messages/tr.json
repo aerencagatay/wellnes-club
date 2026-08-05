@@ -50,10 +50,17 @@
   "home": {
     "hero": {
       "eyebrow": "ASSOS · ÇANAKKALE",
-      "title": "Bedenini eğit, ruhunu keşfet",
-      "lede": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları.",
-      "ctaPrimary": "Kampları Keşfet",
-      "ctaSecondary": "Mekanı Gör"
+      "titleLine1": "Daha yavaş",
+      "titleLine2": "bir yaşam.",
+      "subtitle": "Assos'ta üç gün.",
+      "tags": "Yoga · Pilates · Doğa · Dinlenme",
+      "cta": "Retreat'i keşfet",
+      "imageAlt": "Assos kıyısında bir havuzdan köy ve tepelere bakan manzara."
+    },
+    "campPanel": {
+      "guests": "{count} kişi",
+      "duration": "{days} gün / {nights} gece",
+      "cta": "Yerinizi Ayırtın"
     },
     "trust": {
       "assos": { "value": "7 dk", "label": "Antik Assos'a" },

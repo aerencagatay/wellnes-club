@@ -1,5 +1,8 @@
 import { setRequestLocale } from 'next-intl/server'
+import { getUpcomingCamps } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
+import { DailyFlow } from '@/components/camps/daily-flow'
+import { CampPanel } from '@/components/home/camp-panel'
 import { HeroHome } from '@/components/home/hero-home'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { Manifesto } from '@/components/home/manifesto'
@@ -10,6 +13,7 @@ import { TeachersPreview } from '@/components/home/teachers-preview'
 import { VenuePreview } from '@/components/home/venue-preview'
 import { Testimonials } from '@/components/home/testimonials'
 import { NewsletterCta } from '@/components/home/newsletter-cta'
+import { Section } from '@/components/ui/section'
 
 // `today` aşağıda `getUpcomingCamps` için render anında hesaplanır — ama sayfa artık
 // statik render edildiği için (bkz. (public)/layout.tsx → setRequestLocale) bu değer
@@ -24,10 +28,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: A
   setRequestLocale(locale)
   // Sunucuda render anında hesaplanır ve seçicilere parametre olarak geçer.
   const today = new Date().toISOString().slice(0, 10)
+  // Günlük akış bölümü, kamp panelinin gösterdiği aynı yaklaşan kampın programını
+  // kullanır — yaklaşan kamp yoksa (bkz. camp-panel.tsx'in `null` dönüşü) bu bölüm
+  // de hiç render edilmez, boşluk bırakmaz.
+  const [upcomingCamp] = getUpcomingCamps(today, 1)
 
   return (
     <>
       <HeroHome />
+      <CampPanel locale={locale} today={today} />
+      {upcomingCamp && (
+        <Section>
+          <DailyFlow items={upcomingCamp.dailyFlow} locale={locale} />
+        </Section>
+      )}
       <TrustStrip />
       <Manifesto />
       <UpcomingCamps locale={locale} today={today} />

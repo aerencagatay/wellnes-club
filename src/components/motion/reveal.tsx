@@ -100,29 +100,33 @@ export function RevealGroup({
     )
   }
 
+  // Not: Grubu tek bir üst `motion` düğümüyle (variants + staggerChildren) izlemek
+  // yerine her çocuk kendi `whileInView`'ını gecikmeli olarak tetikler. Bunun nedeni
+  // görsel değil, teknik: `itemAs="li"` ile çağıran taraf sarmalayıcıya genellikle
+  // `display: contents` uygular (bkz. daily-flow.tsx — `ol > div > li` geçersiz
+  // işaretleme olurdu). `display: contents` olan bir düğümün kendi kutusu/geometrisi
+  // YOKTUR; üstteki `motion.div`'i IntersectionObserver ile izlemek sıfır boyutlu bir
+  // dikdörtgeni izlemek anlamına gelir ve `isIntersecting` asla `true` olmaz — bu,
+  // gerçek tarayıcıda doğrulanmış bir davranıştır (manuel bir IntersectionObserver
+  // aynı düğümde `{top:0,bottom:0,left:0,right:0}` rapor eder). Sonuç: öğeler kalıcı
+  // olarak `opacity: 0` kalırdı. Her çocuğu kendi (gerçek geometrisi olan) düğümü
+  // üzerinden izlemek bu ölü bölgeyi tamamen ortadan kaldırır ve ayrıca yatay bir
+  // zaman çizelgesinde öğeler farklı anlarda görünüme girdiğinde (kaydırma ile) daha
+  // doğru bir davranış sağlar.
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-10% 0px' }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: stagger } },
-      }}
-    >
+    <div className={className}>
       {Children.toArray(children).map((child, index) => (
         <MotionItem
-          key={index}
           className={itemClassName}
-          variants={{
-            hidden: { opacity: 0, y: 24 },
-            visible: { opacity: 1, y: 0, transition: { duration: DURATION, ease: EASE } },
-          }}
+          initial={{ opacity: 0, y: 24 }}
+          key={index}
+          transition={{ delay: index * stagger, duration: DURATION, ease: EASE }}
+          viewport={{ once: true, margin: '-10% 0px' }}
+          whileInView={{ opacity: 1, y: 0 }}
         >
           {child}
         </MotionItem>
       ))}
-    </motion.div>
+    </div>
   )
 }
