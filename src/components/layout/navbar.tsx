@@ -13,31 +13,49 @@ const MOBILE_PANEL_TITLE_ID = 'mobile-nav-panel-title'
 
 const SCROLL_THRESHOLD = 40
 
+// Şeffaf-üzeri-hero tedavisi güvenli değildir: brief metniyle uyumlu olarak
+// yalnızca gerçek bir tam-taşma koyu hero sayfanın en üstünde varken
+// uygulanmalı — aksi halde (`sss`, `iletişim`, `kvkk` gibi görselsiz PageHero
+// sayfalarında) `text-background` logosu/menüsü krem zemin üzerinde görünmez
+// olur (bu, tarayıcı denetiminde gözlendi ve düzeltildi).
+//
+// Bu eskiden `document.querySelector('main')?.firstElementChild` üzerinde
+// `bg-dark` sınıfını arayan bir DOM sezgiselliğiydi. O yaklaşım iki şekilde
+// bozuluyordu: (1) `kamplar/[slug]` sayfası `<main>`'in ilk çocuğu olarak
+// hero'dan ÖNCE bir JSON-LD `<script>` etiketi render ediyor — sezgisel yöntem
+// hero'yu değil script'i buluyor ve sayfayı hatalı biçimde "hero'suz"
+// sınıflandırıyordu (koyu hero fotoğrafı üzerinde koyu metin — canlıda gerçek
+// bir kusur). (2) DOM okuması bir `useEffect` içinde olduğundan ilk boyamadan
+// SONRA çalışıyordu, yani doğru sınıflandırılan sayfalarda da her yüklemede
+// bir kare yanlış (opak) navbar görünüyordu.
+//
+// Statik, yol-bazlı bir bildirim bu ikisini de ortadan kaldırır: `usePathname()`
+// zaten render sırasında eş zamanlı çözülür (`next-intl`'in App Router
+// entegrasyonu ilk sunucu taraflı HTML ile eşleşen değeri hidrasyonda hazır
+// tutar) — DOM'a bakan bir efekte hiç gerek yok, dolayısıyla ilk boyamada
+// yanlış durum hiç render edilmez. Bu liste, gerçek tam-taşma koyu hero'su olan
+// ROTALARI (bileşenleri değil) sıralar; yeni bir hero eklendiğinde buraya bir
+// satır eklemek yeterlidir — bir sayfanın DOM yapısının kazara bunu bozması
+// artık mümkün değildir.
+const HERO_BACKDROP_ROUTES: RegExp[] = [
+  /^\/$/, // ana sayfa — `HeroHome` (tam ekran koyu hero fotoğrafı)
+  /^\/kamplar\/[^/]+$/, // kamp detay sayfası — `CampDetailHero`
+  /^\/mekan$/, // mekan sayfası — `PageHero`'nun görsel varyantı
+]
+
+function hasHeroBackdropFor(pathname: string): boolean {
+  return HERO_BACKDROP_ROUTES.some((pattern) => pattern.test(pathname))
+}
+
 export function Navbar() {
   const t = useTranslations('nav')
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  // Şeffaf-üzeri-hero tedavisi güvenli değildir: brief metniyle uyumlu olarak
-  // yalnızca gerçek bir koyu hero (`bg-dark` — bkz. hero-home.tsx,
-  // camp-detail-hero.tsx, page-hero.tsx'in görsel varyantı) sayfanın en üstünde
-  // varken uygulanmalı. Aksi halde (`sss`, `iletişim`, `kvkk` gibi görselsiz
-  // PageHero sayfalarında) `text-background` logosu/menüsü krem zemin üzerinde
-  // görünmez olur — bu, tarayıcı denetiminde gözlendi. `Navbar`, `(public)/layout.tsx`
-  // içinde tüm rotalarda kalıcı olduğundan (App Router aynı layout'ta yeniden
-  // bağlanmaz) bu, `pathname` her değiştiğinde yeniden ölçülür.
-  const [hasHeroBackdrop, setHasHeroBackdrop] = useState(false)
+  const hasHeroBackdrop = hasHeroBackdropFor(pathname)
   const panelRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    const detectHeroBackdrop = () => {
-      const firstChild = document.querySelector('main')?.firstElementChild
-      setHasHeroBackdrop(firstChild?.classList.contains('bg-dark') ?? false)
-    }
-    detectHeroBackdrop()
-  }, [pathname])
 
   // Şeffaf (hero üzeri) → opak (krem zemin) geçişi: yalnızca sunum amaçlı,
   // menünün açık/kapalı mantığından bağımsız bir `scrolled` durumu. Yalnızca
@@ -114,7 +132,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <LanguageSwitcher />
+          <LanguageSwitcher transparent={transparent} />
           <Button href="/basvuru" size="md">
             {t('cta')}
           </Button>
