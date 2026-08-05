@@ -1,10 +1,11 @@
 import { camps } from './camps'
 import { faq } from './faq'
+import { futureEvents } from './future-events'
 import { posts } from './posts'
 import { teachers } from './teachers'
 import { testimonials } from './testimonials'
 import { venues } from './venues'
-import type { BlogPost, CampSession, FaqItem, Teacher, Testimonial, Venue } from './types'
+import type { BlogPost, CampSession, FaqItem, FutureEvent, Teacher, Testimonial, Venue } from './types'
 
 export * from './types'
 
@@ -76,6 +77,10 @@ export function getFaq(): FaqItem[] {
 
 export function getTestimonials(): Testimonial[] {
   return [...testimonials]
+}
+
+export function getFutureEvents(): FutureEvent[] {
+  return [...futureEvents]
 }
 
 export function getAllPosts(): BlogPost[] {

@@ -62,6 +62,9 @@
       "duration": "{days} gün / {nights} gece",
       "cta": "Yerinizi Ayırtın"
     },
+    "marquee": {
+      "items": "Yoga · Pilates · Doğa · Dinlenme · Uzun Ömür"
+    },
     "trust": {
       "assos": { "value": "7 dk", "label": "Antik Assos'a" },
       "bay": { "value": "5 km", "label": "Kadırga Koyu'na" },
@@ -71,8 +74,20 @@
     "manifesto": {
       "eyebrow": "FELSEFEMİZ",
       "title": "Dinlenmek bir lüks değil, bir ihtiyaçtır.",
-      "body1": "Serenity Retreats, kalabalık programların ve sıkışık günlerin tam tersini vaat eder: sabah pratiği, uzun öğünler, deniz ve zeytinlik arasında geçen sessiz saatler. Her kampımız aynı taş otelde, aynı küçük ekiple, aynı sakinlikle kurulur.",
-      "body2": "Buraya bir sınıfa değil, bir sığınağa geliyorsunuz. Programı biz kuruyoruz; geri kalanını — nefesinizi, hızınızı, sessizliğinizi — siz belirliyorsunuz."
+      "sections": {
+        "01": {
+          "title": "Yavaşlık bir seçim",
+          "body": "Kalabalık programların ve sıkışık günlerin tam tersini vaat ediyoruz: sabah pratiği, uzun öğünler, deniz ve zeytinlik arasında geçen sessiz saatler."
+        },
+        "02": {
+          "title": "Aynı ekip, aynı sakinlik",
+          "body": "Her kampımız aynı taş otelde, aynı küçük ekiple kurulur. Kamptan kampa değişmeyen bir güven ve tanıdıklık."
+        },
+        "03": {
+          "title": "Program biz kuruyoruz",
+          "body": "Geri kalanını — nefesinizi, hızınızı, sessizliğinizi — siz belirliyorsunuz. Buraya bir sınıfa değil, bir sığınağa geliyorsunuz."
+        }
+      }
     },
     "upcoming": {
       "eyebrow": "TAKVİM",
@@ -109,7 +124,9 @@
         "title": "Zihnini Sıfırla",
         "body": "Telefonlar bir kenara bırakılır. Nefes çalışmaları, uzun sessizlikler ve havuz kenarında geçen boş saatler zihne asıl dinlenmeyi verir.",
         "imageAlt": "Otelin havuzu ve dinlenme alanı"
-      }
+      },
+      "sectionEyebrow": "NEDEN SERENITY",
+      "sectionTitle": "Üç Gün, Üç Kazanım"
     },
     "teachers": {
       "eyebrow": "EKİBİMİZ",
@@ -119,7 +136,13 @@
     "venue": {
       "eyebrow": "MEKAN",
       "title": "Karadut Taş Otel'de Kalış",
-      "cta": "Mekanı Keşfet"
+      "cta": "Mekanı Keşfet",
+      "viewGallery": "Galeriyi Gör"
+    },
+    "comingSoon": {
+      "eyebrow": "ÇOK YAKINDA",
+      "title": "Assos sadece başlangıç",
+      "lede": "Anlaşmalı otellerimiz ve anlaşmalı pilates hocalarımızla, gelecekte doğa etkinlikleri de takvime eklenecek."
     },
     "testimonials": {
       "eyebrow": "KATILIMCI SESLERİ",
@@ -134,6 +157,12 @@
       "submit": "Abone Ol",
       "submitting": "Gönderiliyor…",
       "success": "Teşekkürler! Yeni kamp tarihlerini ilk siz öğreneceksiniz."
+    },
+    "finalCta": {
+      "eyebrow": "SON ÇAĞRI",
+      "title": "Her şeyden uzak bir hafta sonu.",
+      "noUpcoming": "Yeni tarihler yakında duyurulacak.",
+      "cta": "Yerinizi Ayırtın"
     }
   },
   "camp": {
@@ -207,7 +236,12 @@
     "mapTitle": "{name} konum haritası",
     "campsHere": "Bu Mekandaki Kamplar",
     "accommodationNote": "Oda tipleri ve konaklama detayları için otelin resmi sitesine bakabilirsiniz.",
-    "cta": "Tüm Kampları Gör"
+    "cta": "Tüm Kampları Gör",
+    "lightboxLabel": "{name} — tam ekran galeri",
+    "lightboxClose": "Galeriyi kapat",
+    "lightboxPrev": "Önceki görsel",
+    "lightboxNext": "Sonraki görsel",
+    "lightboxCounter": "{current} / {total}"
   },
   "experience": {
     "eyebrow": "DENEYİM",

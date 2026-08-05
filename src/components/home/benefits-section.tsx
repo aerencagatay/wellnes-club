@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
 import { BenefitBlock } from './benefit-block'
 
@@ -15,6 +16,10 @@ export function BenefitsSection() {
 
   return (
     <Section>
+      <div className="mb-16 max-w-xl md:mb-24">
+        <Eyebrow>{t('sectionEyebrow')}</Eyebrow>
+        <h2 className="type-title">{t('sectionTitle')}</h2>
+      </div>
       <div className="flex flex-col gap-24 md:gap-32">
         <BenefitBlock
           body={t('deepenPractice.body')}

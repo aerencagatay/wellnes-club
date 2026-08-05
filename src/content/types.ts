@@ -75,6 +75,16 @@ export type Testimonial = {
   isPlaceholder: boolean
 }
 
+export type FutureEventKind = 'hiking' | 'camping' | 'running' | 'water-sports' | 'wildlife'
+
+export type FutureEvent = {
+  slug: string
+  kind: FutureEventKind
+  title: Localized
+  summary: Localized
+  image: string
+}
+
 export type BlogPost = {
   slug: string
   title: Localized

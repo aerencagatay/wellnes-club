@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   getAllCamps, getAllTeachers, getAllVenues, getCampBySlug, getCampsForTeacher,
-  getFaq, getFeaturedCamps, getPastCamps, getTeachersForCamp, getTestimonials,
+  getFaq, getFeaturedCamps, getFutureEvents, getPastCamps, getTeachersForCamp, getTestimonials,
   getUpcomingCamps, getVenueBySlug, getVenueForCamp,
 } from './index'
 import type { Localized, LocalizedList } from './types'
@@ -12,6 +12,7 @@ const teachers = getAllTeachers()
 const venues = getAllVenues()
 const faqItems = getFaq()
 const testimonialItems = getTestimonials()
+const futureEvents = getFutureEvents()
 
 function expectLocalized(value: Localized, label: string) {
   expect(value.tr?.trim(), `${label}.tr boş`).toBeTruthy()
@@ -128,8 +129,39 @@ describe('içerik bütünlüğü', () => {
       ...camps.flatMap((c) => [c.heroImage, ...c.gallery]),
       ...teachers.map((t) => t.photo),
       ...venues.flatMap((v) => v.gallery),
+      ...futureEvents.map((e) => e.image),
     ]
     for (const p of paths) expect(p).toMatch(/^\/img\//)
+  })
+})
+
+describe('gelecek etkinlikler bütünlüğü', () => {
+  it('en az bir gelecek etkinlik vardır', () => {
+    expect(futureEvents.length).toBeGreaterThan(0)
+  })
+
+  it('tüm slug değerleri tekildir', () => {
+    const slugs = futureEvents.map((e) => e.slug)
+    expect(new Set(slugs).size, 'futureEvents içinde yinelenen slug').toBe(slugs.length)
+  })
+
+  it('slug değerleri kebab-case biçimindedir', () => {
+    for (const event of futureEvents) {
+      expect(event.slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/)
+    }
+  })
+
+  it('tüm çok dilli alanlar iki dilde doludur', () => {
+    for (const event of futureEvents) {
+      expectLocalized(event.title, `${event.slug}.title`)
+      expectLocalized(event.summary, `${event.slug}.summary`)
+    }
+  })
+
+  it('görsel yolu /img/ ile başlar', () => {
+    for (const event of futureEvents) {
+      expect(event.image, `${event.slug}.image`).toMatch(/^\/img\//)
+    }
   })
 })
 
