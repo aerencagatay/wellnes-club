@@ -5,6 +5,7 @@ import type { AppLocale } from '@/i18n/routing'
 import { CampCard } from '@/components/camps/camp-card'
 import { CampFilters } from '@/components/camps/camp-filters'
 import { PageHero } from '@/components/layout/page-hero'
+import { RevealGroup } from '@/components/motion/reveal'
 import { Section } from '@/components/ui/section'
 import { buildAlternates } from '@/lib/seo/metadata'
 import { filterCamps, LEVELS, PROGRAMS } from '@/lib/utils/camp-status'
@@ -66,13 +67,13 @@ export default async function CampsPage({
         {upcoming.length === 0 ? (
           <p className="type-lede mt-12">{t('empty')}</p>
         ) : (
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <RevealGroup className="mt-12 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {upcoming.map((camp) => (
               // Bu grid, sayfanın h1'inden (PageHero) sonra ara bir h2 bölüm başlığı
               // olmadan geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar.
               <CampCard camp={camp} headingLevel="h2" key={camp.slug} locale={locale} />
             ))}
-          </div>
+          </RevealGroup>
         )}
       </Section>
 
@@ -85,11 +86,11 @@ export default async function CampsPage({
               WCAG AA ihlali olarak yakalandı: ör. #9c9b9a/#f7f3ef ~2.51:1). Bölümün kendi
               başlığı ("Geçmiş kamplar") ve cream-2 zemini bu kartları "geçmiş" olarak
               ayırt etmek için zaten yeterli; kontrastı bozmadan bunu yapıyor. */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <RevealGroup className="mt-10 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {past.map((camp) => (
               <CampCard camp={camp} key={camp.slug} locale={locale} />
             ))}
-          </div>
+          </RevealGroup>
         </Section>
       )}
     </>

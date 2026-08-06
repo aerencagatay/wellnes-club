@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react'
 
 // Palette'te kırmızı/amber tonu yok (bkz. editorial redesign brief §2). Vurgu
-// renkle değil dolgu/kenarlık ve ağırlıkla yapılır: "coral" (aciliyet) dolu bir
-// kum şeridi + kalın metin alır, "amber" (bekleme listesi) ince bir zeytin
-// çerçeve alır — ikisi de yalnızca izin verilen metin token'larını kullanır.
+// renkle değil dolgu/kenarlık ve ağırlıkla yapılır: "sand-fill" (aciliyet) dolu
+// bir kum şeridi + kalın metin alır, "olive-outline" (bekleme listesi) ince bir
+// zeytin çerçeve alır — ikisi de yalnızca izin verilen metin token'larını kullanır.
 //
-// Tone adları kasıtlı olarak korunmuştur (bkz. task-3-report.md): `camp-status.ts`
-// buradan `CampBadge` değerleri üretiyor ve çağıranlar (`camp-card.tsx`,
-// `camp-cta-card.tsx`) Task 7'nin kapsamında. İsimleri burada değiştirmek o iki
-// dosyayı da güncellemeyi gerektirir; bu görev yalnızca yedi temel bileşenin
-// görselini değiştiriyor.
+// Tone adları Task 7 kapsamında yeniden adlandırıldı (bkz. task-3-report.md ve
+// task-7-report.md): eski `coral`/`amber` adları rengin adını taşıyordu ama
+// palette'te ne kırmızı ne amber var — çağıranlar (`camp-card.tsx`,
+// `camp-cta-card.tsx`) da bu görevin kapsamında olduğundan isimler burada ve
+// her iki çağıran dosyada birlikte güncellendi.
 const TONES = {
   olive: 'bg-olive text-background',
-  coral: 'bg-sand text-text font-semibold',
-  amber: 'border border-olive text-olive',
+  'sand-fill': 'bg-sand text-text font-semibold',
+  'olive-outline': 'border border-olive text-olive',
   neutral: 'border border-text/20 text-muted',
 } as const
 

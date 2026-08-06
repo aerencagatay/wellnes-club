@@ -9,10 +9,10 @@ import { getCampBadge, type CampBadge } from '@/lib/utils/camp-status'
 import { formatDateRange } from '@/lib/utils/dates'
 import { formatPrice } from '@/lib/utils/price'
 
-const BADGE_TONE: Record<CampBadge, 'olive' | 'coral' | 'amber' | 'neutral'> = {
+const BADGE_TONE: Record<CampBadge, 'olive' | 'sand-fill' | 'olive-outline' | 'neutral'> = {
   open: 'olive',
-  'last-spots': 'coral',
-  waitlist: 'amber',
+  'last-spots': 'sand-fill',
+  waitlist: 'olive-outline',
   closed: 'neutral',
 }
 
@@ -27,7 +27,9 @@ export function CampCtaCard({ camp, locale }: { camp: CampSession; locale: AppLo
   const showSpotsLeft = badge === 'open' || badge === 'last-spots'
 
   return (
-    <aside className="sticky top-24 rounded-md bg-background p-8 shadow-[var(--shadow-soft)]">
+    // Keskin köşe + `bg-surface` + ince `border-sand` çerçeve (brief §7-adım3):
+    // gölge/yuvarlak köşe yerine düz bir zemin farkı ve ince çizgi.
+    <aside className="sticky top-24 border border-sand bg-surface p-8">
       <Badge tone={BADGE_TONE[badge]}>{tCamp(`badge.${badge}`)}</Badge>
 
       <p className="mt-5 text-2xl font-semibold text-text">
