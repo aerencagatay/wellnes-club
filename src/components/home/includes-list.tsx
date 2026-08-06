@@ -18,7 +18,6 @@ export function IncludesList() {
       </div>
       <ul className="mt-14 grid list-none gap-x-12 md:grid-cols-2">
         <RevealGroup
-          className="contents"
           itemAs="li"
           itemClassName="flex items-start gap-4 border-t border-sand py-6 first:border-t-0 md:py-8 md:[&:nth-child(2)]:border-t-0"
         >

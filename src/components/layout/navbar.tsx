@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
 import { NAV_ITEMS, site } from '@/lib/config/site'
 import { Button } from '@/components/ui/button'
+import { hasHeroBackdropFor } from './hero-backdrop-routes'
 import { LanguageSwitcher } from './language-switcher'
 
 const MOBILE_PANEL_ID = 'mobile-nav-panel'
@@ -37,16 +38,6 @@ const SCROLL_THRESHOLD = 40
 // ROTALARI (bileşenleri değil) sıralar; yeni bir hero eklendiğinde buraya bir
 // satır eklemek yeterlidir — bir sayfanın DOM yapısının kazara bunu bozması
 // artık mümkün değildir.
-const HERO_BACKDROP_ROUTES: RegExp[] = [
-  /^\/$/, // ana sayfa — `HeroHome` (tam ekran koyu hero fotoğrafı)
-  /^\/kamplar\/[^/]+$/, // kamp detay sayfası — `CampDetailHero`
-  /^\/mekan$/, // mekan sayfası — `PageHero`'nun görsel varyantı
-]
-
-function hasHeroBackdropFor(pathname: string): boolean {
-  return HERO_BACKDROP_ROUTES.some((pattern) => pattern.test(pathname))
-}
-
 export function Navbar() {
   const t = useTranslations('nav')
   const pathname = usePathname()

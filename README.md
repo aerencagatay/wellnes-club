@@ -93,37 +93,125 @@ yazılmış dizelerdir. Kampların kapasitesini değiştirirseniz (ör. 20 kişi
 eklerseniz) bu metinleri de elle güncelleyin, aksi halde site sessizce yanlış bir
 kapasite iddiasında bulunmaya devam eder.
 
-## Tasarım kuralları
+## Tasarım kuralları (editorial redesign)
 
-- **`--color-accent` (turkuaz) hiçbir zaman metin rengi olarak kullanılmaz** — yalnızca
-  zemin/arka plan olarak. Metin için her zaman `--color-accent-deep` kullanılır.
-  `src/lib/utils/contrast-guard.test.ts` kaynak ağacını tarayıp bağımsız bir
-  `text-accent` yardımcı sınıfı kullanımını (metinde) test hatası olarak işaretler;
-  `text-accent-deep` istisnadır.
-- **Gövde metni rengi `#6f6f6f`'tir** (`--color-body`, `globals.css`). Aynı test dosyası
-  bu tanımın var olduğunu da denetler.
-- **`--color-body-muted` yalnızca ≥24px metinde kullanılabilir.** Bunun dışında bir
-  kullanım test tarafından yakalanır; bilinçli bir istisna gerekiyorsa aynı satıra
-  `contrast-guard-allow` yorumu eklenmelidir.
-- **Koyu krem zeminlerde (`cream-2`, `cream-3`) `text-body`, `text-coral`, `text-olive`
-  yeterli kontrast vermez.** `--color-body` (#6f6f6f) yalnızca en açık `--color-cream`
-  zemininde (4.67:1) WCAG AA'yı geçer; `cream-2`'de 4.28:1, `cream-3`'te 4.09:1'e düşer
-  — ikisi de 4.5:1 eşiğinin altındadır (Task 16'da gerçek bir Lighthouse denetimiyle
-  yakalandı). Bu yüzden `--color-body-deep`, `--color-olive-deep`, `--color-coral-deep`
-  token'ları eklendi (`globals.css`) — `--color-accent-deep` ile aynı mantık: taban renk
-  metin için güvenli değilse, `-deep` sürümü kullanılır. Bir bileşeni `cream-2`/`cream-3`
-  zemininde kullanacaksanız (veya `opacity` ile soldurulmuş bir kapsayıcı içine
-  koyacaksanız — bkz. aşağıdaki not) metin renklerini buna göre seçin.
-- **Bir kapsayıcıya `opacity` uygulamak, içindeki TÜM metnin kontrastını da zemine
-  doğru çöker.** `/kamplar` sayfasındaki "geçmiş kamplar" grid'i bunun gerçek bir
-  örneğiydi (`opacity-65`, Lighthouse'ta ~2.51:1'e kadar düşen kontrast oranlarıyla
-  yakalandı) ve kaldırıldı. Bir öğeyi görsel olarak "pasif/geçmiş" göstermek için
-  `opacity` yerine ayrı bir başlık/rozet veya zemin rengi kullanın.
-- Yeni bir bileşen eklerken bu kuralları ihlal edip etmediğinizi `npm test` size
-  söyler (bare `text-accent`/korumasız `text-body-muted` için) — ama `text-body`'nin
-  hangi zeminde kullanıldığı veya `opacity`'nin etkisi statik bir testle
-  yakalanamaz; bu ikisi için `npm run build` sonrası gerçek bir Lighthouse
-  taraması (bkz. Yayına hazırlık testi altındaki kontrol listesi) hâlâ gereklidir.
+Site 2026-08 editorial redesign'ından (turkuaz "quiet luxury" temasından Aman
+Resorts tarzı sıcak-krem/zeytin editorial estetiğine) geçti. Aşağıdaki kurallar
+`docs/briefs/2026-08-04-editorial-redesign-brief.md` §2'nin bağlayıcı kontrast
+tablosunu ve bu görev serisinin (Task 1-9) makine + gerçek Lighthouse
+doğrulamasını yansıtır.
+
+### Renk paleti ve kontrast kuralları
+
+`globals.css`teki `@theme inline` token'ları:
+
+```css
+--color-background: #F1EDE4  /* sıcak krem */
+--color-surface:     #E5DED2  /* açık kum yüzeyi */
+--color-text:        #1B211D  /* koyu taş metin */
+--color-muted:        #5F5D57 /* ikincil metin — AA uyumlu, her boyutta */
+--color-muted-soft:   #77756E /* YALNIZCA ≥24px veya ≥18.66px bold */
+--color-olive:        #555D49 /* zeytin accent */
+--color-sand:         #C9B99F /* kum accent — ASLA metin rengi değil */
+--color-dark:         #171B18 /* koyu bölümler */
+```
+
+Ölçülmüş, bağlayıcı oranlar:
+
+| Kullanım | Oran | Kural |
+|---|---|---|
+| `--muted` / `--background` | 5.63 | ✓ her boyutta ikincil metin |
+| `--muted` / `--surface` | 4.93 | ✓ (dar marj — ≥4.5 eşiğini geçer, ama ince/açık ağırlıkla birlikte kullanılan yeni bir bileşen eklerseniz gerçek bir Lighthouse taramasıyla doğrulayın) |
+| `--muted-soft` / `--background` | 3.95 | ✗ yalnızca ≥24px veya ≥18.66px bold |
+| `--olive` / açık zemin (`--background`/`--surface`) | 5.90 / 5.15 | ✓ metin olarak kullanılabilir |
+| `--olive` / `--dark` | 2.53 | ✗ **koyu zeminde zeytin metin yasak** |
+| `--sand` / `--background` | 1.65 | ✗ **hiçbir zeminde metin rengi değil** — yalnızca dolgu/çizgi/ayırıcı |
+| `--background` veya `--sand` / `--dark` | 14.90 / 9.05 | ✓ koyu zeminde metin |
+| zeytin dolgu üzerine `--background` metin | 5.90 | ✓ |
+| kum dolgu üzerine `--text` metin | 8.52 | ✓ |
+
+Özet: turkuaz/neon/mor gradyan yok; köşeler keskin (`border-radius: 0`,
+`rounded-full`/`rounded-2xl` kullanılmaz); koyu bölümlerde arka plan düz
+`--dark` (gradyan yok), metin `--background` veya `--sand` — asla `--olive`;
+açık zeminde accent metin `--olive` — asla `--sand`.
+
+- **`text-sand` hiçbir biçimde (ne `text-sand` ne `text-[var(--color-sand)]`
+  ne `text-[#C9B99F]`) metin rengi olarak kullanılmaz.**
+  `src/lib/utils/contrast-guard.test.ts` kaynak ağacını tarayıp bu üç yazım
+  biçimini de (token, `var()`, ham hex) test hatası olarak işaretler.
+- **Koyu zeminde (`bg-dark`) `text-olive` yasaktır** — aynı test dosyası bunu
+  da denetler.
+- **`--muted-soft` yalnızca ≥24px metinde kullanılabilir.** Bilinçli bir
+  istisna gerekiyorsa aynı satıra `contrast-guard-allow` yorumu eklenmelidir.
+- Yeni bir bileşen eklerken bu kuralları ihlal edip etmediğinizi `npm test`
+  size söyler — ama bir metnin **gerçek** zemininin ne olduğu (ör. koyu bir
+  fotoğraf + yarı-şeffaf bindirme üzerinde) statik bir testle kesin
+  saptanamaz; bu proje, Task 9'da 14 sayfa × 2 dil = 28 URL için gerçek
+  Lighthouse `--only-categories=accessibility` taraması çalıştırıp hepsinin
+  100 puan aldığını doğruladı (bkz. `.superpowers/sdd/2026-08-05-editorial-redesign/task-9-report.md`).
+  Yeni bir sayfa/bölüm eklediğinizde `npm run build && npm start` sonrası aynı
+  taramayı o sayfa için tekrarlayın — özellikle koyu hero fotoğrafı üzerine
+  metin bindirmelerinde.
+
+### Tipografi
+
+- **Başlıklar (serif):** Instrument Serif. **Yalnızca 400 (normal) ağırlıkta
+  yayınlanır** — `globals.css`teki `@layer base` kuralı `h1-h5` için
+  `font-weight: 400`'ü açıkça sabitler; aksi halde tarayıcı, mevcut olmayan
+  bir kalın ağırlığı taklit-bold (sentetik bold) ile üretir ve fontun ince,
+  zarif çizgi kalitesini bozar. Bir başlığı "daha kalın" göstermek isterseniz
+  `font-weight`/`font-bold` ile değil, boyut/harf aralığıyla vurgu yapın.
+- **Gövde & menü (sans):** Manrope, 300-400 ağırlık, ferah harf aralığı.
+- Tipografi ölçeği `globals.css`teki `@layer components` sınıflarındadır:
+  `.type-display` (H1, `clamp(3rem, 8vw, 6.5rem)`), `.type-title` (H2,
+  `clamp(2rem, 4vw, 3.25rem)`), `.type-lede` (gövde özet), `.type-eyebrow`
+  (üst etiket). Bunlar `@layer components`e taşınmıştır ki Tailwind'in
+  `utilities` katmanındaki `text-*` yardımcıları (ör. koyu zeminde
+  `text-background`) rengi güvenle ezebilsin.
+
+### Hareket katmanı ve `prefers-reduced-motion`
+
+- **Smooth scroll:** `lenis` (`src/components/motion/smooth-scroll.tsx`).
+  `prefers-reduced-motion: reduce` algılandığında Lenis **hiç kurulmaz** —
+  tarayıcının kendi anlık kaydırması korunur. Bu, gerçek headless Chrome'da
+  `--force-prefers-reduced-motion` ile doğrulandı: normal modda
+  `<html class="lenis">` eklenir, azaltılmış modda hiç eklenmez.
+- **Bölüm açılışı/mikro-etkileşim:** `motion` (framer-motion'ın yeni paket
+  adı) — `Reveal`/`RevealGroup` (`src/components/motion/reveal.tsx`),
+  `MaskedLines` (hero'nun satır-satır mask reveal'i), `Parallax`
+  (yalnızca `transform`), `Marquee` (dekoratif, `aria-hidden`).
+  Tümü yalnızca `opacity`/`transform` animasyonu yapar (`transition: all`
+  hiçbir yerde kullanılmaz) ve **her biri** hareket azaltma istendiğinde
+  animasyonsuz, son/nihai durumuyla render edilir — hiçbir bölüm kalıcı
+  olarak `opacity: 0`'da asılı kalmaz. Bu, gerçek headless Chrome'da 7 farklı
+  sayfada (ana sayfa, deneyim, kamp detay, mekan, hocalar, başvuru, kamplar)
+  `getComputedStyle` ile sıfır kalıcı-gizli öğe bulunarak doğrulandı.
+- `RevealGroup`'un `itemAs="li"` ile kullanıldığı liste bağlamlarında (Daily
+  Flow, Includes listesi) `className` verilmezse grup **hiçbir sarmalayıcı
+  DOM düğümü render etmez** (React `Fragment`) — `<li>` öğeleri gerçekten
+  `<ol>`/`<ul>`'un doğrudan çocuğu olur. Önceki sürüm bunu bir
+  `display: contents` `div`'i ile çözmeye çalışıyordu; gerçek bir Lighthouse
+  taraması bu düğümün bazı tarayıcı erişilebilirlik ağaçlarında hâlâ var
+  olduğunu ve axe'in `list`/`listitem` denetimini kırdığını gösterdi
+  (Task 9'da bulundu ve düzeltildi — bkz. task-9-report.md).
+- Global CSS güvenlik ağı: `@media (prefers-reduced-motion: reduce)` tüm
+  `animation-duration`/`transition-duration`'ı `0.01ms`'e indirir
+  (`globals.css`) — bileşen bazlı reduced-motion dallarına ek bir taban
+  güvence.
+
+### Hero video / fallback fotoğraf
+
+Brief §4.1 yavaş oynayan bir hero videosu tarif eder, ama `src/lib/config/site.ts`
+içinde henüz bir `heroVideo` alanı **tanımlı değildir** ve gerçek bir video
+dosyası da yoktur — bu bilinçli bir karardır (uydurma video yerine gerçek bir
+fallback fotoğraf, bkz. `src/components/home/hero-home.tsx`'teki `HERO_IMAGE`
+yorumu). Şu an ana sayfa hero'su, kamp detay hero'su ve mekan sayfası hero'su
+istemcinin gerçek fotoğraflarını (`public/img/`) `next/image`'ın `priority`
+özelliğiyle kullanır. Gerçek bir hero videosu eklenecekse: `site.ts`'e
+`heroVideo` alanı eklenmeli, `HeroHome`/`CampDetailHero` koşullu olarak
+`<video>` render etmeli ve `prefers-reduced-motion: reduce` altında videonun
+ya duraklatılması ya da statik fotoğrafa düşülmesi gerekir (brief'in "az ve
+kaliteli hareket" ilkesiyle tutarlı olarak).
 
 ## Yayın öncesi kontrol listesi
 
@@ -141,11 +229,17 @@ Bu adımların **tamamı** tamamlanmadan site canlıya alınmamalıdır:
 7. `CHECK_LAUNCH_READY=1 npm test` geçiyor (bkz. aşağıda — bu üç maddeyi otomatik
    denetler: örnek yorum, telefon/e-posta/Instagram yer tutucusu, `localhost` URL).
 8. `npm run build` uyarısız tamamlanıyor.
+9. **Mekan (`public/img/venue/`) fotoğrafları daha iyi kadraj ve ışıkla yeniden
+   çekilir/düzenlenir.** Mevcut 7 fotoğraf gerçek (Assos Karadut Taş Otel) ve
+   doğru, ama editorial sanat yönünün gerektirdiği kalitede değil — bu bilinçli
+   bir karardı (bkz. `docs/briefs/2026-08-04-editorial-redesign-brief.md` §6):
+   mekan bölümünde stok görsel kullanılmaz, çünkü ziyaretçi tam olarak bu
+   görsele bakarak rezervasyon yapıyor.
 
 ### Yayına hazırlık testi
 
 `src/content/content-readiness.test.ts` varsayılan olarak **atlanır** (`npm test`
-çalıştırıldığında `3 skipped` görürsünüz — bu normaldir, kırık bir test değildir). Yayın
+çalıştırıldığında `5 skipped` görürsünüz — bu normaldir, kırık bir test değildir). Yayın
 öncesi elle çalıştırın:
 
 ```bash

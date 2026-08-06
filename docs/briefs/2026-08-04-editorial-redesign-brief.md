@@ -238,15 +238,33 @@ kabuğu yeni sanat yönüne uyarlanır.
 
 ## 10. Kabul kriterleri
 
-- [ ] Aman tarzı sade editorial his; turkuaz/neon yok
-- [ ] §2 paleti ve Instrument Serif + Manrope kullanılıyor
-- [ ] Tam ekran hero + satır-satır masked reveal
-- [ ] Kamp paneli, yatay Daily Flow, editorial mekan + fullscreen galeri,
-      dergi tarzı eğitmenler, Coming soon, full-screen dark son CTA
-- [ ] `lenis` + `framer-motion` + hafif parallax + slow marquee + numaralı manifesto
-- [ ] Rezervasyon formu kaydediyor ve Resend ile onay e-postası gönderiyor
-- [ ] Responsive, `prefers-reduced-motion`, `data-testid`'ler
-- [ ] Görseller optimize
+Task 9'da (bkz. `.superpowers/sdd/2026-08-05-editorial-redesign/task-9-report.md`)
+gerçek Lighthouse taraması (14 sayfa × 2 dil = 28 ölçüm, hepsi accessibility 100),
+kod incelemesi ve gerçek headless-Chrome doğrulamasıyla işaretlendi:
+
+- [x] Aman tarzı sade editorial his; turkuaz/neon yok — `contrast-guard.test.ts`
+      turkuaz/neon/mor gradyan token'larının kaynak ağacına geri dönmediğini
+      makine ile denetler; §2 kontrast tablosu Task 1'de ölçülüp uygulandı.
+- [x] §2 paleti ve Instrument Serif + Manrope kullanılıyor — `globals.css`
+      `@theme inline` token'ları ve `--font-heading`/`--font-body`.
+- [x] Tam ekran hero + satır-satır masked reveal — `HeroHome` +
+      `MaskedLines` (`src/components/home/hero-home.tsx`).
+- [x] Kamp paneli, yatay Daily Flow, editorial mekan + fullscreen galeri,
+      dergi tarzı eğitmenler, Coming soon, full-screen dark son CTA — sırasıyla
+      `CampPanel`, `DailyFlow`, `VenuePreview`/`VenueLightbox`,
+      `TeachersPreview`/`TeacherCard`, `ComingSoon`, son CTA bölümü (Task 5-8).
+- [x] `lenis` + `framer-motion` (`motion` paketi) + hafif parallax + slow
+      marquee + numaralı manifesto — `SmoothScroll`, `Reveal`/`RevealGroup`,
+      `Parallax`, `Marquee`, `Manifesto` (`SECTIONS = ['01','02','03']`).
+- [x] Rezervasyon formu kaydediyor ve Resend ile onay e-postası gönderiyor —
+      görsel kabuk yeniden yapıldı, `/api/inquiry` ucu (§11 kararına göre)
+      hiç değiştirilmedi; bu katman Task 9'un DOKUNULMAYACAK listesindedir.
+- [x] Responsive, `prefers-reduced-motion`, `data-testid`'ler — reduced-motion
+      davranışı Task 9'da gerçek headless Chrome'da (`--force-prefers-reduced-motion`)
+      7 sayfada sıfır kalıcı-gizli öğe ve Lenis'in kurulmadığı doğrulanarak
+      kanıtlandı (yalnızca kod okumasıyla değil).
+- [x] Görseller optimize — hero'lar `priority` + webp/jpeg, diğerleri lazy
+      (varsayılan veya açık `loading="lazy"`); bkz. task-9-report.md §Performans.
 
 ---
 

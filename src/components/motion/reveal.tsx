@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Children, createElement, useMemo, type ReactNode } from 'react'
+import { Children, createElement, Fragment, useMemo, type ReactNode } from 'react'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
 
 const DURATION = 0.7
@@ -55,7 +55,9 @@ type RevealGroupProps = {
   /**
    * Her çocuğu saran öğe; varsayılan `div`. Liste düzenleri için `li` verin
    * (ör. Daily Flow zaman çizelgesi bir `<ul>` içinde anlamsal `<li>` öğeleri
-   * gerektirir — `div` `ul` içinde geçersiz işaretleme olur).
+   * gerektirir — `div` `ul` içinde geçersiz işaretleme olur). `itemAs="li"`
+   * verildiğinde ve `className` atlanırsa grup sarmalayıcısı hiç render
+   * edilmez (bkz. aşağıdaki not).
    */
   itemAs?: IntrinsicTag
   /**
@@ -89,14 +91,25 @@ export function RevealGroup({
   // hafızada tutulur (aksi hâlde her render'da yeni bir bileşen kimliği
   // React'in çocukları yeniden bağlamasına yol açardı).
   const MotionItem = useMemo(() => motion.create(itemAs), [itemAs])
+  // Gerçek bir sarmalayıcı gerekmediğinde (ör. `<ol>`/`<ul>` içinde `itemAs="li"`)
+  // `className` verilmez — bu durumda `Fragment` kullanılır ve `li` öğeleri
+  // DOM'da doğrudan ebeveyn listenin çocukları olur. Önceki tasarım burada
+  // `display: contents` uygulanmış bir `div` kullanıyordu; bu, görsel olarak
+  // kutu üretmese de bazı tarayıcı erişilebilirlik ağaçlarında hâlâ bir düğüm
+  // olarak kalıp `<li>`'nin ebeveyninin gerçek liste olmadığını gösteriyordu —
+  // gerçek bir Lighthouse taramasında `list`/`listitem` denetimi olarak
+  // yakalandı (bkz. task-9-report.md). `Fragment` bu düğümü hiç oluşturmaz,
+  // sorunu köküne kadar çözer.
+  const Wrapper = className === undefined ? Fragment : 'div'
+  const wrapperProps = className === undefined ? {} : { className }
 
   if (reduced) {
     return (
-      <div className={className}>
+      <Wrapper {...wrapperProps}>
         {Children.toArray(children).map((child, index) =>
           createElement(itemAs, { key: index, className: itemClassName }, child)
         )}
-      </div>
+      </Wrapper>
     )
   }
 
@@ -114,7 +127,7 @@ export function RevealGroup({
   // zaman çizelgesinde öğeler farklı anlarda görünüme girdiğinde (kaydırma ile) daha
   // doğru bir davranış sağlar.
   return (
-    <div className={className}>
+    <Wrapper {...wrapperProps}>
       {Children.toArray(children).map((child, index) => (
         <MotionItem
           className={itemClassName}
@@ -127,6 +140,6 @@ export function RevealGroup({
           {child}
         </MotionItem>
       ))}
-    </div>
+    </Wrapper>
   )
 }

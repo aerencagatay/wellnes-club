@@ -46,20 +46,19 @@ export function DailyFlow({
       {note && <p className="type-lede mt-5 max-w-2xl">{note}</p>}
 
       {/*
-        Masaüstü: yatay zaman çizgisi (brief §4.3). `RevealGroup`'un kendi
-        sarmalayıcısı her zaman bir `div`'dir (bkz. motion/reveal.tsx) — `ol > div > li`
-        HTML5'te geçersiz bir yerleşim olurdu. `contents` (display: contents) o
-        sarmalayıcıyı kutu ağacından (ve modern tarayıcılarda erişilebilirlik
-        ağacından) kaldırır, böylece `li` öğeleri gerçekten `ol`'un doğrudan
-        düzen/erişilebilirlik çocukları gibi davranır — RevealGroup'un kendisi
-        opacity/transform uygulamadığı (yalnızca `staggerChildren` zamanlamasını
-        organize ettiği) için `contents` bu koordinasyonu bozmaz.
+        Masaüstü: yatay zaman çizgisi (brief §4.3). `className` verilmediği için
+        `RevealGroup` burada hiçbir sarmalayıcı DOM düğümü render etmez (bkz.
+        motion/reveal.tsx) — `li` öğeleri gerçekten `ol`'un doğrudan çocuklarıdır.
+        (Önceki sürüm bir `display: contents` `div`'i kullanıyordu; gerçek bir
+        Lighthouse taramasında bunun bazı tarayıcı erişilebilirlik ağaçlarında
+        hâlâ bir düğüm olarak kaldığı ve axe'in `list`/`listitem` denetimini
+        kırdığı görüldü — bkz. task-9-report.md.)
         Taşma olursa `overflow-x-auto` ile kaydırılır; birincil deneyim mobilde
         dikey kalır (`md:hidden`), bu yüzden yatay kaydırma bir kenar durumu.
       */}
       <div className="mt-10 hidden overflow-x-auto md:block">
         <ol className="flex min-w-max list-none gap-12 border-t border-sand pt-7">
-          <RevealGroup className="contents" itemAs="li" itemClassName="relative w-52 shrink-0">
+          <RevealGroup itemAs="li" itemClassName="relative w-52 shrink-0">
             {items.map((item) => (
               <FlowItemContent
                 dotClassName="absolute -top-[33px] left-0 size-2.5 rounded-full bg-olive"
@@ -74,7 +73,7 @@ export function DailyFlow({
 
       {/* Mobil: dikey liste — yatay zaman çizgisi küçük ekranda okunmaz (brief §4.3). */}
       <ol className="mt-10 list-none border-l border-sand md:hidden">
-        <RevealGroup className="contents" itemAs="li" itemClassName="relative pb-8 pl-8 last:pb-0">
+        <RevealGroup itemAs="li" itemClassName="relative pb-8 pl-8 last:pb-0">
           {items.map((item) => (
             <FlowItemContent
               dotClassName="absolute top-1.5 -left-[5px] size-2.5 rounded-full bg-olive"
