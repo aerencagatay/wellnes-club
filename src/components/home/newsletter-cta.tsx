@@ -79,7 +79,7 @@ export function NewsletterCta() {
                 aria-describedby={fieldDescribedBy('newsletter-email', { error: emailError })}
                 aria-invalid={Boolean(emailError)}
                 autoComplete="email"
-                className="w-full rounded-none border-0 border-b border-sand bg-transparent px-1 py-3 text-sm text-text placeholder:text-muted focus-visible:border-olive focus-visible:outline-none sm:flex-1"
+                className="w-full rounded-none border-0 border-b border-sand bg-transparent px-1 py-3 text-sm text-text placeholder:text-muted focus-visible:border-olive sm:flex-1"
                 id="newsletter-email"
                 name="email"
                 placeholder={t('placeholder')}

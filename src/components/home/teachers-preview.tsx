@@ -10,9 +10,9 @@ import { RevealGroup } from '@/components/motion/reveal'
 
 // Dergi düzeni: kart yok, çerçeve yok. Büyük portre + isim + uzmanlık + iki
 // satır bio, sıradaki hocaya göre kaydırılmış (asimetrik) dikey ofset — bkz.
-// brief §4.5. `TeacherCard` (components/teachers/teacher-card.tsx) burada
-// KULLANILMIYOR — o, /hocalar ve kamp detay sayfasının kendi kart görünümü,
-// bu görev kapsamında değişmiyor.
+// brief §4.5. `TeacherCard` (components/teachers/teacher-card.tsx) aynı
+// görsel dile ayrıca uyarlanmıştır ve `/hocalar` ile kamp detay sayfasında
+// kullanılır.
 export function TeachersPreview({ locale }: { locale: AppLocale }) {
   const t = useTranslations('home.teachers')
   const teachers = getAllTeachers().slice(0, 3)
