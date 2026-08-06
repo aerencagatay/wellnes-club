@@ -3,11 +3,12 @@ import type { Teacher } from './types'
 /**
  * YER TUTUCU VERİ — yayına almadan önce gerçek hoca bilgileriyle değiştirin.
  *
- * Fotoğraflar hakkında: bu üç hoca tamamen kurgusaldır ve public/img/teachers/
- * altındaki .svg dosyaları otelin sitesindeki gerçek kişilerin (ör. chairperson.JPG)
- * fotoğrafları DEĞİLDİR — kendi oluşturduğumuz, krem zemin üzerine baş harfleri
- * gösteren basit yer tutucu görsellerdir. Yayına almadan önce gerçek hoca
- * fotoğraflarıyla değiştirilmelidir.
+ * Fotoğraflar hakkında: bu üç hoca tamamen kurgusaldır. `elif-demir`'in fotoğrafı
+ * kullanıcı isteğiyle (2026-08-06) stok bir fotoğrafla ("yoga hocası foto.jpeg")
+ * dolduruldu — kullanıcı bunun stok olduğunu biliyor, gerçek hoca bulununca
+ * değiştirilecek. Diğer ikisi (`can-yilmaz`, `zeynep-arslan`) hâlâ
+ * public/img/teachers/ altındaki .svg yer tutucularını kullanıyor — otelin
+ * sitesindeki gerçek kişilerin fotoğrafları DEĞİLDİR.
  */
 export const teachers: Teacher[] = [
   {
@@ -23,7 +24,7 @@ export const teachers: Teacher[] = [
       tr: ['Yoga Alliance RYT-500', 'Nefes Terapisi Sertifikası'],
       en: ['Yoga Alliance RYT-500', 'Breathwork Therapy Certificate'],
     },
-    photo: '/img/teachers/elif-demir.svg',
+    photo: '/img/yoga hocası foto.jpeg',
     instagram: 'https://instagram.com/',
   },
   {

@@ -9,8 +9,7 @@ import { Manifesto } from '@/components/home/manifesto'
 import { IncludesList } from '@/components/home/includes-list'
 import { BenefitsSection } from '@/components/home/benefits-section'
 import { TeachersPreview } from '@/components/home/teachers-preview'
-import { VenuePreview } from '@/components/home/venue-preview'
-import { ComingSoon } from '@/components/home/coming-soon'
+import { FoodMoment } from '@/components/home/food-moment'
 import { Testimonials } from '@/components/home/testimonials'
 import { NewsletterCta } from '@/components/home/newsletter-cta'
 import { Button } from '@/components/ui/button'
@@ -59,8 +58,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: A
       <IncludesList />
       <BenefitsSection />
       <TeachersPreview locale={locale} />
-      <VenuePreview locale={locale} />
-      <ComingSoon locale={locale} />
+      {/* VenuePreview ve ComingSoon kaldırıldı (kullanıcı isteği, 2026-08-06):
+          ana sayfada otel/mekan fotoğrafı istenmiyor (yalnızca /mekan ve kamp
+          detay sayfasında) ve şu an gerçek/yaklaşan tek etkinlik var — kurgusal
+          "çok yakında" listesi bu tekliğe aykırı. Bileşen dosyaları silinmedi,
+          gerçek çoklu-etkinlik/mekan verisi geldiğinde yeniden bağlanabilir. */}
+      <FoodMoment />
       <Testimonials locale={locale} />
       <NewsletterCta />
 

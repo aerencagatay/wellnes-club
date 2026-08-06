@@ -1,31 +1,36 @@
 import type { CampSession } from './types'
 
-/** YER TUTUCU VERİ — gerçek tarih, fiyat ve kontenjanla değiştirin. */
+/**
+ * GERÇEK VERİ (kullanıcı onayı, 2026-08-06): tarih 11-13 Eylül 2026, fiyat
+ * 10.500 TL, kontenjan 16 kişi — poster.png'deki "Rüzgar ve Deniz Yoga
+ * Retreat" ile eşleşir. Diğer iki placeholder kamp kullanıcı isteğiyle
+ * kaldırıldı: şu an tek gerçek/yaklaşan etkinlik bu.
+ */
 export const camps: CampSession[] = [
   {
-    slug: 'yoga-nefes-ekim-2026',
+    slug: 'ruzgar-ve-deniz-eylul-2026',
     program: 'yoga',
-    title: { tr: '5 Günlük Yoga ve Nefes Kampı', en: '5-Day Yoga & Breathwork Retreat' },
+    title: { tr: 'Rüzgar ve Deniz Yoga Retreat', en: 'Wind & Sea Yoga Retreat' },
     summary: {
-      tr: 'Sabah vinyasa, akşam yin. Beş gün boyunca telefonlardan uzakta, zeytinliklerin arasında nefesine dönüyorsun.',
-      en: 'Vinyasa in the morning, yin in the evening. Five days away from screens, returning to your breath among olive groves.',
+      tr: 'Sabah vinyasa, akşam yin. Üç gün boyunca telefonlardan uzakta, zeytinliklerin arasında nefesine dönüyorsun.',
+      en: 'Vinyasa in the morning, yin in the evening. Three days away from screens, returning to your breath among olive groves.',
     },
-    startDate: '2026-10-12',
-    endDate: '2026-10-16',
-    nights: 4,
+    startDate: '2026-09-11',
+    endDate: '2026-09-13',
+    nights: 2,
     venueSlug: 'karadut-tas-otel',
     teacherSlugs: ['elif-demir', 'zeynep-arslan'],
     capacity: 16,
-    spotsLeft: 9,
-    priceFrom: 24500,
+    spotsLeft: 16,
+    priceFrom: 10500,
     currency: 'TRY',
     level: 'tum-seviyeler',
     status: 'open',
     heroImage: '/img/venue/hero.webp',
-    gallery: ['/img/venue/dis-cephe.webp', '/img/venue/balkon.webp', '/img/venue/hotel.webp'],
+    gallery: ['/img/poster.png', '/img/venue/dis-cephe.webp', '/img/venue/balkon.webp', '/img/venue/hotel.webp'],
     includes: {
       tr: [
-        '4 gece konaklama (paylaşımlı oda)',
+        '2 gece konaklama (paylaşımlı oda)',
         'Günde iki yoga seansı',
         'Üç öğün vejetaryen beslenme',
         'Nefes ve meditasyon atölyeleri',
@@ -33,7 +38,7 @@ export const camps: CampSession[] = [
         'Yoga matı ve ekipman',
       ],
       en: [
-        '4 nights accommodation (shared room)',
+        '2 nights accommodation (shared room)',
         'Two yoga sessions daily',
         'Three vegetarian meals a day',
         'Breathwork and meditation workshops',
@@ -86,162 +91,5 @@ export const camps: CampSession[] = [
       },
     ],
     featured: true,
-  },
-  {
-    slug: 'pilates-mobilite-kasim-2026',
-    program: 'pilates',
-    title: { tr: '4 Günlük Pilates ve Mobilite Kampı', en: '4-Day Pilates & Mobility Retreat' },
-    summary: {
-      tr: 'Masa başında sertleşmiş bir bedeni açmak için tasarlandı. Günde iki mat seansı, mobilite atölyeleri ve bol dinlenme.',
-      en: 'Designed to open a body stiffened by desk work. Two mat sessions a day, mobility workshops and plenty of rest.',
-    },
-    startDate: '2026-11-05',
-    endDate: '2026-11-08',
-    nights: 3,
-    venueSlug: 'karadut-tas-otel',
-    teacherSlugs: ['can-yilmaz'],
-    capacity: 12,
-    spotsLeft: 3,
-    priceFrom: 19800,
-    currency: 'TRY',
-    level: 'baslangic',
-    status: 'open',
-    heroImage: '/img/camps/pilates-kasim-hero.webp',
-    gallery: ['/img/venue/hero.webp', '/img/venue/balkon.webp'],
-    includes: {
-      tr: [
-        '3 gece konaklama (paylaşımlı oda)',
-        'Günde iki mat pilates seansı',
-        'Üç öğün beslenme',
-        'Mobilite atölyesi',
-        'Duruş değerlendirmesi',
-        'Ekipman',
-      ],
-      en: [
-        '3 nights accommodation (shared room)',
-        'Two mat pilates sessions daily',
-        'Three meals a day',
-        'Mobility workshop',
-        'Posture assessment',
-        'Equipment provided',
-      ],
-    },
-    excludes: {
-      tr: ['Ulaşım', 'Alkollü içecekler', 'Kişisel terapiler', 'Seyahat sigortası'],
-      en: ['Transport', 'Alcoholic drinks', 'Personal therapies', 'Travel insurance'],
-    },
-    dailyFlow: [
-      {
-        time: '08:00',
-        title: { tr: 'Uyanış hareketi', en: 'Wake-up movement' },
-        desc: { tr: 'Yirmi dakikalık eklem hazırlığı.', en: 'Twenty minutes of joint preparation.' },
-      },
-      {
-        time: '08:30',
-        title: { tr: 'Kahvaltı', en: 'Breakfast' },
-        desc: { tr: 'Protein ağırlıklı köy kahvaltısı.', en: 'A protein-forward village breakfast.' },
-      },
-      {
-        time: '10:00',
-        title: { tr: 'Mat pilates', en: 'Mat pilates' },
-        desc: { tr: 'Merkez kuvveti ve kontrol üzerine altmış dakika.', en: 'Sixty minutes on core strength and control.' },
-      },
-      {
-        time: '12:30',
-        title: { tr: 'Öğle', en: 'Lunch' },
-        desc: { tr: 'Hafif, mevsimlik menü.', en: 'A light, seasonal menu.' },
-      },
-      {
-        time: '15:00',
-        title: { tr: 'Mobilite atölyesi', en: 'Mobility workshop' },
-        desc: { tr: 'Kalça ve omuz kısıtlarına yönelik çalışma.', en: 'Work targeting hip and shoulder restrictions.' },
-      },
-      {
-        time: '18:00',
-        title: { tr: 'Onarıcı seans', en: 'Restorative session' },
-        desc: { tr: 'Yavaş tempolu kapanış, gevşeme.', en: 'A slow-paced closing and release.' },
-      },
-      {
-        time: '19:30',
-        title: { tr: 'Akşam yemeği', en: 'Dinner' },
-        desc: { tr: 'Ortak masa, sohbet.', en: 'A shared table and conversation.' },
-      },
-    ],
-    featured: true,
-  },
-  {
-    slug: 'yoga-pilates-nisan-2026',
-    program: 'yoga-pilates',
-    title: { tr: 'Bahar Yoga ve Pilates Kampı', en: 'Spring Yoga & Pilates Retreat' },
-    summary: {
-      tr: 'Sabah pilates, akşam yoga. Baharın ilk sıcak günlerinde Assos.',
-      en: 'Pilates in the morning, yoga in the evening. Assos in the first warm days of spring.',
-    },
-    startDate: '2026-04-18',
-    endDate: '2026-04-21',
-    nights: 3,
-    venueSlug: 'karadut-tas-otel',
-    teacherSlugs: ['elif-demir', 'can-yilmaz'],
-    capacity: 14,
-    spotsLeft: 0,
-    priceFrom: 18500,
-    currency: 'TRY',
-    level: 'tum-seviyeler',
-    status: 'waitlist',
-    heroImage: '/img/venue/dis-cephe.webp',
-    gallery: ['/img/venue/hotel.webp'],
-    includes: {
-      tr: [
-        '3 gece konaklama (paylaşımlı oda)',
-        'Sabah pilates, akşam yoga',
-        'Üç öğün beslenme',
-        'Assos antik kent gezisi',
-        'Ekipman',
-      ],
-      en: [
-        '3 nights accommodation (shared room)',
-        'Morning pilates, evening yoga',
-        'Three meals a day',
-        'Visit to ancient Assos',
-        'Equipment provided',
-      ],
-    },
-    excludes: {
-      tr: ['Ulaşım', 'Alkollü içecekler', 'Müze giriş ücretleri', 'Seyahat sigortası'],
-      en: ['Transport', 'Alcoholic drinks', 'Museum entrance fees', 'Travel insurance'],
-    },
-    dailyFlow: [
-      {
-        time: '07:30',
-        title: { tr: 'Sabah pilates', en: 'Morning pilates' },
-        desc: { tr: 'Merkez ve duruş çalışması.', en: 'Core and posture work.' },
-      },
-      {
-        time: '09:00',
-        title: { tr: 'Kahvaltı', en: 'Breakfast' },
-        desc: { tr: 'Bahçede uzun kahvaltı.', en: 'A long breakfast in the garden.' },
-      },
-      {
-        time: '11:00',
-        title: { tr: 'Assos gezisi', en: 'Assos excursion' },
-        desc: { tr: 'Antik kent ve Athena Tapınağı.', en: 'The ancient city and Temple of Athena.' },
-      },
-      {
-        time: '14:00',
-        title: { tr: 'Öğle ve dinlenme', en: 'Lunch and rest' },
-        desc: { tr: 'Serbest zaman.', en: 'Free time.' },
-      },
-      {
-        time: '17:30',
-        title: { tr: 'Akşam yoga', en: 'Evening yoga' },
-        desc: { tr: 'Gün batımında hatha akışı.', en: 'A hatha flow at sunset.' },
-      },
-      {
-        time: '19:30',
-        title: { tr: 'Akşam yemeği', en: 'Dinner' },
-        desc: { tr: 'Terasta ortak masa.', en: 'A shared table on the terrace.' },
-      },
-    ],
-    featured: false,
   },
 ]
