@@ -1,16 +1,22 @@
 import Image from 'next/image'
-import { Award, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import type { Teacher } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
+import { Eyebrow } from '@/components/ui/eyebrow'
 import { DisciplineChips } from './discipline-chips'
 
+// Dergi profili: sabit 360px portre + kaydırılmış (asimetrik) metin kolonu —
+// `teacher-card.tsx`/`teachers-preview.tsx`'teki aynı görsel dilin tekil-profil
+// hâli. Sertifikalar ikon rozeti değil "ince çizgili liste"dir (brief'in Task 8
+// dilinde istediği tam biçim): `divide-y` ile ayrılmış düz satırlar, madde
+// işareti veya ikon yok.
 export function TeacherBio({ teacher, locale }: { teacher: Teacher; locale: AppLocale }) {
   const tTeachers = useTranslations('teachers')
 
   return (
     <div className="grid gap-10 md:grid-cols-[360px_1fr] md:gap-16">
-      <div className="relative aspect-3/4 overflow-hidden rounded-md">
+      <div className="relative aspect-3/4 overflow-hidden">
         {/* Yer tutucu hoca fotoğrafları SVG'dir; unoptimized ile doğrudan
             sunulur (bkz. teachers-preview.tsx). */}
         <Image
@@ -23,9 +29,9 @@ export function TeacherBio({ teacher, locale }: { teacher: Teacher; locale: AppL
           unoptimized
         />
       </div>
-      <div>
-        <h1 className="font-heading text-3xl text-text md:text-4xl">{teacher.name}</h1>
-        <p className="mt-2 text-muted">{teacher.title[locale]}</p>
+      <div className="md:mt-10">
+        <h1 className="type-title">{teacher.name}</h1>
+        <Eyebrow className="mt-3">{teacher.title[locale]}</Eyebrow>
         <DisciplineChips className="mt-4" disciplines={teacher.disciplines} />
         <p className="type-lede mt-6">{teacher.bio[locale]}</p>
 
@@ -33,13 +39,12 @@ export function TeacherBio({ teacher, locale }: { teacher: Teacher; locale: AppL
             ağırlığında yayınlanıyor (bkz. lib/fonts.ts), bu küçük etiket ise
             font-semibold gerektiriyor — tarayıcı taklit-bold üretmesin diye
             gövde fontuna geçilir; sayfa hiyerarşisi için hâlâ bir h2'dir. */}
-        <h2 className="mt-8 font-body text-sm font-semibold tracking-[0.12em] text-muted uppercase">
+        <h2 className="mt-10 font-body text-sm font-semibold tracking-[0.12em] text-muted uppercase">
           {tTeachers('certifications')}
         </h2>
-        <ul className="mt-3 flex flex-col gap-2">
+        <ul className="mt-3 flex flex-col divide-y divide-text/10 border-t border-text/10">
           {teacher.certifications[locale].map((certification) => (
-            <li className="flex items-center gap-2 text-sm" key={certification}>
-              <Award aria-hidden className="size-4 shrink-0 text-olive" />
+            <li className="py-2.5 text-sm text-text" key={certification}>
               {certification}
             </li>
           ))}

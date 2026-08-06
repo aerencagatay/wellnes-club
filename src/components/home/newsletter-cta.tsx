@@ -66,7 +66,7 @@ export function NewsletterCta() {
         <p className="type-lede mt-4 text-muted">{t('lede')}</p>
 
         {subscribed ? (
-          <p className="mt-8 rounded-sm bg-background p-6 text-sm font-semibold text-text" role="status">
+          <p className="mt-8 border border-text/15 bg-background p-6 text-sm font-semibold text-text" role="status">
             {t('success')}
           </p>
         ) : (
@@ -79,7 +79,7 @@ export function NewsletterCta() {
                 aria-describedby={fieldDescribedBy('newsletter-email', { error: emailError })}
                 aria-invalid={Boolean(emailError)}
                 autoComplete="email"
-                className="w-full rounded-none border-0 border-b border-sand bg-transparent px-1 py-3 text-sm text-text placeholder:text-muted focus-visible:border-olive sm:flex-1"
+                className="w-full rounded-none border-0 border-b border-text/25 bg-transparent px-1 py-3 text-sm text-text placeholder:text-muted focus-visible:border-olive sm:flex-1"
                 id="newsletter-email"
                 name="email"
                 placeholder={t('placeholder')}

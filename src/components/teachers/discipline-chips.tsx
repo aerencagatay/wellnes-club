@@ -10,7 +10,7 @@ export function DisciplineChips({ disciplines, className = '' }: { disciplines: 
     <ul className={`flex flex-wrap gap-2 ${className}`.trim()}>
       {disciplines.map((discipline) => (
         <li
-          className="rounded-full bg-surface px-3 py-1 text-[11px] tracking-widest text-muted uppercase"
+          className="rounded-none border border-text/20 px-3 py-1 text-[11px] tracking-widest text-muted uppercase"
           key={discipline}
         >
           {t(`program.${discipline}`)}

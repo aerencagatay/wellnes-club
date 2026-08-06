@@ -72,7 +72,7 @@ export default async function InquiryPage({
                   <CampCard camp={selectedCamp} headingLevel="h2" locale={locale} />
                 </div>
               </div>
-              <div className="rounded-md bg-surface p-6">
+              <div className="border border-text/15 bg-surface p-6">
                 <h2 className="font-heading text-lg text-text">{t('whyTitle')}</h2>
                 {/* text-muted: bu kutu bg-surface zemininde, düz text-muted orada
                     WCAG AA eşiğinin altında kalır (bkz. globals.css'teki -deep token

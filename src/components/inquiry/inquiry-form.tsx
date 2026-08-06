@@ -196,7 +196,7 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
       <ConsentCheckbox error={consentError} />
 
       {formError && (
-        <p className="rounded-sm bg-sand/40 p-4 text-sm font-medium text-text" role="alert">
+        <p className="border border-text/20 bg-sand/40 p-4 text-sm font-medium text-text" role="alert">
           {formError}
         </p>
       )}

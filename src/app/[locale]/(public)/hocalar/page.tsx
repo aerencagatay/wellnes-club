@@ -30,7 +30,12 @@ export default async function TeachersPage({
       <PageHero eyebrow={t('eyebrow')} lede={t('lede')} title={t('title')} />
 
       <Section size="sm">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {/* `sm:grid-cols-2`: `TeacherCard`'ın kaydırılmış (asimetrik) çift-sıra
+            ofseti `sm:` kesme noktasından itibaren devreye girer (bkz.
+            teacher-card.tsx). Izgara sütun sayısı da aynı kesme noktasında
+            değişmezse tek sütunlu mobil görünümde gereksiz bir dikey boşluk
+            oluşur — bu yüzden burada `md:` değil `sm:` kullanılır. */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {teachers.map((teacher) => (
             // Bu grid, sayfanın h1'inden (PageHero) sonra ara bir h2 bölüm başlığı
             // olmadan geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar.

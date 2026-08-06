@@ -43,7 +43,7 @@ export default async function BlogPage({
             {posts.map((post) => (
               <li key={post.slug}>
                 <Link className="group block" href={`/blog/${post.slug}`}>
-                  <div className="relative aspect-3/2 overflow-hidden rounded-md">
+                  <div className="relative aspect-3/2 overflow-hidden">
                     <Image
                       alt={post.title[locale]}
                       className="object-cover transition-transform duration-700 group-hover:scale-105"

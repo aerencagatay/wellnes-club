@@ -37,7 +37,7 @@ export default async function InquiryReceivedPage({
         {ref && (
           // text-muted: bu kutu bg-surface zemininde, düz gövde metni orada WCAG AA
           // eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu).
-          <p className="mt-8 inline-block rounded-sm bg-surface px-6 py-4 text-sm text-muted">
+          <p className="mt-8 inline-block bg-surface px-6 py-4 text-sm text-muted">
             {t('reference')} <strong className="font-mono tracking-wider text-text">{ref}</strong>
           </p>
         )}

@@ -33,8 +33,12 @@ export function Field({
   )
 }
 
+// İnce alt çizgili input: dolgu/çerçeve yerine tek bir zemin çizgisi (bkz.
+// Task 8 brief §3). Odak durumunda hem çizgi zeytine döner hem de klavye
+// kullanıcıları için görünür bir outline korunur — yalnızca renk değişimine
+// güvenmek erişilebilirlik açısından yetersiz olurdu.
 export const inputClass =
-  'w-full rounded-sm border border-sand bg-background px-4 py-3 text-text placeholder:text-muted focus:border-olive focus:outline-2 focus:outline-offset-1 focus:outline-olive'
+  'w-full rounded-none border-0 border-b border-text/25 bg-transparent px-1 py-3 text-text placeholder:text-muted focus:border-olive focus:outline-2 focus:outline-offset-1 focus:outline-olive'
 
 /**
  * `Field` yukarıda hata/hint paragraflarının kimliğini `${htmlFor}-error` /

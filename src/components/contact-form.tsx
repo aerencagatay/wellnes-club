@@ -65,12 +65,12 @@ export function ContactForm() {
 
   if (referenceId) {
     return (
-      <div className="rounded-md bg-surface p-8" role="status">
+      <div className="border border-text/15 bg-surface p-8" role="status">
         <h2 className="font-heading text-2xl text-text">{t('successTitle')}</h2>
         {/* text-muted: bu kutu bg-surface zemininde, düz gövde metni orada WCAG AA
             eşiğinin altında kalır (bkz. globals.css'teki --color-muted token yorumu). */}
         <p className="mt-3 text-sm text-muted">{t('successBody')}</p>
-        <p className="mt-6 inline-block rounded-sm bg-background px-6 py-4 text-sm">
+        <p className="mt-6 inline-block bg-background px-6 py-4 text-sm">
           {t('successReference')} <strong className="font-mono tracking-wider text-text">{referenceId}</strong>
         </p>
       </div>
@@ -120,7 +120,7 @@ export function ContactForm() {
       <ConsentCheckbox error={consentError} />
 
       {formError && (
-        <p className="rounded-sm bg-sand/40 p-4 text-sm font-medium text-text" role="alert">
+        <p className="border border-text/20 bg-sand/40 p-4 text-sm font-medium text-text" role="alert">
           {formError}
         </p>
       )}
