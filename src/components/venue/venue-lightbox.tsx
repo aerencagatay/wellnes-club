@@ -120,7 +120,7 @@ export function VenueLightbox({
     >
       <button
         aria-label={closeLabel}
-        className="absolute top-5 right-5 z-10 rounded-full p-2 text-background hover:bg-background/10 md:top-8 md:right-8"
+        className="absolute top-5 right-5 z-10 p-2 text-background hover:bg-background/10 md:top-8 md:right-8"
         data-testid="venue-lightbox-close"
         onClick={onClose}
         ref={closeButtonRef}
@@ -133,7 +133,7 @@ export function VenueLightbox({
         <>
           <button
             aria-label={prevLabel}
-            className="absolute left-2 z-10 rounded-full p-2 text-background hover:bg-background/10 md:left-6"
+            className="absolute left-2 z-10 p-2 text-background hover:bg-background/10 md:left-6"
             data-testid="venue-lightbox-prev"
             onClick={() => onNavigate((index - 1 + images.length) % images.length)}
             type="button"
@@ -142,7 +142,7 @@ export function VenueLightbox({
           </button>
           <button
             aria-label={nextLabel}
-            className="absolute right-2 z-10 rounded-full p-2 text-background hover:bg-background/10 md:right-6"
+            className="absolute right-2 z-10 p-2 text-background hover:bg-background/10 md:right-6"
             data-testid="venue-lightbox-next"
             onClick={() => onNavigate((index + 1) % images.length)}
             type="button"
