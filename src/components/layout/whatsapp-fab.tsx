@@ -3,9 +3,9 @@ import { getTranslations } from 'next-intl/server'
 import { buildWhatsAppUrl } from '@/lib/config/whatsapp'
 
 export async function WhatsAppFab() {
-  const url = buildWhatsAppUrl()
-  if (!url) return null // numara tanımsız → buton hiç render edilmez
   const t = await getTranslations('common')
+  const url = buildWhatsAppUrl(t('whatsappMessage'))
+  if (!url) return null // numara tanımsız → buton hiç render edilmez
   return (
     <a
       aria-label={t('whatsapp')}

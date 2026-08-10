@@ -1,16 +1,20 @@
+import { Leaf, Moon, Utensils } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
-import { BenefitBlock } from './benefit-block'
+import { Reveal } from '@/components/motion/reveal'
 
-// Görseller mekan setinden (src/content/venues.ts galerisi) yeniden kullanılır;
-// yeni bir görsel yolu icat edilmez.
-const IMAGES = {
-  deepenPractice: '/img/venue/balkon.webp',
-  nourishBody: '/img/venue/bahce.webp',
-  resetMind: '/img/venue/havuz.webp',
-} as const
+const ITEMS = [
+  { key: 'deepenPractice', Icon: Leaf },
+  { key: 'nourishBody', Icon: Utensils },
+  { key: 'resetMind', Icon: Moon },
+] as const
 
+/**
+ * Otel/mekan fotoğrafı yerine sade ikon + metin blokları (kullanıcı isteği,
+ * 2026-08-10): ana sayfa artık mekan görseli taşımıyor, gerçek otel fotoğrafları
+ * yalnızca kamp içeriğine (/kamplar, /mekan) tıklandığında görünüyor.
+ */
 export function BenefitsSection() {
   const t = useTranslations('home.benefits')
 
@@ -20,26 +24,15 @@ export function BenefitsSection() {
         <Eyebrow>{t('sectionEyebrow')}</Eyebrow>
         <h2 className="type-title">{t('sectionTitle')}</h2>
       </div>
-      <div className="flex flex-col gap-24 md:gap-32">
-        <BenefitBlock
-          body={t('deepenPractice.body')}
-          eyebrow={t('deepenPractice.eyebrow')}
-          image={{ src: IMAGES.deepenPractice, alt: t('deepenPractice.imageAlt') }}
-          title={t('deepenPractice.title')}
-        />
-        <BenefitBlock
-          body={t('nourishBody.body')}
-          eyebrow={t('nourishBody.eyebrow')}
-          image={{ src: IMAGES.nourishBody, alt: t('nourishBody.imageAlt') }}
-          reversed
-          title={t('nourishBody.title')}
-        />
-        <BenefitBlock
-          body={t('resetMind.body')}
-          eyebrow={t('resetMind.eyebrow')}
-          image={{ src: IMAGES.resetMind, alt: t('resetMind.imageAlt') }}
-          title={t('resetMind.title')}
-        />
+      <div className="grid gap-16 md:grid-cols-3 md:gap-12">
+        {ITEMS.map(({ key, Icon }) => (
+          <Reveal key={key}>
+            <Icon aria-hidden className="size-8 text-olive" strokeWidth={1.5} />
+            <Eyebrow className="mt-6">{t(`${key}.eyebrow`)}</Eyebrow>
+            <h3 className="type-title mt-2">{t(`${key}.title`)}</h3>
+            <p className="type-lede mt-4">{t(`${key}.body`)}</p>
+          </Reveal>
+        ))}
       </div>
     </Section>
   )

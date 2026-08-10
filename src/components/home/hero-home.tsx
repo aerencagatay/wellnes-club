@@ -12,12 +12,10 @@ import { Button } from '@/components/ui/button'
 // stillerimizi doğrudan kurmak paylaşılan sınıfları her yerde override etmekten
 // daha basittir.
 //
-// Video yok: `site` yapılandırmasında (`src/lib/config/site.ts`) henüz bir `heroVideo`
-// alanı tanımlı değil ve gerçek bir video dosyası da yok — brief bu durumda video
-// uydurmayı değil, fallback fotoğrafı ister (task-5 brief §Step 1). Fotoğraf istemcinin
-// gerçek çekimi: kıyı şeridindeki havuzdan Assos köyü/tepeleri manzarasına bakış —
-// yer/tarih iddiası taşımayan, salt atmosfer görseli (bkz. task-5-report.md).
-const HERO_IMAGE = '/img/açılış sayfası main photo.jpeg'
+// Otel/mekan fotoğrafı yerine kamp posteri (kullanıcı isteği, 2026-08-10): ana
+// sayfa artık mekan görseli taşımıyor, yalnızca kamp içeriğine tıklandığında
+// (/kamplar, /mekan) gerçek otel fotoğrafları görünüyor.
+const HERO_IMAGE = '/img/poster.png'
 
 export function HeroHome() {
   const t = useTranslations('home.hero')

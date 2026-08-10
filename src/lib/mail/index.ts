@@ -20,7 +20,7 @@ function resolveFromAddress(): string {
       error,
     })
   }
-  return `Serenity Retreats <bilgi@${hostname}>`
+  return `${site.name} <bilgi@${hostname}>`
 }
 
 /**

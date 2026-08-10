@@ -2,6 +2,7 @@
 
 import { Menu, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
 import { NAV_ITEMS, site } from '@/lib/config/site'
@@ -99,13 +100,8 @@ export function Navbar() {
       }`}
     >
       <div className="container-page flex h-18 items-center justify-between gap-8">
-        <Link
-          className={`font-heading text-xl tracking-tight transition-colors duration-300 ${
-            transparent ? 'text-background' : 'text-text'
-          }`}
-          href="/"
-        >
-          {site.name}
+        <Link className="shrink-0" href="/">
+          <Image alt={site.name} className="h-11 w-11 object-contain" height={96} priority src="/img/EDEN WELLNES CLUB logo.png" width={96} />
         </Link>
 
         <nav aria-label={t('primary')} className="hidden items-center gap-7 lg:flex">
@@ -152,8 +148,8 @@ export function Navbar() {
           role="dialog"
         >
           <div className="container-page flex h-18 items-center justify-between">
-            <span className="font-heading text-xl text-text" id={MOBILE_PANEL_TITLE_ID}>
-              {site.name}
+            <span id={MOBILE_PANEL_TITLE_ID}>
+              <Image alt={site.name} className="h-11 w-11 object-contain" height={96} src="/img/EDEN WELLNES CLUB logo.png" width={96} />
             </span>
             <button aria-label={t('closeMenu')} onClick={() => setOpen(false)} ref={closeButtonRef} type="button">
               <X className="size-6 text-text" />

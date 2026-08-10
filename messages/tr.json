@@ -1,6 +1,6 @@
 {
   "meta": {
-    "defaultTitle": "Serenity Retreats — Assos'ta Yoga ve Pilates Kampları",
+    "defaultTitle": "EDEN Wellness Club — Assos'ta Yoga ve Pilates Kampları",
     "defaultDescription": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları. Yaklaşan kamp tarihlerini keşfedin ve yerinizi ayırtın.",
     "kamplar": {
       "title": "Kamplar",
@@ -20,7 +20,7 @@
     },
     "hakkimizda": {
       "title": "Hakkımızda",
-      "description": "Serenity Retreats'in hikayesini ve Assos'ta kamp düzenleme yaklaşımımızı öğrenin."
+      "description": "EDEN Wellness Club'ın hikayesini ve Assos'ta kamp düzenleme yaklaşımımızı öğrenin."
     },
     "sss": {
       "title": "Sıkça Sorulan Sorular",
@@ -55,7 +55,7 @@
       "subtitle": "Assos'ta üç gün.",
       "tags": "Yoga · Pilates · Doğa · Dinlenme",
       "cta": "Retreat'i keşfet",
-      "imageAlt": "Assos kıyısında bir havuzdan köy ve tepelere bakan manzara."
+      "imageAlt": "EDEN Wellness Club kamp posteri"
     },
     "campPanel": {
       "guests": "{count} kişi",
@@ -110,22 +110,19 @@
       "deepenPractice": {
         "eyebrow": "PRATİK",
         "title": "Pratiğini Derinleştir",
-        "body": "Sabah ve akşam seansları, on altı kişiyi geçmeyen gruplarla yürütülür. Hocalarımız her bedenin farklı bir noktadan başladığını bilir; program başlangıç seviyesinden ileri seviyeye kadar herkese açıktır.",
-        "imageAlt": "Taş otelin balkonundan zeytinliklere bakan manzara"
+        "body": "Sabah ve akşam seansları, on altı kişiyi geçmeyen gruplarla yürütülür. Hocalarımız her bedenin farklı bir noktadan başladığını bilir; program başlangıç seviyesinden ileri seviyeye kadar herkese açıktır."
       },
       "nourishBody": {
         "eyebrow": "BESLENME",
         "title": "Bedenini Besle",
-        "body": "Mutfağımız mevsime göre şekillenir: zeytinyağı, ev peyniri, bahçeden sebze. Üç öğün de ortak masada, aceleye getirilmeden yenir.",
-        "imageAlt": "Otelin zeytin ağaçlarıyla çevrili bahçesi"
+        "body": "Mutfağımız mevsime göre şekillenir: zeytinyağı, ev peyniri, bahçeden sebze. Üç öğün de ortak masada, aceleye getirilmeden yenir."
       },
       "resetMind": {
         "eyebrow": "DİNLENME",
         "title": "Zihnini Sıfırla",
-        "body": "Telefonlar bir kenara bırakılır. Nefes çalışmaları, uzun sessizlikler ve havuz kenarında geçen boş saatler zihne asıl dinlenmeyi verir.",
-        "imageAlt": "Otelin havuzu ve dinlenme alanı"
+        "body": "Telefonlar bir kenara bırakılır. Nefes çalışmaları, uzun sessizlikler ve havuz kenarında geçen boş saatler zihne asıl dinlenmeyi verir."
       },
-      "sectionEyebrow": "NEDEN SERENITY",
+      "sectionEyebrow": "NEDEN EDEN",
       "sectionTitle": "Üç Gün, Üç Kazanım"
     },
     "teachers": {
@@ -271,9 +268,9 @@
   },
   "about": {
     "eyebrow": "HAKKIMIZDA",
-    "title": "Serenity Retreats",
+    "title": "EDEN Wellness Club",
     "lede": "Kalabalık bir ajans değil, aynı taş otelde, aynı küçük ekiple çalışan bir kamp organizasyonuyuz.",
-    "storyBody1": "Serenity Retreats, İstanbul'da yoga ve pilates dersleri veren küçük bir eğitmen ekibinin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. Assos'taki Karadut Taş Otel'i ilk ziyaretimizde aradığımız sessizliği ve taş mimariyi burada bulduk; kamplarımızı o günden beri aynı otelde düzenliyoruz.",
+    "storyBody1": "EDEN Wellness Club, İstanbul'da yoga ve pilates dersleri veren küçük bir eğitmen ekibinin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. Assos'taki Karadut Taş Otel'i ilk ziyaretimizde aradığımız sessizliği ve taş mimariyi burada bulduk; kamplarımızı o günden beri aynı otelde düzenliyoruz.",
     "storyBody2": "Otelin sahibi değiliz — orada misafiriz, tıpkı katılımcılarımız gibi. İşimiz programı kurmak, hocaları seçmek ve grubun küçük kalmasını sağlamak; geri kalanını otel ve Assos'un kendisi hallediyor.",
     "approachEyebrow": "YAKLAŞIMIMIZ",
     "approachTitle": "Nasıl Çalışıyoruz",
@@ -351,6 +348,7 @@
   "common": {
     "skipToContent": "İçeriğe geç",
     "whatsapp": "WhatsApp'tan yazın",
+    "whatsappMessage": "Merhaba, EDEN Wellness Club kampları hakkında bilgi almak istiyorum.",
     "backToTop": "Başa dön",
     "readMore": "Devamını oku",
     "allRightsReserved": "Tüm hakları saklıdır."

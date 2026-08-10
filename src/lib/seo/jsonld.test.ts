@@ -79,17 +79,17 @@ describe('buildOrganizationJsonLd', () => {
   it('Organization şeması üretir', () => {
     const jsonLd = buildOrganizationJsonLd({ siteUrl: SITE, locale: 'tr' })
     expect(jsonLd['@type']).toBe('Organization')
-    expect(jsonLd.name).toBe('Serenity Retreats')
+    expect(jsonLd.name).toBe('EDEN Wellness Club')
     expect(jsonLd.url).toBe(`${SITE}/tr`)
   })
 
-  it('yer tutucu Instagram URL için sameAs alanını hiç üretmez', () => {
-    // site.instagram şu an "https://instagram.com/" — yol içermeyen bir yer tutucu.
-    // Gerçek bir profile bağlanana kadar `sameAs` yanlış bir iddia üretmemek için
-    // tamamen atlanmalı (bkz. isRealProfileUrl testleri).
-    expect(isRealProfileUrl(site.instagram)).toBe(false)
+  it('gerçek bir Instagram profili tanımlıyken sameAs alanını üretir', () => {
+    // site.instagram artık "https://instagram.com/eden_wellnessclub" — gerçek bir
+    // profil yolu taşıyor, bu yüzden `isRealProfileUrl` true döner ve `sameAs`
+    // üretilir (bkz. isRealProfileUrl testleri).
+    expect(isRealProfileUrl(site.instagram)).toBe(true)
     const jsonLd = buildOrganizationJsonLd({ siteUrl: SITE, locale: 'tr' })
-    expect(jsonLd).not.toHaveProperty('sameAs')
+    expect(jsonLd).toMatchObject({ sameAs: [site.instagram] })
   })
 })
 

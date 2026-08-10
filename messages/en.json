@@ -1,6 +1,6 @@
 {
   "meta": {
-    "defaultTitle": "Serenity Retreats — Yoga & Pilates Retreats in Assos",
+    "defaultTitle": "EDEN Wellness Club — Yoga & Pilates Retreats in Assos",
     "defaultDescription": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos. Explore upcoming dates and reserve your place.",
     "kamplar": {
       "title": "Camps",
@@ -20,7 +20,7 @@
     },
     "hakkimizda": {
       "title": "About Us",
-      "description": "Learn the story of Serenity Retreats and our approach to running retreats in Assos."
+      "description": "Learn the story of EDEN Wellness Club and our approach to running retreats in Assos."
     },
     "sss": {
       "title": "Frequently Asked Questions",
@@ -55,7 +55,7 @@
       "subtitle": "Three days in Assos.",
       "tags": "Yoga · Pilates · Nature · Rest",
       "cta": "Discover the retreat",
-      "imageAlt": "A pool on the Assos coast, looking out over the village and hills."
+      "imageAlt": "EDEN Wellness Club camp poster"
     },
     "campPanel": {
       "guests": "{count, plural, one {# guest} other {# guests}}",
@@ -110,22 +110,19 @@
       "deepenPractice": {
         "eyebrow": "PRACTICE",
         "title": "Deepen Your Practice",
-        "body": "Morning and evening sessions run in groups that never exceed sixteen people. Our teachers know every body starts from a different place; the program is open from complete beginners to advanced practitioners.",
-        "imageAlt": "View over the olive groves from the stone hotel's balcony"
+        "body": "Morning and evening sessions run in groups that never exceed sixteen people. Our teachers know every body starts from a different place; the program is open from complete beginners to advanced practitioners."
       },
       "nourishBody": {
         "eyebrow": "NOURISHMENT",
         "title": "Nourish Your Body",
-        "body": "Our kitchen follows the season: olive oil, homemade cheese, vegetables from the garden. All three meals are eaten at a shared table, unhurried.",
-        "imageAlt": "The hotel's garden, surrounded by olive trees"
+        "body": "Our kitchen follows the season: olive oil, homemade cheese, vegetables from the garden. All three meals are eaten at a shared table, unhurried."
       },
       "resetMind": {
         "eyebrow": "STILLNESS",
         "title": "Reset Your Mind",
-        "body": "Phones are set aside. Breathwork, long silences and empty hours by the pool give the mind the rest it actually needs.",
-        "imageAlt": "The hotel's pool and rest area"
+        "body": "Phones are set aside. Breathwork, long silences and empty hours by the pool give the mind the rest it actually needs."
       },
-      "sectionEyebrow": "WHY SERENITY",
+      "sectionEyebrow": "WHY EDEN",
       "sectionTitle": "Three Days, Three Gains"
     },
     "teachers": {
@@ -271,9 +268,9 @@
   },
   "about": {
     "eyebrow": "ABOUT US",
-    "title": "Serenity Retreats",
+    "title": "EDEN Wellness Club",
     "lede": "Not a crowded agency — a retreat organiser working at the same stone hotel, with the same small team.",
-    "storyBody1": "Serenity Retreats began with a small team of yoga and pilates teachers in Istanbul who wanted to take their own students out of the city. On our first visit to Karadut Taş Otel in Assos, we found the quiet and the stone architecture we were looking for — we've held our camps at the same hotel ever since.",
+    "storyBody1": "EDEN Wellness Club began with a small team of yoga and pilates teachers in Istanbul who wanted to take their own students out of the city. On our first visit to Karadut Taş Otel in Assos, we found the quiet and the stone architecture we were looking for — we've held our camps at the same hotel ever since.",
     "storyBody2": "We don't own the hotel — we're guests there, just like our participants. Our job is to build the programme, choose the teachers, and keep the group small; the hotel and Assos itself take care of the rest.",
     "approachEyebrow": "OUR APPROACH",
     "approachTitle": "How We Work",
@@ -351,6 +348,7 @@
   "common": {
     "skipToContent": "Skip to content",
     "whatsapp": "Message us on WhatsApp",
+    "whatsappMessage": "Hello, I'd like more information about EDEN Wellness Club camps.",
     "backToTop": "Back to top",
     "readMore": "Read more",
     "allRightsReserved": "All rights reserved."

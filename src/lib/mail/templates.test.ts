@@ -46,7 +46,7 @@ describe('renderInternalNotification', () => {
 describe('renderAutoReply', () => {
   it('katılımcıya referans numarası ve kamp bilgisini yazar', () => {
     const mail = renderAutoReply(inquiry, REF)
-    expect(mail.subject).toContain('Serenity Retreats')
+    expect(mail.subject).toContain('EDEN Wellness Club')
     expect(mail.text).toContain(REF)
     expect(mail.text).toContain(camp.title.tr)
   })

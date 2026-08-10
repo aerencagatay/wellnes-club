@@ -1,4 +1,5 @@
 import { getLocale, getTranslations } from 'next-intl/server'
+import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import type { AppLocale } from '@/i18n/routing'
 import { Eyebrow } from '@/components/ui/eyebrow'
@@ -14,8 +15,8 @@ export async function Footer() {
   return (
     <footer className="bg-background">
       <div className="container-page pt-20 pb-12 md:pt-28">
-        <Link className="font-heading text-4xl tracking-tight text-text md:text-5xl" href="/">
-          {site.name}
+        <Link className="inline-block" href="/">
+          <Image alt={site.name} className="h-16 w-16 object-contain" height={128} src="/img/EDEN WELLNES CLUB logo.png" width={128} />
         </Link>
         <p className="type-lede mt-4 max-w-sm">{site.tagline[locale]}</p>
 

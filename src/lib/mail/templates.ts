@@ -92,7 +92,7 @@ export function renderAutoReply(input: InquiryInput, referenceId: string): Rende
         ]
 
   return {
-    subject: `Serenity Retreats — talebinizi aldık (${referenceId})`,
+    subject: `${site.name} — talebinizi aldık (${referenceId})`,
     text: [...lines, '', site.name].join('\n'),
     html: toHtml([...lines.map(escapeHtml), `<em>${escapeHtml(site.name)}</em>`]),
   }

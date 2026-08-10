@@ -8,14 +8,13 @@
  */
 export const PRIMARY_VENUE_SLUG = 'karadut-tas-otel'
 
-/** YER TUTUCU: telefon, e-posta ve Instagram değerlerini yayın öncesi güncelleyin. */
 export const site = {
-  name: 'Serenity Retreats',
+  name: 'EDEN Wellness Club',
   tagline: { tr: 'Yoga ve pilates kampları', en: 'Yoga and pilates retreats' },
-  email: 'merhaba@serenityretreats.com',
-  phone: '+90 000 000 00 00',
-  phoneHref: 'tel:+900000000000',
-  instagram: 'https://instagram.com/',
+  email: 'edenwellnessclub2001@gmail.com',
+  phone: '+90 538 048 04 28',
+  phoneHref: 'tel:+905380480428',
+  instagram: 'https://instagram.com/eden_wellnessclub',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
 } as const
 
