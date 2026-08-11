@@ -20,12 +20,18 @@ export function getCampBadge(camp: CampSession): CampBadge {
 export type CampFilter = {
   program?: Program | 'all'
   level?: Level | 'all'
+  /** Navbar arama kutusundan gelir; kamp başlığında (her iki dilde) serbest metin arar. */
+  query?: string
 }
 
 export function filterCamps(camps: CampSession[], filter: CampFilter): CampSession[] {
+  const query = filter.query?.trim().toLocaleLowerCase('tr')
   return camps.filter((camp) => {
     if (filter.program && filter.program !== 'all' && camp.program !== filter.program) return false
     if (filter.level && filter.level !== 'all' && camp.level !== filter.level) return false
+    if (query && !camp.title.tr.toLocaleLowerCase('tr').includes(query) && !camp.title.en.toLocaleLowerCase('tr').includes(query)) {
+      return false
+    }
     return true
   })
 }

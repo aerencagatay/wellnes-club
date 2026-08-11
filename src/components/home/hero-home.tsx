@@ -12,19 +12,18 @@ import { Button } from '@/components/ui/button'
 // stillerimizi doğrudan kurmak paylaşılan sınıfları her yerde override etmekten
 // daha basittir.
 //
-// Otel/mekan fotoğrafı yerine kamp posteri (kullanıcı isteği, 2026-08-10): ana
-// sayfa artık mekan görseli taşımıyor, yalnızca kamp içeriğine tıklandığında
-// (/kamplar, /mekan) gerçek otel fotoğrafları görünüyor.
-const HERO_IMAGE = '/img/poster.png'
+// Luxe Wellness Club referansıyla eşleşen geniş/tam-taşma hero fotoğrafı
+// (kullanıcı isteği, 2026-08-10) — video henüz yok, ileride eklenecek.
+const HERO_IMAGE = '/img/açılış sayfası main photo.jpeg'
 
 export function HeroHome() {
   const t = useTranslations('home.hero')
 
   return (
-    <section className="relative flex min-h-svh items-end overflow-hidden bg-dark grain">
+    <section className="relative flex min-h-svh items-center justify-center overflow-hidden bg-dark grain">
       <Image alt={t('imageAlt')} className="object-cover" fill priority sizes="100vw" src={HERO_IMAGE} />
       <div aria-hidden className="absolute inset-0 bg-dark/35" />
-      <div className="container-page relative pt-32 pb-20 md:pb-28">
+      <div className="container-page relative flex flex-col items-center pt-16 text-center">
         <span className="mb-6 inline-block text-[10px] font-semibold tracking-[0.35em] text-background/85 uppercase">
           {t('eyebrow')}
         </span>

@@ -18,7 +18,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
 } as const
 
-/** `key` değerleri messages/*.json içindeki nav bölümünün anahtarlarıdır. */
+/** `key` değerleri messages/*.json içindeki nav bölümünün anahtarlarıdır. Footer'ın tam site haritası için kullanılır. */
 export const NAV_ITEMS = [
   { href: '/kamplar', key: 'camps' },
   { href: '/hocalar', key: 'teachers' },
@@ -27,6 +27,37 @@ export const NAV_ITEMS = [
   { href: '/hakkimizda', key: 'about' },
   { href: '/sss', key: 'faq' },
   { href: '/iletisim', key: 'contact' },
+] as const
+
+/**
+ * Navbar'ın üst şeridi (Luxe Wellness Club referansıyla eşleşen 4 sade madde) —
+ * `NAV_ITEMS`'in yerini almaz, footer hâlâ tam site haritasını gösterir (kullanıcı
+ * isteği, 2026-08-10). `wellnessGoals` gerçek bir sayfaya gitmez, yalnızca
+ * `WellnessGoalsMenu` açılır panelini tetikler.
+ */
+export const PRIMARY_NAV_ITEMS = [
+  { href: '/kamplar', key: 'events' },
+  { href: '/blog', key: 'previousEvents' },
+  { href: '/hakkimizda', key: 'goal' },
+] as const
+
+/**
+ * Luxe Wellness Club'ın "Wellness Goals" mega menüsündeki kategori listesi.
+ * Henüz karşılık gelen bir sayfa olmadığından (kullanıcı isteği, 2026-08-10)
+ * öğeler tıklanamaz — yalnızca görsel bir önizleme.
+ */
+export const WELLNESS_GOALS = [
+  'detoxWeightLoss',
+  'fitnessSport',
+  'slowTravel',
+  'medispasClinics',
+  'yogaMeditation',
+  'wellnessRetreats',
+  'antiAgingLongevity',
+  'stressManagement',
+  'mentalHealth',
+  'ayurveda',
+  'luxurySpas',
 ] as const
 
 export const FOOTER_LEGAL = [

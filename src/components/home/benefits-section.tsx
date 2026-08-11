@@ -27,7 +27,7 @@ export function BenefitsSection() {
       <div className="grid gap-16 md:grid-cols-3 md:gap-12">
         {ITEMS.map(({ key, Icon }) => (
           <Reveal key={key}>
-            <Icon aria-hidden className="size-8 text-olive" strokeWidth={1.5} />
+            <Icon aria-hidden className="size-8 text-taupe" strokeWidth={1.5} />
             <Eyebrow className="mt-6">{t(`${key}.eyebrow`)}</Eyebrow>
             <h3 className="type-title mt-2">{t(`${key}.title`)}</h3>
             <p className="type-lede mt-4">{t(`${key}.body`)}</p>

@@ -2,13 +2,16 @@
 
 import { Menu, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
-import { NAV_ITEMS, site } from '@/lib/config/site'
+import { PRIMARY_NAV_ITEMS, site } from '@/lib/config/site'
 import { Button } from '@/components/ui/button'
+import { InstagramIcon } from '@/components/icons/instagram-icon'
+import { BrandLockup } from './brand-lockup'
 import { hasHeroBackdropFor } from './hero-backdrop-routes'
 import { LanguageSwitcher } from './language-switcher'
+import { NavSearch } from './nav-search'
+import { WellnessGoalsMenu } from './wellness-goals-menu'
 
 const MOBILE_PANEL_ID = 'mobile-nav-panel'
 const MOBILE_PANEL_TITLE_ID = 'mobile-nav-panel-title'
@@ -99,72 +102,103 @@ export function Navbar() {
           : 'border-sand/60 bg-background/92 backdrop-blur-[2px]'
       }`}
     >
-      <div className="container-page flex h-18 items-center justify-between gap-8">
-        <Link className="shrink-0" href="/">
-          <Image alt={site.name} className="h-11 w-11 object-contain" height={96} priority src="/img/EDEN WELLNES CLUB logo.png" width={96} />
+      <div className="container-page relative flex h-20 items-center justify-between gap-8">
+        <a
+          aria-label={t('instagramLabel')}
+          className="shrink-0"
+          href={site.instagram}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <InstagramIcon
+            className={`size-5 transition-colors duration-300 ${transparent ? 'text-background/85 hover:text-background' : 'text-muted hover:text-text'}`}
+          />
+        </a>
+
+        <Link className="absolute left-1/2 -translate-x-1/2" href="/">
+          <BrandLockup transparent={transparent} />
         </Link>
 
-        <nav aria-label={t('primary')} className="hidden items-center gap-7 lg:flex">
-          {NAV_ITEMS.map((item) => (
+        <div className="flex items-center gap-5">
+          <div className="hidden sm:block">
+            <NavSearch transparent={transparent} />
+          </div>
+          <div className="hidden items-center gap-4 lg:flex">
+            <LanguageSwitcher transparent={transparent} />
+            <Button href="/basvuru" size="md">
+              {t('cta')}
+            </Button>
+          </div>
+
+          <button
+            aria-controls={MOBILE_PANEL_ID}
+            aria-expanded={open}
+            aria-label={t('openMenu')}
+            className="lg:hidden"
+            onClick={() => setOpen(true)}
+            ref={triggerRef}
+            type="button"
+          >
+            <Menu className={`size-6 transition-colors duration-300 ${transparent ? 'text-background' : 'text-text'}`} />
+          </button>
+        </div>
+      </div>
+
+      <nav
+        aria-label={t('primary')}
+        className={`hidden h-12 items-center justify-center gap-10 border-t transition-colors duration-300 lg:flex ${
+          transparent ? 'border-background/20' : 'border-sand/60'
+        }`}
+      >
+        {PRIMARY_NAV_ITEMS.map((item, index) => (
+          <Fragment key={item.href + item.key}>
             <Link
               className={`text-xs uppercase tracking-[0.14em] transition-colors duration-300 ${
                 transparent ? 'text-background/80 hover:text-background' : 'text-muted hover:text-text'
               }`}
               href={item.href}
-              key={item.href}
             >
               {t(item.key)}
             </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-4 lg:flex">
-          <LanguageSwitcher transparent={transparent} />
-          <Button href="/basvuru" size="md">
-            {t('cta')}
-          </Button>
-        </div>
-
-        <button
-          aria-controls={MOBILE_PANEL_ID}
-          aria-expanded={open}
-          aria-label={t('openMenu')}
-          className="lg:hidden"
-          onClick={() => setOpen(true)}
-          ref={triggerRef}
-          type="button"
-        >
-          <Menu className={`size-6 transition-colors duration-300 ${transparent ? 'text-background' : 'text-text'}`} />
-        </button>
-      </div>
+            {index === 0 && <WellnessGoalsMenu transparent={transparent} />}
+          </Fragment>
+        ))}
+      </nav>
 
       {open && (
         <div
           aria-labelledby={MOBILE_PANEL_TITLE_ID}
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-background lg:hidden"
+          className="fixed inset-0 z-50 overflow-y-auto bg-background lg:hidden"
           id={MOBILE_PANEL_ID}
           ref={panelRef}
           role="dialog"
         >
           <div className="container-page flex h-18 items-center justify-between">
             <span id={MOBILE_PANEL_TITLE_ID}>
-              <Image alt={site.name} className="h-11 w-11 object-contain" height={96} src="/img/EDEN WELLNES CLUB logo.png" width={96} />
+              <BrandLockup size="sm" />
             </span>
             <button aria-label={t('closeMenu')} onClick={() => setOpen(false)} ref={closeButtonRef} type="button">
               <X className="size-6 text-text" />
             </button>
           </div>
           <nav aria-label={t('primary')} className="container-page mt-6 flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                className="border-b border-sand py-4 font-heading text-2xl text-text"
-                href={item.href}
-                key={item.href}
-                onClick={() => setOpen(false)}
-              >
-                {t(item.key)}
-              </Link>
+            {PRIMARY_NAV_ITEMS.map((item, index) => (
+              <Fragment key={item.href + item.key}>
+                <Link
+                  className="border-b border-sand py-4 font-heading text-2xl font-light text-text"
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                >
+                  {t(item.key)}
+                </Link>
+                {index === 0 && (
+                  <div className="border-b border-sand py-4">
+                    <span className="font-heading text-2xl font-light text-text">{t('wellnessGoals')}</span>
+                    <p className="type-eyebrow mt-3 text-muted normal-case">{t('goalsComingSoon')}</p>
+                  </div>
+                )}
+              </Fragment>
             ))}
             <div className="mt-8 flex items-center justify-between">
               <LanguageSwitcher />

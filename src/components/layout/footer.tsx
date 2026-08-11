@@ -1,9 +1,9 @@
 import { getLocale, getTranslations } from 'next-intl/server'
-import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import type { AppLocale } from '@/i18n/routing'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { FOOTER_LEGAL, NAV_ITEMS, site } from '@/lib/config/site'
+import { BrandLockup } from './brand-lockup'
 
 export async function Footer() {
   const locale = (await getLocale()) as AppLocale
@@ -16,7 +16,7 @@ export async function Footer() {
     <footer className="bg-background">
       <div className="container-page pt-20 pb-12 md:pt-28">
         <Link className="inline-block" href="/">
-          <Image alt={site.name} className="h-16 w-16 object-contain" height={128} src="/img/EDEN WELLNES CLUB logo.png" width={128} />
+          <BrandLockup size="lg" />
         </Link>
         <p className="type-lede mt-4 max-w-sm">{site.tagline[locale]}</p>
 

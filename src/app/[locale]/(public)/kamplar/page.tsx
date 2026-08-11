@@ -38,7 +38,7 @@ export default async function CampsPage({
   searchParams,
 }: {
   params: Promise<{ locale: AppLocale }>
-  searchParams: Promise<{ program?: string | string[]; level?: string | string[] }>
+  searchParams: Promise<{ program?: string | string[]; level?: string | string[]; q?: string | string[] }>
 }) {
   const { locale } = await params
   setRequestLocale(locale)
@@ -51,8 +51,9 @@ export default async function CampsPage({
   const rawLevel = asSingleValue(query.level)
   const program = rawProgram && isProgram(rawProgram) ? rawProgram : 'all'
   const level = rawLevel && isLevel(rawLevel) ? rawLevel : 'all'
+  const searchQuery = asSingleValue(query.q)
 
-  const upcoming = filterCamps(getUpcomingCamps(today), { program, level })
+  const upcoming = filterCamps(getUpcomingCamps(today), { program, level, query: searchQuery })
   const past = getPastCamps(today)
 
   return (

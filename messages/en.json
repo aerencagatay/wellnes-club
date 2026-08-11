@@ -55,7 +55,7 @@
       "subtitle": "Three days in Assos.",
       "tags": "Yoga · Pilates · Nature · Rest",
       "cta": "Discover the retreat",
-      "imageAlt": "EDEN Wellness Club camp poster"
+      "imageAlt": "A pool on the Assos coast, looking out over the village and hills."
     },
     "campPanel": {
       "guests": "{count, plural, one {# guest} other {# guests}}",
@@ -343,7 +343,29 @@
     "contact": "Contact",
     "cta": "Reserve a Spot",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "events": "Our Upcoming Events",
+    "wellnessGoals": "Wellness Goals",
+    "previousEvents": "Our Previous Events",
+    "goal": "Our Goal",
+    "goalsComingSoon": "Detailed pages coming soon",
+    "instagramLabel": "EDEN Wellness Club on Instagram",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search camps…",
+    "closeSearch": "Close search"
+  },
+  "wellnessGoals": {
+    "detoxWeightLoss": "Detox & Weight Loss",
+    "fitnessSport": "Fitness & Sport",
+    "slowTravel": "Slow Travel",
+    "medispasClinics": "Medispas & Clinics",
+    "yogaMeditation": "Yoga & Meditation",
+    "wellnessRetreats": "Wellness Retreats",
+    "antiAgingLongevity": "Anti-Aging & Longevity",
+    "stressManagement": "Stress Management & Burn Out",
+    "mentalHealth": "Mental Health and Addictions",
+    "ayurveda": "Ayurveda",
+    "luxurySpas": "Luxury Spas"
   },
   "common": {
     "skipToContent": "Skip to content",

@@ -55,7 +55,7 @@
       "subtitle": "Assos'ta üç gün.",
       "tags": "Yoga · Pilates · Doğa · Dinlenme",
       "cta": "Retreat'i keşfet",
-      "imageAlt": "EDEN Wellness Club kamp posteri"
+      "imageAlt": "Assos kıyısında bir havuzdan köy ve tepelere bakan manzara."
     },
     "campPanel": {
       "guests": "{count} kişi",
@@ -343,7 +343,29 @@
     "contact": "İletişim",
     "cta": "Yer Ayır",
     "openMenu": "Menüyü aç",
-    "closeMenu": "Menüyü kapat"
+    "closeMenu": "Menüyü kapat",
+    "events": "Yaklaşan Etkinlikler",
+    "wellnessGoals": "Wellness Hedefleri",
+    "previousEvents": "Geçmiş Etkinlikler",
+    "goal": "Amacımız",
+    "goalsComingSoon": "Detaylı sayfalar yakında",
+    "instagramLabel": "Instagram'da EDEN Wellness Club",
+    "searchLabel": "Ara",
+    "searchPlaceholder": "Kamp ara…",
+    "closeSearch": "Aramayı kapat"
+  },
+  "wellnessGoals": {
+    "detoxWeightLoss": "Detoks ve Kilo Kontrolü",
+    "fitnessSport": "Fitness ve Spor",
+    "slowTravel": "Yavaş Seyahat",
+    "medispasClinics": "Medispa ve Klinikler",
+    "yogaMeditation": "Yoga ve Meditasyon",
+    "wellnessRetreats": "Wellness Kampları",
+    "antiAgingLongevity": "Anti-Aging ve Uzun Ömür",
+    "stressManagement": "Stres Yönetimi",
+    "mentalHealth": "Ruh Sağlığı",
+    "ayurveda": "Ayurveda",
+    "luxurySpas": "Lüks Spa'lar"
   },
   "common": {
     "skipToContent": "İçeriğe geç",

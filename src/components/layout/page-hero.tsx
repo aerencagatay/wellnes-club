@@ -23,7 +23,7 @@ export function PageHero({
     // tedavisinin güvenli olup olmadığını) anlamak için `main`'in ilk çocuğunda
     // arar (bkz. navbar.tsx). Görsel yoksa arka plan zaten krem `background`dir,
     // bu sınıf eklenmez.
-    <section className={`relative ${image ? 'bg-dark' : 'pt-18'}`}>
+    <section className={`relative ${image ? 'bg-dark' : 'pt-20 lg:pt-32'}`}>
       {image && (
         <div className="relative h-[42vh] min-h-70 w-full overflow-hidden">
           {/* Kırpma sınırından taşan iç kapsayıcı: `Parallax`'ın ±40px'lik
