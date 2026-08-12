@@ -33,9 +33,9 @@ const ICONS: Record<(typeof WELLNESS_GOALS)[number], typeof Flame> = {
 }
 
 const PREVIEW_IMAGES = [
-  { src: '/img/yoga dersi.jpg', alt: 'yogaMeditation' },
-  { src: '/img/yemek fotoğrafı.jpeg', alt: 'detoxWeightLoss' },
-  { src: '/img/venue/havuz.webp', alt: 'wellnessRetreats' },
+  { src: '/img/wellness_goals/yogo foto.jpg', alt: 'yogaMeditation' },
+  { src: '/img/wellness_goals/cilt bakım foto.jpg', alt: 'medispasClinics' },
+  { src: '/img/wellness_goals/meditasyon foto.jpg', alt: 'stressManagement' },
 ] as const
 
 /**
@@ -94,7 +94,7 @@ export function WellnessGoalsMenu({ transparent = false }: { transparent?: boole
           <div className="mt-10 grid grid-cols-3 gap-4">
             {PREVIEW_IMAGES.map((image) => (
               <div className="relative aspect-4/3 overflow-hidden" key={image.src}>
-                <Image alt="" className="object-cover" fill sizes="200px" src={image.src} />
+                <Image alt={tGoals(image.alt)} className="object-cover" fill sizes="200px" src={image.src} />
               </div>
             ))}
           </div>
