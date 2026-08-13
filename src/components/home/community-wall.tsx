@@ -16,8 +16,9 @@ import { cn } from '@/lib/utils/cn'
  * ÜYE DENEYİMLERİ duvarı.
  *
  * Düzen bilinçli olarak bir sosyal medya akışını TAKLİT ETMEZ (avatar + kolon +
- * kartlar). EDEN'in editoryal sistemi burada da geçerli: kare köşeler, kum
- * çizgileri, ince Montserrat, renk yerine boşluk ve ölçek ile vurgu. Ritim
+ * kartlar). EDEN'in editoryal sistemi burada da geçerli: yumuşak yuvarlatılmış
+ * köşeler, kum çizgileri, ince Montserrat, renk yerine boşluk ve ölçek ile
+ * vurgu (köşe/gölge değerleri globals.css'teki ortak tokenlardan gelir). Ritim
  * kartların YÜKSEKLİĞİNDEN gelir — her kart deterministik bir "ölçek"
  * (`RHYTHM`) alır, böylece sunucu ve istemci aynı düzeni üretir (rastgelelik
  * hydration uyuşmazlığı yaratırdı).
@@ -80,7 +81,7 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
       {/* Yalnızca geliştirmede görünür uyarı — mevcut anahtar yeniden kullanılır. */}
       {process.env.NODE_ENV !== 'production' && items.some((i) => i.isPlaceholder) && (
         <p
-          className="mt-6 max-w-2xl rounded-sm bg-sand/40 p-4 text-sm font-medium text-text"
+          className="mt-6 max-w-2xl rounded-[var(--radius-card)] bg-sand/40 p-4 text-sm font-medium text-text"
           data-testid="testimonials-dev-warning"
         >
           {tTestimonials('devWarning')}
@@ -105,7 +106,11 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
             >
               <figure
                 className={cn(
-                  'flex flex-col border border-sand',
+                  // Yumuşak kart yüzeyi. `overflow-hidden` atmosfer görselinin
+                  // yuvarlatılmış üst köşelerden taşmasını engeller.
+                  'flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-sand/70',
+                  'shadow-[var(--shadow-card)] transition-all duration-300 ease-out',
+                  'hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]',
                   // Dolu/boş dönüşümü duvara ritim verir: her üçüncü kart krem
                   // zeminden ayrışır.
                   index % 3 === 1 ? 'bg-background' : 'bg-surface',
@@ -129,7 +134,7 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
                     // Görünür ÖRNEK işareti: kart gerçek bir müşteri yorumu
                     // olmadığı sürece bu rozet KALDIRILMAMALIDIR.
                     <span
-                      className="self-start border border-olive px-2 py-1 text-[10px] font-semibold tracking-[0.14em] text-olive uppercase"
+                      className="self-start rounded-full border border-olive px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-olive uppercase"
                       data-testid="community-card-placeholder-badge"
                     >
                       {tEvents('placeholderBadge')}

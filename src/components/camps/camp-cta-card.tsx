@@ -29,7 +29,7 @@ export function CampCtaCard({ camp, locale }: { camp: CampSession; locale: AppLo
   return (
     // Keskin köşe + `bg-surface` + ince `border-sand` çerçeve (brief §7-adım3):
     // gölge/yuvarlak köşe yerine düz bir zemin farkı ve ince çizgi.
-    <aside className="sticky top-24 border border-sand bg-surface p-8">
+    <aside className="sticky top-24 rounded-[var(--radius-card)] border border-text/10 bg-surface p-8 shadow-[var(--shadow-card)]">
       <Badge tone={BADGE_TONE[badge]}>{tCamp(`badge.${badge}`)}</Badge>
 
       <p className="mt-5 text-2xl font-semibold text-text">

@@ -153,7 +153,13 @@ export function Navbar() {
             <Link
               aria-current={pathname === item.href ? 'page' : undefined}
               className={cn(
-                'text-[11px] uppercase transition-colors duration-300 tracking-[0.22em]',
+                // Cümle düzeni + orta ağırlık. Eskiden `text-[11px] uppercase
+                // tracking-[0.22em]` idi — büyük harf + çok geniş harf aralığı,
+                // keskin köşelerden bile güçlü biçimde "2010'lar editoryal"
+                // hissi veriyordu (kullanıcı geri bildirimi, 2026-08-14).
+                // Markanın geniş aralıklı Montserrat kimliği `BrandLockup`'ta
+                // KORUNUR; burada değişen yalnızca gezinme bağlantılarının dili.
+                'text-sm font-medium tracking-normal transition-colors duration-300',
                 transparent ? 'text-background/80 hover:text-background' : 'text-muted hover:text-text',
                 pathname === item.href && (transparent ? 'text-background' : 'text-text'),
               )}

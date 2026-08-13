@@ -130,7 +130,13 @@ export function VideoDialog({
     <>
       <button
         aria-label={playLabel}
-        className={cn('group relative block w-full overflow-hidden bg-dark', className)}
+        className={cn(
+          // Poster tetikleyicisi bir görsel çerçevesidir: medya yarıçapı +
+          // yumuşak gölge, hover'da derinleşir.
+          'group relative block w-full overflow-hidden rounded-[var(--radius-media)] bg-dark',
+          'shadow-[var(--shadow-card)] transition-all duration-300 ease-out hover:shadow-[var(--shadow-card-hover)]',
+          className,
+        )}
         data-testid="video-dialog-trigger"
         onClick={openDialog}
         ref={triggerRef}
@@ -153,7 +159,8 @@ export function VideoDialog({
           aria-hidden
           className="absolute inset-0 flex items-center justify-center"
         >
-          <span className="flex size-14 items-center justify-center border border-background/70 text-background transition-colors duration-300 group-hover:bg-background/15">
+          {/* Dairesel oynat düğmesi — ikon kontrolleri hap/daire biçiminde. */}
+          <span className="flex size-14 items-center justify-center rounded-full border border-background/70 text-background transition-all duration-300 ease-out group-hover:bg-background/15">
             <Play className="size-5 translate-x-px" />
           </span>
         </span>
@@ -182,7 +189,7 @@ export function VideoDialog({
             >
               <button
                 aria-label={closeLabel}
-                className="absolute top-5 right-5 z-10 p-2 text-background hover:bg-background/10 md:top-8 md:right-8"
+                className="absolute top-5 right-5 z-10 rounded-full p-2 text-background transition-colors duration-300 hover:bg-background/10 md:top-8 md:right-8"
                 data-testid="video-dialog-close"
                 onClick={close}
                 ref={closeButtonRef}
@@ -198,7 +205,10 @@ export function VideoDialog({
               >
                 <video
                   autoPlay
-                  className="max-h-[80vh] w-full bg-dark"
+                  // Video paneli: büyük panel yarıçapı + kalkık gölge.
+                  // `overflow-hidden` yerine doğrudan `rounded-*`: <video> kendi
+                  // içeriğini zaten yarıçapa göre kırpar.
+                  className="max-h-[80vh] w-full rounded-[var(--radius-panel)] bg-dark shadow-[var(--shadow-lift)]"
                   controls
                   playsInline
                   poster={posterSrc}

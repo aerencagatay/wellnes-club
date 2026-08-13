@@ -24,7 +24,7 @@ export function TeacherCard({
   const Heading = headingLevel
   return (
     <article className="group sm:[&:nth-child(even)]:mt-10">
-      <Link className="relative block aspect-3/4 overflow-hidden" href={`/hocalar/${teacher.slug}`}>
+      <Link className="relative block aspect-3/4 overflow-hidden rounded-[var(--radius-media)]" href={`/hocalar/${teacher.slug}`}>
         {/* Yer tutucu hoca fotoğrafları SVG'dir; Next.js görüntü eniyileyicisi
             varsayılan olarak SVG'yi reddeder, bu yüzden unoptimized ile
             doğrudan dosyadan sunulur (bkz. teachers-preview.tsx). */}

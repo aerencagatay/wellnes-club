@@ -20,7 +20,11 @@ const TONES = {
 export function Badge({ tone = 'neutral', children }: { tone?: keyof typeof TONES; children: ReactNode }) {
   return (
     <span
-      className={`inline-flex items-center rounded-none px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${TONES[tone]}`}
+      // Hap biçimi (`rounded-full`) — MagicUI'nin rozet dili. Harf aralığı
+      // 0.12em'den 0.06em'e indi: rozetler kısa metinler olduğu için geniş
+      // aralık onları "2010'lar" hissi veren birer etiket bandına çeviriyordu
+      // (kullanıcı geri bildirimi, 2026-08-14).
+      className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] ${TONES[tone]}`}
     >
       {children}
     </span>

@@ -120,7 +120,10 @@ export function WellnessGoalsMenu({ transparent = false }: { transparent?: boole
         aria-controls={panelId}
         aria-expanded={open}
         className={cn(
-          'flex items-center gap-1.5 text-[11px] uppercase transition-colors duration-300 tracking-[0.22em]',
+          // Navbar'daki `Link` kardeşleriyle BİREBİR aynı tipografi olmalı —
+          // ikisi aynı şeritte yan yana duruyor, biri büyük harf kalırsa şerit
+          // iki farklı dile bölünür (bkz. navbar.tsx'teki aynı yorum).
+          'flex items-center gap-1.5 text-sm font-medium tracking-normal transition-colors duration-300',
           transparent ? 'text-background/80 hover:text-background' : 'text-muted hover:text-text',
           open && (transparent ? 'text-background' : 'text-text'),
         )}
@@ -145,7 +148,8 @@ export function WellnessGoalsMenu({ transparent = false }: { transparent?: boole
           <BlurFade blur="10px" duration={0.28} offset={10}>
             <div
               aria-label={t('wellnessGoalsMenuLabel')}
-              className="grid gap-10 border border-sand bg-background p-8 shadow-[var(--shadow-lift)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:p-10"
+              // Büyük panel: panel yarıçapı + ince kenarlık + kalkık gölge.
+              className="grid gap-10 rounded-[var(--radius-panel)] border border-sand/70 bg-background p-8 shadow-[var(--shadow-lift)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:p-10"
               id={panelId}
               role="group"
             >
@@ -160,7 +164,8 @@ export function WellnessGoalsMenu({ transparent = false }: { transparent?: boole
               <div className="grid grid-cols-2 gap-4">
                 {PREVIEW_IMAGES.map((image) => (
                   <figure key={image.src}>
-                    <div className="relative aspect-4/5 overflow-hidden bg-surface">
+                    {/* Önizleme görselleri medya yarıçapını paylaşır. */}
+                    <div className="relative aspect-4/5 overflow-hidden rounded-[var(--radius-media)] bg-surface shadow-[var(--shadow-card)]">
                       <Image
                         alt={tGoals(image.altKey)}
                         className="object-cover"

@@ -92,7 +92,7 @@ export function PastGallery({ locale }: { locale: AppLocale }) {
               2026-08-14: bölüm çalışıyormuş gibi kalsın, gerçek fotoğraflar
               sonra eklenecek). Bu rozet, o gerçeği gizlemeden bölümün canlı
               görünmesini sağlar; gerçek arşiv geldiğinde tek satır silinir. */}
-          <span className="border border-sand px-3 py-1 text-[10px] font-medium tracking-[0.2em] text-muted uppercase">
+          <span className="rounded-full border border-sand px-3 py-1 text-[10px] font-medium tracking-[0.2em] text-muted uppercase">
             {t('willBeUpdated')}
           </span>
         </div>
@@ -125,7 +125,14 @@ export function PastGallery({ locale }: { locale: AppLocale }) {
                 // Hover: hafif büyütme + ince bir koyu üst katman. Öğe
                 // tıklanabilir değil (bir lightbox'a bağlanmıyor), bu yüzden
                 // düğme değil düz bir kutu olarak kalır.
-                <div className={cn('group relative h-full w-full overflow-hidden bg-sand/40')}>
+                <div
+                  className={cn(
+                    // Görsel çerçevesi: medya yarıçapı + yumuşak gölge, hover'da
+                    // gölge derinleşir. `overflow-hidden` köşe kırpması için şart.
+                    'group relative h-full w-full overflow-hidden rounded-[var(--radius-media)] bg-sand/40',
+                    'shadow-[var(--shadow-card)] transition-all duration-300 ease-out hover:shadow-[var(--shadow-card-hover)]',
+                  )}
+                >
                   <Image
                     alt={item.alt[locale]}
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"

@@ -99,7 +99,7 @@ export function ScheduleModal({ open, onClose, eventTitle, schedule, locale }: P
           <motion.div
             animate={{ opacity: 1 }}
             aria-hidden
-            className="absolute inset-0 bg-dark/70"
+            className="absolute inset-0 bg-dark/70 backdrop-blur-sm"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={onClose}
@@ -111,10 +111,13 @@ export function ScheduleModal({ open, onClose, eventTitle, schedule, locale }: P
             aria-labelledby={titleId}
             aria-modal="true"
             className={cn(
-              'relative flex w-full flex-col bg-background shadow-2xl',
+              'relative flex w-full flex-col overflow-hidden bg-background shadow-[var(--shadow-lift)]',
               // Mobil: tam ekran sheet. Desktop: viewport'un büyük bölümünü
               // kaplayan, kendi içinde kayan bir panel.
               'h-full sm:h-auto sm:max-h-[86vh] sm:max-w-3xl lg:max-w-5xl',
+              // Mobilde sheet ekranın altına yaslandığı için yalnızca ÜST köşeler
+              // yuvarlanır; sm ve üzerinde panel dört köşesinden serbest kalır.
+              'rounded-t-[var(--radius-panel)] sm:rounded-[var(--radius-panel)]',
             )}
             exit={reduced ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.99 }}
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.985 }}
@@ -131,7 +134,7 @@ export function ScheduleModal({ open, onClose, eventTitle, schedule, locale }: P
               </div>
               <button
                 aria-label={t('close')}
-                className="-mr-2 shrink-0 p-2 text-muted transition-colors hover:text-text"
+                className="-mr-2 shrink-0 rounded-full p-2 text-muted transition-all duration-300 ease-out hover:bg-sand/50 hover:text-text"
                 onClick={onClose}
                 ref={closeButtonRef}
                 type="button"
@@ -188,9 +191,11 @@ function ScheduleBody({
               aria-controls={`${baseId}-panel`}
               aria-selected={index === activeDay}
               className={cn(
-                'border px-5 py-3 text-xs uppercase tracking-[0.12em] transition-colors',
+                // Gün sekmeleri buton yarıçapını paylaşır; seçili sekme ince bir
+                // gölgeyle şeritten ayrılır.
+                'rounded-[var(--radius-btn)] border px-5 py-3 text-xs uppercase tracking-[0.12em] transition-all duration-300 ease-out',
                 index === activeDay
-                  ? 'border-olive bg-olive text-background'
+                  ? 'border-olive bg-olive text-background shadow-[var(--shadow-btn-subtle)]'
                   : 'border-text/20 text-muted hover:border-text/60 hover:text-text',
               )}
               id={`${baseId}-tab-${index}`}

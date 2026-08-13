@@ -24,8 +24,36 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-pill: 999px;
+
+  /* Bileşen rolüne bağlı yarıçaplar. Ham `--radius-*` yerine bunlar
+     kullanılır: "buton yarıçapı" tek bir yerden ayarlanabilsin, her bileşende
+     ayrı ayrı `rounded-lg`/`rounded-xl` avlamak gerekmesin. Bu dosya daha önce
+     bu tokenları tanımlayıp bileşenlerde `rounded-none` ile eziyordu — keskin
+     köşeli editoryal dil (bkz. 43785b2, 5b4aa6f) kullanıcı isteğiyle
+     2026-08-14'te terk edildi. */
+  --radius-btn: 10px;
+  --radius-card: 16px;
+  --radius-panel: 20px;
+  --radius-media: 14px;
+
   --shadow-soft: 0 1px 2px rgba(27,33,29,.05), 0 8px 28px rgba(27,33,29,.07);
   --shadow-lift: 0 2px 6px rgba(27,33,29,.06), 0 16px 48px rgba(27,33,29,.12);
+
+  /* MagicUI'nin yüzey dili: tek bir sert gölge yerine üst üste binen çok
+     yumuşak katmanlar + en üstte ince bir iç ışık çizgisi. Krem zemin için
+     ayarlandı (saf siyah gölge krem üzerinde kirli görünür, bu yüzden gölge
+     rengi metin tonundan türetilir). */
+  --shadow-btn:
+    0 1px 2px rgba(27,33,29,.06),
+    0 2px 6px rgba(27,33,29,.06),
+    inset 0 1px 0 rgba(255,255,255,.10);
+  --shadow-btn-hover:
+    0 2px 4px rgba(27,33,29,.08),
+    0 8px 20px rgba(27,33,29,.12),
+    inset 0 1px 0 rgba(255,255,255,.14);
+  --shadow-btn-subtle: 0 1px 2px rgba(27,33,29,.04);
+  --shadow-card: 0 1px 2px rgba(27,33,29,.04), 0 4px 16px rgba(27,33,29,.05);
+  --shadow-card-hover: 0 2px 6px rgba(27,33,29,.06), 0 18px 44px rgba(27,33,29,.11);
 }
 
 body {
@@ -147,14 +175,17 @@ body {
    için tüm CTA'ları istemci sınırına iterdi. `::after` kullanır, bu yüzden
    ek DOM düğümü de yok.
 
-   `overflow: hidden` + `isolation` bandı butonun içinde tutar; buton
-   `rounded-none` olduğu için köşe taşması sorunu yaşanmaz. */
+   `overflow: hidden` + `isolation` bandı butonun içinde tutar. Buton artık
+   yuvarlatılmış olduğundan (`--radius-btn`) bandın köşelerden taşmaması için
+   `border-radius: inherit` ŞART: `overflow: hidden` yalnızca kutuyu kırpar,
+   kırpma yolunu ebeveynin yarıçapına kendiliğinden uydurmaz. */
 @keyframes eden-shimmer {
   0%   { transform: translateX(-120%) skewX(-20deg); }
   60%  { transform: translateX(220%)  skewX(-20deg); }
   100% { transform: translateX(220%)  skewX(-20deg); }
 }
 .shimmer {
+  border-radius: inherit;
   position: relative;
   overflow: hidden;
   isolation: isolate;

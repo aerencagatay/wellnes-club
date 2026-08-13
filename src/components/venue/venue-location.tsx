@@ -44,7 +44,7 @@ export function VenueLocation({
           <ExternalLink aria-hidden className="size-4" />
         </a>
       </div>
-      <div className="overflow-hidden border border-sand">
+      <div className="overflow-hidden rounded-[var(--radius-card)] border border-text/10 shadow-[var(--shadow-card)]">
         <iframe
           allowFullScreen
           className="h-70 w-full"

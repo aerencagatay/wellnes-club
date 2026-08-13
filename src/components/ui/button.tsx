@@ -6,19 +6,27 @@ type Variant = 'primary' | 'secondary' | 'ghost'
 type Size = 'md' | 'lg'
 
 const VARIANTS: Record<Variant, string> = {
-  // Zeytin dolgu + krem metin = 5.90:1 (bkz. editorial redesign brief §2)
-  primary: 'bg-olive text-background hover:bg-olive/85',
-  secondary: 'bg-text text-background hover:bg-text/85',
-  ghost: 'bg-transparent text-text border border-text/25 hover:border-text/60',
+  // Zeytin dolgu + krem metin = 5.90:1 (bkz. editorial redesign brief §2).
+  // `shadow-*` + `hover:-translate-y-px` MagicUI'nin buton dilinden: düz bir
+  // renk bloğu yerine zeminden hafifçe kalkan bir yüzey.
+  primary: 'bg-olive text-background shadow-[var(--shadow-btn)] hover:bg-olive/90 hover:shadow-[var(--shadow-btn-hover)]',
+  secondary: 'bg-text text-background shadow-[var(--shadow-btn)] hover:bg-text/90 hover:shadow-[var(--shadow-btn-hover)]',
+  ghost: 'bg-background/60 text-text border border-text/12 shadow-[var(--shadow-btn-subtle)] hover:border-text/25 hover:bg-background',
 }
 
 const SIZES: Record<Size, string> = {
-  md: 'px-8 py-4',
-  lg: 'px-10 py-5',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-[15px]',
 }
 
+// TİPOGRAFİ NOTU: buton metni eskiden `text-xs uppercase tracking-[0.08em]`
+// idi. Büyük harf + geniş harf aralığı, keskin köşelerden bile daha güçlü
+// biçimde 2010'lar editoryal dilini işaret ediyordu (kullanıcı geri bildirimi,
+// 2026-08-14). MagicUI'nin buton dili cümle düzeni + orta ağırlık + normal
+// aralık — marka başlıklarının Montserrat ince/geniş kimliği KORUNUR, değişen
+// yalnızca kontrollerin dili.
 const BASE =
-  'rounded-none inline-flex items-center justify-center gap-2 text-xs font-normal uppercase tracking-[0.08em] transition-[background-color,border-color,color] duration-200 disabled:opacity-50 disabled:pointer-events-none'
+  'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] font-medium tracking-normal transition-all duration-200 ease-out disabled:opacity-45 disabled:pointer-events-none disabled:shadow-none hover:-translate-y-px active:translate-y-0'
 
 type Props = {
   variant?: Variant

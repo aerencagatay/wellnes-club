@@ -1,6 +1,8 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-const BASE = 'inline-flex items-center rounded-none border px-4 py-2 text-sm transition-colors duration-200'
+// Hap biçimi + yumuşak geçiş — filtre/etiket kontrolleri MagicUI'de daima hap.
+const BASE =
+  'inline-flex items-center rounded-full border px-4 py-2 text-sm transition-all duration-200 ease-out'
 
 export function Chip({
   active = false,

@@ -54,7 +54,10 @@ export function EventRow({ event, locale, index, priority = false }: Props) {
       <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-24">
         <div
           className={cn(
+            // Görsel çerçevesi: medya yarıçapı + yumuşak gölge. `overflow-hidden`
+            // görselin yuvarlatılmış köşenin dışına taşmasını engeller.
             'relative aspect-[4/3] w-full overflow-hidden bg-surface lg:aspect-[5/4]',
+            'rounded-[var(--radius-media)] shadow-[var(--shadow-card)] transition-all duration-300 ease-out',
             mediaOnRight ? 'lg:order-2' : 'lg:order-1',
           )}
         >

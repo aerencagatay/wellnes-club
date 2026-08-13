@@ -39,7 +39,7 @@ export function CampCard({
     // `border-sand` ayırıcı. Rozet, fotoğrafın üzerine dolgu tabanlı ve keskin
     // köşeli olarak bindirilir.
     <article className="group flex flex-col">
-      <Link className="relative aspect-4/3 overflow-hidden" href={`/kamplar/${camp.slug}`}>
+      <Link className="relative aspect-4/3 overflow-hidden rounded-[var(--radius-media)]" href={`/kamplar/${camp.slug}`}>
         <Image
           alt={camp.title[locale]}
           className="object-cover transition-transform duration-700 group-hover:scale-105"

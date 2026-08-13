@@ -39,7 +39,12 @@ export function EventCard({ event, locale }: { event: WellnessEvent; locale: App
   return (
     <article
       className={cn(
-        'group relative flex h-full flex-col overflow-hidden bg-surface transition-colors duration-300',
+        // Yumuşak kart yüzeyi: yuvarlatılmış köşe + hafif gölge; hover'da
+        // gölge derinleşir ve kart bir tık kalkar. `overflow-hidden` şart,
+        // yoksa görsel yuvarlatılmış köşenin dışına taşar.
+        'group relative flex h-full flex-col overflow-hidden bg-surface rounded-[var(--radius-card)]',
+        'shadow-[var(--shadow-card)] transition-all duration-300 ease-out',
+        'hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]',
         // Gerçek etkinlik zeytin çerçeveyle öne çıkar; örnekler soluk kum
         // çizgide kalır. Renk farkı tek başına taşımıyor: rozet, fiyat ve CTA
         // durumu da ayrımı tekrarlıyor (renk körlüğü için).
@@ -64,11 +69,12 @@ export function EventCard({ event, locale }: { event: WellnessEvent; locale: App
         />
         {/* Kategori etiketi görselin üzerinde: kartın ilk okunan öğesi başlık
             değil "bu ne tür bir buluşma" olsun. */}
-        <span className="absolute top-4 left-4 bg-background/92 px-3 py-1.5 text-[10px] font-medium tracking-[0.22em] text-text uppercase">
+        {/* Rozetler hap biçiminde: yuvarlatılmış kart diliyle aynı yumuşaklık. */}
+        <span className="absolute top-4 left-4 rounded-full bg-background/92 px-3 py-1.5 text-[10px] font-medium tracking-[0.22em] text-text uppercase">
           {tCategory(event.category)}
         </span>
         {event.isPlaceholder && (
-          <span className="absolute top-4 right-4 border border-text/20 bg-background/92 px-3 py-1.5 text-[10px] font-semibold tracking-[0.22em] text-muted uppercase">
+          <span className="absolute top-4 right-4 rounded-full border border-text/20 bg-background/92 px-3 py-1.5 text-[10px] font-semibold tracking-[0.22em] text-muted uppercase">
             {t('placeholderBadge')}
           </span>
         )}

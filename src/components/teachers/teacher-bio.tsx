@@ -16,7 +16,7 @@ export function TeacherBio({ teacher, locale }: { teacher: Teacher; locale: AppL
 
   return (
     <div className="grid gap-10 md:grid-cols-[360px_1fr] md:gap-16">
-      <div className="relative aspect-3/4 overflow-hidden">
+      <div className="relative aspect-3/4 overflow-hidden rounded-[var(--radius-media)]">
         {/* Yer tutucu hoca fotoğrafları SVG'dir; unoptimized ile doğrudan
             sunulur (bkz. teachers-preview.tsx). */}
         <Image

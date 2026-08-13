@@ -36,7 +36,7 @@ export function VenueGallery({ images, name }: { images: string[]; name: string 
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {first && (
         <button
-          className="relative col-span-2 aspect-16/9 overflow-hidden sm:aspect-2/1"
+          className="relative col-span-2 aspect-16/9 overflow-hidden rounded-[var(--radius-media)] sm:aspect-2/1"
           data-testid="venue-gallery-thumb-0"
           onClick={(event) => openAt(0, event.currentTarget)}
           type="button"
@@ -56,7 +56,7 @@ export function VenueGallery({ images, name }: { images: string[]; name: string 
           // Mozaik: her üçüncü kare (dizinin 3'e göre modu — hero'dan sonraki
           // ilk kare) iki sütuna yayılır, geri kalanı kare kalır. Bu, tekdüze
           // bir ızgara yerine hafif asimetrik bir editorial doku üretir.
-          className={`relative overflow-hidden ${index % 3 === 0 ? 'col-span-2 aspect-2/1 sm:col-span-1 sm:aspect-4/3' : 'aspect-4/3'}`}
+          className={`relative overflow-hidden rounded-[var(--radius-media)] ${index % 3 === 0 ? 'col-span-2 aspect-2/1 sm:col-span-1 sm:aspect-4/3' : 'aspect-4/3'}`}
           data-testid={`venue-gallery-thumb-${index + 1}`}
           key={src}
           onClick={(event) => openAt(index + 1, event.currentTarget)}
