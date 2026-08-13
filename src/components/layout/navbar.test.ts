@@ -9,8 +9,11 @@ import { hasHeroBackdropFor } from './hero-backdrop-routes'
 // rotanın hâlâ `true` döndüğünü ve bilinen heroless bir rotanın `false`
 // döndüğünü doğrular.
 describe('hasHeroBackdropFor', () => {
-  it('ana sayfa için true döner', () => {
-    expect(hasHeroBackdropFor('/')).toBe(true)
+  // Ana sayfanın hero'su fotoğrafsız/krem zemine dönüştüğünde (2026-08-13)
+  // listeden çıkarıldı: şeffaf varyant krem metin kullanır, krem zemin üzerinde
+  // navbar tamamen görünmez olurdu. Bu beklenti o kararı kilitler.
+  it('ana sayfa için false döner — hero artık açık renkli, şeffaf navbar okunmaz', () => {
+    expect(hasHeroBackdropFor('/')).toBe(false)
   })
 
   it('kamp detay sayfası (dinamik slug) için true döner', () => {

@@ -49,122 +49,38 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "ASSOS · ÇANAKKALE",
-      "titleLine1": "A slower",
-      "titleLine2": "way of living.",
-      "subtitle": "Three days in Assos.",
-      "tags": "Yoga · Pilates · Nature · Rest",
-      "cta": "Discover the retreat",
-      "imageAlt": "A pool on the Assos coast, looking out over the village and hills."
-    },
-    "campPanel": {
-      "guests": "{count, plural, one {# guest} other {# guests}}",
-      "duration": "{days, plural, one {# day} other {# days}} / {nights, plural, one {# night} other {# nights}}",
-      "cta": "Reserve your place"
-    },
-    "marquee": {
-      "items": "Yoga · Pilates · Nature · Rest · Longevity"
-    },
-    "trust": {
-      "assos": { "value": "7 min", "label": "to ancient Assos" },
-      "bay": { "value": "5 km", "label": "to Kadırga Bay" },
-      "groupSize": { "value": "12–16", "label": "guests per group" },
-      "stone": { "value": "Stone", "label": "authentic local architecture" }
-    },
-    "manifesto": {
-      "eyebrow": "OUR PHILOSOPHY",
-      "title": "Rest is not a luxury. It is a necessity.",
-      "sections": {
-        "01": {
-          "title": "Slowness is a choice",
-          "body": "We promise the opposite of a crowded schedule: morning practice, long meals, and quiet hours spent between the sea and the olive groves."
-        },
-        "02": {
-          "title": "Same team, same calm",
-          "body": "Every camp is held at the same stone hotel, with the same small team — a familiarity that never changes from one camp to the next."
-        },
-        "03": {
-          "title": "We set the structure",
-          "body": "You set the rest — your breath, your pace, your quiet. You are not arriving at a class; you are arriving at a retreat."
-        }
-      }
-    },
-    "upcoming": {
-      "eyebrow": "THE CALENDAR",
-      "title": "Upcoming Camps",
-      "viewAll": "View All Camps"
-    },
-    "includes": {
-      "eyebrow": "IN EVERY CAMP",
-      "title": "What's Included",
-      "items": {
-        "1": "Accommodation in a stone hotel, shared room",
-        "2": "Two yoga or pilates sessions a day",
-        "3": "Three home-style, seasonal meals a day",
-        "4": "Small groups of 12–16",
-        "5": "Walks to Assos and Kadırga Bay",
-        "6": "Breathwork and time to rest"
-      }
-    },
-    "benefits": {
-      "deepenPractice": {
-        "eyebrow": "PRACTICE",
-        "title": "Deepen Your Practice",
-        "body": "Morning and evening sessions run in groups that never exceed sixteen people. Our teachers know every body starts from a different place; the program is open from complete beginners to advanced practitioners."
-      },
-      "nourishBody": {
-        "eyebrow": "NOURISHMENT",
-        "title": "Nourish Your Body",
-        "body": "Our kitchen follows the season: olive oil, homemade cheese, vegetables from the garden. All three meals are eaten at a shared table, unhurried."
-      },
-      "resetMind": {
-        "eyebrow": "STILLNESS",
-        "title": "Reset Your Mind",
-        "body": "Phones are set aside. Breathwork, long silences and empty hours by the pool give the mind the rest it actually needs."
-      },
-      "sectionEyebrow": "WHY EDEN",
-      "sectionTitle": "Three Days, Three Gains"
+      "eyebrow": "ISTANBUL · AEGEAN · OUTDOORS",
+      "subtitle": "Leave the city. Move. Connect.",
+      "cta": "Upcoming Events",
+      "brand": "EDEN WELLNESS CLUB"
     },
     "teachers": {
       "eyebrow": "OUR TEAM",
       "title": "Our Teachers",
       "viewAll": "Meet All Teachers"
     },
-    "foodMoment": {
-      "eyebrow": "AT THE TABLE",
-      "title": "Olive oil, homemade cheese, a shared table",
-      "alt": "A shared meal on the stone terrace"
-    },
-    "venue": {
-      "eyebrow": "THE VENUE",
-      "title": "Staying at Karadut Taş Otel",
-      "cta": "Explore the Venue",
-      "viewGallery": "View Gallery"
-    },
-    "comingSoon": {
-      "eyebrow": "COMING SOON",
-      "title": "Assos is only the beginning",
-      "lede": "With partner hotels and partner pilates teachers, future nature retreats will join the calendar."
-    },
     "testimonials": {
       "eyebrow": "IN THEIR WORDS",
       "title": "Impressions from past camps",
       "devWarning": "Development notice: these testimonials are PLACEHOLDERS. Replace them with real testimonials before launch, or remove this section."
     },
-    "newsletter": {
-      "title": "Be the first to hear about new camps",
-      "lede": "We'll email you as soon as new dates are announced — before spots fill up.",
-      "placeholder": "Your email address",
-      "consent": "I have read the KVKK Privacy Notice and consent to being contacted by email.",
-      "submit": "Subscribe",
-      "submitting": "Submitting…",
-      "success": "Thank you! You'll be the first to hear about new camp dates."
+    "showcase": {
+      "eyebrow": "UPCOMING",
+      "title": "The next experience",
+      "all": "All events",
+      "scrollHint": "Scroll to browse"
     },
-    "finalCta": {
-      "eyebrow": "LAST CALL",
-      "title": "Your weekend away from everything.",
-      "noUpcoming": "New dates will be announced soon.",
-      "cta": "Reserve Your Place"
+    "community": {
+      "eyebrow": "INSIDE THE EDEN COMMUNITY",
+      "title": "What EDEN Members Say",
+      "more": "See More Experiences"
+    },
+    "gallery": {
+      "eyebrow": "ARCHIVE",
+      "title": "Previously at EDEN",
+      "play": "Play video",
+      "close": "Close",
+      "willBeUpdated": "Will be updated"
     }
   },
   "camp": {
@@ -187,18 +103,7 @@
     "priceFromSuffix": "starting price per person",
     "nights": "{count, plural, one {# night} other {# nights}}"
   },
-  "camps": {
-    "eyebrow": "THE CALENDAR",
-    "title": "Camps",
-    "lede": "Filter our upcoming yoga and pilates retreats by programme and level.",
-    "empty": "No upcoming camps match these filters.",
-    "pastTitle": "Past Camps",
-    "filters": {
-      "program": "Programme",
-      "level": "Level",
-      "all": "All"
-    }
-  },
+  "camps": {},
   "campDetail": {
     "dailyFlow": "Daily Flow",
     "includes": "What's Included",
@@ -345,41 +250,38 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "events": "Our Upcoming Events",
-    "wellnessGoals": "Wellness Goals",
-    "previousEvents": "Our Previous Events",
-    "goal": "Our Goal",
+    "wellnessGoals": "Healthy Living",
+    "wellnessGoalsMenuLabel": "Healthy Living categories",
     "goalsComingSoon": "Detailed pages coming soon",
-    "instagramLabel": "EDEN Wellness Club on Instagram",
-    "searchLabel": "Search",
-    "searchPlaceholder": "Search camps…",
-    "closeSearch": "Close search"
+    "instagramLabel": "EDEN Wellness Club on Instagram"
   },
   "wellnessGoals": {
-    "detoxWeightLoss": "Detox & Weight Loss",
-    "fitnessSport": "Fitness & Sport",
-    "slowTravel": "Slow Travel",
-    "medispasClinics": "Medispas & Clinics",
-    "yogaMeditation": "Yoga & Meditation",
+    "eyebrow": "Healthy Living",
+    "intro": "The practices we share at every EDEN retreat.",
+    "yogaPilates": "Yoga & Pilates",
+    "hiking": "Hiking",
+    "running": "Running",
+    "canoeing": "Canoeing",
+    "reading": "Reading",
+    "meditationBreathwork": "Meditation & Breathwork",
+    "cycling": "Cycling",
+    "swimming": "Swimming",
     "wellnessRetreats": "Wellness Retreats",
-    "antiAgingLongevity": "Anti-Aging & Longevity",
-    "stressManagement": "Stress Management & Burn Out",
-    "mentalHealth": "Mental Health and Addictions",
-    "ayurveda": "Ayurveda",
-    "luxurySpas": "Luxury Spas"
+    "altYoga": "Yoga practice by the sea",
+    "altMeditation": "Morning meditation",
+    "altGarden": "The hotel's shaded garden",
+    "altPool": "Outdoor pool"
   },
   "common": {
     "skipToContent": "Skip to content",
     "whatsapp": "Message us on WhatsApp",
     "whatsappMessage": "Hello, I'd like more information about EDEN Wellness Club camps.",
     "backToTop": "Back to top",
-    "readMore": "Read more",
     "allRightsReserved": "All rights reserved."
   },
   "footer": {
     "kvkk": "KVKK Notice",
     "privacy": "Privacy Policy",
-    "navTitle": "Explore",
-    "contactTitle": "Contact",
     "instagram": "Instagram"
   },
   "form": {
@@ -435,5 +337,31 @@
     "body": "The page you're looking for may have moved or never existed. You can head back home or browse our camps.",
     "home": "Back to Home",
     "camps": "View Camps"
+  },
+  "events": {
+    "eyebrow": "PROGRAMME",
+    "title": "Upcoming Events",
+    "lede": "Events with confirmed dates come first; gatherings still being planned follow below.",
+    "empty": "No events are scheduled right now.",
+    "reserve": "Get Reservation",
+    "viewProgram": "View Programme",
+    "programTitle": "Programme",
+    "scheduleTba": "The programme for this event has not been announced yet.",
+    "dateTba": "Date to be announced",
+    "priceTba": "Price to be announced",
+    "placeholderBadge": "SAMPLE",
+    "placeholderNote": "This event is still being planned — reservations open once the date and price are confirmed.",
+    "reserveDisabled": "Coming soon",
+    "perPerson": "per person",
+    "close": "Close"
+  },
+  "eventCategory": {
+    "yoga": "Yoga",
+    "pilates": "Pilates",
+    "running": "Running",
+    "hiking": "Hiking",
+    "kayaking": "Kayaking",
+    "bookClub": "Book Club",
+    "meditation": "Meditation"
   }
 }

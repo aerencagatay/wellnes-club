@@ -140,11 +140,48 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* ===== SHIMMER (MagicUI ShimmerButton uyarlaması) =====
+   Birincil CTA'nın üzerinden geçen tek bir ışık bandı. MagicUI'nin özgün
+   sürümü bunu bir motion bileşeniyle kurar; burada saf CSS keyframe olarak
+   duruyor çünkü `Button` bir sunucu bileşeni — JS'e taşımak yalnızca bu efekt
+   için tüm CTA'ları istemci sınırına iterdi. `::after` kullanır, bu yüzden
+   ek DOM düğümü de yok.
+
+   `overflow: hidden` + `isolation` bandı butonun içinde tutar; buton
+   `rounded-none` olduğu için köşe taşması sorunu yaşanmaz. */
+@keyframes eden-shimmer {
+  0%   { transform: translateX(-120%) skewX(-20deg); }
+  60%  { transform: translateX(220%)  skewX(-20deg); }
+  100% { transform: translateX(220%)  skewX(-20deg); }
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 35%;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(241, 237, 228, 0.28), transparent);
+  animation: eden-shimmer 4.5s ease-in-out infinite;
+}
+
 /* ===== HAREKET TERCİHİ ===== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  /* Yukarıdaki kural süreyi sıfıra indirir ama animasyonu SON karesinde
+     dondurur — shimmer bandı için bu, butonun üzerinde kalıcı duran bir ışık
+     lekesi demek olurdu. Bandı tamamen kaldırmak doğru davranış. */
+  .shimmer::after {
+    display: none;
   }
 }

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
   getAllCamps, getAllTeachers, getAllVenues, getCampBySlug, getCampsForTeacher,
-  getFaq, getFeaturedCamps, getFutureEvents, getPastCamps, getTeachersForCamp, getTestimonials,
-  getUpcomingCamps, getVenueBySlug, getVenueForCamp,
+  getAllEvents, getEventBySlug, getFaq, getFeaturedCamps, getPastCamps, getTeachersForCamp,
+  getTestimonials, getUpcomingCamps, getUpcomingEvents, getVenueBySlug, getVenueForCamp,
 } from './index'
 import type { Localized, LocalizedList } from './types'
 import { PRIMARY_VENUE_SLUG } from '@/lib/config/site'
@@ -12,7 +12,7 @@ const teachers = getAllTeachers()
 const venues = getAllVenues()
 const faqItems = getFaq()
 const testimonialItems = getTestimonials()
-const futureEvents = getFutureEvents()
+const allEvents = getAllEvents()
 
 function expectLocalized(value: Localized, label: string) {
   expect(value.tr?.trim(), `${label}.tr boş`).toBeTruthy()
@@ -129,38 +129,121 @@ describe('içerik bütünlüğü', () => {
       ...camps.flatMap((c) => [c.heroImage, ...c.gallery]),
       ...teachers.map((t) => t.photo),
       ...venues.flatMap((v) => v.gallery),
-      ...futureEvents.map((e) => e.image),
+      ...allEvents.map((e) => e.media.src),
     ]
     for (const p of paths) expect(p).toMatch(/^\/img\//)
   })
 })
 
-describe('gelecek etkinlikler bütünlüğü', () => {
-  it('en az bir gelecek etkinlik vardır', () => {
-    expect(futureEvents.length).toBeGreaterThan(0)
+describe('etkinlik bütünlüğü', () => {
+  it('en az bir etkinlik vardır', () => {
+    expect(allEvents.length).toBeGreaterThan(0)
   })
 
-  it('tüm slug değerleri tekildir', () => {
-    const slugs = futureEvents.map((e) => e.slug)
-    expect(new Set(slugs).size, 'futureEvents içinde yinelenen slug').toBe(slugs.length)
+  it('tüm slug ve id değerleri tekildir', () => {
+    const slugs = allEvents.map((e) => e.slug)
+    expect(new Set(slugs).size, 'events içinde yinelenen slug').toBe(slugs.length)
+    const ids = allEvents.map((e) => e.id)
+    expect(new Set(ids).size, 'events içinde yinelenen id').toBe(ids.length)
   })
 
   it('slug değerleri kebab-case biçimindedir', () => {
-    for (const event of futureEvents) {
+    for (const event of allEvents) {
       expect(event.slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/)
     }
   })
 
   it('tüm çok dilli alanlar iki dilde doludur', () => {
-    for (const event of futureEvents) {
+    for (const event of allEvents) {
       expectLocalized(event.title, `${event.slug}.title`)
-      expectLocalized(event.summary, `${event.slug}.summary`)
+      expectLocalized(event.location, `${event.slug}.location`)
+      expectLocalized(event.shortDescription, `${event.slug}.shortDescription`)
+      expectLocalized(event.media.alt, `${event.slug}.media.alt`)
     }
   })
 
-  it('görsel yolu /img/ ile başlar', () => {
-    for (const event of futureEvents) {
-      expect(event.image, `${event.slug}.image`).toMatch(/^\/img\//)
+  // Bu, dosyadaki en önemli denetimdir. `isPlaceholder: true` bir kayıt GERÇEK
+  // BİR ETKİNLİĞE KARŞILIK GELMEZ (bkz. events.ts başlığı) — böyle bir kayda
+  // fiyat veya tarih eklenirse arayüz onu gerçek bir etkinlik gibi, çalışan bir
+  // rezervasyon CTA'sıyla göstermeye başlar ve gerçek müşteriyi var olmayan bir
+  // etkinliğe yönlendirir. Testin kırılması "beklentiyi güncelle" demek DEĞİL,
+  // "bu etkinlik gerçekse `isPlaceholder` alanını false yap" demektir.
+  it('ÖRNEK kayıtların fiyatı ve tarihi yoktur', () => {
+    for (const event of allEvents.filter((e) => e.isPlaceholder)) {
+      expect(event.price, `${event.slug}: örnek kayıtta fiyat olamaz`).toBeUndefined()
+      expect(event.dateStart, `${event.slug}: örnek kayıtta tarih olamaz`).toBeUndefined()
+      expect(event.dateEnd, `${event.slug}: örnek kayıtta tarih olamaz`).toBeUndefined()
+      expect(event.campSlug, `${event.slug}: örnek kayıt gerçek kampa bağlanamaz`).toBeUndefined()
+    }
+  })
+
+  it('gerçek kayıtların fiyatı, tarihi ve programı vardır', () => {
+    const real = allEvents.filter((e) => !e.isPlaceholder)
+    expect(real.length, 'en az bir gerçek etkinlik olmalı').toBeGreaterThan(0)
+    for (const event of real) {
+      expect(event.price, `${event.slug}.price`).toBeGreaterThan(0)
+      expect(event.dateStart, `${event.slug}.dateStart`).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+      expect(event.dateEnd, `${event.slug}.dateEnd`).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+      expect(event.dateEnd! >= event.dateStart!, `${event.slug}: dateEnd < dateStart`).toBe(true)
+      expect(event.schedule.length, `${event.slug}: gerçek etkinlik programsız`).toBeGreaterThan(0)
+    }
+  })
+
+  it('program günleri iki dilde ve geçerli saat biçimindedir', () => {
+    for (const event of allEvents) {
+      for (const [d, day] of event.schedule.entries()) {
+        expectLocalized(day.day, `${event.slug}.schedule[${d}].day`)
+        expect(day.items.length, `${event.slug}.schedule[${d}] boş gün`).toBeGreaterThan(0)
+        for (const [i, item] of day.items.entries()) {
+          expect(item.time, `${event.slug}.schedule[${d}].items[${i}].time`).toMatch(/^\d{2}:\d{2}$/)
+          expectLocalized(item.title, `${event.slug}.schedule[${d}].items[${i}].title`)
+        }
+      }
+    }
+  })
+
+  it('video medyası her zaman poster taşır', () => {
+    for (const event of allEvents) {
+      if (event.media.type === 'video') {
+        expect(event.media.poster, `${event.slug}: postersiz video`).toBeTruthy()
+      }
+    }
+  })
+
+  it('getUpcomingEvents bitmiş etkinlikleri dışlar, tarihsizleri korur', () => {
+    const past = getUpcomingEvents('2099-01-01')
+    for (const e of past) expect(e.dateEnd, `${e.slug} bitmiş olmalıydı`).toBeUndefined()
+    const now = getUpcomingEvents('2026-08-01')
+    expect(now.length).toBe(allEvents.length)
+  })
+
+  it('getAllEvents tarihlileri artan sırada, tarihsizleri sonda tutar', () => {
+    const dated = allEvents.filter((e) => e.dateStart).map((e) => e.dateStart!)
+    expect(dated).toEqual([...dated].sort())
+    const firstUndated = allEvents.findIndex((e) => !e.dateStart)
+    if (firstUndated !== -1) {
+      for (const e of allEvents.slice(firstUndated)) expect(e.dateStart).toBeUndefined()
+    }
+  })
+
+  it('getEventBySlug bilinmeyen slug için undefined döner', () => {
+    expect(getEventBySlug('yok-boyle-bir-etkinlik')).toBeUndefined()
+    expect(getEventBySlug(allEvents[0].slug)?.slug).toBe(allEvents[0].slug)
+  })
+
+  it('gerçek etkinliğin campSlug değeri bir kampa çözülür', () => {
+    for (const event of allEvents.filter((e) => e.campSlug)) {
+      expect(getCampBySlug(event.campSlug!), `${event.slug}.campSlug`).toBeDefined()
+    }
+  })
+
+  // Bu, gerçekte yaşanmış bir kusurun nöbetçisi: kamp listesi tek gerçek
+  // etkinliğe indirildiğinde testimonial kayıtları silinmiş kamplara işaret
+  // etmeye devam etti. Arayüz kamp adını çözemediğinde sessizce boş geçtiği
+  // için hata görünmüyordu — bu yüzden veri katmanında yakalanması gerekiyor.
+  it('testimonial campSlug değerleri var olan bir kampa çözülür', () => {
+    for (const t of testimonialItems.filter((t) => t.campSlug)) {
+      expect(getCampBySlug(t.campSlug!), `testimonial[${t.id}].campSlug`).toBeDefined()
     }
   })
 })

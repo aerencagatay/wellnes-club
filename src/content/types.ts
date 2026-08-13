@@ -75,14 +75,68 @@ export type Testimonial = {
   isPlaceholder: boolean
 }
 
-export type FutureEventKind = 'hiking' | 'camping' | 'running' | 'water-sports' | 'wildlife'
+/** Etkinlik kategorisi; kullanıcıya görünen etiketler messages/*.json → `eventCategory`. */
+export type EventCategory =
+  | 'yoga'
+  | 'pilates'
+  | 'running'
+  | 'hiking'
+  | 'kayaking'
+  | 'bookClub'
+  | 'meditation'
 
-export type FutureEvent = {
-  slug: string
-  kind: FutureEventKind
+export type EventScheduleItem = {
+  time: string // 'HH:MM'
   title: Localized
-  summary: Localized
-  image: string
+  description?: Localized
+}
+
+export type EventScheduleDay = {
+  /** Gün etiketi ('Cuma' / 'Friday') — sekme başlığı olarak gösterilir. */
+  day: Localized
+  date?: string // 'YYYY-MM-DD'
+  items: EventScheduleItem[]
+}
+
+export type EventMedia = {
+  type: 'image' | 'video'
+  src: string
+  /** `type: 'video'` için zorunlu poster görseli — video asla postersiz yüklenmez. */
+  poster?: string
+  alt: Localized
+}
+
+/**
+ * Ana sayfa showcase'i, /kamplar liste sayfası ve program modalı bu tek tipi
+ * paylaşır.
+ *
+ * `isPlaceholder` KRİTİKTİR ve isteğe bağlı değildir: `true` olan kayıtlar
+ * gerçek bir etkinliğe karşılık GELMEZ — arayüzde "ÖRNEK / YAKINDA" rozetiyle
+ * işaretlenir, fiyat gösterilmez ve rezervasyon CTA'sı pasif kalır. Bu,
+ * testimonials.ts'teki aynı konvansiyonun (ve 2026-08-06'da kurgusal etkinlik
+ * listesinin kaldırılması kararının) sürdürülmesidir: site canlı bir işletmeye
+ * ait olduğu için var olmayan bir etkinliği gerçek fiyat/rezervasyon
+ * butonuyla göstermek gerçek müşteriyi yanıltır. Bu yüzden `price` yalnızca
+ * `isPlaceholder: false` kayıtlarda anlamlıdır.
+ */
+export type WellnessEvent = {
+  id: string
+  slug: string
+  title: Localized
+  category: EventCategory
+  /** `isPlaceholder: true` ise tarih henüz belli değildir ve `undefined` olur. */
+  dateStart?: string // 'YYYY-MM-DD'
+  dateEnd?: string // 'YYYY-MM-DD'
+  location: Localized
+  shortDescription: Localized
+  /** Kişi başı, TRY. Yalnızca `isPlaceholder: false` kayıtlarda bulunur. */
+  price?: number
+  currency: 'TRY'
+  media: EventMedia
+  schedule: EventScheduleDay[]
+  /** Gerçek bir kampa bağlıysa `camps.ts` slug'ı — rezervasyon formunu ön-seçer. */
+  campSlug?: string
+  isPlaceholder: boolean
 }
 
 export type BlogPost = {

@@ -1,22 +1,10 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { Suspense } from 'react'
-import { getPastCamps, getUpcomingCamps, type Level, type Program } from '@/content'
+import { getUpcomingEvents } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
-import { CampCard } from '@/components/camps/camp-card'
-import { CampFilters } from '@/components/camps/camp-filters'
+import { EventRow } from '@/components/events/event-row'
 import { PageHero } from '@/components/layout/page-hero'
-import { RevealGroup } from '@/components/motion/reveal'
 import { Section } from '@/components/ui/section'
 import { buildAlternates } from '@/lib/seo/metadata'
-import { filterCamps, LEVELS, PROGRAMS } from '@/lib/utils/camp-status'
-
-function isProgram(value: string): value is Program {
-  return (PROGRAMS as readonly string[]).includes(value)
-}
-
-function isLevel(value: string): value is Level {
-  return (LEVELS as readonly string[]).includes(value)
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: AppLocale }> }) {
   const { locale } = await params
@@ -28,72 +16,46 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: A
   }
 }
 
-/** `?program=a&program=b` gibi tekrarlanan anahtarlarda Next `string[]` verir; bunu kasıtlı olarak geçersiz sayarız. */
-function asSingleValue(value: string | string[] | undefined): string | undefined {
-  return typeof value === 'string' ? value : undefined
-}
-
-export default async function CampsPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ locale: AppLocale }>
-  searchParams: Promise<{ program?: string | string[]; level?: string | string[]; q?: string | string[] }>
-}) {
+/**
+ * "Yaklaşan Etkinlikler" — tek, etkinlik odaklı bir liste.
+ *
+ * Eski kamp ızgarası, `CampFilters` ve "geçmiş kamplar" bölümü kaldırıldı:
+ * elimizde şu an tek bir gerçek kamp var, üç eksenli bir filtre arayüzü
+ * filtrelenecek içerikten daha ağırdı. `searchParams` de bu yüzden okunmuyor —
+ * sayfa artık tamamen statik render edilebiliyor.
+ *
+ * `setRequestLocale` statik render için ZORUNLU: onsuz next-intl isteği
+ * dinamik sayar ve sayfa her istekte yeniden render edilir.
+ */
+export default async function EventsPage({ params }: { params: Promise<{ locale: AppLocale }> }) {
   const { locale } = await params
   setRequestLocale(locale)
-  const query = await searchParams
-  const t = await getTranslations('camps')
+  const t = await getTranslations('events')
+
+  // Bugünün tarihi seçiciye DIŞARIDAN veriliyor — `getUpcomingEvents` saat
+  // okumaz, böylece test edilebilir kalır (bkz. content/index.ts).
   const today = new Date().toISOString().slice(0, 10)
-
-  // Bilinmeyen veya tekrarlanan sorgu değerleri sessizce "hepsi" olarak ele alınır.
-  const rawProgram = asSingleValue(query.program)
-  const rawLevel = asSingleValue(query.level)
-  const program = rawProgram && isProgram(rawProgram) ? rawProgram : 'all'
-  const level = rawLevel && isLevel(rawLevel) ? rawLevel : 'all'
-  const searchQuery = asSingleValue(query.q)
-
-  const upcoming = filterCamps(getUpcomingCamps(today), { program, level, query: searchQuery })
-  const past = getPastCamps(today)
+  const events = getUpcomingEvents(today)
 
   return (
     <>
       <PageHero eyebrow={t('eyebrow')} lede={t('lede')} title={t('title')} />
 
       <Section size="sm">
-        <Suspense fallback={null}>
-          <CampFilters />
-        </Suspense>
-
-        {upcoming.length === 0 ? (
-          <p className="type-lede mt-12">{t('empty')}</p>
+        {events.length === 0 ? (
+          <p className="type-lede">{t('empty')}</p>
         ) : (
-          <RevealGroup className="mt-12 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {upcoming.map((camp) => (
-              // Bu grid, sayfanın h1'inden (PageHero) sonra ara bir h2 bölüm başlığı
-              // olmadan geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar.
-              <CampCard camp={camp} headingLevel="h2" key={camp.slug} locale={locale} />
+          // Satır aralığı bölüm dolgusuna yakın tutuluyor: her etkinlik kendi
+          // "sayfası" gibi okunsun, ızgara hissi vermesin.
+          <ul className="flex flex-col gap-24 lg:gap-36">
+            {events.map((event, index) => (
+              // Sayfanın h1'i PageHero'da; satır başlıkları bu yüzden h2.
+              // İlk satırın görseli LCP adayı olduğu için `priority` alır.
+              <EventRow event={event} index={index} key={event.id} locale={locale} priority={index === 0} />
             ))}
-          </RevealGroup>
+          </ul>
         )}
       </Section>
-
-      {past.length > 0 && (
-        <Section background="surface">
-          <h2 className="type-title">{t('pastTitle')}</h2>
-          {/* `opacity-65` KULLANILMIYOR: opaklık, kartın içindeki TÜM metni de zeminle
-              birlikte soldurur — metin ve zemin aynı arka plana doğru harmanlandığı için
-              aralarındaki kontrast oranı da çöker (Lighthouse'ta gerçek, ölçülebilir bir
-              WCAG AA ihlali olarak yakalandı: ör. #9c9b9a/#f7f3ef ~2.51:1). Bölümün kendi
-              başlığı ("Geçmiş kamplar") ve cream-2 zemini bu kartları "geçmiş" olarak
-              ayırt etmek için zaten yeterli; kontrastı bozmadan bunu yapıyor. */}
-          <RevealGroup className="mt-10 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {past.map((camp) => (
-              <CampCard camp={camp} key={camp.slug} locale={locale} />
-            ))}
-          </RevealGroup>
-        </Section>
-      )}
     </>
   )
 }

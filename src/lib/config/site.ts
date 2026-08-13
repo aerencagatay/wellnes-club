@@ -30,34 +30,39 @@ export const NAV_ITEMS = [
 ] as const
 
 /**
- * Navbar'ın üst şeridi (Luxe Wellness Club referansıyla eşleşen 4 sade madde) —
- * `NAV_ITEMS`'in yerini almaz, footer hâlâ tam site haritasını gösterir (kullanıcı
- * isteği, 2026-08-10). `wellnessGoals` gerçek bir sayfaya gitmez, yalnızca
- * `WellnessGoalsMenu` açılır panelini tetikler.
+ * Navbar'ın ortalanmış gezinme şeridi: yalnızca 3 madde (kullanıcı isteği,
+ * 2026-08-13). `NAV_ITEMS`'in yerini almaz — footer hâlâ tam site haritasını
+ * gösterir; "Geçmiş Etkinlikler" birincil navdan çıkarıldı çünkü artık ana
+ * sayfadaki galeri bölümü olarak yaşıyor.
+ *
+ * Sıra BURADA bildirilir (navbar'da elle "index === 0" gibi bir yerleştirme
+ * yok): `menu` tipindeki madde gerçek bir sayfaya gitmez, `WellnessGoalsMenu`
+ * panelini tetikler. Üçüncü maddenin etiketi tek yerden değişsin diye
+ * `key`/`href` çifti burada durur — yeniden adlandırmak için messages'taki
+ * `nav.<key>` değerini değiştirmek yeterli.
  */
 export const PRIMARY_NAV_ITEMS = [
-  { href: '/kamplar', key: 'events' },
-  { href: '/blog', key: 'previousEvents' },
-  { href: '/hakkimizda', key: 'goal' },
+  { type: 'link', href: '/kamplar', key: 'events' },
+  { type: 'menu', key: 'wellnessGoals' },
+  { type: 'link', href: '/hakkimizda', key: 'about' },
 ] as const
 
 /**
- * Luxe Wellness Club'ın "Wellness Goals" mega menüsündeki kategori listesi.
- * Henüz karşılık gelen bir sayfa olmadığından (kullanıcı isteği, 2026-08-10)
- * öğeler tıklanamaz — yalnızca görsel bir önizleme.
+ * "Sağlıklı Yaşam" mega menüsündeki pratik listesi — EDEN'in kamplarında
+ * gerçekten yapılan aktiviteler (kullanıcı isteği, 2026-08-13; önceki jenerik
+ * "wellness goals" listesinin yerini aldı). Henüz karşılık gelen bir sayfa
+ * olmadığından öğeler tıklanamaz; menü bunu görsel olarak da belirtir.
  */
 export const WELLNESS_GOALS = [
-  'detoxWeightLoss',
-  'fitnessSport',
-  'slowTravel',
-  'medispasClinics',
-  'yogaMeditation',
+  'yogaPilates',
+  'hiking',
+  'running',
+  'canoeing',
+  'reading',
+  'meditationBreathwork',
+  'cycling',
+  'swimming',
   'wellnessRetreats',
-  'antiAgingLongevity',
-  'stressManagement',
-  'mentalHealth',
-  'ayurveda',
-  'luxurySpas',
 ] as const
 
 export const FOOTER_LEGAL = [

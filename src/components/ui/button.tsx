@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { Link } from '@/i18n/navigation'
+import { cn } from '@/lib/utils/cn'
 
 type Variant = 'primary' | 'secondary' | 'ghost'
 type Size = 'md' | 'lg'
@@ -25,10 +26,26 @@ type Props = {
   href?: string
   children: ReactNode
   className?: string
+  /**
+   * MagicUI ShimmerButton uyarlaması: butonun üzerinden yavaşça geçen ışık
+   * bandı (bkz. globals.css `.shimmer`). Sayfanın BİRİNCİL eylemine ayrılmıştır
+   * — her butona verilirse vurgu anlamını yitirir. Hareket azaltma isteğinde
+   * band CSS tarafında tamamen kaldırılır.
+   */
+  shimmer?: boolean
 } & Omit<ComponentPropsWithoutRef<'button'>, 'children' | 'className'>
 
-export function Button({ variant = 'primary', size = 'md', href, disabled, children, className = '', ...rest }: Props) {
-  const classes = `${BASE} ${VARIANTS[variant]} ${SIZES[size]} ${className}`
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  href,
+  disabled,
+  shimmer = false,
+  children,
+  className = '',
+  ...rest
+}: Props) {
+  const classes = cn(BASE, VARIANTS[variant], SIZES[size], shimmer && 'shimmer', className)
   // `disabled` bir `href` ile birlikte gelirse href yok sayılır: gerçek, tam
   // işlevsiz bir `<button disabled>` her zaman kazanır. Aksi halde `<a
   // disabled>` / `<Link disabled>` üretilirdi — `disabled` niteliği anchor'da

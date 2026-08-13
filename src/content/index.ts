@@ -1,11 +1,11 @@
 import { camps } from './camps'
+import { events } from './events'
 import { faq } from './faq'
-import { futureEvents } from './future-events'
 import { posts } from './posts'
 import { teachers } from './teachers'
 import { testimonials } from './testimonials'
 import { venues } from './venues'
-import type { BlogPost, CampSession, FaqItem, FutureEvent, Teacher, Testimonial, Venue } from './types'
+import type { BlogPost, CampSession, FaqItem, Teacher, Testimonial, Venue, WellnessEvent } from './types'
 
 export * from './types'
 
@@ -79,8 +79,33 @@ export function getTestimonials(): Testimonial[] {
   return [...testimonials]
 }
 
-export function getFutureEvents(): FutureEvent[] {
-  return [...futureEvents]
+/**
+ * Sıralama kuralı (brief §12): en yakın tarih → en uzak tarih. Tarihi henüz
+ * belirlenmemiş ÖRNEK kayıtlar (bkz. events.ts) hiçbir zaman tarihli gerçek
+ * etkinliğin önüne geçmez, listenin sonunda kendi aralarındaki sırayı korur.
+ */
+const byEventDateAsc = (a: WellnessEvent, b: WellnessEvent) => {
+  if (a.dateStart && b.dateStart) return a.dateStart.localeCompare(b.dateStart)
+  if (a.dateStart) return -1
+  if (b.dateStart) return 1
+  return 0
+}
+
+export function getAllEvents(): WellnessEvent[] {
+  return [...events].sort(byEventDateAsc)
+}
+
+/**
+ * Bitmiş etkinlikler listelenmez. Tarihsiz ÖRNEK kayıtlar "geçmiş" sayılmaz —
+ * henüz gerçekleşmemiş oldukları için listede kalırlar.
+ */
+export function getUpcomingEvents(today: string, limit?: number): WellnessEvent[] {
+  const upcoming = getAllEvents().filter((e) => e.dateEnd === undefined || e.dateEnd >= today)
+  return limit === undefined ? upcoming : upcoming.slice(0, limit)
+}
+
+export function getEventBySlug(slug: string): WellnessEvent | undefined {
+  return events.find((e) => e.slug === slug)
 }
 
 export function getAllPosts(): BlogPost[] {
