@@ -184,8 +184,16 @@ body {
   60%  { transform: translateX(220%)  skewX(-20deg); }
   100% { transform: translateX(220%)  skewX(-20deg); }
 }
+/* DİKKAT — buraya `border-radius: inherit` EKLEMEYİN. Bir kez eklendi ve
+   shimmer'lı butonu köşeli bıraktı: bu kural katmansız (unlayered), Tailwind'in
+   `rounded-*` yardımcıları ise `@layer utilities` içinde. Katmansız CSS her
+   zaman katmanlı olanı yener, dolayısıyla `inherit` butonun kendi yarıçapını
+   ezip ebeveyninin yarıçapını (çoğunlukla 0) uyguluyordu.
+
+   Yarıçap zaten `Button`'ın `rounded-[var(--radius-btn)]` sınıfından geliyor;
+   `overflow: hidden` da ışık bandını O yarıçapa göre kırpar. Buraya hiçbir
+   yarıçap bildirimi gerekmiyor. */
 .shimmer {
-  border-radius: inherit;
   position: relative;
   overflow: hidden;
   isolation: isolate;
