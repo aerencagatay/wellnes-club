@@ -81,7 +81,7 @@ export function EventCard({ event, locale }: { event: WellnessEvent; locale: App
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-heading text-2xl leading-tight font-light text-text">{event.title[locale]}</h3>
+        <h3 className="font-heading text-2xl leading-tight font-medium text-text">{event.title[locale]}</h3>
 
         <p className="mt-3 text-sm text-muted transition-colors duration-300 group-hover:text-text">
           {formatEventDate(event, locale, t('dateTba'))}

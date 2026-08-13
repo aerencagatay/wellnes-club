@@ -196,7 +196,7 @@ export function Navbar() {
               ) : (
                 <Link
                   aria-current={pathname === item.href ? 'page' : undefined}
-                  className="border-b border-sand py-4 font-heading text-2xl font-light text-text"
+                  className="border-b border-sand py-4 font-heading text-2xl font-medium text-text"
                   href={item.href}
                   key={item.key}
                   onClick={() => setOpen(false)}

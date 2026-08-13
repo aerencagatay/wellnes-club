@@ -155,7 +155,7 @@ export function WellnessGoalsMenu({ transparent = false }: { transparent?: boole
             >
               <div>
                 <p className="type-eyebrow text-olive">{tGoals('eyebrow')}</p>
-                <p className="mt-4 max-w-sm font-heading text-2xl font-extralight text-text">{tGoals('intro')}</p>
+                <p className="mt-4 max-w-sm font-heading text-2xl font-medium text-text">{tGoals('intro')}</p>
                 <div className="mt-8">
                   <GoalsList />
                 </div>
@@ -200,7 +200,7 @@ export function WellnessGoalsAccordion() {
       <button
         aria-controls={panelId}
         aria-expanded={open}
-        className="flex w-full items-center justify-between py-4 text-left font-heading text-2xl font-light text-text"
+        className="flex w-full items-center justify-between py-4 text-left font-heading text-2xl font-medium text-text"
         onClick={() => setOpen((value) => !value)}
         type="button"
       >

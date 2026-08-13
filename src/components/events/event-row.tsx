@@ -115,7 +115,7 @@ export function EventRow({ event, locale, index, priority = false }: Props) {
               {t('placeholderNote')}
             </p>
           ) : (
-            <p className="mt-6 font-heading text-2xl font-light text-text">
+            <p className="mt-6 font-heading text-2xl font-medium text-text">
               {price} <span className="type-eyebrow align-middle">{t('perPerson')}</span>
             </p>
           )}

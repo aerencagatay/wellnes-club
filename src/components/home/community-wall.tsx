@@ -141,7 +141,7 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
                     </span>
                   )}
 
-                  <blockquote className={cn('font-heading font-light text-text', QUOTE_SIZE[scale])}>
+                  <blockquote className={cn('font-heading font-medium text-text', QUOTE_SIZE[scale])}>
                     “{item.quote[locale]}”
                   </blockquote>
 

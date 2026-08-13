@@ -11,10 +11,17 @@ const SIZES = {
 } as const
 
 /**
- * EDEN LOGO.jpeg'in tipografisine karşılık gelen metin logosu (ince, geniş
- * aralıklı EDEN + altında dar "WELLNESS CLUB" alt yazısı). Logonun kendi taupe
- * zeminli karesi navbar/footer'ın beyaz zeminine oturmadığı için görsel yerine
- * metin kullanılır (bkz. 2026-08-10 tasarım notu).
+ * Markanın METİN karşılığı — navbar ve footer'da gerçek logo görselinin yerine
+ * kullanılır (görsel yalnızca hero'da, orada tek merkez öğe olarak duruyor).
+ *
+ * Tipografi artık logoyu TAKLİT EDİYOR, ondan uzaklaşmıyor: "EDEN" başlık
+ * fontuyla (Fraunces, groovy serif) ve dolgun bir ağırlıkla yazılıyor —
+ * logodaki şişkin gövdeli EDEN'in karşılığı. Altındaki "WELLNESS CLUB" ise
+ * gövde fontuyla (Poppins) ve geniş harf aralığıyla, tıpkı logodaki ikinci
+ * satır gibi.
+ *
+ * Eski kurulum ikisini de Montserrat ExtraLight ile yazıyordu; bu, groovy
+ * serifte anlamsız (şişkin gövdeler kaybolur) ve logoyla akrabalığı yoktu.
  */
 export function BrandLockup({
   transparent = false,
@@ -31,8 +38,8 @@ export function BrandLockup({
         transparent ? 'text-background' : 'text-text',
       )}
     >
-      <span className={cn('font-heading font-extralight tracking-[0.18em]', main)}>EDEN</span>
-      <span className={cn('mt-2 font-heading font-light uppercase', sub)}>Wellness Club</span>
+      <span className={cn('font-heading font-semibold tracking-[0.04em]', main)}>EDEN</span>
+      <span className={cn('mt-2 font-body font-medium uppercase', sub)}>Wellness Club</span>
     </span>
   )
 }

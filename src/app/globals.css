@@ -15,8 +15,12 @@
      AA eşiğinin altındadır (bkz. contrast-guard.test.ts). */
   --color-taupe:      #7B7458;
 
-  --font-heading: var(--font-montserrat), system-ui, sans-serif;
-  --font-body:    var(--font-manrope), system-ui, sans-serif;
+  /* Başlıklar 70'ler groovy serif (Fraunces), gövde geometrik sans (Poppins) —
+     ikisi de logodan türetildi, bkz. src/lib/fonts.ts. Yedek zincirde `serif`
+     var: Fraunces yüklenemezse sistem sans'a düşmek başlıkları gövdeden
+     ayırt edilemez hâle getirirdi. */
+  --font-heading: var(--font-fraunces), Georgia, serif;
+  --font-body:    var(--font-poppins), system-ui, sans-serif;
 }
 
 :root {
@@ -66,15 +70,22 @@ body {
 }
 
 /* @layer base içinde: Tailwind text-* yardımcıları başlık rengini ezebilsin.
-   Montserrat, logonun ince/geniş-aralıklı geometrik sans-serif'iyle eşleşir —
-   ağırlık 300 (Light), tracking negatif değil hafif pozitif. */
+   Fraunces bir groovy serif — eski Montserrat kurulumunun aksine AĞIRLIK ister:
+   300 (Light) ağırlıkta karakteristik şişkin gövdeler kaybolur ve font sıradan
+   bir serife dönüşür. 600 logodaki "EDEN"in dolgunluğuna karşılık gelir.
+   Harf aralığı da pozitiften hafif negatife döner: geniş aralık geometrik
+   sans'ta zarif dururdu, serifte harfleri birbirinden kopuk gösterir. */
 @layer base {
   h1, h2, h3, h4, h5 {
     font-family: var(--font-heading);
-    font-weight: 300;
+    font-weight: 600;
     color: var(--color-text);
-    line-height: 1.1;
-    letter-spacing: 0.01em;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    /* Groovy dozunun ayarlandığı yer (bkz. fonts.ts): SOFT köşe yumuşaklığı,
+       WONK eğri büğrü karakter. Fazla karikatürize gelirse SOFT'u düşürün
+       veya WONK'u 0 yapın — tek satırda geri çekilir. */
+    font-variation-settings: "SOFT" 55, "WONK" 1, "opsz" 90;
   }
 }
 
@@ -120,16 +131,21 @@ body {
   .type-display {
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 7vw, 5.5rem);
-    line-height: 1.05;
-    letter-spacing: 0.01em;
-    font-weight: 200;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    /* Büyük puntoda `opsz` üst uca çekilir: Fraunces optik boy ekseninde
+       yükseldikçe kalın/ince kontrastı artar, bu da display ölçekte istenen
+       karakteri verir — küçük puntoda aynı ayar okunabilirliği düşürürdü. */
+    font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 144;
   }
   .type-title {
     font-family: var(--font-heading);
     font-size: clamp(1.75rem, 3.5vw, 2.75rem);
     line-height: 1.15;
-    letter-spacing: 0.01em;
-    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    font-variation-settings: "SOFT" 55, "WONK" 1, "opsz" 110;
   }
   .type-lede {
     font-size: clamp(1rem, 1.3vw, 1.15rem);

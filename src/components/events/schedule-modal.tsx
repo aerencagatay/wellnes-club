@@ -209,7 +209,7 @@ function ScheduleBody({
           ))}
         </div>
       ) : (
-        <h3 className="font-heading text-2xl font-light text-text">{day.day[locale]}</h3>
+        <h3 className="font-heading text-2xl font-medium text-text">{day.day[locale]}</h3>
       )}
 
       <div
@@ -231,7 +231,7 @@ function ScheduleBody({
             >
               <span className="text-sm text-muted tabular-nums">{item.time}</span>
               <div className="min-w-0">
-                <h4 className="font-heading text-lg font-light text-text">{item.title[locale]}</h4>
+                <h4 className="font-heading text-lg font-medium text-text">{item.title[locale]}</h4>
                 {item.description && (
                   <p className="mt-2 text-sm leading-relaxed text-muted">{item.description[locale]}</p>
                 )}
