@@ -20,18 +20,21 @@ import { Button } from '@/components/ui/button'
  */
 
 /**
- * Logo bilinçli olarak MÜTEVAZI ölçekleniyor. Kaynak PNG'nin gerçek çizim
- * alanı 360x336 piksel; 2x (retina) ekranda tam netlik için görüntüleme
- * genişliği bunun yarısını, yani ~180px'i geçmemeli. 300px'lik üst sınır bu
- * kuralı bilerek bir miktar esnetir: suluboya güneş yumuşak kenarlı olduğu için
- * hafif büyütmeyi affeder, ama logodaki "EDEN" harfleri keskin — bu yüzden
- * daha da büyütmek görünür yumuşama yaratırdı.
+ * Görüntüleme genişliğinin üst sınırı kaynağın çözünürlüğüne BAĞLIDIR, keyfi
+ * değil: 2x (retina) ekranda tam netlik için görüntüleme genişliği kaynağın
+ * yarısını geçmemeli. Kaynak 662px olduğuna göre güvenli tavan ~331px.
  *
- * DAHA BÜYÜK BİR HERO LOGOSU İSTENİRSE: çözüm CSS'te değil, kaynakta —
- * en az 2048px genişliğinde yeni bir logo dosyası gerekir.
+ * Dosya, çizimin GERÇEK sınırlarına kırpılmıştır (çevresinde boşluk yoktur) —
+ * bu yüzden 340px, öncekinin 460px'i kadar yer kaplar ama tamamı çizimdir.
+ *
+ * KIRPMANIN İKİNCİ İŞLEVİ — HİZALAMA: tuval çizimin sınır kutusu olduğu için
+ * görselin merkezi TANIM GEREĞİ marka yazısının merkezidir. Böylece altındaki
+ * CTA butonu `items-center` ile ortalandığında logonun yazısıyla da hizalanır.
+ * Önceki sürümde tuvalde asimetrik boşluk vardı ve yazı merkezden 22.5px
+ * kaymıştı; buton gözle görülür biçimde hizasız duruyordu.
  */
-const LOGO_WIDTH = 360
-const LOGO_HEIGHT = 336
+const LOGO_WIDTH = 662
+const LOGO_HEIGHT = 621
 
 export function HeroHome() {
   const t = useTranslations('home.hero')
@@ -50,7 +53,7 @@ export function HeroHome() {
           <h1>
             <Image
               alt={t('brand')}
-              className="h-auto w-[min(64vw,300px)]"
+              className="h-auto w-[min(72vw,340px)]"
               height={LOGO_HEIGHT}
               priority
               src="/img/eden-logo.png"
