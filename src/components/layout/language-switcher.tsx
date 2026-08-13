@@ -19,7 +19,7 @@ export function LanguageSwitcher({ transparent = false }: { transparent?: boolea
   const [isPending, startTransition] = useTransition()
 
   return (
-    <div className="flex items-center gap-1 text-xs font-semibold uppercase tracking-widest">
+    <div className="flex items-center gap-1 text-xs font-semibold tracking-widest">
       {routing.locales.map((locale) => (
         <button
           aria-current={locale === current ? 'true' : undefined}
@@ -37,7 +37,16 @@ export function LanguageSwitcher({ transparent = false }: { transparent?: boolea
           onClick={() => startTransition(() => router.replace(pathname, { locale }))}
           type="button"
         >
-          {locale}
+          {/* Metin GERÇEKTEN büyük harf yazılır, `uppercase` sınıfıyla görsel
+              olarak dönüştürülmez. `text-transform` yalnızca boyamayı etkiler:
+              DOM'daki içerik "tr" olarak kalır, kopyala-yapıştırda ve bazı
+              ekran okuyucularda küçük harf olarak çıkar. Sabit iki harflik
+              dil kodları için içeriği doğrudan büyük yazmak daha dürüst.
+
+              `toUpperCase()` yerelden bağımsız (invariant) kuralları kullanır —
+              Türkçe'nin noktalı/noktasız i kuralı burada devreye girmez; zaten
+              'tr'/'en' kodlarının hiçbirinde 'i' yok. */}
+          {locale.toUpperCase()}
         </button>
       ))}
     </div>
