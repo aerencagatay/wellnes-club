@@ -40,12 +40,18 @@ const realEvent: WellnessEvent = {
   shortDescription: REAL_CAMP.summary,
   price: REAL_CAMP.priceFrom,
   currency: 'TRY',
+  // Etkinlik kartının görseli KASITLI olarak `REAL_CAMP.heroImage`'dan
+  // TÜRETİLMİYOR (tarih/fiyat/program türetiliyor, bu türetilmiyor). İkisi
+  // farklı işler görüyor: kamp detay sayfasının hero'su tam-taşma geniş bir
+  // mekan fotoğrafı, kart görseli ise faaliyetin kendisini gösteren dikey bir
+  // kare. Aynı dosyayı ikisinde kullanmak, portre bir fotoğrafı geniş hero'da
+  // ağır kırpmak (veya geniş bir manzarayı dikey kartta sıkıştırmak) demekti.
   media: {
     type: 'image',
-    src: REAL_CAMP.heroImage,
+    src: '/img/yoga retreat.jpg',
     alt: {
-      tr: 'Assos’taki taş otelin zeytinliklere bakan terası',
-      en: 'The stone hotel’s terrace in Assos, overlooking olive groves',
+      tr: 'Ahşap bir platformda gölgeliğin altında yoga pratiği yapan grup',
+      en: 'A group practising yoga on a wooden deck under a shade canopy',
     },
   },
   schedule: [
@@ -152,25 +158,6 @@ const placeholderEvents: WellnessEvent[] = [
         tr: 'Sırt çantalı üç yürüyüşçü dağ sırtındaki patikada',
         en: 'Three hikers with backpacks on a ridge trail',
       },
-    },
-    schedule: [],
-    isPlaceholder: true,
-  },
-  {
-    id: 'bogazda-sunset-kayaking',
-    slug: 'bogazda-sunset-kayaking',
-    title: { tr: 'Boğaz’da Sunset Kayaking', en: 'Sunset Kayaking on the Bosphorus' },
-    category: 'kayaking',
-    location: { tr: 'Boğaz, İstanbul', en: 'The Bosphorus, Istanbul' },
-    shortDescription: {
-      tr: 'Gün batarken kürekle sakin sulara açılan küçük bir grup.',
-      en: 'A small group paddling out into calm water as the sun goes down.',
-    },
-    currency: 'TRY',
-    media: {
-      type: 'image',
-      src: '/img/venue/havuz.webp',
-      alt: { tr: 'Akşam ışığında su', en: 'Water in the evening light' },
     },
     schedule: [],
     isPlaceholder: true,
