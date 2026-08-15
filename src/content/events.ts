@@ -81,8 +81,11 @@ const placeholderEvents: WellnessEvent[] = [
     currency: 'TRY',
     media: {
       type: 'image',
-      src: '/img/venue/dis-cephe.webp',
-      alt: { tr: 'Ağaçların arasında taş bir yapı', en: 'A stone building among the trees' },
+      src: '/img/forest running.jpg',
+      alt: {
+        tr: 'Orman patikasında birlikte koşan bir grup',
+        en: 'A group running together along a forest trail',
+      },
     },
     schedule: [],
     isPlaceholder: true,
@@ -100,8 +103,11 @@ const placeholderEvents: WellnessEvent[] = [
     currency: 'TRY',
     media: {
       type: 'image',
-      src: '/img/venue/balkon.webp',
-      alt: { tr: 'Denize bakan bir balkon', en: 'A balcony facing the sea' },
+      src: '/img/boğazda yoga.jpg',
+      alt: {
+        tr: 'Boğaz’da bir teknenin güvertesinde kalabalık bir grup pratiği',
+        en: 'A large group practising on a boat deck on the Bosphorus',
+      },
     },
     schedule: [],
     isPlaceholder: true,
@@ -119,8 +125,11 @@ const placeholderEvents: WellnessEvent[] = [
     currency: 'TRY',
     media: {
       type: 'image',
-      src: '/img/venue/bahce.webp',
-      alt: { tr: 'Gölgeli bir bahçe köşesi', en: 'A shaded corner of the garden' },
+      src: '/img/kitab klübü.jpg',
+      alt: {
+        tr: 'Kitaplar ve kahvelerle dolu bir masanın çevresinde oturan grup',
+        en: 'A group seated around a table covered with books and coffees',
+      },
     },
     schedule: [],
     isPlaceholder: true,
@@ -138,8 +147,11 @@ const placeholderEvents: WellnessEvent[] = [
     currency: 'TRY',
     media: {
       type: 'image',
-      src: '/img/venue/kusbakisi.webp',
-      alt: { tr: 'Tepeden kıyı manzarası', en: 'The coastline seen from above' },
+      src: '/img/kazdağları hike.jpg',
+      alt: {
+        tr: 'Sırt çantalı üç yürüyüşçü dağ sırtındaki patikada',
+        en: 'Three hikers with backpacks on a ridge trail',
+      },
     },
     schedule: [],
     isPlaceholder: true,
