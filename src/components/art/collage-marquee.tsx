@@ -25,11 +25,15 @@ export function CollageMarquee({ locale }: { locale: AppLocale }) {
     <div aria-hidden={ariaHidden || undefined} className="flex shrink-0 items-center gap-8 pr-8">
       {MARQUEE_SLOTS.map((slot, index) => (
         <div className="flex shrink-0 items-center gap-8" key={`${ariaHidden ? 'b' : 'a'}-${slot.id}`}>
-          <div className="h-28 w-28 shrink-0 md:h-36 md:w-36">
+          {/* 3:4 DİKEY — kolaj panolarının kendi oranı. Yuva bir ara kareydi
+              ve panoların yarısını kırpıyordu: kolajın anlamı parçaların bir
+              arada okunmasında, kırpılmış bir kolaj yalnızca bir doku lekesi
+              olur. */}
+          <div className="h-40 w-30 shrink-0 md:h-52 md:w-39">
             <CollageFrame
               index={index}
               locale={locale}
-              sizes="(max-width: 768px) 112px, 144px"
+              sizes="(max-width: 768px) 120px, 156px"
               slot={slot}
             />
           </div>
