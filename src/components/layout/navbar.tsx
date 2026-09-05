@@ -85,10 +85,14 @@ export function Navbar() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-300',
-        transparent ? 'border-transparent bg-transparent' : 'border-sand/60 bg-background/92 backdrop-blur-[2px]',
+        // Opak hâlde ayrım GÖLGEYLE DEĞİL hairline ile yapılır: navbar da
+        // sistemin "galeri çerçevesi" dilinin bir parçası (bkz. globals.css
+        // `.frame`). Kum tonu bir çizgi burada yeterince ayırmıyordu — siyah
+        // hairline navbar'ı sayfadan net biçimde koparır.
+        transparent ? 'border-transparent bg-transparent' : 'border-text bg-background',
       )}
     >
-      <div className="container-page relative flex h-24 items-center justify-between gap-8 lg:h-28">
+      <div className="container-page relative flex h-24 items-center justify-between gap-8 lg:h-32">
         <div className="flex items-center gap-5">
           <a
             aria-label={t('instagramLabel')}
@@ -141,21 +145,24 @@ export function Navbar() {
       <nav
         aria-label={t('primary')}
         className={cn(
-          'hidden h-14 items-center justify-center gap-14 border-t transition-colors duration-300 lg:flex',
-          transparent ? 'border-background/20' : 'border-sand/60',
+          'hidden h-16 items-center justify-center gap-16 border-t transition-colors duration-300 lg:flex',
+          transparent ? 'border-background/25' : 'border-text/15',
         )}
       >
         {PRIMARY_NAV_ITEMS.map((item) => (
           <Link
             aria-current={pathname === item.href ? 'page' : undefined}
             className={cn(
-              // Cümle düzeni + orta ağırlık. Eskiden `text-[11px] uppercase
-              // tracking-[0.22em]` idi — büyük harf + çok geniş harf aralığı,
-              // keskin köşelerden bile güçlü biçimde "2010'lar editoryal"
-              // hissi veriyordu (kullanıcı geri bildirimi, 2026-08-14).
-              // Markanın geniş aralıklı Montserrat kimliği `BrandLockup`'ta
-              // KORUNUR; burada değişen yalnızca gezinme bağlantılarının dili.
-              'text-sm font-medium tracking-normal transition-colors duration-300',
+              // Aralıklı büyük harf grotesk — posterin "WELLNESS CLUB"
+              // satırının dili (zine yönü, 2026-09-05). Cümle düzeni bir ara
+              // denenmişti; poster kompozisyonunun yanında fazla nötr kalıyor
+              // ve navbar'ı sistemin geri kalanından kopartıyordu.
+              'relative text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors duration-300',
+              // Aktif sayfanın altında elle çekilmiş gibi duran kısa bir çizgi.
+              // Ayrı bir öğe değil `::after`: gezinme bağlantısının kutusunu
+              // büyütmeden çizgiyi konumlandırmanın tek yolu.
+              'after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full',
+              pathname === item.href && 'after:w-full',
               transparent ? 'text-background/80 hover:text-background' : 'text-muted hover:text-text',
               pathname === item.href && (transparent ? 'text-background' : 'text-text'),
             )}
@@ -188,7 +195,7 @@ export function Navbar() {
             {PRIMARY_NAV_ITEMS.map((item) => (
               <Link
                 aria-current={pathname === item.href ? 'page' : undefined}
-                className="border-b border-sand py-4 font-heading text-2xl font-medium text-text"
+                className="border-b border-text/20 py-5 font-heading text-3xl font-bold tracking-[-0.02em] text-text"
                 href={item.href}
                 key={item.key}
                 onClick={() => setOpen(false)}

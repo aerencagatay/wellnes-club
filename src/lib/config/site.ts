@@ -18,39 +18,39 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
 } as const
 
-/** `key` değerleri messages/*.json içindeki nav bölümünün anahtarlarıdır. Footer'ın tam site haritası için kullanılır. */
+/**
+ * Footer'ın site haritası. `PRIMARY_NAV_ITEMS` ile artık AYNI listedir.
+ *
+ * NEDEN AYNI: 2026-09-05'e kadar footer, navbar'da durmayan sayfaları da
+ * (hocalar, mekan, deneyim, SSS, iletişim) listeleyen daha uzun bir haritaydı.
+ * O sayfalar kullanıcı kararıyla SİLİNDİ — site üç sayfaya indi — dolayısıyla
+ * footer'ın gösterebileceği fazladan bir şey kalmadı.
+ *
+ * İki sabit yine de AYRI DURUYOR, birleştirilmedi: ikisi farklı sorulara cevap
+ * veriyor ("footer neyi listeler" ve "birincil şerit neyi listeler") ve
+ * gelecekte yine ayrışabilirler. Tek bir sabite indirmek, footer'a bir
+ * bağlantı eklemek isteyen kişiyi istemeden navbar'ı da değiştirmeye
+ * zorlardı.
+ */
 export const NAV_ITEMS = [
-  { href: '/kamplar', key: 'camps' },
-  { href: '/hocalar', key: 'teachers' },
-  { href: '/mekan', key: 'venue' },
-  { href: '/deneyim', key: 'experience' },
+  { href: '/kamplar', key: 'events' },
   { href: '/hakkimizda', key: 'about' },
-  { href: '/sss', key: 'faq' },
-  { href: '/iletisim', key: 'contact' },
+  { href: '/membership', key: 'membership' },
 ] as const
 
 /**
- * Navbar'ın ortalanmış gezinme şeridi: yalnızca İKİ madde — Yaklaşan
- * Etkinlikler ve Hakkımızda (kullanıcı kararı, 2026-09-05).
+ * Navbar'ın ortalanmış gezinme şeridi: ÜÇ madde (kullanıcı kararı,
+ * 2026-09-05) — Yaklaşan Etkinlikler, Hakkımızda, Membership.
  *
- * `NAV_ITEMS`'in yerini ALMAZ: footer hâlâ tam site haritasını gösterir
- * (hocalar, mekan, deneyim, SSS, iletişim). Buradan çıkarılmış olmak o
- * sayfaların kaldırıldığı anlamına gelmez — yalnızca birincil şeritte
- * durmadıkları anlamına gelir.
+ * "Membership" İngilizce kalır ve Türkçe sürümde de çevrilmez: kulübün üyelik
+ * programının adı budur, bir gezinme etiketi değil marka terimidir. Bu yüzden
+ * messages/tr.json'daki karşılığı da "Membership"tir.
  *
- * "Sağlıklı Yaşam" mega menüsü KALDIRILDI: kulüp artık yalnızca yoga /
- * retreat / pilates düzenliyor, dokuz farklı aktivite sayan bir menü
- * yapılmayacak işleri duyuruyordu. Menüyü render eden
- * `layout/wellness-goals-menu.tsx` ve buradaki `WELLNESS_GOALS` listesi de
- * silindi. Bu yüzden maddeler artık `type` ayrımı TAŞIMIYOR — eskiden
- * `'link' | 'menu'` ayrımı vardı çünkü menü maddesi gerçek bir sayfaya
- * gitmiyordu; menü gidince ayrım da anlamsız kaldı ve navbar'daki koşullu
- * dal kalktı.
+ * Mega menü YOKTUR ve eklenmeyecektir; "Sağlıklı Yaşam" menüsü daha önce
+ * kaldırıldı (kulüp yalnızca yoga/pilates retreat'i düzenliyor, dokuz farklı
+ * aktivite sayan bir menü yapılmayacak işleri duyuruyordu).
  */
-export const PRIMARY_NAV_ITEMS = [
-  { href: '/kamplar', key: 'events' },
-  { href: '/hakkimizda', key: 'about' },
-] as const
+export const PRIMARY_NAV_ITEMS = NAV_ITEMS
 
 export const FOOTER_LEGAL = [
   { href: '/kvkk', key: 'kvkk' },

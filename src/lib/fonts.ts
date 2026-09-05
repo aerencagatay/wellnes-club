@@ -1,24 +1,21 @@
-import { Fraunces, Poppins } from 'next/font/google'
+import { Caveat, Fraunces, Inter } from 'next/font/google'
 
 /**
- * TİPOGRAFİ SİSTEMİ — logodan türetilmiştir (kullanıcı isteği, 2026-08-14).
+ * TİPOGRAFİ SİSTEMİ — ÜÇ SES (deneysel EDEN zine yönü, 2026-09-05).
  *
- * Logo zaten iki fontlu bir sistem öneriyor: "EDEN" yuvarlak, şişkin gövdeli
- * 70'ler groovy serif; "WELLNESS CLUB" geniş aralıklı geometrik sans. Site
- * eskiden Montserrat ExtraLight + Manrope kullanıyordu — zarif ama nötr, ve
- * logoyla hiçbir akrabalığı yoktu.
+ * Sistem `DESIGN.md`'nin iki sesli kurgusunu (editoryal serif + sessiz grotesk)
+ * temel alır ve üzerine ÜÇÜNCÜ bir ses ekler: el yazısı aksan. Üçünün işi
+ * kesin olarak ayrıdır ve karışmaz:
  *
- * FRAUNCES NEDEN SEÇİLDİ: değişken (variable) bir font ve `SOFT` ile `WONK`
- * eksenlerini taşıyor. `SOFT` köşe yumuşaklığını, `WONK` ise "eğri büğrü"
- * karakteri (tek katlı a/g formları, eğik terminaller) kontrol ediyor. Yani
- * groovy'lik SABİT değil, AYARLANABİLİR — sabit bir display font ya tutar ya
- * tutmaz, burada dozu geri çekebiliyoruz (bkz. globals.css'teki
- * `font-variation-settings`).
+ *   1. FRAUNCES  → display serif. Marka, bölüm başlıkları, retreat adları.
+ *   2. INTER     → grotesk. Navbar, gövde, buton, form, tarih, fiyat, program.
+ *   3. CAVEAT    → el yazısı. YALNIZCA aksan: "Move · Breathe · Connect",
+ *                  tarih/konum notları, doodle altyazıları. Gövde metni ASLA.
  *
- * KULLANIM SINIRI — ÖNEMLİ: Fraunces bir DISPLAY fontudur. Yalnızca
- * `.type-display` ve `.type-title` gibi büyük başlıklarda kullanılır. Gövde
- * metni, butonlar, form alanları ve tablolar Poppins kalır: dekoratif serifler
- * küçük puntoda ve uzun metinde okunabilirliği düşürür.
+ * POPPINS NEDEN GİTTİ: geometrik bir sanstı ve `DESIGN.md`'nin istediği şey
+ * "quiet grotesque" — geometrik sans (dairesel o, tek katlı a) posterin el
+ * çizimi diliyle yarışıyor, Inter ise arkaya çekilip yapıyı taşıyor. Inter
+ * ayrıca Türkçe için daha geniş bir hinting setine sahip.
  */
 export const fraunces = Fraunces({
   subsets: ['latin', 'latin-ext'],
@@ -36,13 +33,31 @@ export const fraunces = Fraunces({
 })
 
 /**
- * Geometrik sans — logonun "WELLNESS CLUB" satırının karşılığı. Türkçe için
- * `latin-ext` alt kümesi ZORUNLU: ğ/ş/ı/İ/ç/ö/ü glifleri yalnızca orada
- * geliyor ve eksik glif sitenin her yerinde anında bozuk görünür.
+ * Sessiz grotesk — sistemin taşıyıcısı. Türkçe için `latin-ext` alt kümesi
+ * ZORUNLU: ğ/ş/ı/İ/ç/ö/ü glifleri yalnızca orada geliyor ve eksik glif sitenin
+ * her yerinde anında bozuk görünür.
  */
-export const poppins = Poppins({
+export const inter = Inter({
   subsets: ['latin', 'latin-ext'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-poppins',
+  variable: '--font-inter',
+})
+
+/**
+ * EL YAZISI AKSAN — posterin ("canakkale-18-20-eylul-2026-duyuru.jpeg") kalemle
+ * yazılmış "Yoga Retreat" ve "September 18-20" satırlarının web karşılığı.
+ *
+ * CAVEAT NEDEN: Google Fonts'taki el yazısı fontlarının ÇOĞUNDA `latin-ext`
+ * alt kümesi YOKTUR — ğ/ş/ı/İ/ç glifleri gelmez ve "Yaklaşan Etkinlikler" gibi
+ * bir satır anında bozulur. Caveat `latin-ext` taşır, bu yüzden Türkçe aksan
+ * metinlerde güvenle kullanılabilir. Buna rağmen kullanım alanı dar tutulur
+ * (bkz. globals.css `.type-hand`): el yazısı küçük puntoda ve uzun metinde
+ * okunabilirliği düşürür.
+ */
+export const caveat = Caveat({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '600', '700'],
+  display: 'swap',
+  variable: '--font-caveat',
 })

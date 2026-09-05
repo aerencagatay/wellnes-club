@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getAllCamps, getAllPosts, getAllTeachers } from '@/content'
+import { getAllCamps } from '@/content'
 import { buildSitemapEntries, STATIC_PATHS } from './sitemap-entries'
 
 const SITE = 'https://serenityretreats.com'
@@ -21,24 +21,27 @@ describe('buildSitemapEntries', () => {
     }
   })
 
-  it('her hocayı iki dilde içerir', () => {
-    for (const teacher of getAllTeachers()) {
-      expect(urls).toContain(`${SITE}/tr/hocalar/${teacher.slug}`)
-      expect(urls).toContain(`${SITE}/en/hocalar/${teacher.slug}`)
-    }
-  })
-
   it('beklenen toplam kayıt sayısını üretir', () => {
-    // getAllPosts() dahil: /blog listeleme sayfası STATIC_PATHS'te bilinçli olarak
-    // yok (bkz. sitemap-entries.ts yorumu), ama tekil yazı yolları her zaman
-    // sayılmalı — aksi halde bu test yalnızca posts boşken doğru sonuç verir ve ilk
-    // yazı eklendiğinde yanlış nedenle (formül eksikliği, sitemap kodu değil) kırılır.
-    const dynamicCount = getAllCamps().length + getAllTeachers().length + getAllPosts().length
-    expect(entries).toHaveLength((STATIC_PATHS.length + dynamicCount) * 2)
+    // Tek dinamik yol ailesi kamplardır. /hocalar ve /blog 2026-09-05'te
+    // silindi (site üç sayfaya indi), bu yüzden formülden de çıkarıldılar.
+    expect(entries).toHaveLength((STATIC_PATHS.length + getAllCamps().length) * 2)
   })
 
-  it('boş olduğu sürece /blog listeleme sayfasını dışlar', () => {
-    expect(urls.some((u) => /\/blog$/.test(u))).toBe(false)
+  /**
+   * Silinen sayfaların yolları sitemap'e SIZMAMALIDIR. İçerik katmanı
+   * (`teachers.ts`, `posts.ts`) hâlâ duruyor — kamp detay sayfası hocaları
+   * gösterdiği için `teachers.ts` silinmedi — dolayısıyla birinin ileride
+   * `getAllTeachers()`'ı sitemap'e geri eklemesi teknik olarak mümkün. Bu test
+   * o hatayı yakalar: veri var diye SAYFA var demek değildir; olmayan bir yolu
+   * sitemap'te sunmak arama motorlarına 404 vaat etmektir.
+   */
+  it('silinmiş sayfaların yollarını içermez', () => {
+    for (const segment of ['/hocalar', '/mekan', '/deneyim', '/sss', '/iletisim', '/blog']) {
+      expect(
+        urls.filter((u) => u.includes(segment)),
+        `${segment} sitemap'te görünüyor ama sayfa silindi`,
+      ).toEqual([])
+    }
   })
 
   it('yinelenen URL içermez', () => {
@@ -51,8 +54,13 @@ describe('buildSitemapEntries', () => {
     }
   })
 
-  it('teşekkür ve başvuru sayfalarını dışlar', () => {
+  it('teşekkür sayfasını dışlar', () => {
     expect(urls.some((u) => u.includes('/basvuru-alindi'))).toBe(false)
+  })
+
+  it('membership sayfasını içerir', () => {
+    expect(urls).toContain(`${SITE}/tr/membership`)
+    expect(urls).toContain(`${SITE}/en/membership`)
   })
 
   it('sonunda eğik çizgi olan siteUrl değerinde çift eğik çizgi üretmez', () => {

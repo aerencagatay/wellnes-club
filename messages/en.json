@@ -6,33 +6,9 @@
       "title": "Camps",
       "description": "Browse our upcoming yoga and pilates retreats by programme and level, and find the right date for you."
     },
-    "hocalar": {
-      "title": "Our Teachers",
-      "description": "Meet the yoga and pilates teachers who lead our camps."
-    },
-    "mekan": {
-      "title": "Karadut Taş Otel",
-      "description": "Discover our retreat venue in the stone architecture of Asos, surrounded by olive groves and Aegean light."
-    },
-    "deneyim": {
-      "title": "A Day at Camp",
-      "description": "From morning practice to the shared table at night, discover what a day at our camps looks like."
-    },
     "hakkimizda": {
       "title": "About Us",
       "description": "Learn the story of EDEN Wellness Club and our approach to running retreats in Asos."
-    },
-    "sss": {
-      "title": "Frequently Asked Questions",
-      "description": "Find answers to the questions we hear most about our camps."
-    },
-    "iletisim": {
-      "title": "Get in Touch",
-      "description": "Have a question about a camp? Fill in the form or message us directly."
-    },
-    "blog": {
-      "title": "Blog",
-      "description": "Read our writing on our camps, Asos, and the yoga and pilates practice."
     },
     "basvuru": {
       "title": "Reserve Your Place",
@@ -45,12 +21,18 @@
     "gizlilik": {
       "title": "Privacy Policy",
       "description": "Learn about the data our site collects, our use of cookies, and any third-party sharing."
+    },
+    "membership": {
+      "title": "Membership",
+      "description": "EDEN Wellness Club membership opens soon. Leave your application and we will get in touch once it does."
     }
   },
   "home": {
     "hero": {
-      "cta": "Upcoming Events",
-      "brand": "EDEN WELLNESS CLUB"
+      "cta": "Upcoming Retreats",
+      "brand": "EDEN WELLNESS CLUB",
+      "handLine": "Move · Breathe · Connect",
+      "ctaSecondary": "About Us"
     },
     "teachers": {
       "eyebrow": "OUR TEAM",
@@ -70,16 +52,13 @@
     },
     "community": {
       "eyebrow": "INSIDE THE EDEN COMMUNITY",
-      "title": "What EDEN Members Say",
+      "title": "What EDEN Wellness Club Members Say",
       "more": "See More Experiences"
     },
     "gallery": {
       "eyebrow": "ARCHIVE",
       "title": "Previously at EDEN",
-      "play": "Play video",
-      "close": "Close",
-      "willBeUpdated": "Will be updated",
-      "empty": "Our first event is on 18-20 September 2026. Photographs will appear here afterwards."
+      "empty": "Our first retreat is on 18-20 September 2026. Photographs will appear here afterwards; for now you are looking at our announcement poster."
     }
   },
   "camp": {
@@ -106,7 +85,6 @@
       "single": "Single room"
     }
   },
-  "camps": {},
   "campDetail": {
     "dailyFlow": "Daily Flow",
     "includes": "What's Included",
@@ -130,14 +108,6 @@
     "roomType": "Room",
     "pricingNote": "Prices are per person. A one-night stay covers a shorter programme; tell us which night you are joining when you apply."
   },
-  "teachers": {
-    "eyebrow": "OUR TEAM",
-    "title": "Our Teachers",
-    "lede": "Meet the teachers who lead our retreats.",
-    "campsWithTeacher": "Camps with {name}",
-    "certifications": "Certifications",
-    "instagram": "Follow on Instagram"
-  },
   "venue": {
     "eyebrow": "THE VENUE",
     "title": "Karadut Taş Otel",
@@ -156,27 +126,6 @@
     "lightboxPrev": "Previous image",
     "lightboxNext": "Next image",
     "lightboxCounter": "{current} / {total}"
-  },
-  "experience": {
-    "eyebrow": "EXPERIENCE",
-    "title": "A Day at Camp",
-    "lede": "From the quiet of the morning to the shared table at night — every camp has its own programme, but all of them are built at the same unhurried pace.",
-    "dailyFlowNote": "The flow below is a sample day from our featured retreat. Each camp's own programme is on its detail page.",
-    "nutritionTitle": "Our Approach to Food",
-    "nutritionBody1": "Meals are prepared in the hotel's own kitchen, following the season: olive oil, vegetables from the garden, homemade cheese. The menu leans vegetarian, and all three meals are eaten at a shared table, unhurried.",
-    "nutritionBody2": "If you're vegan, gluten-free, or have an allergy, just note it on the inquiry form and we'll arrange it with the kitchen in advance.",
-    "bringEyebrow": "PREPARATION",
-    "bringTitle": "What to Bring",
-    "bringItems": {
-      "1": "Comfortable, layerable clothing",
-      "2": "A swimsuit and towel",
-      "3": "Sunscreen and a hat",
-      "4": "Any personal medication",
-      "5": "A light jacket for cooler evenings",
-      "6": "Your own yoga mat (optional — one is provided at camp)"
-    },
-    "levelsTitle": "Level Expectations",
-    "levelsBody": "Most retreats are open to every level, and our teachers adapt each pose to your body. If a specific retreat leans toward an advanced practice, we say so in its description — otherwise, never having done yoga or pilates before is not a barrier to joining."
   },
   "about": {
     "eyebrow": "ABOUT US",
@@ -199,37 +148,6 @@
     "ctaBody": "Whatever you're wondering about — choosing a camp, whether the level suits you, or getting to Asos — you can ask us directly.",
     "ctaButton": "Get in Touch"
   },
-  "faq": {
-    "eyebrow": "FAQ",
-    "title": "Frequently Asked Questions",
-    "lede": "The questions we hear most about our camps, answered. If you can't find yours, you can write to us directly."
-  },
-  "contact": {
-    "eyebrow": "CONTACT",
-    "title": "Get in Touch",
-    "lede": "Have a question about a camp? Fill in the form or message us directly — we'll get back to you as soon as we can.",
-    "detailsTitle": "Contact Details",
-    "instagramLabel": "Follow on Instagram",
-    "whatsappMessage": "Hello, I have a question.",
-    "venueTitle": "Where Our Camps Are Held",
-    "form": {
-      "title": "Send a Message",
-      "name": "Full name",
-      "email": "Email",
-      "message": "Your message",
-      "submit": "Send Message",
-      "submitting": "Submitting…",
-      "successTitle": "Your Message Has Been Sent",
-      "successBody": "Thank you for your interest. Our team will review your message and get back to you shortly.",
-      "successReference": "Your reference number:"
-    }
-  },
-  "blog": {
-    "eyebrow": "BLOG",
-    "title": "Blog",
-    "empty": "We haven't published anything yet. We'll soon be writing here about our camps, Asos, and the practice itself.",
-    "emptyCta": "Browse Our Camps in the Meantime"
-  },
   "legal": {
     "eyebrow": "LEGAL",
     "placeholderWarning": "This text is a placeholder and has no legal validity. It must be replaced with text prepared by your legal counsel before launch.",
@@ -246,18 +164,13 @@
   },
   "nav": {
     "primary": "Main navigation",
-    "camps": "Camps",
-    "teachers": "Our Teachers",
-    "venue": "Venue",
-    "experience": "Experience",
     "about": "About Us",
-    "faq": "FAQ",
-    "contact": "Contact",
     "cta": "Reserve a Spot",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "events": "Our Upcoming Events",
-    "instagramLabel": "EDEN Wellness Club on Instagram"
+    "instagramLabel": "EDEN Wellness Club on Instagram",
+    "membership": "Membership"
   },
   "common": {
     "skipToContent": "Skip to content",
@@ -269,7 +182,8 @@
   "footer": {
     "kvkk": "KVKK Notice",
     "privacy": "Privacy Policy",
-    "instagram": "Instagram"
+    "instagram": "Instagram",
+    "siteMap": "Site map"
   },
   "form": {
     "name": "Full name",
@@ -346,5 +260,47 @@
     "yoga": "Yoga",
     "pilates": "Pilates",
     "meditation": "Meditation"
+  },
+  "membership": {
+    "eyebrow": "MEMBERSHIP",
+    "title": "EDEN Membership",
+    "lede": "We are building a community that travels in small groups and cares about slowing down and connecting with nature.",
+    "notOpenNote": "EDEN Membership is not active yet. Leave your application and we will contact you when membership opens.",
+    "promiseTitle": "What happens when membership opens?",
+    "promise1Title": "You hear first",
+    "promise1Body": "New retreat dates are announced to members before they go public.",
+    "promise2Title": "Small groups",
+    "promise2Body": "Capacity stays deliberately small; members reserve their place first.",
+    "promise3Title": "Community",
+    "promise3Body": "We are planning gatherings and practices in Istanbul between retreats.",
+    "formTitle": "Membership Application",
+    "formLede": "Leave your details below and you will be the first call we make when membership opens.",
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "phoneHint": "Turkish or international format; e.g. +90 5XX XXX XX XX",
+      "age": "Age",
+      "gender": "Gender",
+      "genderFemale": "Female",
+      "genderMale": "Male",
+      "genderUnspecified": "Prefer not to say",
+      "yogaLevel": "Yoga level",
+      "levelBeginner": "Beginner",
+      "levelIntermediate": "Intermediate",
+      "selectPlaceholder": "Select",
+      "submit": "Send Membership Application",
+      "privacyNote": "Your details are used only to contact you when membership opens.",
+      "successTitle": "Application received",
+      "successBody": "Membership is not open yet. We will reach out with the details you left once it is."
+    },
+    "errors": {
+      "required": "This field is required.",
+      "nameTooShort": "Enter at least 2 characters.",
+      "invalidEmail": "Enter a valid email address.",
+      "invalidPhone": "Enter a valid phone number.",
+      "invalidAge": "Enter an age between 18 and 95."
+    }
   }
 }

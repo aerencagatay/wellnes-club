@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { getUpcomingEvents } from '@/content'
 import { EventCard } from '@/components/events/event-card'
+import { HandUnderline } from '@/components/art/marks'
 import { BlurFade } from '@/components/motion/blur-fade'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
@@ -33,15 +34,17 @@ export function EventShowcase({ locale, today }: { locale: AppLocale; today: str
   if (events.length === 0) return null
 
   return (
-    <Section background="background">
+    <Section background="background" className="grain">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <BlurFade offset={12}>
           <Eyebrow className="text-olive">{t('eyebrow')}</Eyebrow>
           <h2 className="type-title mt-4">{t('title')}</h2>
+          {/* Marker altı çizgisi — posterin anotasyon dili. */}
+          <HandUnderline className="ink-sun mt-3 h-2.5 max-w-xs" />
         </BlurFade>
         <BlurFade delay={0.1} offset={12}>
           <Link
-            className="group inline-flex items-center gap-2 border-b border-text/25 pb-1 text-xs tracking-[0.08em] text-text uppercase transition-colors duration-200 hover:border-text"
+            className="group inline-flex items-center gap-2 border-b-2 border-text pb-1 text-xs font-semibold tracking-[0.14em] text-text uppercase transition-colors duration-200 hover:text-orange-deep hover:border-orange-deep"
             href="/kamplar"
           >
             {t('all')}
@@ -56,7 +59,7 @@ export function EventShowcase({ locale, today }: { locale: AppLocale; today: str
         {/* `pb-6` kaydırma çubuğunun kartlara değmemesi için; `-mb-6` bunu geri
             alarak bölümün alt ritmini bozmaz. İnce kum renkli scrollbar,
             desktop'ta "burası yatay kayıyor" ipucunu JS'siz verir. */}
-        <ul className="-mb-6 mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [scrollbar-color:var(--color-sand)_transparent] [scrollbar-width:thin]">
+        <ul className="-mb-6 mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [scrollbar-color:var(--color-olive)_transparent] [scrollbar-width:thin]">
           {events.map((event) => (
             <li
               className={cn(
@@ -75,7 +78,7 @@ export function EventShowcase({ locale, today }: { locale: AppLocale; today: str
         </ul>
       </BlurFade>
 
-      <p className="mt-8 text-xs tracking-[0.22em] text-muted uppercase">{t('scrollHint')}</p>
+      <p className="type-hand-sm mt-8">{t('scrollHint')}</p>
     </Section>
   )
 }

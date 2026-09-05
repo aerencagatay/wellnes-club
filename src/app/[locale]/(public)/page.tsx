@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server'
 import type { AppLocale } from '@/i18n/routing'
+import { CollageMarquee } from '@/components/art/collage-marquee'
 import { CommunityWall } from '@/components/home/community-wall'
 import { EventShowcase } from '@/components/home/event-showcase'
 import { HeroHome } from '@/components/home/hero-home'
@@ -35,6 +36,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: A
   return (
     <>
       <HeroHome />
+      {/* Hero (zeytin alan) ile showcase (krem kağıt) arasındaki geçiş şeridi.
+          Bir bölüm değil, iki bölümü birbirine bağlayan ince bir kolaj bandı. */}
+      <CollageMarquee locale={locale} />
       <EventShowcase locale={locale} today={today} />
       <CommunityWall locale={locale} />
       <PastGallery locale={locale} />

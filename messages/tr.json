@@ -6,33 +6,9 @@
       "title": "Kamplar",
       "description": "Yaklaşan yoga ve pilates kamplarımızı program ve seviyeye göre inceleyin, size uygun tarihi seçin."
     },
-    "hocalar": {
-      "title": "Hocalarımız",
-      "description": "Kamplarımızı yöneten yoga ve pilates eğitmenleriyle tanışın."
-    },
-    "mekan": {
-      "title": "Karadut Taş Otel",
-      "description": "Asos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili kamp mekanımızı keşfedin."
-    },
-    "deneyim": {
-      "title": "Kampta Bir Gün",
-      "description": "Sabah pratiğinden akşamın ortak sofrasına, kamplarımızda bir günün nasıl geçtiğini keşfedin."
-    },
     "hakkimizda": {
       "title": "Hakkımızda",
       "description": "EDEN Wellness Club'ın hikayesini ve Asos'ta kamp düzenleme yaklaşımımızı öğrenin."
-    },
-    "sss": {
-      "title": "Sıkça Sorulan Sorular",
-      "description": "Kamplarımızla ilgili en çok sorulan soruların yanıtlarını burada bulabilirsiniz."
-    },
-    "iletisim": {
-      "title": "Bize Ulaşın",
-      "description": "Bir kamp hakkında sorunuz mu var? Formu doldurun ya da doğrudan bize yazın."
-    },
-    "blog": {
-      "title": "Blog",
-      "description": "Kamplarımız, Asos ve yoga-pilates pratiği üzerine yazılarımızı okuyun."
     },
     "basvuru": {
       "title": "Yerinizi Ayırtın",
@@ -45,12 +21,18 @@
     "gizlilik": {
       "title": "Gizlilik Politikası",
       "description": "Sitemizin topladığı veriler, çerez kullanımı ve üçüncü taraflarla paylaşım hakkında bilgi alın."
+    },
+    "membership": {
+      "title": "Membership",
+      "description": "EDEN Wellness Club üyeliği yakında açılıyor. Başvurunu bırak, üyelik açıldığında seninle iletişime geçelim."
     }
   },
   "home": {
     "hero": {
       "cta": "Yaklaşan Etkinlikler",
-      "brand": "EDEN WELLNESS CLUB"
+      "brand": "EDEN WELLNESS CLUB",
+      "handLine": "Şehirden uzaklaş · Hareket et · Bağ kur",
+      "ctaSecondary": "Hakkımızda"
     },
     "teachers": {
       "eyebrow": "EKİBİMİZ",
@@ -70,16 +52,13 @@
     },
     "community": {
       "eyebrow": "INSIDE THE EDEN COMMUNITY",
-      "title": "EDEN Wellness Club Üyeleri Ne Diyor?",
+      "title": "EDEN Wellness Club Katılımcıları Ne Diyor?",
       "more": "Daha Fazla Deneyim Gör"
     },
     "gallery": {
       "eyebrow": "ARŞİV",
-      "title": "Geçmiş Etkinliklerden",
-      "play": "Videoyu oynat",
-      "close": "Kapat",
-      "willBeUpdated": "Yakında güncellenecek",
-      "empty": "İlk etkinliğimiz 18-20 Eylül 2026’da. Kareler etkinlikten sonra burada olacak."
+      "title": "Geçmiş Retreatlerden",
+      "empty": "İlk retreat'imiz 18-20 Eylül 2026'da. Kareler etkinlikten sonra burada olacak; şimdilik duyuru posterimizi görüyorsunuz."
     }
   },
   "camp": {
@@ -106,7 +85,6 @@
       "single": "Tek kişilik oda"
     }
   },
-  "camps": {},
   "campDetail": {
     "dailyFlow": "Günün Akışı",
     "includes": "Dahil Olanlar",
@@ -130,14 +108,6 @@
     "roomType": "Oda",
     "pricingNote": "Fiyatlar kişi başıdır. Tek gecelik katılımda program kısalır; hangi geceye katılacağınızı başvuru sırasında belirtin."
   },
-  "teachers": {
-    "eyebrow": "EKİBİMİZ",
-    "title": "Hocalarımız",
-    "lede": "Kamplarımızı yöneten eğitmenlerle tanışın.",
-    "campsWithTeacher": "{name} ile kamplar",
-    "certifications": "Sertifikalar",
-    "instagram": "Instagram'da Takip Et"
-  },
   "venue": {
     "eyebrow": "MEKAN",
     "title": "Karadut Taş Otel",
@@ -156,27 +126,6 @@
     "lightboxPrev": "Önceki görsel",
     "lightboxNext": "Sonraki görsel",
     "lightboxCounter": "{current} / {total}"
-  },
-  "experience": {
-    "eyebrow": "DENEYİM",
-    "title": "Kampta Bir Gün",
-    "lede": "Sabahın sessizliğinden akşamın ortak sofrasına — her kampın kendi programı vardır, ama hepsi aynı yavaşlıkla kurulur.",
-    "dailyFlowNote": "Aşağıdaki akış, öne çıkan kampımızdan örnek bir gündür. Her kampın kendi programı, o kampın detay sayfasında yer alır.",
-    "nutritionTitle": "Beslenme Yaklaşımımız",
-    "nutritionBody1": "Öğünler otelin kendi mutfağında, mevsimin getirdiğiyle hazırlanır: zeytinyağı, bahçeden sebze, ev yapımı peynir. Menü genellikle vejetaryen ağırlıklıdır ve üç öğün de ortak masada, aceleye getirilmeden yenir.",
-    "nutritionBody2": "Vegan, glutensiz veya alerjiye bağlı bir kısıtlaman varsa başvuru formunda belirtmen yeterli; mutfakla birlikte önceden düzenleriz.",
-    "bringEyebrow": "HAZIRLIK",
-    "bringTitle": "Ne Getirmeli",
-    "bringItems": {
-      "1": "Rahat, katmanlı kıyafetler",
-      "2": "Mayo ve havlu",
-      "3": "Güneş kremi ve şapka",
-      "4": "Kişisel ilaçların",
-      "5": "Akşamlar için hafif bir dış ceket",
-      "6": "Kendi yoga matın (istersen — kampta da sağlanır)"
-    },
-    "levelsTitle": "Seviye Beklentileri",
-    "levelsBody": "Kampların çoğu her seviyeye açıktır; hocalarımız her pozu bedenine göre uyarlar. Bir kampın açıklamasında ileri seviye vurgusu varsa bunu ayrıca belirtiriz — aksi halde daha önce hiç yoga veya pilates yapmamış olman katılmana engel değildir."
   },
   "about": {
     "eyebrow": "HAKKIMIZDA",
@@ -199,37 +148,6 @@
     "ctaBody": "Kamp seçimi, seviye uygunluğu ya da Asos'a ulaşım hakkında merak ettiğin her şeyi doğrudan bize sorabilirsin.",
     "ctaButton": "İletişime Geç"
   },
-  "faq": {
-    "eyebrow": "SSS",
-    "title": "Sıkça Sorulan Sorular",
-    "lede": "Kamplarımızla ilgili en çok sorulan sorular ve yanıtları. Aradığını bulamazsan bize doğrudan yazabilirsin."
-  },
-  "contact": {
-    "eyebrow": "İLETİŞİM",
-    "title": "Bize Ulaşın",
-    "lede": "Bir kamp hakkında sorunuz mu var? Formu doldurun ya da doğrudan yazın — size en kısa sürede dönüyoruz.",
-    "detailsTitle": "İletişim Bilgileri",
-    "instagramLabel": "Instagram'da Takip Et",
-    "whatsappMessage": "Merhaba, bir sorum var.",
-    "venueTitle": "Kampların Yapıldığı Yer",
-    "form": {
-      "title": "Mesaj Gönderin",
-      "name": "Ad Soyad",
-      "email": "E-posta",
-      "message": "Mesajınız",
-      "submit": "Mesajı Gönder",
-      "submitting": "Gönderiliyor…",
-      "successTitle": "Mesajınız İletildi",
-      "successBody": "İlginiz için teşekkürler. Ekibimiz mesajınızı inceleyip en kısa sürede size dönüş yapacak.",
-      "successReference": "Referans numaranız:"
-    }
-  },
-  "blog": {
-    "eyebrow": "BLOG",
-    "title": "Blog",
-    "empty": "Henüz yayınlanmış bir yazımız yok. Yakında kamplarımız, Asos ve pratik üzerine yazılarla burada olacağız.",
-    "emptyCta": "Bu Arada Kamplarımıza Göz Atın"
-  },
   "legal": {
     "eyebrow": "YASAL",
     "placeholderWarning": "Bu metin bir yer tutucudur ve hukuki geçerliliği yoktur. Yayına almadan önce hukuk danışmanınızın hazırladığı metinle değiştirilmelidir.",
@@ -246,18 +164,13 @@
   },
   "nav": {
     "primary": "Ana gezinme",
-    "camps": "Kamplar",
-    "teachers": "Hocalarımız",
-    "venue": "Mekan",
-    "experience": "Deneyim",
     "about": "Hakkımızda",
-    "faq": "SSS",
-    "contact": "İletişim",
     "cta": "Yer Ayır",
     "openMenu": "Menüyü aç",
     "closeMenu": "Menüyü kapat",
     "events": "Yaklaşan Etkinlikler",
-    "instagramLabel": "Instagram'da EDEN Wellness Club"
+    "instagramLabel": "Instagram'da EDEN Wellness Club",
+    "membership": "Membership"
   },
   "common": {
     "skipToContent": "İçeriğe geç",
@@ -269,7 +182,8 @@
   "footer": {
     "kvkk": "KVKK",
     "privacy": "Gizlilik Politikası",
-    "instagram": "Instagram"
+    "instagram": "Instagram",
+    "siteMap": "Site haritası"
   },
   "form": {
     "name": "Ad Soyad",
@@ -346,5 +260,47 @@
     "yoga": "Yoga",
     "pilates": "Pilates",
     "meditation": "Meditasyon"
+  },
+  "membership": {
+    "eyebrow": "ÜYELİK",
+    "title": "EDEN Membership",
+    "lede": "Küçük gruplar hâlinde yola çıkan, yavaşlamayı ve doğayla bağ kurmayı önemseyen bir topluluk kuruyoruz.",
+    "notOpenNote": "EDEN Membership henüz aktif değil. Başvurunu bırak; üyelik açıldığında seninle iletişime geçelim.",
+    "promiseTitle": "Üyelik açıldığında ne olacak?",
+    "promise1Title": "Önce sen haber al",
+    "promise1Body": "Yeni retreat tarihleri herkese açılmadan önce üyelere duyurulur.",
+    "promise2Title": "Küçük gruplar",
+    "promise2Body": "Kontenjan bilinçli olarak dar tutulur; üyeler yerlerini önce ayırtır.",
+    "promise3Title": "Topluluk",
+    "promise3Body": "Retreat aralarında İstanbul'da buluşmalar ve pratikler planlıyoruz.",
+    "formTitle": "Üyelik Başvurusu",
+    "formLede": "Aşağıdaki bilgileri bırak; üyelik açıldığında ilk aramamız sana olsun.",
+    "form": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "phoneHint": "Türkiye veya uluslararası biçim; örn. +90 5XX XXX XX XX",
+      "age": "Yaş",
+      "gender": "Cinsiyet",
+      "genderFemale": "Kadın",
+      "genderMale": "Erkek",
+      "genderUnspecified": "Belirtmek istemiyorum",
+      "yogaLevel": "Yoga Seviyesi",
+      "levelBeginner": "Başlangıç",
+      "levelIntermediate": "Orta",
+      "selectPlaceholder": "Seçiniz",
+      "submit": "Üyelik Başvurusu Gönder",
+      "privacyNote": "Bilgilerin yalnızca üyelik açıldığında seninle iletişime geçmek için kullanılır.",
+      "successTitle": "Başvurun alındı",
+      "successBody": "Üyelik henüz açık değil. Açıldığında bıraktığın bilgilerle sana ulaşacağız."
+    },
+    "errors": {
+      "required": "Bu alan zorunlu.",
+      "nameTooShort": "En az 2 karakter girin.",
+      "invalidEmail": "Geçerli bir e-posta adresi girin.",
+      "invalidPhone": "Geçerli bir telefon numarası girin.",
+      "invalidAge": "18-95 arası bir yaş girin."
+    }
   }
 }

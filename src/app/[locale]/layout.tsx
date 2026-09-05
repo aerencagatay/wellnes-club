@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing, type AppLocale } from '@/i18n/routing'
-import { fraunces, poppins } from '@/lib/fonts'
+import { caveat, fraunces, inter } from '@/lib/fonts'
 import { site } from '@/lib/config/site'
 import { buildOrganizationJsonLd } from '@/lib/seo/jsonld'
 import { buildAlternates, localeToOgLocale } from '@/lib/seo/metadata'
@@ -43,7 +43,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${fraunces.variable} ${poppins.variable}`}>
+      <body className={`${fraunces.variable} ${inter.variable} ${caveat.variable}`}>
         {/* JSON-LD yalnızca kendi içeriğimizden üretilir; `<` içermez, kaçışa gerek yok. */}
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
