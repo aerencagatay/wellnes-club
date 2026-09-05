@@ -42,65 +42,48 @@ const WIDE_SIZES = '(max-width: 768px) 100vw, 66vw'
 const HALF_SIZES = '(max-width: 768px) 100vw, 50vw'
 const NARROW_SIZES = '(max-width: 768px) 50vw, 33vw'
 
-const GALLERY_ITEMS: GalleryItem[] = [
-  {
-    src: '/img/venue/kusbakisi.webp',
-    alt: { tr: 'Koya bakan tepeden mekânın kuşbakışı görünümü', en: 'Aerial view of the property above the bay' },
-    className: 'col-span-2 aspect-16/9 md:col-span-4',
-  },
-  {
-    src: '/img/venue/havuz.webp',
-    alt: { tr: 'Otelin havuzu ve çevresindeki taş teras', en: 'The hotel pool and the stone terrace around it' },
-    className: 'col-span-1 aspect-3/4 md:col-span-2 md:row-span-2',
-  },
-  {
-    src: '/img/wellness_goals/yogo foto.jpg',
-    alt: { tr: 'Yoga pratiği sırasında bir duruş', en: 'A posture held during yoga practice' },
-    className: 'col-span-1 aspect-square md:col-span-2',
-  },
-  {
-    src: '/img/yemek fotoğrafı.jpeg',
-    alt: { tr: 'Ortak masada paylaşılan vejetaryen tabaklar', en: 'Vegetarian plates shared at the communal table' },
-    className: 'col-span-2 aspect-4/3 md:col-span-2 md:aspect-square',
-  },
-  {
-    src: '/img/venue/bahce.webp',
-    alt: { tr: 'Zeytin ağaçlarının arasındaki bahçe', en: 'The garden among the olive trees' },
-    className: 'col-span-1 aspect-square md:col-span-3 md:aspect-16/9',
-  },
-  {
-    src: '/img/yoga hocası foto.jpeg',
-    alt: { tr: 'Eğitmen bir seans öncesi mat başında', en: 'An instructor at the mat before a session' },
-    className: 'col-span-1 aspect-square md:col-span-3 md:aspect-16/9',
-  },
-]
+/**
+ * BOŞ (kullanıcı isteği, 2026-09-05): buradaki altı görsel geçmiş etkinlik
+ * fotoğrafı DEĞİL, mekânın atmosfer kareleriydi ve bölüm çalışıyormuş gibi
+ * dursun diye konmuşlardı. Kullanıcı hepsinin kaldırılmasını istedi.
+ *
+ * Dizi silinmedi, BOŞALTILDI: aşağıdaki ızgara, `sizes` hesabı ve video
+ * desteği olduğu gibi duruyor. İlk etkinlik (18-20 Eylül 2026) yaşandığında
+ * gerçek fotoğrafları buraya eklemek yeterli — bölüm kendiliğinden geri gelir.
+ */
+const GALLERY_ITEMS: GalleryItem[] = []
 
 export function PastGallery({ locale }: { locale: AppLocale }) {
   const t = useTranslations('home.gallery')
 
-  // `GALLERY_ITEMS` yukarıda sabit bir dizi — boş durum dalı ulaşılamaz kod
-  // olurdu, bu yüzden yok. Gerçek arşiv verisi bir içerik dosyasına taşınırsa
-  // (ve boş olabilir hâle gelirse) o dal geri eklenmeli.
+  // Boş durum dalı ARTIK GERÇEK DURUM: dizi bugün boş (bkz. yukarıdaki not).
+  // Bölüm sayfadan tamamen kaldırılmadı çünkü başlığı ziyaretçiye kulübün
+  // arşivi olduğunu ve ilk etkinliğin henüz yaşanmadığını söylüyor — boş bir
+  // ızgara çerçevesi göstermek yerine tek satırlık bir açıklama gösterilir.
+  const isEmpty = GALLERY_ITEMS.length === 0
+
   return (
     <Section>
       <BlurFade>
         <Eyebrow>{t('eyebrow')}</Eyebrow>
         <div className="flex flex-wrap items-center gap-4">
           <h2 className="type-title">{t('title')}</h2>
-          {/* Buradaki görseller GEÇMİŞ ETKİNLİK FOTOĞRAFI DEĞİL — mekanın
-              atmosfer kareleri, yer tutucu olarak duruyorlar (kullanıcı isteği,
-              2026-08-14: bölüm çalışıyormuş gibi kalsın, gerçek fotoğraflar
-              sonra eklenecek). Bu rozet, o gerçeği gizlemeden bölümün canlı
-              görünmesini sağlar; gerçek arşiv geldiğinde tek satır silinir. */}
-          <span className="rounded-full border border-sand px-3 py-1 text-[10px] font-medium tracking-[0.2em] text-muted uppercase">
-            {t('willBeUpdated')}
-          </span>
+          {/* Rozet YALNIZCA gerçek fotoğraf varken anlamlı: "güncellenecek"
+              demek, gösterilenlerin nihai olmadığını söyler. Hiç fotoğraf
+              yokken bunun yerine durumu doğrudan anlatan `empty` gösterilir. */}
+          {!isEmpty && (
+            <span className="rounded-full border border-sand px-3 py-1 text-[10px] font-medium tracking-[0.2em] text-muted uppercase">
+              {t('willBeUpdated')}
+            </span>
+          )}
         </div>
+        {isEmpty && <p className="type-lede mt-5 max-w-xl">{t('empty')}</p>}
       </BlurFade>
 
       <div
         className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-6 md:gap-4"
         data-testid="past-gallery"
+        hidden={isEmpty}
       >
         {GALLERY_ITEMS.map((item, index) => {
           const sizes = item.className.includes('md:col-span-4')

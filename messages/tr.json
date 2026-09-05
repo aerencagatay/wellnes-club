@@ -78,7 +78,8 @@
       "title": "Geçmiş Etkinliklerden",
       "play": "Videoyu oynat",
       "close": "Kapat",
-      "willBeUpdated": "Will be updated"
+      "willBeUpdated": "Yakında güncellenecek",
+      "empty": "İlk etkinliğimiz 18-20 Eylül 2026’da. Kareler etkinlikten sonra burada olacak."
     }
   },
   "camp": {
@@ -132,7 +133,7 @@
   "teachers": {
     "eyebrow": "EKİBİMİZ",
     "title": "Hocalarımız",
-    "lede": "Kamplarımızı yöneten yoga ve pilates eğitmenleriyle tanışın.",
+    "lede": "Kamplarımızı yöneten eğitmenlerle tanışın.",
     "campsWithTeacher": "{name} ile kamplar",
     "certifications": "Sertifikalar",
     "instagram": "Instagram'da Takip Et"

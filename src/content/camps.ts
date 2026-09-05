@@ -34,7 +34,7 @@ export const camps: CampSession[] = [
     endDate: '2026-09-20',
     nights: 2,
     venueSlug: 'karadut-tas-otel',
-    teacherSlugs: ['elif-demir', 'zeynep-arslan'],
+    teacherSlugs: ['melike-goktan'],
     capacity: 16,
     spotsLeft: 16,
     priceFrom: 10500,

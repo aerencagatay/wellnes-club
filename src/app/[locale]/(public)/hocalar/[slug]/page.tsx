@@ -21,7 +21,10 @@ export async function generateMetadata({
   if (!teacher) return {}
   return {
     title: `${teacher.name} — ${teacher.title[locale]}`,
-    description: teacher.bio[locale].slice(0, 155),
+    // `bio` doğrulanmış bilgi gelene kadar boş olabilir (bkz. content/types.ts);
+    // o durumda unvan tek dürüst açıklamadır — boş bir description üretmek
+    // arama sonucunda başlıksız bir kart bırakırdı.
+    description: teacher.bio ? teacher.bio[locale].slice(0, 155) : teacher.title[locale],
     alternates: buildAlternates(`/${locale}/hocalar/${slug}`),
   }
 }

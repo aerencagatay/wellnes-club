@@ -78,7 +78,8 @@
       "title": "Previously at EDEN",
       "play": "Play video",
       "close": "Close",
-      "willBeUpdated": "Will be updated"
+      "willBeUpdated": "Will be updated",
+      "empty": "Our first event is on 18-20 September 2026. Photographs will appear here afterwards."
     }
   },
   "camp": {
@@ -132,7 +133,7 @@
   "teachers": {
     "eyebrow": "OUR TEAM",
     "title": "Our Teachers",
-    "lede": "Meet the yoga and pilates teachers who lead our camps.",
+    "lede": "Meet the teachers who lead our retreats.",
     "campsWithTeacher": "Camps with {name}",
     "certifications": "Certifications",
     "instagram": "Follow on Instagram"

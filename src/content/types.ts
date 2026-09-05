@@ -60,14 +60,24 @@ export type CampSession = {
   featured: boolean
 }
 
+/**
+ * `bio`, `certifications` ve `photo` İSTEĞE BAĞLIDIR ve bu bilinçlidir.
+ *
+ * Hocalar gerçek kişilerdir: uydurma bir özgeçmiş ya da uydurma bir sertifika
+ * listesi yayınlamak, o kişi adına yanlış mesleki beyanda bulunmaktır. Bu üç
+ * alan yalnızca kişinin kendisinden doğrulanmış bilgi geldiğinde doldurulur;
+ * gelene kadar alan hiç yazılmaz ve arayüz o bölümü render etmez.
+ * `photo` için de aynısı geçerli — fotoğraf yoksa `TeacherPortrait` isimden
+ * türetilmiş bir monogram gösterir, stok bir fotoğraf koymaz.
+ */
 export type Teacher = {
   slug: string
   name: string
   title: Localized
   disciplines: Program[]
-  bio: Localized
-  certifications: LocalizedList
-  photo: string
+  bio?: Localized
+  certifications?: LocalizedList
+  photo?: string
   instagram?: string
 }
 

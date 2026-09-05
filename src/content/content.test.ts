@@ -148,8 +148,12 @@ describe('içerik bütünlüğü', () => {
     }
     for (const t of teachers) {
       expectLocalized(t.title, `${t.slug}.title`)
-      expectLocalized(t.bio, `${t.slug}.bio`)
-      expectLocalizedList(t.certifications, `${t.slug}.certifications`)
+      // `bio` ve `certifications` isteğe bağlıdır: hoca gerçek bir kişidir ve
+      // bu alanlar kendisinden doğrulanmış bilgi gelene kadar boş bırakılır
+      // (bkz. content/types.ts). Zorunlu tutmak, testi geçirmek için uydurma
+      // özgeçmiş yazılmasını teşvik ederdi. Ama VARSA iki dilde dolu olmalı.
+      if (t.bio) expectLocalized(t.bio, `${t.slug}.bio`)
+      if (t.certifications) expectLocalizedList(t.certifications, `${t.slug}.certifications`)
     }
     for (const v of venues) {
       expectLocalized(v.shortDescription, `${v.slug}.shortDescription`)
@@ -169,7 +173,7 @@ describe('içerik bütünlüğü', () => {
   it('görsel yolları /img/ ile başlar', () => {
     const paths = [
       ...camps.flatMap((c) => [c.heroImage, ...c.gallery]),
-      ...teachers.map((t) => t.photo),
+      ...teachers.flatMap((t) => (t.photo ? [t.photo] : [])),
       ...venues.flatMap((v) => v.gallery),
       ...allEvents.map((e) => e.media.src),
     ]

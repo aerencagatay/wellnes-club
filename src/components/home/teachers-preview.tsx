@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { getAllTeachers } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
@@ -7,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
 import { RevealGroup } from '@/components/motion/reveal'
+import { TeacherPortrait } from '@/components/teachers/teacher-portrait'
+import { cn } from '@/lib/utils/cn'
 
 // Dergi düzeni: kart yok, çerçeve yok. Büyük portre + isim + uzmanlık + iki
 // satır bio, sıradaki hocaya göre kaydırılmış (asimetrik) dikey ofset — bkz.
@@ -23,28 +24,21 @@ export function TeachersPreview({ locale }: { locale: AppLocale }) {
         <Eyebrow>{t('eyebrow')}</Eyebrow>
         <h2 className="type-title">{t('title')}</h2>
       </div>
+      {/* Üç kolonluk ızgara ve kaydırılmış dikey ofsetler YALNIZCA birden fazla
+          hoca varken uygulanır: tek hocada üç kolonun ikisi boş kalır ve portre
+          sayfanın solunda kazara unutulmuş gibi durur. */}
       <RevealGroup
-        className="mt-16 grid gap-x-8 gap-y-16 sm:grid-cols-3"
-        itemClassName="sm:[&:nth-child(2)]:mt-10 sm:[&:nth-child(3)]:mt-20"
+        className={cn('mt-16 grid gap-x-8 gap-y-16', teachers.length > 1 ? 'sm:grid-cols-3' : 'max-w-xs')}
+        itemClassName={teachers.length > 1 ? 'sm:[&:nth-child(2)]:mt-10 sm:[&:nth-child(3)]:mt-20' : undefined}
       >
         {teachers.map((teacher) => (
           <Link className="group block" href={`/hocalar/${teacher.slug}`} key={teacher.slug}>
             <div className="relative aspect-3/4 overflow-hidden bg-surface">
-              {/* Yer tutucu hoca fotoğrafları SVG'dir; Next.js görüntü eniyileyicisi
-                  varsayılan olarak SVG'yi reddeder, bu yüzden unoptimized ile
-                  doğrudan dosyadan sunulur (bkz. index.ts hocalar/[slug]). */}
-              <Image
-                alt={teacher.name}
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                fill
-                sizes="(max-width: 640px) 100vw, 33vw"
-                src={teacher.photo}
-                unoptimized
-              />
+              <TeacherPortrait sizes="(max-width: 640px) 100vw, 33vw" teacher={teacher} />
             </div>
             <p className="mt-5 font-heading text-2xl text-text group-hover:text-olive">{teacher.name}</p>
             <Eyebrow className="mt-1">{teacher.title[locale]}</Eyebrow>
-            <p className="type-lede mt-3 line-clamp-2">{teacher.bio[locale]}</p>
+            {teacher.bio && <p className="type-lede mt-3 line-clamp-2">{teacher.bio[locale]}</p>}
           </Link>
         ))}
       </RevealGroup>
