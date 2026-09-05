@@ -13,6 +13,11 @@ import type { Testimonial } from './types'
  * gerçek ziyaretçiyi yanıltır. Arayüz (`community-wall.tsx`) ayrıca
  * `isPlaceholder: true` olan her kartta görünür bir "ÖRNEK" rozeti gösterir.
  *
+ * `ornek-5` (Belgrad Ormanı koşusu) ve `ornek-7` (Cihangir kitap buluşması)
+ * KALDIRILDI (2026-09-05): atıfta bulundukları etkinlik türleri artık
+ * düzenlenmiyor, dolayısıyla bu iki örnek "yer tutucu" olmanın ötesinde
+ * yanlış bir hizmet duyuruyordu.
+ *
  * `campSlug` NEDEN BOŞ: bu alan yalnızca camps.ts'te GERÇEKTEN var olan bir
  * slug'a işaret edebilir ve bugün tek kamp geleceğe (Eylül 2026) ait — henüz
  * yaşanmamış bir kampı "katıldığı etkinlik" diye göstermek, örnek yorumun
@@ -57,29 +62,11 @@ export const testimonials: Testimonial[] = [
     isPlaceholder: true,
   },
   {
-    id: 'ornek-5',
-    author: 'Örnek Üye — S.T.',
-    quote: {
-      tr: 'Belgrad Ormanı koşusuna tek başıma kaydoldum, dönüşte kahveyi altı kişilik bir masada içiyordum.',
-      en: 'I signed up for the Belgrad Forest run alone and ended up having coffee at a table of six on the way back.',
-    },
-    isPlaceholder: true,
-  },
-  {
     id: 'ornek-6',
     author: 'Örnek Üye — M.D.',
     quote: {
       tr: 'Boğaz kıyısındaki pilates seansı bir haftanın en sakin kırk beş dakikasıydı; vapur sesleri metronom gibiydi.',
       en: 'The pilates session by the Bosphorus was the calmest forty-five minutes of my week; the ferry horns worked like a metronome.',
-    },
-    isPlaceholder: true,
-  },
-  {
-    id: 'ornek-7',
-    author: 'Örnek Üye — E.B.',
-    quote: {
-      tr: 'Cihangir’deki kitap buluşmasında kimse kimseye ne iş yaptığını sormadı — sadece okuduğumuz sayfaları konuştuk.',
-      en: 'At the Cihangir book meetup nobody asked what anyone did for a living — we only talked about the pages we had read.',
     },
     isPlaceholder: true,
   },

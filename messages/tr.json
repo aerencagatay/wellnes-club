@@ -99,7 +99,11 @@
       "ileri": "İleri"
     },
     "priceFromSuffix": "kişi başı başlangıç fiyatı",
-    "nights": "{count} gece"
+    "nights": "{count} gece",
+    "occupancy": {
+      "double": "2 kişilik oda",
+      "single": "Tek kişilik oda"
+    }
   },
   "camps": {},
   "campDetail": {
@@ -119,7 +123,11 @@
     "perPerson": "kişi başı",
     "level": "Seviye",
     "duration": "Süre",
-    "spotsLeft": "{count} yer kaldı"
+    "spotsLeft": "{count} yer kaldı",
+    "pricing": "Fiyatlar",
+    "pricingCaption": "Oda tipi ve gece sayısına göre kişi başı fiyatlar",
+    "roomType": "Oda",
+    "pricingNote": "Fiyatlar kişi başıdır. Tek gecelik katılımda program kısalır; hangi geceye katılacağınızı başvuru sırasında belirtin."
   },
   "teachers": {
     "eyebrow": "EKİBİMİZ",
@@ -248,27 +256,7 @@
     "openMenu": "Menüyü aç",
     "closeMenu": "Menüyü kapat",
     "events": "Yaklaşan Etkinlikler",
-    "wellnessGoals": "Sağlıklı Yaşam",
-    "wellnessGoalsMenuLabel": "Sağlıklı Yaşam kategorileri",
-    "goalsComingSoon": "Detaylı sayfalar yakında",
     "instagramLabel": "Instagram'da EDEN Wellness Club"
-  },
-  "wellnessGoals": {
-    "eyebrow": "Sağlıklı Yaşam",
-    "intro": "Kamplarımızda birlikte yaptığımız pratikler.",
-    "yogaPilates": "Yoga ve Pilates",
-    "hiking": "Doğa Yürüyüşü",
-    "running": "Koşu",
-    "canoeing": "Kano",
-    "reading": "Kitap Okuma",
-    "meditationBreathwork": "Meditasyon ve Nefes",
-    "cycling": "Bisiklet",
-    "swimming": "Yüzme",
-    "wellnessRetreats": "Wellness Kampları",
-    "altYoga": "Deniz kenarında yoga pratiği",
-    "altMeditation": "Sabah meditasyonu",
-    "altGarden": "Otelin gölgeli bahçesi",
-    "altPool": "Açık havuz"
   },
   "common": {
     "skipToContent": "İçeriğe geç",
@@ -356,10 +344,6 @@
   "eventCategory": {
     "yoga": "Yoga",
     "pilates": "Pilates",
-    "running": "Koşu",
-    "hiking": "Doğa Yürüyüşü",
-    "kayaking": "Kano",
-    "bookClub": "Kitap Kulübü",
     "meditation": "Meditasyon"
   }
 }

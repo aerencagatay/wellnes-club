@@ -85,6 +85,48 @@ describe('içerik bütünlüğü', () => {
     }
   })
 
+  /**
+   * `priceFrom` kamp kartlarında, CTA'da ve Event JSON-LD'sinde görünen TEK
+   * fiyattır; `priceTiers` ise detay sayfasındaki tam tablo. İkisi ayrı
+   * alanlar olduğu için sessizce ayrışabilirler — biri güncellenip diğeri
+   * unutulduğunda site, listede bir fiyat gösterip detayda başka bir fiyat
+   * gösterir. Aşağıdaki eşitlik bunun nöbetçisidir: `priceFrom`, tam programın
+   * (tüm geceler, paylaşımlı oda) kademesine EŞİT olmak zorundadır.
+   */
+  it('fiyat kademeleri tutarlıdır ve priceFrom tam program kademesine eşittir', () => {
+    for (const camp of camps) {
+      expect(camp.priceTiers.length, `${camp.slug} fiyat kademesi yok`).toBeGreaterThan(0)
+
+      const keys = camp.priceTiers.map((tier) => `${tier.occupancy}-${tier.nights}`)
+      expect(new Set(keys).size, `${camp.slug} içinde yinelenen fiyat kademesi`).toBe(keys.length)
+
+      for (const tier of camp.priceTiers) {
+        const label = `${camp.slug} ${tier.occupancy}/${tier.nights}`
+        expect(tier.price, `${label} fiyatı`).toBeGreaterThan(0)
+        expect(tier.nights, `${label} gece sayısı`).toBeGreaterThanOrEqual(1)
+        expect(tier.nights, `${label} kampın gece sayısını aşıyor`).toBeLessThanOrEqual(camp.nights)
+      }
+
+      const fullProgram = camp.priceTiers.find(
+        (tier) => tier.occupancy === 'double' && tier.nights === camp.nights,
+      )
+      expect(fullProgram, `${camp.slug}: tam program (paylaşımlı oda, ${camp.nights} gece) kademesi eksik`).toBeDefined()
+      expect(fullProgram!.price, `${camp.slug}: priceFrom tam program kademesiyle uyuşmuyor`).toBe(camp.priceFrom)
+
+      // Tek kişilik oda, aynı gece sayısında paylaşımlı odadan ucuz olamaz —
+      // ters çevrilmiş bir çift, veri girişinde yer değiştirmiş iki sayıdır.
+      for (const single of camp.priceTiers.filter((tier) => tier.occupancy === 'single')) {
+        const double = camp.priceTiers.find((t) => t.occupancy === 'double' && t.nights === single.nights)
+        if (double) {
+          expect(
+            single.price >= double.price,
+            `${camp.slug}: ${single.nights} gecede tek kişilik oda paylaşımlıdan ucuz`,
+          ).toBe(true)
+        }
+      }
+    }
+  })
+
   it('waitlist durumundaki kampta boş yer yoktur', () => {
     for (const camp of camps) {
       if (camp.status === 'waitlist') expect(camp.spotsLeft, `${camp.slug}`).toBe(0)

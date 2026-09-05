@@ -7,6 +7,27 @@ export type Program = 'yoga' | 'pilates' | 'yoga-pilates'
 export type Level = 'baslangic' | 'tum-seviyeler' | 'ileri'
 export type CampStatus = 'open' | 'waitlist' | 'closed'
 
+/** Oda tipi: `double` = 2 kişilik oda (paylaşımlı), `single` = tek kişilik oda. */
+export type Occupancy = 'double' | 'single'
+
+/**
+ * Kişi başı fiyat kademesi. Bir kampın fiyatı tek bir sayı DEĞİLDİR: oda tipi
+ * ve kalınan gece sayısı fiyatı belirler, bu yüzden kademeler ayrı ayrı durur.
+ *
+ * `CampSession.priceFrom` bunlardan TÜRETİLMEZ ve en düşük kademeye eşit
+ * OLMAK ZORUNDA DEĞİLDİR: `priceFrom`, kartlarda ve CTA'da gösterilen *tam
+ * program* (tüm geceler, paylaşımlı oda) başlangıç fiyatıdır — tek gecelik
+ * kısa katılım daha ucuz olabilir ve bu tabloda görünür. İkisini birbirine
+ * eşitlemek, kartta tam programın karşılığı olmayan bir fiyat göstermek olurdu.
+ */
+export type PriceTier = {
+  occupancy: Occupancy
+  /** Bu kademenin kapsadığı gece sayısı. */
+  nights: number
+  /** Kişi başı, TRY. */
+  price: number
+}
+
 export type DailyFlowItem = {
   time: string // 'HH:MM'
   title: Localized
@@ -25,7 +46,9 @@ export type CampSession = {
   teacherSlugs: string[]
   capacity: number
   spotsLeft: number
-  priceFrom: number // kişi başı, paylaşımlı oda
+  priceFrom: number // kişi başı, paylaşımlı oda, tam program
+  /** Oda tipi × gece sayısı fiyat kademeleri; kamp detayında tablo olarak gösterilir. */
+  priceTiers: PriceTier[]
   currency: 'TRY'
   level: Level
   status: CampStatus
@@ -75,15 +98,17 @@ export type Testimonial = {
   isPlaceholder: boolean
 }
 
-/** Etkinlik kategorisi; kullanıcıya görünen etiketler messages/*.json → `eventCategory`. */
-export type EventCategory =
-  | 'yoga'
-  | 'pilates'
-  | 'running'
-  | 'hiking'
-  | 'kayaking'
-  | 'bookClub'
-  | 'meditation'
+/**
+ * Etkinlik kategorisi; kullanıcıya görünen etiketler messages/*.json →
+ * `eventCategory`.
+ *
+ * `running` / `hiking` / `kayaking` / `bookClub` KALDIRILDI (kullanıcı kararı,
+ * 2026-09-05): kulüp artık yalnızca yoga, retreat ve pilates düzenliyor.
+ * Kategoriyi tipten çıkarmak bilinçli — yalnızca içerikten silseydik tip hâlâ
+ * geçerli sayacağı için birinin ileride farkında olmadan bir koşu etkinliği
+ * eklemesini hiçbir şey engellemezdi.
+ */
+export type EventCategory = 'yoga' | 'pilates' | 'meditation'
 
 export type EventScheduleItem = {
   time: string // 'HH:MM'

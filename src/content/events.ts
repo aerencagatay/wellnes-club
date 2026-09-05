@@ -72,30 +72,14 @@ const realEvent: WellnessEvent = {
  * ÖRNEK KAYITLAR — gerçek etkinlik değildir (yukarıdaki nota bakın).
  * `schedule: []` bilinçlidir: program modalı boş programda "yakında"
  * mesajı gösterir, uydurma bir saat cetveli üretmez.
+ *
+ * Koşu (Belgrad Ormanı), doğa yürüyüşü (Kazdağları) ve kitap kulübü
+ * (Cihangir) örnekleri KALDIRILDI (kullanıcı kararı, 2026-09-05): kulüp
+ * yalnızca yoga, retreat ve pilates düzenleyecek. Geriye kalan tek örnek
+ * pilates olduğu için duruyor — kategorileri `EventCategory` tipinden de
+ * çıkardık, yani bu kayıtları geri getirmek artık tip hatası verir.
  */
 const placeholderEvents: WellnessEvent[] = [
-  {
-    id: 'belgrad-ormani-kosu',
-    slug: 'belgrad-ormani-kosu',
-    title: { tr: 'Belgrad Ormanı Hafta Sonu Koşusu', en: 'Belgrad Forest Weekend Run' },
-    category: 'running',
-    location: { tr: 'Belgrad Ormanı, İstanbul', en: 'Belgrad Forest, Istanbul' },
-    shortDescription: {
-      tr: 'Sabah ışığında orman patikalarında sakin bir grup koşusu, ardından ortak kahve.',
-      en: 'An easy group run on forest trails in the morning light, followed by coffee together.',
-    },
-    currency: 'TRY',
-    media: {
-      type: 'image',
-      src: '/img/forest running.jpg',
-      alt: {
-        tr: 'Orman patikasında birlikte koşan bir grup',
-        en: 'A group running together along a forest trail',
-      },
-    },
-    schedule: [],
-    isPlaceholder: true,
-  },
   {
     id: 'bogazda-pilates',
     slug: 'bogazda-pilates',
@@ -113,50 +97,6 @@ const placeholderEvents: WellnessEvent[] = [
       alt: {
         tr: 'Boğaz’da bir teknenin güvertesinde kalabalık bir grup pratiği',
         en: 'A large group practising on a boat deck on the Bosphorus',
-      },
-    },
-    schedule: [],
-    isPlaceholder: true,
-  },
-  {
-    id: 'cihangir-kitap-bulusmasi',
-    slug: 'cihangir-kitap-bulusmasi',
-    title: { tr: 'Cihangir’de Kitap Okuma Buluşması', en: 'Cihangir Reading Meetup' },
-    category: 'bookClub',
-    location: { tr: 'Cihangir, İstanbul', en: 'Cihangir, Istanbul' },
-    shortDescription: {
-      tr: 'Telefonlar kapalı, iki saat sessiz okuma ve ardından serbest sohbet.',
-      en: 'Phones away, two hours of quiet reading, then conversation.',
-    },
-    currency: 'TRY',
-    media: {
-      type: 'image',
-      src: '/img/kitab klübü.jpg',
-      alt: {
-        tr: 'Kitaplar ve kahvelerle dolu bir masanın çevresinde oturan grup',
-        en: 'A group seated around a table covered with books and coffees',
-      },
-    },
-    schedule: [],
-    isPlaceholder: true,
-  },
-  {
-    id: 'kazdaglari-hiking',
-    slug: 'kazdaglari-hiking',
-    title: { tr: 'Kazdağları Hiking Weekend', en: 'Kazdağları Hiking Weekend' },
-    category: 'hiking',
-    location: { tr: 'Kazdağları, Balıkesir', en: 'Kazdağları, Balıkesir' },
-    shortDescription: {
-      tr: 'İki gün boyunca rehberli patika yürüyüşleri, ortak masa ve dağ havası.',
-      en: 'Two days of guided trail walks, shared meals and mountain air.',
-    },
-    currency: 'TRY',
-    media: {
-      type: 'image',
-      src: '/img/kazdağları hike.jpg',
-      alt: {
-        tr: 'Sırt çantalı üç yürüyüşçü dağ sırtındaki patikada',
-        en: 'Three hikers with backpacks on a ridge trail',
       },
     },
     schedule: [],

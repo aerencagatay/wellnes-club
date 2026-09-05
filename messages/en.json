@@ -99,7 +99,11 @@
       "ileri": "Advanced"
     },
     "priceFromSuffix": "starting price per person",
-    "nights": "{count, plural, one {# night} other {# nights}}"
+    "nights": "{count, plural, one {# night} other {# nights}}",
+    "occupancy": {
+      "double": "Double room",
+      "single": "Single room"
+    }
   },
   "camps": {},
   "campDetail": {
@@ -119,7 +123,11 @@
     "perPerson": "per person",
     "level": "Level",
     "duration": "Duration",
-    "spotsLeft": "{count, plural, one {# spot left} other {# spots left}}"
+    "spotsLeft": "{count, plural, one {# spot left} other {# spots left}}",
+    "pricing": "Pricing",
+    "pricingCaption": "Per-person prices by room type and number of nights",
+    "roomType": "Room",
+    "pricingNote": "Prices are per person. A one-night stay covers a shorter programme; tell us which night you are joining when you apply."
   },
   "teachers": {
     "eyebrow": "OUR TEAM",
@@ -248,27 +256,7 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "events": "Our Upcoming Events",
-    "wellnessGoals": "Healthy Living",
-    "wellnessGoalsMenuLabel": "Healthy Living categories",
-    "goalsComingSoon": "Detailed pages coming soon",
     "instagramLabel": "EDEN Wellness Club on Instagram"
-  },
-  "wellnessGoals": {
-    "eyebrow": "Healthy Living",
-    "intro": "The practices we share at every EDEN retreat.",
-    "yogaPilates": "Yoga & Pilates",
-    "hiking": "Hiking",
-    "running": "Running",
-    "canoeing": "Canoeing",
-    "reading": "Reading",
-    "meditationBreathwork": "Meditation & Breathwork",
-    "cycling": "Cycling",
-    "swimming": "Swimming",
-    "wellnessRetreats": "Wellness Retreats",
-    "altYoga": "Yoga practice by the sea",
-    "altMeditation": "Morning meditation",
-    "altGarden": "The hotel's shaded garden",
-    "altPool": "Outdoor pool"
   },
   "common": {
     "skipToContent": "Skip to content",
@@ -356,10 +344,6 @@
   "eventCategory": {
     "yoga": "Yoga",
     "pilates": "Pilates",
-    "running": "Running",
-    "hiking": "Hiking",
-    "kayaking": "Kayaking",
-    "bookClub": "Book Club",
     "meditation": "Meditation"
   }
 }

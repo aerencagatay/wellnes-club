@@ -1,10 +1,18 @@
 import type { CampSession } from './types'
 
 /**
- * GERÇEK VERİ (kullanıcı onayı, 2026-08-06): tarih 11-13 Eylül 2026, fiyat
- * 10.500 TL, kontenjan 16 kişi — poster.png'deki "Rüzgar ve Deniz Yoga
- * Retreat" ile eşleşir. Diğer iki placeholder kamp kullanıcı isteğiyle
- * kaldırıldı: şu an tek gerçek/yaklaşan etkinlik bu.
+ * GERÇEK VERİ (kullanıcı onayı, 2026-09-05): tarih 18-20 Eylül 2026, kontenjan
+ * 16 kişi. Etkinliğin duyuru posterleriyle eşleşir:
+ * `public/img/poster/canakkale-18-20-eylul-2026-*.jpeg`.
+ *
+ * Tarih 11-13 Eylül'den 18-20 Eylül'e KAYDI (aynı etkinlik, yeni tarih —
+ * kullanıcı teyidi, 2026-09-05); ikinci bir kamp açılmadı.
+ *
+ * Fiyat artık tek sayı değil, dört kademe (`priceTiers`): oda tipi × gece
+ * sayısı. `priceFrom` bilinçli olarak 10.500 TL'de tutuluyor — bu, tam
+ * programın (2 gece, paylaşımlı oda) başlangıç fiyatı. En düşük kademe olan
+ * 6.500 TL tek gecelik katılıma ait; onu `priceFrom` yapmak kartlarda tam
+ * programın karşılığı olmayan bir fiyat göstermek olurdu (kullanıcı kararı).
  */
 export const camps: CampSession[] = [
   {
@@ -15,46 +23,67 @@ export const camps: CampSession[] = [
     // `/kamplar/<slug>` adresini, başvuru formunun `?kamp=` parametresini ve
     // paylaşılmış olabilecek bağlantıları belirliyor. Adı değiştirmek görünen
     // metni günceller; slug'ı değiştirmek çalışan URL'leri kırar. İkisi
-    // birbirinden bağımsız ve ayrı kararlar.
+    // birbirinden bağımsız ve ayrı kararlar. Aynı gerekçe tarih değişiminde de
+    // geçerli: 18-20 Eylül'e kayan tarih slug'ı etkilemez.
     title: { tr: 'Assos Yoga Retreat', en: 'Assos Yoga Retreat' },
     summary: {
       tr: 'Sabah vinyasa, akşam yin. Üç gün boyunca telefonlardan uzakta, zeytinliklerin arasında nefesine dönüyorsun.',
       en: 'Vinyasa in the morning, yin in the evening. Three days away from screens, returning to your breath among olive groves.',
     },
-    startDate: '2026-09-11',
-    endDate: '2026-09-13',
+    startDate: '2026-09-18',
+    endDate: '2026-09-20',
     nights: 2,
     venueSlug: 'karadut-tas-otel',
     teacherSlugs: ['elif-demir', 'zeynep-arslan'],
     capacity: 16,
     spotsLeft: 16,
     priceFrom: 10500,
+    // Kullanıcıdan gelen fiyat listesi (2026-09-05), kişi başı TRY.
+    priceTiers: [
+      { occupancy: 'double', nights: 2, price: 10500 },
+      { occupancy: 'single', nights: 2, price: 13500 },
+      { occupancy: 'double', nights: 1, price: 6500 },
+      { occupancy: 'single', nights: 1, price: 9500 },
+    ],
     currency: 'TRY',
     level: 'tum-seviyeler',
     status: 'open',
     heroImage: '/img/venue/hero.webp',
-    gallery: ['/img/poster.png', '/img/venue/dis-cephe.webp', '/img/venue/balkon.webp', '/img/venue/hotel.webp'],
+    // Eskiyen `/img/poster.png` ("Rüzgar ve Deniz" duyurusu) yerine bu etkinliğin
+    // iki güncel posteri konuldu.
+    gallery: [
+      '/img/poster/canakkale-18-20-eylul-2026-duyuru.jpeg',
+      '/img/poster/canakkale-18-20-eylul-2026-kapsam.jpeg',
+      '/img/venue/dis-cephe.webp',
+      '/img/venue/balkon.webp',
+      '/img/venue/hotel.webp',
+    ],
+    // Bu liste posterdeki "What's Included" bölümünün BİREBİR karşılığıdır
+    // (kullanıcı teyidi, 2026-09-05: çelişki hâlinde poster esas alınır).
+    // Önceki "günde üç öğün vejetaryen beslenme" maddesi bu yüzden kaldırıldı —
+    // pakete yalnızca kahvaltı dahil.
     includes: {
       tr: [
-        '2 gece konaklama (paylaşımlı oda)',
-        'Günde iki yoga seansı',
-        'Üç öğün vejetaryen beslenme',
-        'Nefes ve meditasyon atölyeleri',
-        'Kadırga Koyu yürüyüşü',
-        'Yoga matı ve ekipman',
+        '2 gece konaklama',
+        'Her gün yoga pratiği (toplam 4 seans)',
+        '2 atölye',
+        'Şef hazırlığı sağlıklı kahvaltı',
+        'Sonsuzluk havuzu, özel plaj ve antik Troya alanlarına erişim',
       ],
       en: [
-        '2 nights accommodation (shared room)',
-        'Two yoga sessions daily',
-        'Three vegetarian meals a day',
-        'Breathwork and meditation workshops',
-        'Walk to Kadırga Bay',
-        'Mat and props provided',
+        '2 nights accommodation',
+        'Daily yoga practice (4 in total)',
+        '2 workshops',
+        'Chef-prepared healthy breakfast',
+        'Access to infinity pool, private beach & ancient Trojan sites',
       ],
     },
+    // Öğle ve akşam yemekleri posterde dahil olanlar arasında SAYILMADIĞI için
+    // burada açıkça dışlanır: sessizce atlanması, eski üç öğünlük paketi
+    // hatırlayan bir katılımcının yanılmasına yol açardı.
     excludes: {
-      tr: ['Ulaşım', 'Alkollü içecekler', 'Kişisel masaj ve terapiler', 'Seyahat sigortası'],
-      en: ['Transport', 'Alcoholic drinks', 'Personal massage and therapies', 'Travel insurance'],
+      tr: ['Ulaşım', 'Öğle ve akşam yemekleri', 'Alkollü içecekler', 'Kişisel masaj ve terapiler', 'Seyahat sigortası'],
+      en: ['Transport', 'Lunch and dinner', 'Alcoholic drinks', 'Personal massage and therapies', 'Travel insurance'],
     },
     dailyFlow: [
       {
@@ -80,9 +109,12 @@ export const camps: CampSession[] = [
         title: { tr: 'Atölye', en: 'Workshop' },
         desc: { tr: 'Nefes teknikleri veya anatomi üzerine oturum.', en: 'A session on breath technique or anatomy.' },
       },
+      // Öğle ve akşam yemeği pakete dahil değil (bkz. `excludes`), bu yüzden bu
+      // iki başlık sağlanan bir öğün İMA ETMEZ: biri serbest bir ara, diğeri
+      // paket dışı olduğu açıkça yazılmış ortak bir masa.
       {
         time: '13:00',
-        title: { tr: 'Öğle ve serbest zaman', en: 'Lunch and free time' },
+        title: { tr: 'Öğle arası ve serbest zaman', en: 'Lunch break and free time' },
         desc: { tr: 'Havuz, kitap, uyku ya da koya yürüyüş.', en: 'Pool, a book, a nap, or a walk to the bay.' },
       },
       {
@@ -92,8 +124,8 @@ export const camps: CampSession[] = [
       },
       {
         time: '19:30',
-        title: { tr: 'Akşam yemeği', en: 'Dinner' },
-        desc: { tr: 'Taş terasta ortak masa.', en: 'A shared table on the stone terrace.' },
+        title: { tr: 'Ortak akşam masası', en: 'Shared evening table' },
+        desc: { tr: 'Taş terasta birlikte akşam yemeği; paket dışı.', en: 'Dinner together on the stone terrace; not included in the package.' },
       },
     ],
     featured: true,

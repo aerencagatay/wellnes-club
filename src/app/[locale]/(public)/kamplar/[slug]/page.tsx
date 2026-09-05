@@ -7,6 +7,7 @@ import { CampCtaCard } from '@/components/camps/camp-cta-card'
 import { CampDetailHero } from '@/components/camps/camp-detail-hero'
 import { DailyFlow } from '@/components/camps/daily-flow'
 import { IncludesExcludes } from '@/components/camps/includes-excludes'
+import { PriceTiers } from '@/components/camps/price-tiers'
 import { TeacherCard } from '@/components/teachers/teacher-card'
 import { Accordion } from '@/components/ui/accordion'
 import { GalleryStrip } from '@/components/ui/gallery-strip'
@@ -84,6 +85,12 @@ export default async function CampDetailPage({
             <DailyFlow items={camp.dailyFlow} locale={locale} />
 
             <IncludesExcludes excludes={camp.excludes[locale]} includes={camp.includes[locale]} />
+
+            {/* Fiyat tablosu, "dahil olanlar/olmayanlar"ın hemen ardından gelir:
+                bir kademenin neyi kapsadığı ancak o iki liste okunduktan sonra
+                anlam taşıyor. Kenar çubuğundaki `CampCtaCard` tek bir başlangıç
+                fiyatı gösterir; kademelerin tamamı burada durur. */}
+            <PriceTiers currency={camp.currency} locale={locale} tiers={camp.priceTiers} />
 
             <section>
               <h2 className="type-title">{t('teachers')}</h2>

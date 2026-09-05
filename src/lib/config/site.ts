@@ -30,39 +30,26 @@ export const NAV_ITEMS = [
 ] as const
 
 /**
- * Navbar'ın ortalanmış gezinme şeridi: yalnızca 3 madde (kullanıcı isteği,
- * 2026-08-13). `NAV_ITEMS`'in yerini almaz — footer hâlâ tam site haritasını
- * gösterir; "Geçmiş Etkinlikler" birincil navdan çıkarıldı çünkü artık ana
- * sayfadaki galeri bölümü olarak yaşıyor.
+ * Navbar'ın ortalanmış gezinme şeridi: yalnızca İKİ madde — Yaklaşan
+ * Etkinlikler ve Hakkımızda (kullanıcı kararı, 2026-09-05).
  *
- * Sıra BURADA bildirilir (navbar'da elle "index === 0" gibi bir yerleştirme
- * yok): `menu` tipindeki madde gerçek bir sayfaya gitmez, `WellnessGoalsMenu`
- * panelini tetikler. Üçüncü maddenin etiketi tek yerden değişsin diye
- * `key`/`href` çifti burada durur — yeniden adlandırmak için messages'taki
- * `nav.<key>` değerini değiştirmek yeterli.
+ * `NAV_ITEMS`'in yerini ALMAZ: footer hâlâ tam site haritasını gösterir
+ * (hocalar, mekan, deneyim, SSS, iletişim). Buradan çıkarılmış olmak o
+ * sayfaların kaldırıldığı anlamına gelmez — yalnızca birincil şeritte
+ * durmadıkları anlamına gelir.
+ *
+ * "Sağlıklı Yaşam" mega menüsü KALDIRILDI: kulüp artık yalnızca yoga /
+ * retreat / pilates düzenliyor, dokuz farklı aktivite sayan bir menü
+ * yapılmayacak işleri duyuruyordu. Menüyü render eden
+ * `layout/wellness-goals-menu.tsx` ve buradaki `WELLNESS_GOALS` listesi de
+ * silindi. Bu yüzden maddeler artık `type` ayrımı TAŞIMIYOR — eskiden
+ * `'link' | 'menu'` ayrımı vardı çünkü menü maddesi gerçek bir sayfaya
+ * gitmiyordu; menü gidince ayrım da anlamsız kaldı ve navbar'daki koşullu
+ * dal kalktı.
  */
 export const PRIMARY_NAV_ITEMS = [
-  { type: 'link', href: '/kamplar', key: 'events' },
-  { type: 'menu', key: 'wellnessGoals' },
-  { type: 'link', href: '/hakkimizda', key: 'about' },
-] as const
-
-/**
- * "Sağlıklı Yaşam" mega menüsündeki pratik listesi — EDEN'in kamplarında
- * gerçekten yapılan aktiviteler (kullanıcı isteği, 2026-08-13; önceki jenerik
- * "wellness goals" listesinin yerini aldı). Henüz karşılık gelen bir sayfa
- * olmadığından öğeler tıklanamaz; menü bunu görsel olarak da belirtir.
- */
-export const WELLNESS_GOALS = [
-  'yogaPilates',
-  'hiking',
-  'running',
-  'canoeing',
-  'reading',
-  'meditationBreathwork',
-  'cycling',
-  'swimming',
-  'wellnessRetreats',
+  { href: '/kamplar', key: 'events' },
+  { href: '/hakkimizda', key: 'about' },
 ] as const
 
 export const FOOTER_LEGAL = [

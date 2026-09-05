@@ -11,7 +11,6 @@ import { InstagramIcon } from '@/components/icons/instagram-icon'
 import { BrandLockup } from './brand-lockup'
 import { hasHeroBackdropFor } from './hero-backdrop-routes'
 import { LanguageSwitcher } from './language-switcher'
-import { WellnessGoalsAccordion, WellnessGoalsMenu } from './wellness-goals-menu'
 
 const MOBILE_PANEL_ID = 'mobile-nav-panel'
 const MOBILE_PANEL_TITLE_ID = 'mobile-nav-panel-title'
@@ -146,30 +145,26 @@ export function Navbar() {
           transparent ? 'border-background/20' : 'border-sand/60',
         )}
       >
-        {PRIMARY_NAV_ITEMS.map((item) =>
-          item.type === 'menu' ? (
-            <WellnessGoalsMenu key={item.key} transparent={transparent} />
-          ) : (
-            <Link
-              aria-current={pathname === item.href ? 'page' : undefined}
-              className={cn(
-                // Cümle düzeni + orta ağırlık. Eskiden `text-[11px] uppercase
-                // tracking-[0.22em]` idi — büyük harf + çok geniş harf aralığı,
-                // keskin köşelerden bile güçlü biçimde "2010'lar editoryal"
-                // hissi veriyordu (kullanıcı geri bildirimi, 2026-08-14).
-                // Markanın geniş aralıklı Montserrat kimliği `BrandLockup`'ta
-                // KORUNUR; burada değişen yalnızca gezinme bağlantılarının dili.
-                'text-sm font-medium tracking-normal transition-colors duration-300',
-                transparent ? 'text-background/80 hover:text-background' : 'text-muted hover:text-text',
-                pathname === item.href && (transparent ? 'text-background' : 'text-text'),
-              )}
-              href={item.href}
-              key={item.key}
-            >
-              {t(item.key)}
-            </Link>
-          ),
-        )}
+        {PRIMARY_NAV_ITEMS.map((item) => (
+          <Link
+            aria-current={pathname === item.href ? 'page' : undefined}
+            className={cn(
+              // Cümle düzeni + orta ağırlık. Eskiden `text-[11px] uppercase
+              // tracking-[0.22em]` idi — büyük harf + çok geniş harf aralığı,
+              // keskin köşelerden bile güçlü biçimde "2010'lar editoryal"
+              // hissi veriyordu (kullanıcı geri bildirimi, 2026-08-14).
+              // Markanın geniş aralıklı Montserrat kimliği `BrandLockup`'ta
+              // KORUNUR; burada değişen yalnızca gezinme bağlantılarının dili.
+              'text-sm font-medium tracking-normal transition-colors duration-300',
+              transparent ? 'text-background/80 hover:text-background' : 'text-muted hover:text-text',
+              pathname === item.href && (transparent ? 'text-background' : 'text-text'),
+            )}
+            href={item.href}
+            key={item.key}
+          >
+            {t(item.key)}
+          </Link>
+        ))}
       </nav>
 
       {open && (
@@ -190,21 +185,17 @@ export function Navbar() {
             </button>
           </div>
           <nav aria-label={t('primary')} className="container-page mt-6 flex flex-col">
-            {PRIMARY_NAV_ITEMS.map((item) =>
-              item.type === 'menu' ? (
-                <WellnessGoalsAccordion key={item.key} />
-              ) : (
-                <Link
-                  aria-current={pathname === item.href ? 'page' : undefined}
-                  className="border-b border-sand py-4 font-heading text-2xl font-medium text-text"
-                  href={item.href}
-                  key={item.key}
-                  onClick={() => setOpen(false)}
-                >
-                  {t(item.key)}
-                </Link>
-              ),
-            )}
+            {PRIMARY_NAV_ITEMS.map((item) => (
+              <Link
+                aria-current={pathname === item.href ? 'page' : undefined}
+                className="border-b border-sand py-4 font-heading text-2xl font-medium text-text"
+                href={item.href}
+                key={item.key}
+                onClick={() => setOpen(false)}
+              >
+                {t(item.key)}
+              </Link>
+            ))}
             <div className="mt-8 flex items-center justify-between">
               <LanguageSwitcher />
               <Button href="/basvuru" onClick={() => setOpen(false)} size="lg">
