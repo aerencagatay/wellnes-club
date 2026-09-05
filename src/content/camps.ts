@@ -51,6 +51,7 @@ export const camps: CampSession[] = [
     level: 'tum-seviyeler',
     status: 'open',
     heroImage: '/img/venue/hero.webp',
+    posterImage: '/img/poster/canakkale-18-20-eylul-2026-duyuru.jpeg',
     // Eskiyen `/img/poster.png` ("Rüzgar ve Deniz" duyurusu) yerine bu etkinliğin
     // iki güncel posteri konuldu.
     gallery: [

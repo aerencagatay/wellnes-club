@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { getCampBadge, type CampBadge } from '@/lib/utils/camp-status'
 import { formatDateRange } from '@/lib/utils/dates'
 import { formatPrice } from '@/lib/utils/price'
+import { cn } from '@/lib/utils/cn'
 
 const BADGE_TONE: Record<CampBadge, 'olive' | 'sand-fill' | 'olive-outline' | 'neutral'> = {
   open: 'olive',
@@ -19,9 +20,23 @@ export function CampCard({
   camp,
   locale,
   headingLevel = 'h3',
+  media = 'hero',
 }: {
   camp: CampSession
   locale: AppLocale
+  /**
+   * Kartin gorseli: `'hero'` mekan fotografini 4:3 cercevede, `'poster'` ise
+   * etkinligin duyuru posterini KARE cercevede gosterir.
+   *
+   * Oran varyanti sart: poster kare uretiliyor ve 4:3 bir cercevede
+   * `object-cover` ile ust/alt kirpilirdi — tam da posterin markasini
+   * (ustteki logo) ve konum satirini (alttaki "Asos, Canakkale") tasiyan
+   * seritler. Kare cercevede kirpma sifir olur.
+   *
+   * `posterImage` tanimli degilse sessizce hero'ya duser: kart poster
+   * olmayan bir kampta da calismaya devam eder.
+   */
+  media?: 'hero' | 'poster'
   /** Bu kart, sayfanın kendi `h1`'inden sonra ARA bir `h2` bölüm başlığı olmadan
    *  doğrudan yerleştirildiğinde (ör. `/kamplar` listesinin üst gridi, `/basvuru`daki
    *  özet kartı) `h2` verilmelidir — aksi halde başlık seviyeleri `h1 → h3` atlar.
@@ -31,6 +46,7 @@ export function CampCard({
 }) {
   const t = useTranslations('camp')
   const badge = getCampBadge(camp)
+  const showPoster = media === 'poster' && Boolean(camp.posterImage)
   const price = formatPrice(camp.priceFrom, camp.currency, locale)
   const Heading = headingLevel
 
@@ -39,13 +55,19 @@ export function CampCard({
     // `border-sand` ayırıcı. Rozet, fotoğrafın üzerine dolgu tabanlı ve keskin
     // köşeli olarak bindirilir.
     <article className="group flex flex-col">
-      <Link className="relative aspect-4/3 overflow-hidden rounded-[var(--radius-media)]" href={`/kamplar/${camp.slug}`}>
+      <Link
+        className={cn(
+          'relative overflow-hidden rounded-[var(--radius-media)]',
+          showPoster ? 'aspect-square' : 'aspect-4/3',
+        )}
+        href={`/kamplar/${camp.slug}`}
+      >
         <Image
           alt={camp.title[locale]}
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          src={camp.heroImage}
+          src={showPoster ? camp.posterImage! : camp.heroImage}
         />
         {/* `olive-outline`/`neutral` rozet tonları dolgusuz (şeffaf zemin) —
             fotoğrafın üzerinde brief'in "dolgu tabanlı" gereksinimini karşılamak

@@ -69,7 +69,7 @@ export default async function InquiryPage({
                 <div className="mt-4">
                   {/* Bu kart sayfanın h1'inden (PageHero) sonra ara bir h2 olmadan
                       geliyor — h3 verirsek başlık seviyesi h1 → h3 atlar. */}
-                  <CampCard camp={selectedCamp} headingLevel="h2" locale={locale} />
+                  <CampCard camp={selectedCamp} headingLevel="h2" locale={locale} media="poster" />
                 </div>
               </div>
               <div className="rounded-[var(--radius-card)] border border-text/10 bg-surface p-6 shadow-[var(--shadow-card)]">
