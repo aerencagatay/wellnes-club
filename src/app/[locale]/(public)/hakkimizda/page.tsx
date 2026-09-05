@@ -59,10 +59,10 @@ export default async function AboutPage({
 
       <Section>
         <BenefitBlock
-          body={t('whyAssosBody')}
-          eyebrow={t('whyAssosEyebrow')}
-          image={{ src: '/img/venue/kusbakisi.webp', alt: t('whyAssosImageAlt') }}
-          title={t('whyAssosTitle')}
+          body={t('whyAsosBody')}
+          eyebrow={t('whyAsosEyebrow')}
+          image={{ src: '/img/venue/kusbakisi.webp', alt: t('whyAsosImageAlt') }}
+          title={t('whyAsosTitle')}
         />
       </Section>
 

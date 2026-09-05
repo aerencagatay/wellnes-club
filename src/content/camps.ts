@@ -18,14 +18,16 @@ export const camps: CampSession[] = [
   {
     slug: 'ruzgar-ve-deniz-eylul-2026',
     program: 'yoga',
-    // Ad "Assos Yoga Retreat" olarak değişti (kullanıcı isteği, 2026-08-15).
+    // Ad "Asos Yoga Retreat" (kullanıcı isteği, 2026-08-15; yazım 2026-09-05'te
+    // "Assos" → "Asos" olarak düzeltildi — kulübün kendi yazımı budur ve
+    // posterde de böyle geçiyor).
     // `slug` KASITLI olarak eski hâlinde bırakıldı: site canlıda ve slug
     // `/kamplar/<slug>` adresini, başvuru formunun `?kamp=` parametresini ve
     // paylaşılmış olabilecek bağlantıları belirliyor. Adı değiştirmek görünen
     // metni günceller; slug'ı değiştirmek çalışan URL'leri kırar. İkisi
     // birbirinden bağımsız ve ayrı kararlar. Aynı gerekçe tarih değişiminde de
     // geçerli: 18-20 Eylül'e kayan tarih slug'ı etkilemez.
-    title: { tr: 'Assos Yoga Retreat', en: 'Assos Yoga Retreat' },
+    title: { tr: 'Asos Yoga Retreat', en: 'Asos Yoga Retreat' },
     summary: {
       tr: 'Sabah vinyasa, akşam yin. Üç gün boyunca telefonlardan uzakta, zeytinliklerin arasında nefesine dönüyorsun.',
       en: 'Vinyasa in the morning, yin in the evening. Three days away from screens, returning to your breath among olive groves.',

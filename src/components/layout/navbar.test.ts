@@ -17,7 +17,7 @@ describe('hasHeroBackdropFor', () => {
   })
 
   it('kamp detay sayfası (dinamik slug) için true döner', () => {
-    expect(hasHeroBackdropFor('/kamplar/assos-eylul')).toBe(true)
+    expect(hasHeroBackdropFor('/kamplar/asos-eylul')).toBe(true)
     expect(hasHeroBackdropFor('/kamplar/baska-bir-slug')).toBe(true)
   })
 

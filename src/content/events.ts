@@ -36,7 +36,7 @@ const realEvent: WellnessEvent = {
   category: 'yoga',
   dateStart: REAL_CAMP.startDate,
   dateEnd: REAL_CAMP.endDate,
-  location: { tr: 'Assos, Çanakkale', en: 'Assos, Çanakkale' },
+  location: { tr: 'Asos, Çanakkale', en: 'Asos, Çanakkale' },
   shortDescription: REAL_CAMP.summary,
   price: REAL_CAMP.priceFrom,
   currency: 'TRY',

@@ -2,7 +2,7 @@ import type { Teacher } from './types'
 
 /**
  * GERÇEK VERİ (kullanıcı kararı, 2026-09-05): kadro tek bir isme indirildi —
- * Melike Göktan, 18-20 Eylül 2026 Assos Yoga Retreat'in hocası.
+ * Melike Göktan, 18-20 Eylül 2026 Asos Yoga Retreat'in hocası.
  *
  * Önceki üç kayıt (`elif-demir`, `can-yilmaz`, `zeynep-arslan`) tamamen
  * kurgusaldı ve kaldırıldı; `elif-demir`'in stok fotoğrafı da öyle.

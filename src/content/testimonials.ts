@@ -47,8 +47,8 @@ export const testimonials: Testimonial[] = [
     id: 'ornek-3',
     author: 'Örnek Katılımcı',
     quote: {
-      tr: 'Assos gezisiyle akşam yoga arasındaki geçiş, kampın en sevdiğim anıydı.',
-      en: 'The transition from the Assos excursion to evening yoga was my favourite part of the retreat.',
+      tr: 'Asos gezisiyle akşam yoga arasındaki geçiş, kampın en sevdiğim anıydı.',
+      en: 'The transition from the Asos excursion to evening yoga was my favourite part of the retreat.',
     },
     isPlaceholder: true,
   },

@@ -10,22 +10,22 @@ import type { Venue } from './types'
 export const venues: Venue[] = [
   {
     slug: 'karadut-tas-otel',
-    name: 'Assos Karadut Taş Otel',
+    name: 'Asos Karadut Taş Otel',
     shortDescription: {
-      tr: "Büyükhusun köyünde, yerel taştan örülmüş butik bir otel. Assos'un sakinliği, zeytinlikler ve Ege ışığı.",
-      en: 'A boutique hotel built from local stone in Büyükhusun village. The calm of Assos, olive groves and Aegean light.',
+      tr: "Büyükhusun köyünde, yerel taştan örülmüş butik bir otel. Asos'un sakinliği, zeytinlikler ve Ege ışığı.",
+      en: 'A boutique hotel built from local stone in Büyükhusun village. The calm of Asos, olive groves and Aegean light.',
     },
     location: { tr: 'Büyükhusun, Ayvacık / Çanakkale', en: 'Büyükhusun, Ayvacık / Çanakkale' },
     highlights: {
       tr: [
-        'Assos antik kentine 7 dakika',
+        'Asos antik kentine 7 dakika',
         "Kadırga Koyu'na 5 km",
         'Yerel taş mimari',
         'Havuz ve bahçe',
         'Otel restoranı',
       ],
       en: [
-        '7 minutes to ancient Assos',
+        '7 minutes to ancient Asos',
         '5 km to Kadırga Bay',
         'Local stone architecture',
         'Pool and garden',

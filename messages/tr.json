@@ -1,7 +1,7 @@
 {
   "meta": {
-    "defaultTitle": "EDEN Wellness Club — Assos'ta Yoga ve Pilates Kampları",
-    "defaultDescription": "Assos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları. Yaklaşan kamp tarihlerini keşfedin ve yerinizi ayırtın.",
+    "defaultTitle": "EDEN Wellness Club — Yoga/Pilates Retreats",
+    "defaultDescription": "Asos'un taş mimarisinde, küçük gruplar halinde yoga ve pilates kampları. Yaklaşan kamp tarihlerini keşfedin ve yerinizi ayırtın.",
     "kamplar": {
       "title": "Kamplar",
       "description": "Yaklaşan yoga ve pilates kamplarımızı program ve seviyeye göre inceleyin, size uygun tarihi seçin."
@@ -12,7 +12,7 @@
     },
     "mekan": {
       "title": "Karadut Taş Otel",
-      "description": "Assos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili kamp mekanımızı keşfedin."
+      "description": "Asos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili kamp mekanımızı keşfedin."
     },
     "deneyim": {
       "title": "Kampta Bir Gün",
@@ -20,7 +20,7 @@
     },
     "hakkimizda": {
       "title": "Hakkımızda",
-      "description": "EDEN Wellness Club'ın hikayesini ve Assos'ta kamp düzenleme yaklaşımımızı öğrenin."
+      "description": "EDEN Wellness Club'ın hikayesini ve Asos'ta kamp düzenleme yaklaşımımızı öğrenin."
     },
     "sss": {
       "title": "Sıkça Sorulan Sorular",
@@ -32,7 +32,7 @@
     },
     "blog": {
       "title": "Blog",
-      "description": "Kamplarımız, Assos ve yoga-pilates pratiği üzerine yazılarımızı okuyun."
+      "description": "Kamplarımız, Asos ve yoga-pilates pratiği üzerine yazılarımızı okuyun."
     },
     "basvuru": {
       "title": "Yerinizi Ayırtın",
@@ -141,9 +141,9 @@
   "venue": {
     "eyebrow": "MEKAN",
     "title": "Karadut Taş Otel",
-    "lede": "Assos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili bir sığınak.",
+    "lede": "Asos'un taş mimarisinde, zeytinlikler ve Ege ışığıyla çevrili bir sığınak.",
     "body1": "Karadut Taş Otel, Büyükhusun köyünün yerel taşından örülmüş, zeytinliklerle çevrili küçük bir yapı. Kalın duvarlar yazın serinliği, kışın sıcaklığı içeride tutar; taş ve ahşabın sade dili her köşede sürer.",
-    "body2": "Antik Assos'a yürüme mesafesinde, Kadırga Koyu'na birkaç dakikalık bir sürüş uzaklığında. Günün boş saatlerinde antik kente, zeytinliklere ya da koyun berrak suyuna gidebilirsiniz.",
+    "body2": "Antik Asos'a yürüme mesafesinde, Kadırga Koyu'na birkaç dakikalık bir sürüş uzaklığında. Günün boş saatlerinde antik kente, zeytinliklere ya da koyun berrak suyuna gidebilirsiniz.",
     "highlightsTitle": "Öne Çıkanlar",
     "galleryImageAlt": "{name} — görsel {index} / {total}",
     "officialSite": "Otelin Resmi Sitesi",
@@ -182,8 +182,8 @@
     "eyebrow": "HAKKIMIZDA",
     "title": "EDEN Wellness Club",
     "lede": "Kalabalık bir ajans değil, aynı taş otelde, aynı küçük ekiple çalışan bir kamp organizasyonuyuz.",
-    "storyBody1": "EDEN Wellness Club, İstanbul'da yoga ve pilates dersleri veren küçük bir eğitmen ekibinin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. Assos'taki Karadut Taş Otel'i ilk ziyaretimizde aradığımız sessizliği ve taş mimariyi burada bulduk; kamplarımızı o günden beri aynı otelde düzenliyoruz.",
-    "storyBody2": "Otelin sahibi değiliz — orada misafiriz, tıpkı katılımcılarımız gibi. İşimiz programı kurmak, hocaları seçmek ve grubun küçük kalmasını sağlamak; geri kalanını otel ve Assos'un kendisi hallediyor.",
+    "storyBody1": "EDEN Wellness Club, İstanbul'da yoga ve pilates dersleri veren küçük bir eğitmen ekibinin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. Asos'taki Karadut Taş Otel'i ilk ziyaretimizde aradığımız sessizliği ve taş mimariyi burada bulduk; kamplarımızı o günden beri aynı otelde düzenliyoruz.",
+    "storyBody2": "Otelin sahibi değiliz — orada misafiriz, tıpkı katılımcılarımız gibi. İşimiz programı kurmak, hocaları seçmek ve grubun küçük kalmasını sağlamak; geri kalanını otel ve Asos'un kendisi hallediyor.",
     "approachEyebrow": "YAKLAŞIMIMIZ",
     "approachTitle": "Nasıl Çalışıyoruz",
     "approachItems": {
@@ -191,12 +191,12 @@
       "2": "Sabit ekip: aynı hocalar, aynı otel, kamptan kampa değişmeyen bir güven.",
       "3": "Boş zaman bırakmak: program doldurmak değil, dinlenmeye yer açmak asıl amacımız."
     },
-    "whyAssosEyebrow": "MEKAN",
-    "whyAssosTitle": "Neden Assos",
-    "whyAssosBody": "Assos, kalabalık tatil beldelerinin aksine hâlâ sakin. Antik kent, zeytinlikler ve Kadırga Koyu birbirine yürüme mesafesinde; taş mimari yazın serinliği, kışın sıcaklığı içeride tutuyor. Kamplarımızı başka bir yerde değil, tam burada kurmamızın nedeni bu.",
-    "whyAssosImageAlt": "Büyükhusun köyünün ve zeytinliklerin kuşbakışı görünümü",
+    "whyAsosEyebrow": "MEKAN",
+    "whyAsosTitle": "Neden Asos",
+    "whyAsosBody": "Asos, kalabalık tatil beldelerinin aksine hâlâ sakin. Antik kent, zeytinlikler ve Kadırga Koyu birbirine yürüme mesafesinde; taş mimari yazın serinliği, kışın sıcaklığı içeride tutuyor. Kamplarımızı başka bir yerde değil, tam burada kurmamızın nedeni bu.",
+    "whyAsosImageAlt": "Büyükhusun köyünün ve zeytinliklerin kuşbakışı görünümü",
     "ctaTitle": "Sorunuz mu var?",
-    "ctaBody": "Kamp seçimi, seviye uygunluğu ya da Assos'a ulaşım hakkında merak ettiğin her şeyi doğrudan bize sorabilirsin.",
+    "ctaBody": "Kamp seçimi, seviye uygunluğu ya da Asos'a ulaşım hakkında merak ettiğin her şeyi doğrudan bize sorabilirsin.",
     "ctaButton": "İletişime Geç"
   },
   "faq": {
@@ -227,7 +227,7 @@
   "blog": {
     "eyebrow": "BLOG",
     "title": "Blog",
-    "empty": "Henüz yayınlanmış bir yazımız yok. Yakında kamplarımız, Assos ve pratik üzerine yazılarla burada olacağız.",
+    "empty": "Henüz yayınlanmış bir yazımız yok. Yakında kamplarımız, Asos ve pratik üzerine yazılarla burada olacağız.",
     "emptyCta": "Bu Arada Kamplarımıza Göz Atın"
   },
   "legal": {

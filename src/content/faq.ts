@@ -26,8 +26,8 @@ export const faq: FaqItem[] = [
   {
     id: 'ulasim',
     question: {
-      tr: "Assos'a nasıl ulaşabilirim?",
-      en: 'How do I get to Assos?',
+      tr: "Asos'a nasıl ulaşabilirim?",
+      en: 'How do I get to Asos?',
     },
     answer: {
       tr: "En yakın havalimanı Çanakkale'dir; İstanbul'dan otobüsle veya feribotla ulaşım da mümkündür. Ulaşım kamp fiyatına dahil değildir; talep başvurunda belirtirsen sana en uygun güzergahı ve otobüs saatlerini paylaşırız.",

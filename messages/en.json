@@ -1,7 +1,7 @@
 {
   "meta": {
-    "defaultTitle": "EDEN Wellness Club — Yoga & Pilates Retreats in Assos",
-    "defaultDescription": "Yoga and pilates retreats in small groups, set in the stone architecture of Assos. Explore upcoming dates and reserve your place.",
+    "defaultTitle": "EDEN Wellness Club — Yoga/Pilates Retreats",
+    "defaultDescription": "Yoga and pilates retreats in small groups, set in the stone architecture of Asos. Explore upcoming dates and reserve your place.",
     "kamplar": {
       "title": "Camps",
       "description": "Browse our upcoming yoga and pilates retreats by programme and level, and find the right date for you."
@@ -12,7 +12,7 @@
     },
     "mekan": {
       "title": "Karadut Taş Otel",
-      "description": "Discover our retreat venue in the stone architecture of Assos, surrounded by olive groves and Aegean light."
+      "description": "Discover our retreat venue in the stone architecture of Asos, surrounded by olive groves and Aegean light."
     },
     "deneyim": {
       "title": "A Day at Camp",
@@ -20,7 +20,7 @@
     },
     "hakkimizda": {
       "title": "About Us",
-      "description": "Learn the story of EDEN Wellness Club and our approach to running retreats in Assos."
+      "description": "Learn the story of EDEN Wellness Club and our approach to running retreats in Asos."
     },
     "sss": {
       "title": "Frequently Asked Questions",
@@ -32,7 +32,7 @@
     },
     "blog": {
       "title": "Blog",
-      "description": "Read our writing on our camps, Assos, and the yoga and pilates practice."
+      "description": "Read our writing on our camps, Asos, and the yoga and pilates practice."
     },
     "basvuru": {
       "title": "Reserve Your Place",
@@ -141,9 +141,9 @@
   "venue": {
     "eyebrow": "THE VENUE",
     "title": "Karadut Taş Otel",
-    "lede": "A refuge in the stone architecture of Assos, surrounded by olive groves and Aegean light.",
+    "lede": "A refuge in the stone architecture of Asos, surrounded by olive groves and Aegean light.",
     "body1": "Karadut Taş Otel is a small stone building woven from the local stone of Büyükhusun village, surrounded by olive groves. Thick walls hold in summer's cool and winter's warmth; the same plain language of stone and wood carries through every corner.",
-    "body2": "Within walking distance of ancient Assos, and a short drive from Kadırga Bay. In the day's free hours you can head to the ancient city, the olive groves, or the bay's clear water.",
+    "body2": "Within walking distance of ancient Asos, and a short drive from Kadırga Bay. In the day's free hours you can head to the ancient city, the olive groves, or the bay's clear water.",
     "highlightsTitle": "Highlights",
     "galleryImageAlt": "{name} — photo {index} of {total}",
     "officialSite": "The Hotel's Official Site",
@@ -182,8 +182,8 @@
     "eyebrow": "ABOUT US",
     "title": "EDEN Wellness Club",
     "lede": "Not a crowded agency — a retreat organiser working at the same stone hotel, with the same small team.",
-    "storyBody1": "EDEN Wellness Club began with a small team of yoga and pilates teachers in Istanbul who wanted to take their own students out of the city. On our first visit to Karadut Taş Otel in Assos, we found the quiet and the stone architecture we were looking for — we've held our camps at the same hotel ever since.",
-    "storyBody2": "We don't own the hotel — we're guests there, just like our participants. Our job is to build the programme, choose the teachers, and keep the group small; the hotel and Assos itself take care of the rest.",
+    "storyBody1": "EDEN Wellness Club began with a small team of yoga and pilates teachers in Istanbul who wanted to take their own students out of the city. On our first visit to Karadut Taş Otel in Asos, we found the quiet and the stone architecture we were looking for — we've held our camps at the same hotel ever since.",
+    "storyBody2": "We don't own the hotel — we're guests there, just like our participants. Our job is to build the programme, choose the teachers, and keep the group small; the hotel and Asos itself take care of the rest.",
     "approachEyebrow": "OUR APPROACH",
     "approachTitle": "How We Work",
     "approachItems": {
@@ -191,12 +191,12 @@
       "2": "A steady team: the same teachers, the same hotel, a trust that carries from camp to camp.",
       "3": "Leaving room for nothing: our goal is to make space for rest, not to fill the schedule."
     },
-    "whyAssosEyebrow": "THE VENUE",
-    "whyAssosTitle": "Why Assos",
-    "whyAssosBody": "Unlike crowded holiday resorts, Assos is still quiet. The ancient city, the olive groves and Kadırga Bay are all within walking distance of one another; the stone architecture holds in summer's cool and winter's warmth. That's why we hold our camps right here, and nowhere else.",
-    "whyAssosImageAlt": "A bird's-eye view of Büyükhusun village and the olive groves",
+    "whyAsosEyebrow": "THE VENUE",
+    "whyAsosTitle": "Why Asos",
+    "whyAsosBody": "Unlike crowded holiday resorts, Asos is still quiet. The ancient city, the olive groves and Kadırga Bay are all within walking distance of one another; the stone architecture holds in summer's cool and winter's warmth. That's why we hold our camps right here, and nowhere else.",
+    "whyAsosImageAlt": "A bird's-eye view of Büyükhusun village and the olive groves",
     "ctaTitle": "Have a question?",
-    "ctaBody": "Whatever you're wondering about — choosing a camp, whether the level suits you, or getting to Assos — you can ask us directly.",
+    "ctaBody": "Whatever you're wondering about — choosing a camp, whether the level suits you, or getting to Asos — you can ask us directly.",
     "ctaButton": "Get in Touch"
   },
   "faq": {
@@ -227,7 +227,7 @@
   "blog": {
     "eyebrow": "BLOG",
     "title": "Blog",
-    "empty": "We haven't published anything yet. We'll soon be writing here about our camps, Assos, and the practice itself.",
+    "empty": "We haven't published anything yet. We'll soon be writing here about our camps, Asos, and the practice itself.",
     "emptyCta": "Browse Our Camps in the Meantime"
   },
   "legal": {
