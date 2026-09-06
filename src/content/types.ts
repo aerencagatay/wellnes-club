@@ -53,6 +53,15 @@ export type CampSession = {
   level: Level
   status: CampStatus
   heroImage: string
+  /**
+   * Etkinligin duyuru posteri (sosyal medyada paylasilan kare gorsel).
+   *
+   * `heroImage`'den AYRI bir alandir ve onun yerine gecmez: hero, kamp detay
+   * sayfasinin tam-tasma genis bandidir ve kare bir poster orada ust/alt
+   * kirpilarak logosunu ve konum satirini kaybederdi. Poster yalnizca kare
+   * cerceve kullanan yuzeylerde gosterilir (bkz. `CampCard media="poster"`).
+   */
+  posterImage?: string
   gallery: string[]
   includes: LocalizedList
   excludes: LocalizedList

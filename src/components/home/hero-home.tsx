@@ -1,75 +1,30 @@
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { AuroraBackdrop } from '@/components/motion/aurora-backdrop'
-import { BlurFade } from '@/components/motion/blur-fade'
-import { Button } from '@/components/ui/button'
+import { HeroStage } from './hero-stage'
 
 /**
- * FOTOĞRAFSIZ HERO — zemin sitenin kendi kremi (`bg-background`), üzerinde
- * yalnızca `AuroraBackdrop`'un paletten çıkmayan iki yavaş ışık havuzu.
+ * HERO — POSTERİN WEB KARŞILIĞI, ÜÇ BOYUTLU BİR SAHNE OLARAK.
  *
- * Marka artık YAZI DEĞİL, LOGO (kullanıcı isteği, 2026-08-14): logonun kendisi
- * zaten "EDEN / WELLNESS CLUB" metnini taşıyor, bu yüzden eski `TextAnimate`
- * kelime animasyonu kaldırıldı — ikisi bir arada olsaydı ekranda aynı marka adı
- * iki kez görünürdü.
+ * Kompozisyon doğrudan EDEN'in duyuru posterinden alınmıştır
+ * (public/img/poster/canakkale-18-20-eylul-2026-duyuru.jpeg): zeytin alan,
+ * tepede turuncu güneş, altında krem "EDEN" ve aralıklı "WELLNESS CLUB", onun
+ * altında el yazısıyla bir satır. Sıra ve hiyerarşi birebir aynı; öğelerin
+ * DERİNLİĞİ ise `HeroStage`te kuruluyor (bkz. o dosyanın başlığı).
  *
- * ERİŞİLEBİLİRLİK / SEO: logo bir görsel olsa da sayfanın `h1`'i KORUNUR —
- * `<h1>` etiketi duruyor, içindeki `Image`'ın `alt` metni marka adını taşıyor.
- * Böylece ekran okuyucular ve arama motorları için sayfanın başlığı hâlâ
- * "EDEN Wellness Club"; yalnızca görsel sunum değişti.
+ * FOTOĞRAF YOK, LOGO GÖRSELİ DE YOK — ikisi de bilinçli:
+ *
+ *   - Fotoğraf: yön "stok yoga görseli" değil, "çağdaş wellness posteri".
+ *     Bir fotoğraf hero'yu anında jenerik yapardı.
+ *   - Logo görseli (`eden-logo.png`): krem zemin için üretilmiş bir PNG'dir;
+ *     zeytin alanın üzerine konduğunda kendi kremi alanla çakışır. Marka adı
+ *     bunun yerine CANLI TİPOGRAFİYLE kuruluyor — hem alanla aynı kremi
+ *     paylaşır, hem harf harf belirebilir, hem de her ekranda keskin kalır.
+ *
+ * BU BİLEŞEN SUNUCUDA KALIR: çeviriler burada çözülür ve `HeroStage`e düz
+ * dizeler olarak iner, böylece next-intl'in mesaj sözlüğü istemci paketine
+ * girmez.
  */
-
-/**
- * Görüntüleme genişliğinin üst sınırı kaynağın çözünürlüğüne BAĞLIDIR, keyfi
- * değil: 2x (retina) ekranda tam netlik için görüntüleme genişliği kaynağın
- * yarısını geçmemeli. Kaynak 662px olduğuna göre güvenli tavan ~331px.
- *
- * Dosya, çizimin GERÇEK sınırlarına kırpılmıştır (çevresinde boşluk yoktur) —
- * bu yüzden 340px, öncekinin 460px'i kadar yer kaplar ama tamamı çizimdir.
- *
- * KIRPMANIN İKİNCİ İŞLEVİ — HİZALAMA: tuval çizimin sınır kutusu olduğu için
- * görselin merkezi TANIM GEREĞİ marka yazısının merkezidir. Böylece altındaki
- * CTA butonu `items-center` ile ortalandığında logonun yazısıyla da hizalanır.
- * Önceki sürümde tuvalde asimetrik boşluk vardı ve yazı merkezden 22.5px
- * kaymıştı; buton gözle görülür biçimde hizasız duruyordu.
- */
-const LOGO_WIDTH = 662
-const LOGO_HEIGHT = 621
-
 export function HeroHome() {
   const t = useTranslations('home.hero')
 
-  return (
-    <section className="relative flex min-h-svh items-center justify-center overflow-hidden bg-background grain">
-      <AuroraBackdrop />
-      {/* Navbar sabit konumlu ve ~h-28/32 — üstteki `pt` onun altından başlamak
-          için değil, içeriğin navbar'a YAPIŞMAMASI için cömert tutuluyor. */}
-      {/* Hero artık YALNIZCA logo + tek bir eylemden ibaret (kullanıcı isteği,
-          2026-08-14): üstteki "İSTANBUL · EGE · DOĞA" eyebrow'u ve "Şehirden
-          uzaklaş…" destek satırı kaldırıldı. Logo zaten markanın ne olduğunu
-          söylüyor; ekranda ondan başka bir şey olmaması bilinçli. */}
-      <div className="container-page relative flex flex-col items-center pt-36 pb-24 text-center md:pt-44 md:pb-28">
-        <BlurFade delay={0.05} duration={0.9} offset={18}>
-          <h1>
-            <Image
-              alt={t('brand')}
-              className="h-auto w-[min(72vw,340px)]"
-              height={LOGO_HEIGHT}
-              priority
-              src="/img/eden-logo.png"
-              width={LOGO_WIDTH}
-            />
-          </h1>
-        </BlurFade>
-
-        <BlurFade delay={0.45} offset={14}>
-          <div className="mt-12">
-            <Button href="/kamplar" shimmer size="lg" variant="primary">
-              {t('cta')}
-            </Button>
-          </div>
-        </BlurFade>
-      </div>
-    </section>
-  )
+  return <HeroStage cta={t('cta')} handLine={t('handLine')} />
 }

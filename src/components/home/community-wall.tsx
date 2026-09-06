@@ -1,11 +1,12 @@
 'use client'
 
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { getCampBySlug, getTestimonials } from '@/content'
-import type { Localized } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
+import { DrawIn } from '@/components/art/draw-in'
+import { HandUnderline, Squiggle } from '@/components/art/marks'
+import { Tilt } from '@/components/motion/tilt'
 import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
@@ -13,50 +14,43 @@ import { BlurFade } from '@/components/motion/blur-fade'
 import { cn } from '@/lib/utils/cn'
 
 /**
- * ÜYE DENEYİMLERİ duvarı.
+ * KATILIMCI DENEYİMLERİ — "EDEN Wellness Club Katılımcıları Ne Diyor?"
  *
- * Düzen bilinçli olarak bir sosyal medya akışını TAKLİT ETMEZ (avatar + kolon +
- * kartlar). EDEN'in editoryal sistemi burada da geçerli: yumuşak yuvarlatılmış
- * köşeler, kum çizgileri, ince Montserrat, renk yerine boşluk ve ölçek ile
- * vurgu (köşe/gölge değerleri globals.css'teki ortak tokenlardan gelir). Ritim
- * kartların YÜKSEKLİĞİNDEN gelir — her kart deterministik bir "ölçek"
- * (`RHYTHM`) alır, böylece sunucu ve istemci aynı düzeni üretir (rastgelelik
- * hydration uyuşmazlığı yaratırdı).
+ * Kartlar bir sosyal medya akışını (avatar + kolon + kart) TAKLİT ETMEZ; her
+ * biri panoya iğnelenmiş bir KAĞIT PARÇASIDIR: not kağıdı, kartpostal,
+ * etkinlik bileti, defter yaprağı. Kimliği veren şey renk değil, KAĞIDIN
+ * KENDİSİ — zemin tonu, hairline çerçeve ve hafif eğiklik.
  *
- * Masonry için CSS `columns` kullanılır: JS ölçümü olmadan, tek satır CSS ile
- * gerçek değişken yükseklik verir ve `break-inside-avoid` kartların kolon
- * arasında bölünmesini engeller. Grid tabanlı bir masonry burada satır
- * yüksekliklerinin JS ile ölçülmesini gerektirirdi.
+ * FOTOĞRAF YOK: eski sürüm iki kartta mekân fotoğrafı taşıyordu. Zine dilinde
+ * bu kartlar "yazılmış" nesneler; araya giren bir fotoğraf onları yeniden
+ * ürün kartına çeviriyordu.
+ *
+ * RİTİM RASTGELE DEĞİL, DETERMİNİSTİK (`RHYTHM`, `TILT`): bileşen istemcide
+ * çalışsa da ilk render sunucudan geliyor; `Math.random()` sunucu ve
+ * istemcide farklı değer üretip hydration uyuşmazlığı yaratırdı.
+ *
+ * Masonry için CSS `columns` kullanılır: JS ölçümü olmadan gerçek değişken
+ * yükseklik verir ve `break-inside-avoid` kartların kolon arasında
+ * bölünmesini engeller.
  */
 
-// Kart ölçek ritmi: index % 5 → tipografi ölçeği. 0 ve 3 "büyük" kartlar,
-// bunlardan ilki ayrıca bir atmosfer görseli taşır.
+/** Kart ölçek ritmi: index % 5 → tipografi ölçeği. */
 const RHYTHM = ['xl', 'sm', 'md', 'lg', 'sm'] as const
 
 const QUOTE_SIZE: Record<(typeof RHYTHM)[number], string> = {
   sm: 'text-lg leading-snug',
   md: 'text-xl leading-snug',
   lg: 'text-2xl leading-snug',
-  xl: 'text-2xl leading-snug md:text-3xl',
+  xl: 'text-2xl leading-snug md:text-[1.75rem]',
 }
 
-/**
- * GERÇEK GÖRSELLER: bunlar mekân/atmosfer fotoğraflarıdır, bir üyenin
- * katıldığı etkinliğin kaydı DEĞİLDİR (sitenin henüz gerçekleşmiş etkinliği
- * yok). Bu yüzden `alt` metinleri mekânı anlatır, "etkinlikten bir an" demez.
- */
-const ATMOSPHERE: { src: string; alt: Localized }[] = [
-  {
-    src: '/img/venue/bahce.webp',
-    alt: { tr: 'Zeytinliğe açılan otel bahçesi', en: 'The hotel garden opening onto the olive grove' },
-  },
-  {
-    src: '/img/venue/balkon.webp',
-    alt: { tr: 'Denize bakan taş balkon', en: 'Stone balcony looking out to the sea' },
-  },
-]
+/** Kağıt parçasının panoya eğik yapıştırılmışlık açısı. */
+const TILT = ['-0.9deg', '1.2deg', '-1.4deg', '0.7deg', '1.6deg', '-0.6deg']
 
-/** İlk açılışta gösterilen kart sayısı — gerisi "Daha Fazla Deneyim Gör" ile gelir. */
+/** Kağıt tonu dönüşümü — üç farklı kağıt: krem, beyaz, sarımsı. */
+const PAPER = ['bg-background', 'bg-paper', 'bg-surface']
+
+/** İlk açılışta gösterilen kart sayısı — gerisi "Daha Fazla" ile gelir. */
 const INITIAL_COUNT = 4
 
 export function CommunityWall({ locale }: { locale: AppLocale }) {
@@ -72,29 +66,30 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
   const hasMore = items.length > INITIAL_COUNT
 
   return (
-    <Section background="surface">
+    <Section background="background" className="grain">
       <BlurFade>
         <Eyebrow>{t('eyebrow')}</Eyebrow>
-        <h2 className="type-title max-w-3xl">{t('title')}</h2>
+        <h2 className="type-title mt-4 max-w-4xl text-balance">{t('title')}</h2>
+        {/* Başlığın altına marker'la çekilmiş çizgi — posterin anotasyon dili. */}
+        <DrawIn className="ink-sun mt-3 max-w-md" duration={0.9}>
+          <HandUnderline className="h-2.5" />
+        </DrawIn>
       </BlurFade>
 
       {/* Yalnızca geliştirmede görünür uyarı — mevcut anahtar yeniden kullanılır. */}
       {process.env.NODE_ENV !== 'production' && items.some((i) => i.isPlaceholder) && (
         <p
-          className="mt-6 max-w-2xl rounded-[var(--radius-card)] bg-sand/40 p-4 text-sm font-medium text-text"
+          className="mt-8 max-w-2xl border border-text bg-yellow p-4 text-sm font-medium text-text"
           data-testid="testimonials-dev-warning"
         >
           {tTestimonials('devWarning')}
         </p>
       )}
 
-      <div className="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3 lg:gap-6" data-testid="community-wall">
+      <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 lg:gap-6" data-testid="community-wall">
         {visible.map((item, index) => {
           const scale = RHYTHM[index % RHYTHM.length]
           const isBig = scale === 'xl' || scale === 'lg'
-          // Atmosfer görseli yalnızca ilk ritim döngüsündeki iki büyük kartta:
-          // görsel bir aksan olmalı, tekrar eden bir desen değil.
-          const atmosphere = index === 0 ? ATMOSPHERE[0] : index === 3 ? ATMOSPHERE[1] : undefined
           const camp = item.campSlug ? getCampBySlug(item.campSlug) : undefined
 
           return (
@@ -104,62 +99,61 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
               key={item.id}
               offset={14}
             >
-              <figure
-                className={cn(
-                  // Yumuşak kart yüzeyi. `overflow-hidden` atmosfer görselinin
-                  // yuvarlatılmış üst köşelerden taşmasını engeller.
-                  'flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-sand/70',
-                  'shadow-[var(--shadow-card)] transition-all duration-300 ease-out',
-                  'hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]',
-                  // Dolu/boş dönüşümü duvara ritim verir: her üçüncü kart krem
-                  // zeminden ayrışır.
-                  index % 3 === 1 ? 'bg-background' : 'bg-surface',
-                )}
-              >
-                {atmosphere && (
-                  <div className="relative aspect-4/3 w-full overflow-hidden">
-                    <Image
-                      alt={atmosphere.alt[locale]}
-                      className="object-cover"
-                      fill
-                      loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      src={atmosphere.src}
-                    />
-                  </div>
-                )}
-
-                <div className={cn('flex flex-col gap-5 p-6', isBig && 'md:p-8')}>
-                  {item.isPlaceholder && (
-                    // Görünür ÖRNEK işareti: kart gerçek bir müşteri yorumu
-                    // olmadığı sürece bu rozet KALDIRILMAMALIDIR.
-                    <span
-                      className="self-start rounded-full border border-olive px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-olive uppercase"
-                      data-testid="community-card-placeholder-badge"
-                    >
-                      {tEvents('placeholderBadge')}
-                    </span>
+              {/* Kağıt parçası da bir nesnedir: işaretçi yaklaştığında panodan
+                  öne gelir. `mount` AÇIK — bu kartlar gerçekten "asılmış"
+                  parçalar ve arkalarındaki kum tonlu paspartu, kaldırıldıkça
+                  açılan boşluğu gösteriyor. */}
+              <Tilt intensity={0.85}>
+                <figure
+                  className={cn(
+                    // Kağıt parçası: keskin köşe, siyah hairline, gölge YOK.
+                    // Hover'da parça doğrulur — panodan alınıp okunuyormuş gibi.
+                    'flex flex-col border border-text transition-transform duration-500 ease-out hover:rotate-0',
+                    PAPER[index % PAPER.length],
+                    isBig && 'md:p-1',
                   )}
-
-                  <blockquote className={cn('font-heading font-medium text-text', QUOTE_SIZE[scale])}>
-                    “{item.quote[locale]}”
-                  </blockquote>
-
-                  <figcaption className="mt-auto border-t border-sand pt-4 text-xs tracking-[0.14em] text-muted uppercase">
-                    {item.author}
-                    {camp && (
-                      <span className="mt-1 block normal-case tracking-normal text-olive">{camp.title[locale]}</span>
+                  style={{ rotate: TILT[index % TILT.length] }}
+                >
+                  <div className={cn('flex flex-col gap-5 p-6', isBig && 'md:p-8')}>
+                    {item.isPlaceholder && (
+                      // Görünür ÖRNEK işareti: kart gerçek bir müşteri yorumu
+                      // olmadığı sürece bu rozet KALDIRILMAMALIDIR.
+                      <span
+                        className="self-start bg-yellow px-2 py-1 text-[10px] font-bold tracking-[0.14em] text-text uppercase"
+                        data-testid="community-card-placeholder-badge"
+                      >
+                        {tEvents('placeholderBadge')}
+                      </span>
                     )}
-                  </figcaption>
-                </div>
-              </figure>
+
+                    <blockquote className={cn('font-heading font-semibold text-text', QUOTE_SIZE[scale])}>
+                      “{item.quote[locale]}”
+                    </blockquote>
+
+                    <DrawIn className="ink-sun shrink-0 opacity-80" duration={0.7}>
+                      <Squiggle className="h-2 w-12" />
+                    </DrawIn>
+
+                    <figcaption className="mt-auto text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                      {item.author}
+                      {camp && (
+                        // Katılınan etkinlik EL YAZISIYLA — kağıda sonradan
+                        // düşülmüş bir not gibi.
+                        <span className="type-hand-sm mt-1.5 block normal-case tracking-normal">
+                          {camp.title[locale]}
+                        </span>
+                      )}
+                    </figcaption>
+                  </div>
+                </figure>
+              </Tilt>
             </BlurFade>
           )
         })}
       </div>
 
       {hasMore && !expanded && (
-        <div className="mt-10 flex justify-center">
+        <div className="mt-12 flex justify-center">
           <Button data-testid="community-wall-more" onClick={() => setExpanded(true)} variant="ghost">
             {t('more')}
           </Button>

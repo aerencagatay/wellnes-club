@@ -54,10 +54,12 @@ export function EventRow({ event, locale, index, priority = false }: Props) {
       <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-24">
         <div
           className={cn(
-            // Görsel çerçevesi: medya yarıçapı + yumuşak gölge. `overflow-hidden`
-            // görselin yuvarlatılmış köşenin dışına taşmasını engeller.
-            'relative aspect-[4/3] w-full overflow-hidden bg-surface lg:aspect-[5/4]',
-            'rounded-[var(--radius-media)] shadow-[var(--shadow-card)] transition-all duration-300 ease-out',
+            // Görsel çerçevesi: keskin köşe + siyah hairline. Sistemde gölge
+            // yok; medyayı kağıttan ayıran şey çerçevenin kendisi (bkz.
+            // globals.css `.frame`). `overflow-hidden` görselin çerçevenin
+            // dışına taşmasını engeller.
+            'relative aspect-[4/3] w-full overflow-hidden border border-text bg-surface lg:aspect-[5/4]',
+            'transition-all duration-300 ease-out',
             mediaOnRight ? 'lg:order-2' : 'lg:order-1',
           )}
         >
@@ -101,9 +103,12 @@ export function EventRow({ event, locale, index, priority = false }: Props) {
               sr-only başlıklar eklerdi — sözlük yapısı olmadan da satır
               kendi kendini açıklıyor. */}
           <p className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
-            <span>{formatEventDate(event, locale, t('dateTba'))}</span>
+            {/* Tarih EL YAZISIYLA — posterin "September 18-20" satırının
+                karşılığı. Üçüncü sesin meşru kullanım alanı tam olarak bu:
+                kısa, tekil, bilgi taşıyan bir aksan. */}
+            <span className="type-hand-sm">{formatEventDate(event, locale, t('dateTba'))}</span>
             <span className="flex items-center gap-2">
-              <MapPin aria-hidden className="size-4 shrink-0 text-taupe" />
+              <MapPin aria-hidden className="ink-olive size-4 shrink-0" />
               {event.location[locale]}
             </span>
           </p>
@@ -126,7 +131,7 @@ export function EventRow({ event, locale, index, priority = false }: Props) {
                 edilir — var olmayan bir etkinliğe rezervasyon formu açmak
                 gerçek müşteriyi yanıltır. */}
             {reservationHref ? (
-              <Button href={reservationHref} shimmer size="lg" variant="primary">
+              <Button href={reservationHref} size="lg" variant="primary">
                 {t('reserve')} <ArrowRight aria-hidden className="size-4" /> {price}
               </Button>
             ) : (

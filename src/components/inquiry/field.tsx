@@ -5,17 +5,20 @@ export function Field({
   htmlFor,
   error,
   hint,
+  className = '',
   children,
 }: {
   label: string
   htmlFor: string
   error?: string
   hint?: string
+  /** Izgara içinde alanın kaç kolon kaplayacağı gibi yerleşim sınıfları için. */
+  className?: string
   children: ReactNode
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-text" htmlFor={htmlFor}>
+    <div className={`flex flex-col gap-2 ${className}`}>
+      <label className="text-[11px] font-bold tracking-[0.16em] text-text uppercase" htmlFor={htmlFor}>
         {label}
       </label>
       {children}
@@ -25,7 +28,11 @@ export function Field({
         </p>
       )}
       {error && (
-        <p className="text-xs font-medium text-text" id={`${htmlFor}-error`} role="alert">
+        /* Hata rengi DEĞİL, İŞARET: kırmızı metin bu paletin dışında kalıyor
+           ve krem üzerinde zayıf okunuyordu. Sarı highlighter zemini (siyah
+           metinle 15.6:1) hatayı renk körlüğünden bağımsız olarak da öne
+           çıkarır — vurgu renkte değil, zeminde. */
+        <p className="self-start bg-yellow px-2 py-1 text-xs font-semibold text-text" id={`${htmlFor}-error`} role="alert">
           {error}
         </p>
       )}
@@ -33,16 +40,16 @@ export function Field({
   )
 }
 
-// Kutulu, yuvarlatılmış input. Eskiden tek bir alt çizgiydi (Task 8 brief §3)
-// — o dil, siteyi "2010'lar" hissine iten keskin/çizgisel kontrol ailesinin
-// parçasıydı ve kullanıcı isteğiyle 2026-08-14'te terk edildi. Kutulu alan
-// ayrıca dokunmatik hedefi görsel olarak netleştirir: tıklanabilir alanın
-// nerede başlayıp bittiği alt çizgide belirsizdi.
+// KESKİN KÖŞELİ, HAIRLINE ÇERÇEVELİ ALAN — zine/galeri sisteminin form dili
+// (2026-09-05). Alan bir "kutu" değil, kağıda çizilmiş bir çerçevedir; sistemde
+// tek eğri pill butondadır.
 //
 // Odakta hem kenarlık zeytine döner hem de görünür bir outline korunur —
 // yalnızca renk değişimine güvenmek erişilebilirlik açısından yetersizdir.
+// Zemin `--color-paper` (en açık kağıt): krem sayfa üzerinde alanın nerede
+// başladığını hairline'a ek olarak ton farkıyla da gösterir.
 export const inputClass =
-  'w-full rounded-[var(--radius-btn)] border border-text/15 bg-background/70 px-4 py-3 text-text transition-all duration-200 ease-out placeholder:text-muted hover:border-text/25 focus:border-olive focus:bg-background focus:outline-2 focus:outline-offset-1 focus:outline-olive'
+  'w-full border border-text bg-paper px-4 py-3 text-text transition-all duration-200 ease-out placeholder:text-muted focus:border-olive focus:outline-2 focus:outline-offset-1 focus:outline-olive'
 
 /**
  * `Field` yukarıda hata/hint paragraflarının kimliğini `${htmlFor}-error` /

@@ -28,3 +28,10 @@ coverage/
 .DS_Store
 Thumbs.db
 *.log
+
+# playwright mcp
+# .playwright-profile OTURUM ÇEREZİ TAŞIR (Canva girişi burada yaşıyor) —
+# asla commit edilmemeli. .playwright-mcp ise araç çıktısı: ekran görüntüleri,
+# konsol kayıtları, sayfa anlık görüntüleri; hepsi geçici.
+.playwright-profile/
+.playwright-mcp/
