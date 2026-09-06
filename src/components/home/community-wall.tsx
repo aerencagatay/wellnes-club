@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { getCampBySlug, getTestimonials } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
 import { HandUnderline, Squiggle } from '@/components/art/marks'
+import { Tilt } from '@/components/motion/tilt'
 import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
@@ -95,46 +96,52 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
               key={item.id}
               offset={14}
             >
-              <figure
-                className={cn(
-                  // Kağıt parçası: keskin köşe, siyah hairline, gölge YOK.
-                  // Hover'da parça doğrulur — panodan alınıp okunuyormuş gibi.
-                  'flex flex-col border border-text transition-transform duration-500 ease-out hover:rotate-0',
-                  PAPER[index % PAPER.length],
-                  isBig && 'md:p-1',
-                )}
-                style={{ rotate: TILT[index % TILT.length] }}
-              >
-                <div className={cn('flex flex-col gap-5 p-6', isBig && 'md:p-8')}>
-                  {item.isPlaceholder && (
-                    // Görünür ÖRNEK işareti: kart gerçek bir müşteri yorumu
-                    // olmadığı sürece bu rozet KALDIRILMAMALIDIR.
-                    <span
-                      className="self-start bg-yellow px-2 py-1 text-[10px] font-bold tracking-[0.14em] text-text uppercase"
-                      data-testid="community-card-placeholder-badge"
-                    >
-                      {tEvents('placeholderBadge')}
-                    </span>
+              {/* Kağıt parçası da bir nesnedir: işaretçi yaklaştığında panodan
+                  öne gelir. `mount` AÇIK — bu kartlar gerçekten "asılmış"
+                  parçalar ve arkalarındaki kum tonlu paspartu, kaldırıldıkça
+                  açılan boşluğu gösteriyor. */}
+              <Tilt intensity={0.85}>
+                <figure
+                  className={cn(
+                    // Kağıt parçası: keskin köşe, siyah hairline, gölge YOK.
+                    // Hover'da parça doğrulur — panodan alınıp okunuyormuş gibi.
+                    'flex flex-col border border-text transition-transform duration-500 ease-out hover:rotate-0',
+                    PAPER[index % PAPER.length],
+                    isBig && 'md:p-1',
                   )}
-
-                  <blockquote className={cn('font-heading font-semibold text-text', QUOTE_SIZE[scale])}>
-                    “{item.quote[locale]}”
-                  </blockquote>
-
-                  <Squiggle className="ink-sun h-2 w-12 shrink-0 opacity-80" />
-
-                  <figcaption className="mt-auto text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-                    {item.author}
-                    {camp && (
-                      // Katılınan etkinlik EL YAZISIYLA — kağıda sonradan
-                      // düşülmüş bir not gibi.
-                      <span className="type-hand-sm mt-1.5 block normal-case tracking-normal">
-                        {camp.title[locale]}
+                  style={{ rotate: TILT[index % TILT.length] }}
+                >
+                  <div className={cn('flex flex-col gap-5 p-6', isBig && 'md:p-8')}>
+                    {item.isPlaceholder && (
+                      // Görünür ÖRNEK işareti: kart gerçek bir müşteri yorumu
+                      // olmadığı sürece bu rozet KALDIRILMAMALIDIR.
+                      <span
+                        className="self-start bg-yellow px-2 py-1 text-[10px] font-bold tracking-[0.14em] text-text uppercase"
+                        data-testid="community-card-placeholder-badge"
+                      >
+                        {tEvents('placeholderBadge')}
                       </span>
                     )}
-                  </figcaption>
-                </div>
-              </figure>
+
+                    <blockquote className={cn('font-heading font-semibold text-text', QUOTE_SIZE[scale])}>
+                      “{item.quote[locale]}”
+                    </blockquote>
+
+                    <Squiggle className="ink-sun h-2 w-12 shrink-0 opacity-80" />
+
+                    <figcaption className="mt-auto text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                      {item.author}
+                      {camp && (
+                        // Katılınan etkinlik EL YAZISIYLA — kağıda sonradan
+                        // düşülmüş bir not gibi.
+                        <span className="type-hand-sm mt-1.5 block normal-case tracking-normal">
+                          {camp.title[locale]}
+                        </span>
+                      )}
+                    </figcaption>
+                  </div>
+                </figure>
+              </Tilt>
             </BlurFade>
           )
         })}

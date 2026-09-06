@@ -304,6 +304,26 @@ body {
   animation: eden-marquee var(--marquee-duration, 40s) linear infinite;
 }
 
+/* ===== 3B SAHNE =====
+   Perspektif kökü. `DESIGN.md`'nin düz yüzey felsefesi KORUNUR — derinlik
+   yüzeyde (gölge/gradient/parlaklık) değil, MEKÂNDA yaşar: kağıt hâlâ düz ve
+   gölgesiz, ama asıldığı oda gerçek bir perspektife sahip.
+
+   1500px UZUN LENS tarafındadır: küçük bir perspektif değeri geniş açı, yani
+   agresif "balık gözü" bir 3B verir. Burası bir galeri, bir oyun değil —
+   perspektif fark edilmeli ama dikkat çekmemeli. */
+.stage-3d {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+/* Konveyör koltuğu: akan şeritteki bir parçanın açısı ve derinliği. Değerler
+   satır içi CSS değişkenlerinden gelir (bkz. CollageMarquee). */
+.conveyor-seat {
+  transform: translateZ(var(--seat-z, 0)) rotateY(var(--seat-r, 0deg));
+  transform-style: preserve-3d;
+}
+
 /* ===== YAPIŞTIRMA BANDI (washi tape) =====
    Kolaj parçasının üstüne yapıştırılmış kağıt bandı. Saf CSS — görsel dosyası
    gerektirmez, böylece gerçek illüstrasyonlar gelene kadar kolaj dili bir yer
@@ -334,5 +354,20 @@ body {
   .marquee-track {
     animation: none !important;
     transform: none !important;
+  }
+
+  /* 3B DÖNÜŞÜMLER TAMAMEN KAPANIR, yalnızca yavaşlatılmaz. Perspektifli
+     hareket vestibüler rahatsızlığın en güçlü tetikleyicilerinden biridir ve
+     süreyi 0.01ms'e indirmek burada yeterli bir uyum değildir — dönüşümün
+     KENDİSİ kaldırılmalıdır.
+
+     `perspective: none` tek başına YETMEZ: perspektif olmadan bir `rotateY`
+     yassı bir yatay sıkışmaya dönüşür ve parça bozuk görünür. Bu yüzden
+     koltuk dönüşümü de ayrıca sıfırlanır. */
+  .stage-3d {
+    perspective: none;
+  }
+  .conveyor-seat {
+    transform: none;
   }
 }

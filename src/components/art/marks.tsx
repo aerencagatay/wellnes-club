@@ -24,6 +24,21 @@ import { cn } from '@/lib/utils/cn'
  */
 
 /**
+ * Hesaplanan koordinatları sabit basamağa yuvarlar.
+ *
+ * BU BİR SÜSLEME DEĞİL, HYDRATION DÜZELTMESİDİR. `Math.cos`/`Math.sin` IEEE-754
+ * çift duyarlıkta SON BASAMAKTA platformdan platforma ayrışabilir: aynı açı
+ * Node'da 76.47986101869012, tarayıcıda 76.47986101869013 üretiyordu. React bu
+ * farkı sunucu/istemci uyuşmazlığı olarak bildiriyor ve ağacın o bölümünü
+ * yamalamayı bırakıyordu.
+ *
+ * Üç basamak, 100 birimlik bir `viewBox` için görsel olarak fazlasıyla yeterli
+ * — ama asıl işi görsel değil: iki ortamın AYNI dizeyi üretmesini garanti
+ * etmek.
+ */
+const round = (value: number): number => Math.round(value * 1000) / 1000
+
+/**
  * Posterin turuncu güneşi. Işınlar kasıtlı olarak eşit aralıklı DEĞİL —
  * matematiksel bir yıldız, elle çizilmiş bir güneş gibi durmaz.
  */
@@ -40,10 +55,10 @@ export function SunMark({ className = '' }: { className?: string }) {
       <circle cx="50" cy="50" fill="currentColor" r="21" />
       {rays.map(([angle, length]) => {
         const rad = (angle * Math.PI) / 180
-        const x1 = 50 + Math.cos(rad) * 24
-        const y1 = 50 + Math.sin(rad) * 24
-        const x2 = 50 + Math.cos(rad) * (24 + length)
-        const y2 = 50 + Math.sin(rad) * (24 + length)
+        const x1 = round(50 + Math.cos(rad) * 24)
+        const y1 = round(50 + Math.sin(rad) * 24)
+        const x2 = round(50 + Math.cos(rad) * (24 + length))
+        const y2 = round(50 + Math.sin(rad) * (24 + length))
         return (
           <line
             key={angle}

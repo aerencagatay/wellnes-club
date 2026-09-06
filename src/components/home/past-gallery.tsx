@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { ARCHIVE_SLOTS } from '@/content/collage'
 import type { AppLocale } from '@/i18n/routing'
-import { CollageFrame } from '@/components/art/collage-frame'
+import { GalleryWall } from '@/components/art/gallery-wall'
 import { HandArrow, OliveBranch } from '@/components/art/marks'
 import { BlurFade } from '@/components/motion/blur-fade'
 import { Eyebrow } from '@/components/ui/eyebrow'
@@ -27,23 +27,6 @@ import { Section } from '@/components/ui/section'
  * kaldırmak.
  */
 
-/**
- * Asimetrik kolaj ızgarası. Yuva boyutları KASITLI olarak eşit değil — eşit
- * kareler bir "ürün ızgarası" okur, kolaj ise farklı boyda parçaların
- * yapıştırıldığı bir sayfa gibi durmalı.
- *
- * `sizes` her yuvanın geniş ekrandaki GERÇEK kolon payına göre verilir;
- * hepsine `100vw` vermek katlamanın altındaki bu bölümde gereksiz bayt
- * indirtirdi.
- */
-const SLOT_LAYOUT = [
-  { className: 'col-span-2 md:col-span-3 md:row-span-2 aspect-square', sizes: '(max-width: 768px) 100vw, 42vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-square', sizes: '(max-width: 768px) 50vw, 28vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-square', sizes: '(max-width: 768px) 50vw, 28vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-4/5', sizes: '(max-width: 768px) 50vw, 28vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-4/5', sizes: '(max-width: 768px) 50vw, 28vw' },
-] as const
-
 export function PastGallery({ locale }: { locale: AppLocale }) {
   const t = useTranslations('home.gallery')
 
@@ -63,16 +46,8 @@ export function PastGallery({ locale }: { locale: AppLocale }) {
         </div>
       </BlurFade>
 
-      <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-7 md:gap-5" data-testid="past-gallery">
-        {ARCHIVE_SLOTS.map((slot, index) => {
-          const layout = SLOT_LAYOUT[index % SLOT_LAYOUT.length]
-          return (
-            <BlurFade as="li" className={layout.className} delay={0.05 * index} key={slot.id} offset={18}>
-              <CollageFrame index={index} locale={locale} sizes={layout.sizes} slot={slot} tape={index % 3 === 0} />
-            </BlurFade>
-          )
-        })}
-      </ul>
+      <GalleryWall locale={locale} slots={ARCHIVE_SLOTS} />
+
     </Section>
   )
 }
