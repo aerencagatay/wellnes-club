@@ -1,7 +1,6 @@
 import { Check } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import type { AppLocale } from '@/i18n/routing'
-import { BenefitBlock } from '@/components/home/benefit-block'
 import { PageHero } from '@/components/layout/page-hero'
 import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/eyebrow'
@@ -26,6 +25,13 @@ const APPROACH_ITEMS = ['1', '2', '3'] as const
  * kendi bünyenizin parçası gibi göstermek, ziyaretçiye kimin neyden sorumlu
  * olduğu konusunda yanlış bilgi vermektir — sitenin içerik dürüstlüğü
  * kuralının (bkz. eden-design-system skill §6) doğrudan konusudur.
+ *
+ * "NEDEN ASSOS" BÖLÜMÜ DE KALDIRILDI (2026-09-07): Assos ve içindeki otel
+ * EDEN'in TEMASI DEĞİL, yalnızca 18-20 Eylül 2026 etkinliğinin lokasyonu.
+ * Kulüp İstanbul çevresi, Ege ve Akdeniz'de çalışıyor; kurumsal sayfanın
+ * yarısını tek bir yeri savunmaya ayırmak kapsamı olduğundan dar gösteriyordu.
+ * Assos artık yalnızca ait olduğu yerde görünüyor: o etkinliğin detay
+ * sayfasında (`CampDetailHero` ve `VenueLocation`).
  *
  * `TeachersPreview` bölümü de bu yüzden KALDIRILDI. Ayrıca bileşen zaten
  * silinmiş sayfalara (`/hocalar` ve `/hocalar/[slug]`) bağlantı veriyordu —
@@ -83,15 +89,6 @@ export default async function AboutPage({
             </li>
           ))}
         </ul>
-      </Section>
-
-      <Section>
-        <BenefitBlock
-          body={t('whyAsosBody')}
-          eyebrow={t('whyAsosEyebrow')}
-          image={{ src: '/img/venue/kusbakisi.webp', alt: t('whyAsosImageAlt') }}
-          title={t('whyAsosTitle')}
-        />
       </Section>
 
       <Section>

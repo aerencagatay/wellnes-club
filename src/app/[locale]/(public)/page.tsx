@@ -23,7 +23,7 @@ export const revalidate = 3600
  * Marquee şeridi ve eski Testimonials) bir yerde saklanmadı — ilgili bileşen
  * dosyaları silindi (kullanıcı isteği, 2026-08-14: "gereksiz kullanmadığımız
  * alanları kaldırabilirsin"). Hâlâ başka sayfalarda kullanılanlar
- * (TeachersPreview ve BenefitBlock → /hakkimizda) korundu.
+ * korundu. (TeachersPreview ve BenefitBlock sonradan tamamen silindi.)
  *
  * Ziyaretçinin saniyeler içinde anlaması gereken şey (brief §20): burası EDEN
  * Wellness Club, katılabileceği yaklaşan etkinlikler var ve topluluk gerçek.
