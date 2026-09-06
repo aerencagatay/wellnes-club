@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl'
 import { MOOD_SLOTS } from '@/content/collage'
 import type { AppLocale } from '@/i18n/routing'
 import { DrawIn } from '@/components/art/draw-in'
+import { InteractiveSticker } from '@/components/art/interactive-sticker'
 import { GalleryWall } from '@/components/art/gallery-wall'
 import { HandArrow, OliveBranch } from '@/components/art/marks'
 import { BlurFade } from '@/components/motion/blur-fade'
@@ -54,6 +55,21 @@ export function MoodWall({ locale }: { locale: AppLocale }) {
       </BlurFade>
 
       <GalleryWall locale={locale} slots={MOOD_SLOTS} />
+
+      {/* Duvarın altında otlayan inek — panodaki "bulutlardaki inekler"
+          parçasının siteye taşınmış hâli. Tıklanınca birkaç adım hoplar.
+          Dekoratif: bilgi taşımıyor, bir yere götürmüyor, bulunması bir ödül.
+          Mobilde gizli — dar ekranda kompozisyona yer yok. */}
+      <div className="mt-10 hidden md:block">
+        <InteractiveSticker
+          alt="Otlayan inek çizimi"
+          className="ml-[8%]"
+          height={112}
+          src="/img/stickers/cow.png"
+          steps={3}
+          width={145}
+        />
+      </div>
     </Section>
   )
 }
