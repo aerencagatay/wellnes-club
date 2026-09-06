@@ -213,6 +213,22 @@ sayfalar. Blog, Hocalar, Deneyim, Mekan, SSS, İletişim **silindi** (2026-09-05
 npm run lint && npx tsc --noEmit && npm test && npm run build
 ```
 
+**`npm run dev` ÇALIŞIRKEN `npm run build` ÇALIŞTIRMAYIN.** İkisi de aynı
+`.next` dizinine yazar; üretim derlemesi dizini değiştirdiğinde dev sunucusu
+BAYAT bir CSS parçası servis etmeye başlar ve site tokensiz, siyah-beyaz
+görünür (2026-09-07'de yaşandı — kod tamamen sağlamdı, yarım saat aradık).
+
+Belirti: sayfada hiç marka rengi yok. Teşhis — diskteki kaynakla servis edileni
+karşılaştırın:
+
+```bash
+grep -c "color-forest" src/app/globals.css                     # kaynakta var mı
+curl -s "http://localhost:3000$(curl -s http://localhost:3000/tr   | grep -o '/_next/static/[^"]*globals[^"]*\.css' | head -1)"   | grep -c "color-forest"                                      # serviste var mı
+```
+
+Kaynakta var, serviste yoksa sebep budur. Çözüm: dev'i durdur, `rm -rf .next`,
+yeniden başlat. Doğrulamayı dev kapalıyken yapın.
+
 Bu repoda testler tasarım kararlarını da kilitler — kırılan bir test çoğu zaman
 bir kuralın ihlalidir, güncellenecek bir beklenti değil:
 
