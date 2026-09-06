@@ -4,7 +4,7 @@ import { CollageMarquee } from '@/components/art/collage-marquee'
 import { CommunityWall } from '@/components/home/community-wall'
 import { EventShowcase } from '@/components/home/event-showcase'
 import { HeroHome } from '@/components/home/hero-home'
-import { PastGallery } from '@/components/home/past-gallery'
+import { MoodWall } from '@/components/home/mood-wall'
 
 // `today` render anında hesaplanır — ama sayfa statik render edildiği için (bkz.
 // (public)/layout.tsx → setRequestLocale) bu değer build zamanında donar ve bir
@@ -36,12 +36,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: A
   return (
     <>
       <HeroHome />
-      {/* Hero (zeytin alan) ile showcase (krem kağıt) arasındaki geçiş şeridi.
-          Bir bölüm değil, iki bölümü birbirine bağlayan ince bir kolaj bandı. */}
-      <CollageMarquee locale={locale} />
+      {/* Hero (zeytin alan) ile showcase (krem kağıt) arasındaki geçiş bandı.
+          Bir bölüm değil, iki bölümü birbirine bağlayan tipografik bir şerit. */}
+      <CollageMarquee />
       <EventShowcase locale={locale} today={today} />
       <CommunityWall locale={locale} />
-      <PastGallery locale={locale} />
+      <MoodWall locale={locale} />
     </>
   )
 }

@@ -34,11 +34,6 @@
       "handLine": "Şehirden uzaklaş · Hareket et · Bağ kur",
       "ctaSecondary": "Hakkımızda"
     },
-    "teachers": {
-      "eyebrow": "EKİBİMİZ",
-      "title": "Hocalarımız",
-      "viewAll": "Tüm Hocaları Gör"
-    },
     "testimonials": {
       "eyebrow": "KATILIMCI SESLERİ",
       "title": "Kamplardan izlenimler",
@@ -55,10 +50,10 @@
       "title": "EDEN Wellness Club Katılımcıları Ne Diyor?",
       "more": "Daha Fazla Deneyim Gör"
     },
-    "gallery": {
-      "eyebrow": "ARŞİV",
-      "title": "Geçmiş Retreatlerden",
-      "empty": "İlk retreat'imiz 18-20 Eylül 2026'da. Kareler etkinlikten sonra burada olacak; şimdilik duyuru posterimizi görüyorsunuz."
+    "mood": {
+      "eyebrow": "EDEN’İN DÜNYASI",
+      "title": "Nasıl Bir Şey Olduğuna Dair",
+      "note": "Kulübün görsel dünyası — kolaj panolarımız ve duyuru posterimiz."
     }
   },
   "camp": {
@@ -130,23 +125,23 @@
   "about": {
     "eyebrow": "HAKKIMIZDA",
     "title": "EDEN Wellness Club",
-    "lede": "Kalabalık bir ajans değil, aynı taş otelde, aynı küçük ekiple çalışan bir kamp organizasyonuyuz.",
-    "storyBody1": "EDEN Wellness Club, İstanbul'da yoga ve pilates dersleri veren küçük bir eğitmen ekibinin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. Asos'taki Karadut Taş Otel'i ilk ziyaretimizde aradığımız sessizliği ve taş mimariyi burada bulduk; kamplarımızı o günden beri aynı otelde düzenliyoruz.",
-    "storyBody2": "Otelin sahibi değiliz — orada misafiriz, tıpkı katılımcılarımız gibi. İşimiz programı kurmak, hocaları seçmek ve grubun küçük kalmasını sağlamak; geri kalanını otel ve Asos'un kendisi hallediyor.",
+    "lede": "Kalabalık bir ajans değil; küçük gruplar hâlinde yoga retreat’leri kuran bağımsız bir organizasyonuz.",
+    "storyBody1": "EDEN Wellness Club, İstanbul’da yoga ve pilates dersleri veren küçük bir ekibin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. İlk retreat’ten bu yana yaptığımız iş aynı: doğru mekânı bulmak, doğru eğitmenleri bir araya getirmek ve grubun küçük kalmasını sağlamak.",
+    "storyBody2": "Otel işletmiyoruz, eğitmen çalıştırmıyoruz. Konakladığımız mekânlar ve birlikte çalıştığımız hocalar bağımsızdır; her retreat için ayrı ayrı seçilir ve İŞ ORTAĞI olarak yer alırlar, şirketimizin bir parçası değildirler. Bizim üstlendiğimiz şey organizasyonun kendisi: program, akış, kontenjan ve baştan sona sorumluluk.",
     "approachEyebrow": "YAKLAŞIMIMIZ",
     "approachTitle": "Nasıl Çalışıyoruz",
     "approachItems": {
-      "1": "Küçük gruplar: her kampta en fazla on altı kişi, herkesin ismini bildiğimiz bir ölçek.",
-      "2": "Sabit ekip: aynı hocalar, aynı otel, kamptan kampa değişmeyen bir güven.",
+      "1": "Küçük gruplar: her retreat’te en fazla on altı kişi, herkesin ismini bildiğimiz bir ölçek.",
+      "2": "Seçilmiş ortaklar: mekân ve eğitmenler her program için ayrı değerlendirilir; bağımsız çalışırlar, biz yalnızca birlikte çalışmayı seçeriz.",
       "3": "Boş zaman bırakmak: program doldurmak değil, dinlenmeye yer açmak asıl amacımız."
     },
-    "whyAsosEyebrow": "MEKAN",
-    "whyAsosTitle": "Neden Asos",
-    "whyAsosBody": "Asos, kalabalık tatil beldelerinin aksine hâlâ sakin. Antik kent, zeytinlikler ve Kadırga Koyu birbirine yürüme mesafesinde; taş mimari yazın serinliği, kışın sıcaklığı içeride tutuyor. Kamplarımızı başka bir yerde değil, tam burada kurmamızın nedeni bu.",
+    "whyAsosEyebrow": "BÖLGE",
+    "whyAsosTitle": "Neden Assos",
+    "whyAsosBody": "Assos, kalabalık tatil beldelerinin aksine hâlâ sakin. Antik kent, zeytinlikler ve Kadırga Koyu birbirine yürüme mesafesinde; sabah pratiğiyle öğleden sonra yüzmek aynı güne sığıyor. İlk retreat’imizi başka bir yerde değil, tam burada kurmamızın nedeni bu.",
     "whyAsosImageAlt": "Büyükhusun köyünün ve zeytinliklerin kuşbakışı görünümü",
     "ctaTitle": "Sorunuz mu var?",
-    "ctaBody": "Kamp seçimi, seviye uygunluğu ya da Asos'a ulaşım hakkında merak ettiğin her şeyi doğrudan bize sorabilirsin.",
-    "ctaButton": "İletişime Geç"
+    "ctaBody": "Retreat seçimi, seviye uygunluğu ya da ulaşım hakkında merak ettiğin her şeyi başvuru formundan doğrudan bize yazabilirsin.",
+    "ctaButton": "Başvuru Formu"
   },
   "legal": {
     "eyebrow": "YASAL",

@@ -176,7 +176,28 @@ export function InteractiveSun({
       animate={burst > 0 ? { scale: [1, 1.12, 1] } : { scale: 1 }}
       transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
     >
-      <svg aria-hidden className="block h-full w-full" fill="none" viewBox="0 0 100 100">
+      {/* `overflow: visible` — GÖRÜNÜR BİR HATANIN DÜZELTMESİ, süsleme değil.
+          SVG kökü tarayıcı varsayılanında `overflow: hidden` taşır, yani
+          `viewBox` dışına çıkan hiçbir şey boyanmaz. Bu güneşin saçakları
+          büyüdüğünde 100 birimlik kutuyu AŞIYOR:
+
+            saçak ucu  = 24 + 21 × 1.88 ≈ 63.5  →  merkezden 113.5
+            halka ucu  = 56                     →  merkezden 106
+            kutu sınırı                          =  100
+
+          Sonuç, ışık saçarken görünen kare bir kesme çizgisiydi (kullanıcı
+          bildirimi, 2026-09-07): güneş sanki görünmez bir çerçeveye çarpıyordu.
+
+          NEDEN `viewBox` BÜYÜTÜLMEDİ: kutuyu ör. 148 birime çıkarmak aynı CSS
+          alanında güneşi ~%32 küçültürdü ve düzeltmeyi kapatmak için hero'daki
+          ölçüyü de büyütmek gerekirdi. `overflow: visible` ise tek satır,
+          koordinatlara ve yerleşime hiç dokunmuyor. */}
+      <svg
+        aria-hidden
+        className="block h-full w-full overflow-visible"
+        fill="none"
+        viewBox="0 0 100 100"
+      >
         {/* IŞIMA HALKASI — yalnızca imleç yaklaşınca belirir. Ana saçakların
             ARASINA denk gelen kısa çizgiler; ışık arttıkça mürekkep artıyor. */}
         <motion.g style={{ opacity: haloOpacity, scale: haloScale, originX: '50px', originY: '50px' }}>

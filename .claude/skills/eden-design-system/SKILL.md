@@ -121,6 +121,14 @@ yolun gerçek uzunluğunu 1 birim sayar, böylece `dasharray: 1` + `dashoffset: 
 ölçmeye gerek kalmaz. Yeni bir işaret eklerken `pathLength={1}` unutulursa
 animasyon SESSİZCE çalışmaz (görsel bozulmaz, sadece durağan kalır).
 
+**BÜYÜYEN BİR SVG'YE `overflow-visible` VERİN.** SVG kökü tarayıcı
+varsayılanında `overflow: hidden` taşır: `viewBox` dışına çıkan hiçbir şey
+boyanmaz. `InteractiveSun`'ın saçakları ışırken 100 birimlik kutuyu 13 birim
+aşıyordu ve ışık görünür KARE bir çizgide kesiliyordu (kullanıcı bildirimi,
+2026-09-07). Düzeltme `viewBox`'ı büyütmek DEĞİL — o, aynı CSS alanında çizimi
+küçültür ve yerleşimi de değiştirmeyi gerektirir — sınıfa `overflow-visible`
+eklemektir. Etkileşimle boyu değişen her işarette bunu kontrol edin.
+
 İki güneş bileşeni vardır, karıştırmayın:
 - `art/marks.tsx` → `SunMark`: durağan, sunucuda render edilir. Kart, footer,
   şerit gibi çok sayıda örneğin bulunduğu yerlerde kullanılır.
@@ -156,8 +164,19 @@ gerçek müşteriyi yanıltır.
   geliştirmede sarı "filler" rozetiyle işaretlenir. Gerçek varlık konduğunda
   alan `false` yapılır.
 - **EDEN'in henüz gerçekleşmiş etkinliği YOK** (ilk retreat 18-20 Eylül 2026).
-  Arşiv bölümü bu yüzden "geçmiş etkinlikten kare" iddia etmez; `alt` metinleri
-  ne görüldüğünü (bir poster, bir mood board) olduğu gibi anlatır.
+  Ana sayfadaki bölüm bu yüzden ARŞİV DEĞİL MOOD DUVARIDIR (`home/mood-wall.tsx`,
+  2026-09-06). Eskiden "Geçmiş Retreatlerden" başlığını taşıyor ve altına bir
+  özür satırı yazıyordu; bölümün İDDİASINI değiştirmek özrü yazmaktan daha
+  doğru bir çözümdü. `alt` metinleri ne görüldüğünü (bir poster, bir kolaj
+  panosu) olduğu gibi anlatır. Gerçek etkinlik fotoğrafları geldiğinde AYRI bir
+  arşiv bölümü açılabilir.
+- **EDEN BİR ORGANİZASYON MARKASIDIR.** Otel İŞLETMEZ, eğitmen ÇALIŞTIRMAZ.
+  Mekânlar ve hocalar bağımsızdır; her retreat için ayrı seçilir ve İŞ ORTAĞI
+  olarak yer alırlar. "Aynı otelde", "EKİBİMİZ", "Hocalarımız" gibi aidiyet
+  kuran ifadeler KULLANILMAZ — kimin neyden sorumlu olduğu konusunda
+  ziyaretçiyi yanıltır. Kamp detayında mekân adını vermek GEREKLİDİR (katılımcı
+  nerede kalacağını bilmeli) ve oradaki "Kalacağınız Yer" / "Otelin Resmi
+  Sitesi" çerçevesi doğrudur: ayrı bir işletme olduğunu söyler.
 - **Hocalar gerçek kişilerdir.** `bio`, `certifications`, `photo` yalnızca
   kişiden doğrulanmış bilgi geldiğinde doldurulur. Fotoğraf yoksa monogram
   gösterilir, stok fotoğraf konmaz.

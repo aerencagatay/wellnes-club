@@ -34,11 +34,6 @@
       "handLine": "Move · Breathe · Connect",
       "ctaSecondary": "About Us"
     },
-    "teachers": {
-      "eyebrow": "OUR TEAM",
-      "title": "Our Teachers",
-      "viewAll": "Meet All Teachers"
-    },
     "testimonials": {
       "eyebrow": "IN THEIR WORDS",
       "title": "Impressions from past camps",
@@ -55,10 +50,10 @@
       "title": "What EDEN Wellness Club Members Say",
       "more": "See More Experiences"
     },
-    "gallery": {
-      "eyebrow": "ARCHIVE",
-      "title": "Previously at EDEN",
-      "empty": "Our first retreat is on 18-20 September 2026. Photographs will appear here afterwards; for now you are looking at our announcement poster."
+    "mood": {
+      "eyebrow": "THE EDEN WORLD",
+      "title": "A Sense of What It Is Like",
+      "note": "The club's visual world — our collage boards and announcement poster."
     }
   },
   "camp": {
@@ -128,25 +123,25 @@
     "lightboxCounter": "{current} / {total}"
   },
   "about": {
-    "eyebrow": "ABOUT US",
+    "eyebrow": "ABOUT",
     "title": "EDEN Wellness Club",
-    "lede": "Not a crowded agency — a retreat organiser working at the same stone hotel, with the same small team.",
-    "storyBody1": "EDEN Wellness Club began with a small team of yoga and pilates teachers in Istanbul who wanted to take their own students out of the city. On our first visit to Karadut Taş Otel in Asos, we found the quiet and the stone architecture we were looking for — we've held our camps at the same hotel ever since.",
-    "storyBody2": "We don't own the hotel — we're guests there, just like our participants. Our job is to build the programme, choose the teachers, and keep the group small; the hotel and Asos itself take care of the rest.",
+    "lede": "Not a large agency — an independent organiser that runs yoga retreats for small groups.",
+    "storyBody1": "EDEN Wellness Club began with a small team teaching yoga and pilates in Istanbul who wanted to take their own students out of the city. The work has been the same since the first retreat: find the right place, bring together the right teachers, and keep the group small.",
+    "storyBody2": "We do not run hotels and we do not employ teachers. The venues we stay in and the teachers we work with are independent; they are chosen for each retreat and take part as PARTNERS, not as part of our company. What we take on is the organising itself: the programme, the pace, the group size, and responsibility from start to finish.",
     "approachEyebrow": "OUR APPROACH",
     "approachTitle": "How We Work",
     "approachItems": {
-      "1": "Small groups: no more than sixteen people per camp, small enough that we know everyone's name.",
-      "2": "A steady team: the same teachers, the same hotel, a trust that carries from camp to camp.",
-      "3": "Leaving room for nothing: our goal is to make space for rest, not to fill the schedule."
+      "1": "Small groups: sixteen people at most on any retreat, a scale where we know everyone by name.",
+      "2": "Chosen partners: venues and teachers are assessed for each programme; they work independently, and all we do is choose to work with them.",
+      "3": "Leaving room: the point is not to fill the schedule but to make space for rest."
     },
-    "whyAsosEyebrow": "THE VENUE",
-    "whyAsosTitle": "Why Asos",
-    "whyAsosBody": "Unlike crowded holiday resorts, Asos is still quiet. The ancient city, the olive groves and Kadırga Bay are all within walking distance of one another; the stone architecture holds in summer's cool and winter's warmth. That's why we hold our camps right here, and nowhere else.",
-    "whyAsosImageAlt": "A bird's-eye view of Büyükhusun village and the olive groves",
+    "whyAsosEyebrow": "THE REGION",
+    "whyAsosTitle": "Why Assos",
+    "whyAsosBody": "Unlike the crowded resort towns, Assos is still quiet. The ancient city, the olive groves and Kadırga Bay are all within walking distance of one another; a morning practice and an afternoon swim fit into the same day. That is why we set our first retreat here and nowhere else.",
+    "whyAsosImageAlt": "An aerial view of the village of Büyükhusun and the olive groves",
     "ctaTitle": "Have a question?",
-    "ctaBody": "Whatever you're wondering about — choosing a camp, whether the level suits you, or getting to Asos — you can ask us directly.",
-    "ctaButton": "Get in Touch"
+    "ctaBody": "Ask us anything about choosing a retreat, whether the level suits you, or how to get there — the application form reaches us directly.",
+    "ctaButton": "Application Form"
   },
   "legal": {
     "eyebrow": "LEGAL",

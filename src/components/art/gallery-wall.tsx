@@ -22,9 +22,9 @@ import { CollageFrame } from './collage-frame'
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * NEDEN TEK BİR KAYDIRMA ÖLÇÜMÜ: her parça kendi `useScroll`unu kursaydı, aynı
- * karede beş ayrı `getBoundingClientRect()` çağrısı yapılır ve tarayıcı her
- * biri için layout'u yeniden hesaplardı (layout thrashing). Duvar tek bir
- * ilerleme değeri ölçer, parçalar ondan türetilir.
+ * karede parça sayısı kadar `getBoundingClientRect()` çağrısı yapılır ve
+ * tarayıcı her biri için layout'u yeniden hesaplardı (layout thrashing). Duvar
+ * TEK bir ilerleme değeri ölçer, parçalar ondan türetilir.
  *
  * HAREKET AZALTMA: perspektif ve dönüş hiç KURULMAZ — parçalar düz ızgarada
  * durur. 3B dönüşüm vestibüler rahatsızlığın güçlü bir tetikleyicisidir;
@@ -34,17 +34,32 @@ import { CollageFrame } from './collage-frame'
 /**
  * Sütun düzeni: her yuvanın ızgaradaki yeri, duvardaki AÇISI ve DERİNLİĞİ.
  *
- * Açı işareti sütunun hangi yanda olduğunu izler: soldaki parçalar sağa
- * (pozitif `rotateY`), sağdakiler sola döner. Böylece duvar merkeze doğru
- * kapanan sığ bir "V" oluşturur ve izleyici odanın içinde durur gibi olur.
- * Merkez sütun düz kalır ve en öndedir — bakışın dinlendiği yer.
+ * DÖRT PARÇA. İlk üçü dikey (kolaj panolarının kendi oranı), dördüncüsü kare
+ * (duyuru posterinin oranı) — ızgara parçaların GERÇEK oranlarını izliyor,
+ * onları ortak bir kalıba zorlamıyor. Kırpılmış bir kolaj kolaj olmaktan çıkar.
+ *
+ * GENİŞLİKLER NEDEN BİRBİRİNE YAKIN: poster bir ara dört sütun kaplıyordu ve
+ * KARE olduğu için yüksekliği de genişliğiyle birlikte büyüyüp diğer üç
+ * parçayı eziyordu (doğrulandı: tek başına duvarın yarısından fazlasını
+ * kaplıyordu). Dikey bir görsele geniş sütun vermek aynı tuzağın diğer yüzü —
+ * 4:5 bir parça ne kadar genişlerse o kadar UZAR. Bu yüzden dikeyler ikişer,
+ * poster üç sütun; fark kompozisyona ritim verecek kadar var, hiyerarşiyi
+ * bozacak kadar değil.
+ *
+ * Poster `col-start-3` ile ikinci sıraya kaydırılır: sağda ve solda kasıtlı
+ * boşluk kalır. Dolu bir ızgara "galeri duvarı" değil "katalog" okur.
+ *
+ * Açı işareti sütunun hangi yanda olduğunu izler: soldaki parça sağa (pozitif
+ * `rotateY`), sağdakiler sola döner. Böylece duvar merkeze doğru kapanan sığ
+ * bir "V" oluşturur ve izleyici odanın içinde durur gibi olur. En geniş parça
+ * en GERİDE (z: -140): büyük bir yüzey öne alındığında duvarı ezip diğer üçünü
+ * kaybettiriyordu.
  */
 const PIECES = [
-  { className: 'col-span-2 md:col-span-3 md:row-span-2 aspect-square', rotateY: 9, z: -140, sizes: '(max-width: 768px) 100vw, 42vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-square', rotateY: -5, z: 40, sizes: '(max-width: 768px) 50vw, 28vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-square', rotateY: -9, z: -90, sizes: '(max-width: 768px) 50vw, 28vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-4/5', rotateY: -4, z: 90, sizes: '(max-width: 768px) 50vw, 28vw' },
-  { className: 'col-span-1 md:col-span-2 aspect-4/5', rotateY: -10, z: -50, sizes: '(max-width: 768px) 50vw, 28vw' },
+  { className: 'col-span-1 md:col-span-2 aspect-4/5', rotateY: 8, z: -110, sizes: '(max-width: 768px) 50vw, 26vw' },
+  { className: 'col-span-1 md:col-span-2 aspect-4/5', rotateY: -3, z: 60, sizes: '(max-width: 768px) 50vw, 26vw' },
+  { className: 'col-span-1 md:col-span-2 aspect-4/5', rotateY: -9, z: -70, sizes: '(max-width: 768px) 50vw, 26vw' },
+  { className: 'col-span-2 md:col-span-3 md:col-start-3 aspect-square', rotateY: 5, z: 100, sizes: '(max-width: 768px) 100vw, 40vw' },
 ] as const
 
 export function GalleryWall({ slots, locale }: { slots: CollageSlot[]; locale: AppLocale }) {
@@ -65,8 +80,10 @@ export function GalleryWall({ slots, locale }: { slots: CollageSlot[]; locale: A
 
   return (
     <ul
-      className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-7 md:gap-5"
-      data-testid="past-gallery"
+      // `items-start`: her parça KENDİ yüksekliğini korur. Varsayılan `stretch`
+      // satırdaki en uzun parçaya uydurup diğerlerinin oranını bozuyordu.
+      className="mt-14 grid grid-cols-2 items-start gap-4 md:grid-cols-7 md:gap-5"
+      data-testid="mood-wall"
       ref={ref}
       style={reduced ? undefined : { perspective: '1600px', transformStyle: 'preserve-3d' }}
     >

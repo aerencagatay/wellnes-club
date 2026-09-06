@@ -15,7 +15,11 @@ import type { Localized } from './types'
  * `isFiller` ALANI NE İŞE YARAR: `true` olan yuva gerçek bir varlık DEĞİL, yer
  * tutucudur. `CollageFrame` bu yuvaları YALNIZCA geliştirme ortamında sarı bir
  * "filler" rozetiyle işaretler, böylece yer tutucular sessizce yayına kaçamaz.
- * Gerçek görsel konduğunda alan `false` yapılır ve rozet kendiliğinden kaybolur.
+ *
+ * BUGÜN HİÇ YER TUTUCU YOK — buradaki yuvaların hepsi gerçek EDEN varlığı.
+ * Alan yine de duruyor: ileride gerçek varlık gelmeden yeni bir yuva açmak
+ * gerekirse işaretleme mekanizması hazır olsun (ve o yuva sessizce yayına
+ * kaçamasın).
  */
 
 export type CollageSlot = {
@@ -34,14 +38,6 @@ const POSTER_SRC = '/img/poster/canakkale-18-20-eylul-2026-duyuru.jpeg'
 const POSTER_ALT: Localized = {
   tr: 'EDEN Wellness Club yoga retreat duyuru posteri: zeytin yeşili zemin üzerinde turuncu güneş, el çizimi yoga figürleri ve "18-20 Eylül, Asos, Çanakkale" yazısı',
   en: 'EDEN Wellness Club yoga retreat announcement poster: an orange sun on an olive green field, hand-drawn yoga figures and the line "September 18-20, Asos, Çanakkale"',
-}
-
-/**
- * Poster taşıyan bir yer tutucu yuva üretir. Gerçek bir varlık koyulana kadar
- * kullanılır; `isFiller: true` olduğu için geliştirmede işaretli görünür.
- */
-export function fillerSlot(id: string): CollageSlot {
-  return { id, src: POSTER_SRC, alt: POSTER_ALT, isFiller: true }
 }
 
 /**
@@ -88,22 +84,34 @@ export const COLLAGE_BOARDS: CollageSlot[] = [
 ]
 
 /**
- * Arşiv ("Previously at EDEN") ızgarasının yuvaları.
+ * MOOD DUVARI — "EDEN'in Dünyası".
  *
- * DÜRÜSTLÜK NOTU: EDEN'in henüz GERÇEKLEŞMİŞ bir etkinliği yok — takvimdeki
- * tek etkinlik Eylül 2026'da. Bu yuvalar "geçmiş etkinlikten kare" DİYE
- * SUNULMAZ: bugün duyuru posterini taşıyorlar, her yuvanın `alt` metni bunun
- * bir poster olduğunu söylüyor ve bölüm başlığının altındaki açıklama
- * ziyaretçiye durumu doğrudan bildiriyor. İlk etkinlik yaşandığında gerçek
- * fotoğraflar buraya gelir.
+ * BU BÖLÜM BİR ARŞİV DEĞİLDİR ve öyle olduğunu iddia etmez. Daha önce
+ * "Geçmiş Retreatlerden / Previously at EDEN" başlığını taşıyordu; EDEN'in
+ * henüz gerçekleşmiş bir etkinliği olmadığı için (ilk retreat 18-20 Eylül
+ * 2026) o başlığın altında ne gösterilirse gösterilsin, ziyaretçi onu
+ * yaşanmış bir etkinliğin kaydı sanma riski taşıyordu. Bölüm 2026-09-06'da
+ * mood duvarına çevrildi (kullanıcı kararı): kulübün GÖRSEL DÜNYASINI
+ * gösteriyor, geçmişini değil.
+ *
+ * Bu değişikliğin ikinci bir kazancı: artık YER TUTUCU YOK. Duvardaki dört
+ * parçanın dördü de gerçek EDEN varlığı — üç kolaj panosu ve kulübün kendi
+ * duyuru posteri. Sayıyı dörtte tutmak bilinçli: elimizde gerçek beşinci bir
+ * parça yok ve bir yuvayı doldurmak için yer tutucu koymak, bölümü yeniden
+ * "boşluk kapatan" bir şeye çevirirdi.
+ *
+ * Gerçek etkinlik fotoğrafları geldiğinde AYRI bir arşiv bölümü açılabilir;
+ * bu duvar o zaman da kendi işini görmeye devam eder.
  */
-export const ARCHIVE_SLOTS: CollageSlot[] = [
-  fillerSlot('archive-1'),
-  fillerSlot('archive-2'),
-  fillerSlot('archive-3'),
-  fillerSlot('archive-4'),
-  fillerSlot('archive-5'),
+export const MOOD_SLOTS: CollageSlot[] = [
+  ...COLLAGE_BOARDS,
+  {
+    id: 'poster-assos',
+    src: POSTER_SRC,
+    alt: POSTER_ALT,
+    isFiller: false,
+  },
 ]
 
-/** Akan kolaj şeridinin parçaları — gerçek kolaj panoları. */
-export const MARQUEE_SLOTS: CollageSlot[] = COLLAGE_BOARDS
+/** Akan şerit artık görsel taşımıyor (tipografik banda dönüştü), bu yüzden
+ *  burada bir yuva listesi de tutulmuyor. Bkz. art/collage-marquee.tsx. */
