@@ -87,8 +87,10 @@ gölgesiz, asıldığı oda gerçek bir perspektife sahip.
 - Gölge yerine **gerçek ikinci düzlem**: `Tilt` bileşeni parçanın arkasına
   negatif Z'de kum tonlu bir paspartu koyar — bir CSS gölgesi değil, çerçeveli
   baskının arkasındaki montaj kartonu.
-- Araçlar: `motion/stage.tsx` (`Stage`/`Depth`), `motion/pointer-scene.tsx`,
-  `motion/tilt.tsx`, `art/gallery-wall.tsx`.
+- Araçlar: `motion/stage.tsx` (`Stage`/`Depth`), `motion/tilt.tsx`,
+  `art/gallery-wall.tsx`, `art/draw-in.tsx`, `art/interactive-sun.tsx`.
+  (`motion/pointer-scene.tsx` 2026-09-06'da SİLİNDİ: hero'da artık yalnızca
+  güneş hareket ettiği için katman paralaksına ihtiyaç kalmadı — bkz. §4b.)
 
 **CSS perspektifi kalıtsal DEĞİLDİR.** `transform-style: preserve-3d` zinciri
 bir düğümde kırılırsa altındaki katmanlar düzleşir ve bileşen **çalışır ama
@@ -99,6 +101,31 @@ sarmalayıcı girerse ona da `[transform-style:preserve-3d]` verin.
 yuvarlayın.** `Math.cos`/`Math.sin` Node ile tarayıcı arasında son ondalık
 basamakta ayrışabiliyor ve React bunu hydration uyuşmazlığı sayıp o alt ağacı
 yamalamayı bırakıyor. `art/marks.tsx` içindeki `round()` bunun için var.
+
+## 4b. Canlı işaretler — üç kural
+
+**HERO'DA YALNIZCA GÜNEŞ HAREKET EDER.** Bir ara beş katman birden fareyi
+takip ediyordu; kullanıcı geri bildirimiyle (2026-09-06) kaldırıldı. Sebep
+yalnızca tercih değil: BİR nesne hareket ettiğinde o nesne canlı görünür, HER
+ŞEY hareket ettiğinde sayfa oynak görünür. Metin, düğme ve dal SABİT kalır.
+
+**IŞIK PARLAKLIKLA DEĞİL MÜREKKEPLE ANLATILIR.** "Işıma" için radial-gradient
+halo veya `filter: blur()` parıltısı KULLANILMAZ — ikisi de sistemin düz yüzey
+kuralını bozar ve kağıt dilini dijitalleştirir. Baskı geleneğinde ışık zaten
+çevreye EKLENEN ÇİZGİLERLE gösterilir: `InteractiveSun` yakınlık arttıkça
+saçakları uzatır, kalınlaştırır ve ikinci bir kısa saçak halkası açar.
+
+**`DrawIn` sarmaladığı SVG'nin yollarında `pathLength={1}` ARAR.** Bu öznitelik
+yolun gerçek uzunluğunu 1 birim sayar, böylece `dasharray: 1` + `dashoffset: 1`
+çizgiyi gizler ve offset 0'a giderken çizgi çizilir — JS ile `getTotalLength()`
+ölçmeye gerek kalmaz. Yeni bir işaret eklerken `pathLength={1}` unutulursa
+animasyon SESSİZCE çalışmaz (görsel bozulmaz, sadece durağan kalır).
+
+İki güneş bileşeni vardır, karıştırmayın:
+- `art/marks.tsx` → `SunMark`: durağan, sunucuda render edilir. Kart, footer,
+  şerit gibi çok sayıda örneğin bulunduğu yerlerde kullanılır.
+- `art/interactive-sun.tsx` → `InteractiveSun`: istemci, pencere çapında
+  işaretçi dinler. YALNIZCA hero'da, sayfada tek örnek olarak.
 
 ## 5. Hareket azaltma — pazarlık konusu değil
 

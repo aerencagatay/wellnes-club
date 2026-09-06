@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { getCampBySlug, getTestimonials } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
+import { DrawIn } from '@/components/art/draw-in'
 import { HandUnderline, Squiggle } from '@/components/art/marks'
 import { Tilt } from '@/components/motion/tilt'
 import { Button } from '@/components/ui/button'
@@ -70,7 +71,9 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
         <Eyebrow>{t('eyebrow')}</Eyebrow>
         <h2 className="type-title mt-4 max-w-4xl text-balance">{t('title')}</h2>
         {/* Başlığın altına marker'la çekilmiş çizgi — posterin anotasyon dili. */}
-        <HandUnderline className="ink-sun mt-3 h-2.5 max-w-md" />
+        <DrawIn className="ink-sun mt-3 max-w-md" duration={0.9}>
+          <HandUnderline className="h-2.5" />
+        </DrawIn>
       </BlurFade>
 
       {/* Yalnızca geliştirmede görünür uyarı — mevcut anahtar yeniden kullanılır. */}
@@ -127,7 +130,9 @@ export function CommunityWall({ locale }: { locale: AppLocale }) {
                       “{item.quote[locale]}”
                     </blockquote>
 
-                    <Squiggle className="ink-sun h-2 w-12 shrink-0 opacity-80" />
+                    <DrawIn className="ink-sun shrink-0 opacity-80" duration={0.7}>
+                      <Squiggle className="h-2 w-12" />
+                    </DrawIn>
 
                     <figcaption className="mt-auto text-xs font-semibold tracking-[0.14em] text-muted uppercase">
                       {item.author}

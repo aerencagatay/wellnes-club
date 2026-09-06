@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { getUpcomingEvents } from '@/content'
 import { EventCard } from '@/components/events/event-card'
+import { DrawIn } from '@/components/art/draw-in'
 import { HandUnderline } from '@/components/art/marks'
 import { BlurFade } from '@/components/motion/blur-fade'
 import { Eyebrow } from '@/components/ui/eyebrow'
@@ -40,7 +41,9 @@ export function EventShowcase({ locale, today }: { locale: AppLocale; today: str
           <Eyebrow className="text-olive">{t('eyebrow')}</Eyebrow>
           <h2 className="type-title mt-4">{t('title')}</h2>
           {/* Marker altı çizgisi — posterin anotasyon dili. */}
-          <HandUnderline className="ink-sun mt-3 h-2.5 max-w-xs" />
+          <DrawIn className="ink-sun mt-3 max-w-xs" duration={0.9}>
+            <HandUnderline className="h-2.5" />
+          </DrawIn>
         </BlurFade>
         <BlurFade delay={0.1} offset={12}>
           <Link

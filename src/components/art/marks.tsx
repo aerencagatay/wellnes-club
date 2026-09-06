@@ -62,7 +62,8 @@ export function SunMark({ className = '' }: { className?: string }) {
         return (
           <line
             key={angle}
-            stroke="currentColor"
+            pathLength={1}
+        stroke="currentColor"
             strokeLinecap="round"
             strokeWidth="5"
             x1={x1}
@@ -85,6 +86,7 @@ export function Squiggle({ className = '' }: { className?: string }) {
     <svg aria-hidden className={cn('block', className)} fill="none" viewBox="0 0 120 14">
       <path
         d="M2 8C10 2 18 2 26 8s16 6 24 0 16-6 24 0 16 6 24 0"
+        pathLength={1}
         stroke="currentColor"
         strokeLinecap="round"
         strokeWidth="2.5"
@@ -102,6 +104,7 @@ export function HandUnderline({ className = '' }: { className?: string }) {
     <svg aria-hidden className={cn('block w-full', className)} fill="none" preserveAspectRatio="none" viewBox="0 0 200 10">
       <path
         d="M3 7.2C38 3.4 76 2.2 116 3.4c28 .9 51 2.4 81 4.1"
+        pathLength={1}
         stroke="currentColor"
         strokeLinecap="round"
         strokeWidth="3"
@@ -117,7 +120,8 @@ export function HandUnderline({ className = '' }: { className?: string }) {
 export function OliveBranch({ className = '' }: { className?: string }) {
   return (
     <svg aria-hidden className={cn('block', className)} fill="none" viewBox="0 0 80 120">
-      <path d="M40 116C40 82 38 46 30 8" stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
+      <path d="M40 116C40 82 38 46 30 8" pathLength={1}
+        stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
       {[
         [30, 24, -1], [33, 44, 1], [35, 62, -1], [37, 80, 1], [38, 96, -1],
       ].map(([x, y, dir]) => (
@@ -127,7 +131,8 @@ export function OliveBranch({ className = '' }: { className?: string }) {
           key={`${x}-${y}`}
           rx="13"
           ry="6"
-          stroke="currentColor"
+          pathLength={1}
+        stroke="currentColor"
           strokeWidth="2.2"
           transform={`rotate(${dir * 28} ${x + dir * 13} ${y})`}
         />
@@ -143,8 +148,10 @@ export function OliveBranch({ className = '' }: { className?: string }) {
 export function HandArrow({ className = '' }: { className?: string }) {
   return (
     <svg aria-hidden className={cn('block', className)} fill="none" viewBox="0 0 60 40">
-      <path d="M4 8C18 8 34 14 50 30" stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
-      <path d="M50 30L36 29M50 30L48 16" stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
+      <path d="M4 8C18 8 34 14 50 30" pathLength={1}
+        stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
+      <path d="M50 30L36 29M50 30L48 16" pathLength={1}
+        stroke="currentColor" strokeLinecap="round" strokeWidth="2.5" />
     </svg>
   )
 }
@@ -164,6 +171,7 @@ export function HandCircle({ className = '' }: { className?: string }) {
     >
       <path
         d="M100 4C152 4 194 16 194 30c0 15-44 26-96 26C50 56 6 45 6 30 6 16 46 5 96 4"
+        pathLength={1}
         stroke="currentColor"
         strokeLinecap="round"
         strokeWidth="2.2"
