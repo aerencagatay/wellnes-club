@@ -222,8 +222,12 @@ Belirti: sayfada hiç marka rengi yok. Teşhis — diskteki kaynakla servis edil
 karşılaştırın:
 
 ```bash
-grep -c "color-forest" src/app/globals.css                     # kaynakta var mı
-curl -s "http://localhost:3000$(curl -s http://localhost:3000/tr   | grep -o '/_next/static/[^"]*globals[^"]*\.css' | head -1)"   | grep -c "color-forest"                                      # serviste var mı
+# 1) Kaynakta token var mı?
+grep -c "color-forest" src/app/globals.css
+
+# 2) Sunucunun GERÇEKTEN verdiği CSS'te var mı?
+CSS=$(curl -s http://localhost:3000/tr | grep -o "/_next/static/[^\"]*globals[^\"]*\.css" | head -1)
+curl -s "http://localhost:3000$CSS" | grep -c "color-forest"
 ```
 
 Kaynakta var, serviste yoksa sebep budur. Çözüm: dev'i durdur, `rm -rf .next`,
