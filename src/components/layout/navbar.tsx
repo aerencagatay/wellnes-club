@@ -145,7 +145,30 @@ export function Navbar() {
       <nav
         aria-label={t('primary')}
         className={cn(
-          'hidden h-16 items-center justify-center gap-16 border-t transition-colors duration-300 lg:flex',
+          // IZGARA, FLEX DEĞİL — ORTA MADDEYİ SAYFA EKSENİNE OTURTMAK İÇİN.
+          //
+          // `justify-center` şeridi BİR BÜTÜN olarak ortalar; ortadaki maddeyi
+          // ortalamaz. Yanındaki iki madde eşit genişlikte olmadığı sürece
+          // (burada "YAKLAŞAN ETKİNLİKLER" 161px, "MEMBERSHİP" 89px) orta
+          // madde farkın yarısı kadar kayar — ölçüldü: 36px sağda
+          // (kullanıcı bildirimi, 2026-09-07).
+          //
+          // Sayfanın tamamı tek bir merkez eksen üzerine kurulu: marka
+          // lockup'ı, güneş, EDEN başlığı, el yazısı ve CTA'nın hepsi aynı
+          // x'te. Orta maddenin o eksenden kayması, üstündeki büyük EDEN
+          // yazısıyla yan yana geldiğinde gözle görülüyordu.
+          //
+          // `1fr auto 1fr`: iki kenar sütun eşit olduğu için ortadaki sütun
+          // TANIM GEREĞİ kapsayıcının merkezinde. Kenar maddeler ortaya doğru
+          // hizalanır (`justify-self`), böylece aradaki iki boşluk da eşit
+          // kalır. Bunun bedeli şeridin dış kutusunun artık tam ortalanmaması
+          // — ama metnin bittiği yer güçlü bir görsel çapa değil, ortadaki
+          // madde ise öyle.
+          //
+          // ÜÇ MADDE VARSAYAR. Gezinme dört maddeye çıkarsa bu ızgara anlamını
+          // yitirir (bkz. lib/config/site.ts — üç madde bilinçli bir karar).
+          'hidden h-16 items-center gap-16 border-t transition-colors duration-300 lg:grid lg:grid-cols-[1fr_auto_1fr]',
+          '[&>*:first-child]:justify-self-end [&>*:last-child]:justify-self-start',
           transparent ? 'border-background/25' : 'border-text/15',
         )}
       >

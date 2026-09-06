@@ -135,6 +135,22 @@ eklemektir. Etkileşimle boyu değişen her işarette bunu kontrol edin.
 - `art/interactive-sun.tsx` → `InteractiveSun`: istemci, pencere çapında
   işaretçi dinler. YALNIZCA hero'da, sayfada tek örnek olarak.
 
+## 4c. Merkez eksen
+
+Sayfa TEK bir dikey eksen üzerine kurulu: marka lockup'ı, gezinme şeridinin
+orta maddesi, hero'nun güneşi, EDEN başlığı, el yazısı satırı ve CTA — hepsi
+aynı x'te. Bu eksene yeni bir öğe eklerken gerçekten ortalandığını ÖLÇÜN.
+
+**BİR ŞERİDİ ORTALAMAK, ORTA MADDESİNİ ORTALAMAK DEĞİLDİR.** Gezinme şeridi
+`justify-center` ile ortalanıyordu; yanındaki maddeler eşit genişlikte
+olmadığı için (161px'e karşı 89px) orta madde farkın yarısı kadar, 36px
+kayıyordu ve üstündeki EDEN yazısıyla hizasız duruyordu (kullanıcı bildirimi,
+2026-09-07). Çözüm `1fr auto 1fr` ızgarası: kenar sütunlar eşit olduğu için
+orta sütun tanım gereği merkezde, boşluklar da eşit kalıyor.
+
+Ölçerken `window.innerWidth` DEĞİL `document.documentElement.clientWidth`
+kullanın — ilki kaydırma çubuğunu içerir ve merkezi 7-8px yanlış verir.
+
 ## 5. Hareket azaltma — pazarlık konusu değil
 
 `prefers-reduced-motion: reduce` altında **3B tamamen KAPANIR, yavaşlatılmaz**:
