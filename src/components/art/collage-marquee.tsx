@@ -29,8 +29,16 @@ import { SunMark } from './marks'
  * yarısı ekran dışında dondururdu.
  */
 
-/** Bandın tek turu. Sırayı bozmayın: slogan → yer → slogan → tarih ritmi. */
-const WORDS = ['Move', 'Breathe', 'Connect', 'Assos', 'Çanakkale', 'Ege', 'Yoga', 'Retreat']
+/**
+ * Bandın tek turu.
+ *
+ * "Assos" ve "Çanakkale" ÇIKARILDI (kullanıcı kararı, 2026-09-07). Sebep
+ * yalnızca uzunluk değil: kulüp İstanbul çevresi, Ege ve Akdeniz'de çalışıyor,
+ * tek bir yer adını markanın sloganıyla aynı bantta tekrarlamak kapsamı
+ * olduğundan dar gösteriyordu. Kalanlar marka sözü ve faaliyet — ikisi de her
+ * retreat için doğru.
+ */
+const WORDS = ['Move', 'Breathe', 'Connect', 'Yoga', 'Retreat']
 
 export function CollageMarquee() {
   const strip = (ariaHidden: boolean) => (

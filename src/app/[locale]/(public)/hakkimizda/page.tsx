@@ -55,10 +55,16 @@ export default async function AboutPage({
     <>
       <PageHero eyebrow={t('eyebrow')} lede={t('lede')} title={t('title')} />
 
+      {/* ÜÇ PARAGRAF, TEK KOLON, DAR ÖLÇÜ (kullanıcı metni, 2026-09-07).
+          İki kolonluk eski düzen iki paragraf içindi; üç paragrafta son
+          paragrafı yalnız bırakıyordu. Tek kolon + `max-w-2xl`, satır uzunluğunu
+          da okunur aralıkta tutuyor — geniş bir kapta `type-lede` 120 karaktere
+          çıkıyordu. */}
       <Section>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="flex max-w-2xl flex-col gap-6">
           <p className="type-lede">{t('storyBody1')}</p>
           <p className="type-lede">{t('storyBody2')}</p>
+          <p className="type-lede">{t('storyBody3')}</p>
         </div>
       </Section>
 

@@ -31,8 +31,7 @@
     "hero": {
       "cta": "Yaklaşan Etkinlikler",
       "brand": "EDEN WELLNESS CLUB",
-      "handLine": "Şehirden uzaklaş · Hareket et · Bağ kur",
-      "ctaSecondary": "Hakkımızda"
+      "handLine": "Şehirden uzaklaş · Hareket et · Bağ kur"
     },
     "testimonials": {
       "eyebrow": "KATILIMCI SESLERİ",
@@ -125,9 +124,9 @@
   "about": {
     "eyebrow": "HAKKIMIZDA",
     "title": "EDEN Wellness Club",
-    "lede": "Kalabalık bir ajans değil; küçük gruplar hâlinde yoga retreat’leri kuran bağımsız bir organizasyonuz.",
-    "storyBody1": "EDEN Wellness Club, İstanbul’da yoga ve pilates dersleri veren küçük bir ekibin, kendi katılımcılarını şehrin dışına çıkarma isteğiyle başladı. İlk retreat’ten bu yana yaptığımız iş aynı: doğru mekânı bulmak, doğru eğitmenleri bir araya getirmek ve grubun küçük kalmasını sağlamak.",
-    "storyBody2": "Otel işletmiyoruz, eğitmen çalıştırmıyoruz. Konakladığımız mekânlar ve birlikte çalıştığımız hocalar bağımsızdır; her retreat için ayrı ayrı seçilir ve İŞ ORTAĞI olarak yer alırlar, şirketimizin bir parçası değildirler. Bizim üstlendiğimiz şey organizasyonun kendisi: program, akış, kontenjan ve baştan sona sorumluluk.",
+    "lede": "EDEN Wellness Club, şehir hayatının temposundan uzaklaşıp doğayla yeniden bağ kurmak isteyenler için özenle tasarlanmış yoga ve wellness retreat’leri düzenler.",
+    "storyBody1": "İstanbul çevresi ile Ege ve Akdeniz’in doğa, deniz ve sakinlik odaklı seçkin lokasyonlarında; karakteri olan butik oteller, deneyimli yoga ve pilates eğitmenleri ve alanında güçlü iş ortaklarıyla birlikte çalışıyoruz.",
+    "storyBody2": "Her retreat’i baştan sona ayrı bir deneyim olarak kurguluyoruz. Konaklama mekânından eğitmen seçimine, günlük programdan grup büyüklüğüne, yemeklerden serbest zaman akışına kadar tüm detayları EDEN ekibi olarak planlıyor ve koordine ediyoruz.",
     "approachEyebrow": "YAKLAŞIMIMIZ",
     "approachTitle": "Nasıl Çalışıyoruz",
     "approachItems": {
@@ -141,7 +140,8 @@
     "whyAsosImageAlt": "Büyükhusun köyünün ve zeytinliklerin kuşbakışı görünümü",
     "ctaTitle": "Sorunuz mu var?",
     "ctaBody": "Retreat seçimi, seviye uygunluğu ya da ulaşım hakkında merak ettiğin her şeyi başvuru formundan doğrudan bize yazabilirsin.",
-    "ctaButton": "Başvuru Formu"
+    "ctaButton": "Başvuru Formu",
+    "storyBody3": "Amacımız çok kalabalık organizasyonlar yaratmak değil; doğru mekânda, doğru insanlarla, iyi düşünülmüş ve gerçekten dinlenmeye alan açan küçük grup deneyimleri oluşturmak."
   },
   "legal": {
     "eyebrow": "YASAL",

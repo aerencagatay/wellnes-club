@@ -31,8 +31,7 @@
     "hero": {
       "cta": "Upcoming Retreats",
       "brand": "EDEN WELLNESS CLUB",
-      "handLine": "Move · Breathe · Connect",
-      "ctaSecondary": "About Us"
+      "handLine": "Move · Breathe · Connect"
     },
     "testimonials": {
       "eyebrow": "IN THEIR WORDS",
@@ -125,9 +124,9 @@
   "about": {
     "eyebrow": "ABOUT",
     "title": "EDEN Wellness Club",
-    "lede": "Not a large agency — an independent organiser that runs yoga retreats for small groups.",
-    "storyBody1": "EDEN Wellness Club began with a small team teaching yoga and pilates in Istanbul who wanted to take their own students out of the city. The work has been the same since the first retreat: find the right place, bring together the right teachers, and keep the group small.",
-    "storyBody2": "We do not run hotels and we do not employ teachers. The venues we stay in and the teachers we work with are independent; they are chosen for each retreat and take part as PARTNERS, not as part of our company. What we take on is the organising itself: the programme, the pace, the group size, and responsibility from start to finish.",
+    "lede": "EDEN Wellness Club runs carefully designed yoga and wellness retreats for people who want to step away from the pace of city life and reconnect with nature.",
+    "storyBody1": "We work around Istanbul and in selected locations across the Aegean and the Mediterranean chosen for their nature, sea and quiet — together with boutique hotels that have character, experienced yoga and pilates teachers, and strong partners in their fields.",
+    "storyBody2": "We build every retreat from the ground up as its own experience. From the choice of venue to the choice of teachers, from the daily programme to the size of the group, from the meals to the flow of free time, the EDEN team plans and coordinates every detail.",
     "approachEyebrow": "OUR APPROACH",
     "approachTitle": "How We Work",
     "approachItems": {
@@ -141,7 +140,8 @@
     "whyAsosImageAlt": "An aerial view of the village of Büyükhusun and the olive groves",
     "ctaTitle": "Have a question?",
     "ctaBody": "Ask us anything about choosing a retreat, whether the level suits you, or how to get there — the application form reaches us directly.",
-    "ctaButton": "Application Form"
+    "ctaButton": "Application Form",
+    "storyBody3": "Our aim is not to run large events. It is to create small-group experiences in the right place, with the right people — carefully considered, and genuinely leaving room to rest."
   },
   "legal": {
     "eyebrow": "LEGAL",

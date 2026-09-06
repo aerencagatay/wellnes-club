@@ -8,7 +8,6 @@ import { Eyebrow } from '@/components/ui/eyebrow'
 import { Section } from '@/components/ui/section'
 import { Link } from '@/i18n/navigation'
 import type { AppLocale } from '@/i18n/routing'
-import { cn } from '@/lib/utils/cn'
 
 /**
  * Hero'nun hemen altındaki yatay etkinlik rail'i.
@@ -62,19 +61,24 @@ export function EventShowcase({ locale, today }: { locale: AppLocale; today: str
         {/* `pb-6` kaydırma çubuğunun kartlara değmemesi için; `-mb-6` bunu geri
             alarak bölümün alt ritmini bozmaz. İnce kum renkli scrollbar,
             desktop'ta "burası yatay kayıyor" ipucunu JS'siz verir. */}
-        <ul className="-mb-6 mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [scrollbar-color:var(--color-olive)_transparent] [scrollbar-width:thin]">
+        {/* DİKEY PADDING BİR HATANIN DÜZELTMESİ: `overflow-x: auto` verilen bir
+            kutuda tarayıcı `overflow-y`yi de otomatik olarak kırpar (bir eksende
+            `visible`, diğerinde `auto` olamaz). Kartlar üst kenara sıfır boşlukla
+            oturuyordu, bu yüzden işaretçiyle kalkıp öne geldiklerinde ÜSTTEN
+            KIRPILIYORLARDI (kullanıcı bildirimi, 2026-09-07).
+
+            `py-10` kalkma payını içeriye alır; `-mb-10` ve azaltılmış `mt-4` de
+            bölümün dış ritmini değiştirmeden bırakır (eskiden mt-14 + pb-6). */}
+        <ul className="-mb-10 mt-4 flex snap-x snap-mandatory gap-6 overflow-x-auto py-10 [scrollbar-color:var(--color-olive)_transparent] [scrollbar-width:thin]">
+          {/* BÜTÜN KARTLAR AYNI GENİŞLİKTE (kullanıcı kararı, 2026-09-07).
+              Gerçek etkinlik eskiden daha geniş duruyordu; farklı boy iki kartı
+              yan yana dengesiz gösteriyordu.
+
+              GERÇEK/ÖRNEK AYRIMI KAYBOLMUYOR: ayrım hâlâ üç ayrı sinyalle
+              taşınıyor — kalın çerçeve, sarı "ÖRNEK" rozeti ve pasif CTA (bkz.
+              event-card.tsx). Ölçü zaten dördüncü ve en zayıf sinyaldi. */}
           {events.map((event) => (
-            <li
-              className={cn(
-                'shrink-0 snap-start',
-                // Gerçek etkinlik kartı ölçüyle de öne çıkar: örneklerden daha
-                // geniş durur, böylece hiyerarşi renkten bağımsız okunur.
-                event.isPlaceholder
-                  ? 'w-[78vw] max-w-[340px] sm:w-[300px] lg:w-[340px]'
-                  : 'w-[85vw] max-w-[420px] sm:w-[360px] lg:w-[420px]',
-              )}
-              key={event.id}
-            >
+            <li className="w-[82vw] max-w-[380px] shrink-0 snap-start sm:w-[340px] lg:w-[380px]" key={event.id}>
               <EventCard event={event} locale={locale} />
             </li>
           ))}

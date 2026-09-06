@@ -26,5 +26,5 @@ import { HeroStage } from './hero-stage'
 export function HeroHome() {
   const t = useTranslations('home.hero')
 
-  return <HeroStage cta={t('cta')} ctaSecondary={t('ctaSecondary')} handLine={t('handLine')} />
+  return <HeroStage cta={t('cta')} handLine={t('handLine')} />
 }

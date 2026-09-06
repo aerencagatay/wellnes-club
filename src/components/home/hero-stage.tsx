@@ -36,15 +36,7 @@ import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
  * orada çözer; buraya yalnızca çözülmüş dizeler iner. Böylece next-intl'in
  * mesaj sözlüğü istemci paketine girmez.
  */
-export function HeroStage({
-  handLine,
-  cta,
-  ctaSecondary,
-}: {
-  handLine: string
-  cta: string
-  ctaSecondary: string
-}) {
+export function HeroStage({ handLine, cta }: { handLine: string; cta: string }) {
   const ref = useRef<HTMLElement>(null)
   const reduced = useReducedMotion()
 
@@ -120,21 +112,15 @@ export function HeroStage({
           </DrawIn>
         </BlurFade>
 
+        {/* TEK CTA. "Hakkımızda" ikincil düğmesi kaldırıldı (kullanıcı kararı,
+            2026-09-07): sayfa zaten navbar'dan ve mobil menüden oraya
+            bağlanıyor, hero'da tekrar etmek asıl eylemi zayıflatıyordu. İki
+            eşit ağırlıkta düğme, ziyaretçiye "hangisi?" diye sorar; tek düğme
+            yönü söyler. */}
         <BlurFade delay={1.2} offset={12}>
-          <div className="mt-12 flex flex-col items-center gap-5 sm:flex-row">
+          <div className="mt-12">
             <Button href="/kamplar" size="lg" variant="primary">
               {cta}
-            </Button>
-            {/* Zeytin alan üzerinde `ghost` varyantı okunmaz (siyah hairline +
-                siyah metin). Alan-üstü sürüm burada elle kuruluyor: krem
-                hairline + krem metin, hover'da dolgu tersine döner. */}
-            <Button
-              className="border-background text-background hover:bg-background hover:text-text"
-              href="/hakkimizda"
-              size="lg"
-              variant="ghost"
-            >
-              {ctaSecondary}
             </Button>
           </div>
         </BlurFade>
