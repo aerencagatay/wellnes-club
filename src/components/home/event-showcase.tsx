@@ -68,8 +68,14 @@ export function EventShowcase({ locale, today }: { locale: AppLocale; today: str
             KIRPILIYORLARDI (kullanıcı bildirimi, 2026-09-07).
 
             `py-10` kalkma payını içeriye alır; `-mb-10` ve azaltılmış `mt-4` de
-            bölümün dış ritmini değiştirmeden bırakır (eskiden mt-14 + pb-6). */}
-        <ul className="-mb-10 mt-4 flex snap-x snap-mandatory gap-6 overflow-x-auto py-10 [scrollbar-color:var(--color-olive)_transparent] [scrollbar-width:thin]">
+            bölümün dış ritmini değiştirmeden bırakır (eskiden mt-14 + pb-6).
+
+            `px-6 -mx-6` aynısını YATAYDA yapar: hover'da öne gelen kart bir
+            miktar genişliyor ve İLK kartın sola taşan kısmı kırpılıyordu —
+            `scrollLeft` sıfırın altına inemediği için o piksellere ulaşmak
+            mümkün değil. İçeriden dolgu bu payı açar, negatif marj da bölümün
+            hizasını olduğu gibi bırakır. */}
+        <ul className="-mx-6 -mb-10 mt-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 py-10 [scrollbar-color:var(--color-olive)_transparent] [scrollbar-width:thin]">
           {/* BÜTÜN KARTLAR AYNI GENİŞLİKTE (kullanıcı kararı, 2026-09-07).
               Gerçek etkinlik eskiden daha geniş duruyordu; farklı boy iki kartı
               yan yana dengesiz gösteriyordu.

@@ -32,7 +32,10 @@ import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
 /** Maksimum eğim (derece). 8° sinirli, 4° fark edilmez; 6 aradaki denge. */
 const MAX_TILT = 6
 
-/** Hover'da parçanın öne geldiği mesafe (px, Z ekseni). */
+/**
+ * Hover'da parçanın öne geldiği mesafe (px, Z ekseni). `intensity` ile
+ * ÖLÇEKLENİR — bkz. aşağıdaki not.
+ */
 const LIFT_Z = 34
 
 export function Tilt({
@@ -66,7 +69,19 @@ export function Tilt({
   // ÜST kenarı geri gitmeli ki yüzey imlece dönsün.
   const rotateY = useTransform(sx, [-0.5, 0.5], [-MAX_TILT * intensity, MAX_TILT * intensity])
   const rotateX = useTransform(sy, [-0.5, 0.5], [MAX_TILT * intensity, -MAX_TILT * intensity])
-  const translateZ = useTransform(sLift, [0, 1], [0, LIFT_Z])
+  // ÖNE GELME MESAFESİ `intensity` İLE ÖLÇEKLENİR — bu bir düzeltmedir.
+  //
+  // Önce yalnızca eğim açısı ölçekleniyordu; `translateZ` her parçada aynıydı.
+  // Perspektifte öne gelmek BÜYÜME demek (900px perspektifte 34px ileri ≈ %3.9
+  // büyüme), yani etkinlik kartı `intensity: 0.5` olmasına rağmen hover'da
+  // yuvasından taşıyordu: ölçüldü, 380px'lik yuvada 399px'e çıkıp solundan
+  // 8.3px, sağından 10.7px dışarı sarkıyordu — ve ray `overflow-x: auto`
+  // olduğu için ilk kartın sola taşan kısmı KIRPILIYORDU (`scrollLeft` sıfırın
+  // altına inemez). Kullanıcı bunu "büyüyor ama çerçevesine sığmıyor" diye
+  // bildirdi (2026-09-07).
+  //
+  // `intensity` jestin TAMAMINI yönetmeli: az şiddet, az eğim VE az öne gelme.
+  const translateZ = useTransform(sLift, [0, 1], [0, LIFT_Z * intensity])
 
   // Paspartu, parça öne geldikçe biraz daha görünür olur: aradaki boşluğun
   // açıldığını gösteren ikinci ipucu (hareket + ton, tek başına ikisi de zayıf).
