@@ -167,7 +167,7 @@ export function Navbar() {
           //
           // ÜÇ MADDE VARSAYAR. Gezinme dört maddeye çıkarsa bu ızgara anlamını
           // yitirir (bkz. lib/config/site.ts — üç madde bilinçli bir karar).
-          'hidden h-16 items-center gap-16 border-t transition-colors duration-300 lg:grid lg:grid-cols-[1fr_auto_1fr]',
+          'hidden h-16 items-center gap-16 border-t transition-colors duration-300 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]',
           '[&>*:first-child]:justify-self-end [&>*:last-child]:justify-self-start',
           transparent ? 'border-background/25' : 'border-text/15',
         )}

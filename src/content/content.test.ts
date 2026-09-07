@@ -139,11 +139,18 @@ describe('içerik bütünlüğü', () => {
       expectLocalized(camp.summary, `${camp.slug}.summary`)
       expectLocalizedList(camp.includes, `${camp.slug}.includes`)
       expectLocalizedList(camp.excludes, `${camp.slug}.excludes`)
-      expect(camp.dailyFlow.length, `${camp.slug} dailyFlow kısa`).toBeGreaterThanOrEqual(6)
-      for (const [i, item] of camp.dailyFlow.entries()) {
-        expect(item.time).toMatch(/^\d{2}:\d{2}$/)
-        expectLocalized(item.title, `${camp.slug}.dailyFlow[${i}].title`)
-        expectLocalized(item.desc, `${camp.slug}.dailyFlow[${i}].desc`)
+      expect(camp.dailyFlow.length, `${camp.slug} programda gün yok`).toBeGreaterThanOrEqual(1)
+      for (const [d, day] of camp.dailyFlow.entries()) {
+        expectLocalized(day.label, `${camp.slug}.dailyFlow[${d}].label`)
+        if (day.date) expect(day.date, `${camp.slug}.dailyFlow[${d}].date`).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+        expect(day.items.length, `${camp.slug}.dailyFlow[${d}] boş gün`).toBeGreaterThanOrEqual(1)
+        for (const [i, item] of day.items.entries()) {
+          expect(item.time, `${camp.slug}.dailyFlow[${d}].items[${i}].time`).toMatch(/^\d{2}:\d{2}$/)
+          expectLocalized(item.title, `${camp.slug}.dailyFlow[${d}].items[${i}].title`)
+          // `desc` İSTEĞE BAĞLI (bkz. types.ts): kullanıcıdan gelen program
+          // yalnızca saat ve başlık içeriyor. Varsa iki dilli olmalı.
+          if (item.desc) expectLocalized(item.desc, `${camp.slug}.dailyFlow[${d}].items[${i}].desc`)
+        }
       }
     }
     for (const t of teachers) {

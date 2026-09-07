@@ -88,47 +88,49 @@ export const camps: CampSession[] = [
       tr: ['Ulaşım', 'Öğle ve akşam yemekleri', 'Alkollü içecekler', 'Kişisel masaj ve terapiler', 'Seyahat sigortası'],
       en: ['Transport', 'Lunch and dinner', 'Alcoholic drinks', 'Personal massage and therapies', 'Travel insurance'],
     },
+    /**
+     * ÜÇ GÜNLÜK PROGRAM — kullanıcıdan geldiği gibi (2026-09-07).
+     *
+     * Önceki hâli tek bir "tipik gün"dü çünkü güne bölünmüş doğrulanmış bir
+     * program yoktu. Artık var; uydurma açıklama EKLENMEDİ — satırlar yalnızca
+     * saat ve başlıktan ibaret, çünkü verilen program da öyle.
+     *
+     * DİKKAT — `excludes` ile ÇELİŞİYOR: aşağıdaki program Cuma 20:30 ve
+     * Cumartesi 20:00'de "Akşam yemeği" vaat ediyor, ama `excludes` "Öğle ve
+     * akşam yemekleri"ni paket dışı sayıyor. İkisinden biri güncellenmeli;
+     * karar kullanıcıya bırakıldı (bkz. 2026-09-07 konuşması).
+     */
     dailyFlow: [
       {
-        time: '07:00',
-        title: { tr: 'Sessiz uyanış', en: 'Silent wake-up' },
-        desc: { tr: 'Bahçede bitki çayı, konuşmasız yirmi dakika.', en: 'Herbal tea in the garden, twenty wordless minutes.' },
+        label: { tr: 'Cuma', en: 'Friday' },
+        date: '2026-09-18',
+        items: [
+          { time: '17:00', title: { tr: 'Varış & yerleşme', en: 'Arrival & settling in' } },
+          { time: '19:00', title: { tr: 'Akşam yoga akışı', en: 'Evening yoga flow' } },
+          { time: '20:30', title: { tr: 'Akşam yemeği', en: 'Dinner' } },
+        ],
       },
       {
-        time: '07:30',
-        title: { tr: 'Sabah vinyasa', en: 'Morning vinyasa' },
-        desc: { tr: 'Doksan dakikalık akış pratiği, nefes odaklı.', en: 'A ninety-minute breath-led flow practice.' },
+        label: { tr: 'Cumartesi', en: 'Saturday' },
+        date: '2026-09-19',
+        items: [
+          { time: '09:00', title: { tr: 'Sabah yoga pratiği', en: 'Morning yoga practice' } },
+          { time: '10:30', title: { tr: 'Kahvaltı', en: 'Breakfast' } },
+          { time: '12:00', title: { tr: 'Workshop', en: 'Workshop' } },
+          { time: '13:30', title: { tr: 'Serbest zaman', en: 'Free time' } },
+          { time: '18:30', title: { tr: 'Gün batımı yogası', en: 'Sunset yoga' } },
+          { time: '20:00', title: { tr: 'Akşam yemeği', en: 'Dinner' } },
+        ],
       },
       {
-        time: '09:30',
-        title: { tr: 'Kahvaltı', en: 'Breakfast' },
-        desc: {
-          tr: 'Köy kahvaltısı; yerel zeytinyağı, ev peyniri, mevsim meyveleri.',
-          en: 'Village breakfast: local olive oil, homemade cheese, seasonal fruit.',
-        },
-      },
-      {
-        time: '11:00',
-        title: { tr: 'Atölye', en: 'Workshop' },
-        desc: { tr: 'Nefes teknikleri veya anatomi üzerine oturum.', en: 'A session on breath technique or anatomy.' },
-      },
-      // Öğle ve akşam yemeği pakete dahil değil (bkz. `excludes`), bu yüzden bu
-      // iki başlık sağlanan bir öğün İMA ETMEZ: biri serbest bir ara, diğeri
-      // paket dışı olduğu açıkça yazılmış ortak bir masa.
-      {
-        time: '13:00',
-        title: { tr: 'Öğle arası ve serbest zaman', en: 'Lunch break and free time' },
-        desc: { tr: 'Havuz, kitap, uyku ya da koya yürüyüş.', en: 'Pool, a book, a nap, or a walk to the bay.' },
-      },
-      {
-        time: '17:30',
-        title: { tr: 'Akşam yin', en: 'Evening yin' },
-        desc: { tr: 'Uzun tutuşlar, destekli pozlar, kapanış meditasyonu.', en: 'Long holds, supported poses, closing meditation.' },
-      },
-      {
-        time: '19:30',
-        title: { tr: 'Ortak akşam masası', en: 'Shared evening table' },
-        desc: { tr: 'Taş terasta birlikte akşam yemeği; paket dışı.', en: 'Dinner together on the stone terrace; not included in the package.' },
+        label: { tr: 'Pazar', en: 'Sunday' },
+        date: '2026-09-20',
+        items: [
+          { time: '09:00', title: { tr: 'Sabah yoga pratiği', en: 'Morning yoga practice' } },
+          { time: '10:30', title: { tr: 'Kahvaltı', en: 'Breakfast' } },
+          { time: '12:00', title: { tr: 'Workshop', en: 'Workshop' } },
+          { time: '13:30', title: { tr: 'Kapanış & vedalaşma', en: 'Closing & goodbyes' } },
+        ],
       },
     ],
     featured: true,

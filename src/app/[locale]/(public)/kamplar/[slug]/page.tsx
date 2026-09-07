@@ -78,11 +78,20 @@ export default async function CampDetailPage({
       <CampDetailHero camp={camp} locale={locale} venue={venue} />
 
       <Section>
-        <div className="lg:grid lg:grid-cols-[1fr_360px] lg:gap-16">
+        {/* `minmax(0,1fr)` — `1fr` DEĞİL. Bir grid track'inin varsayılan
+            `min-width` değeri `auto`dur: içeriğinin en küçük boyutunun altına
+            İNEMEZ. Fiyat tablosu bu track'i 1759px'e şişiriyordu (kap 1152px)
+            ve sayfanın TAMAMI yatayda taşıyordu — `container-page` sol kenarı
+            -64px'e kayıyor, fiyat sütunu ekranın sağında görünmez alanda
+            kalıyordu (kullanıcı bildirimi: "fiyatlar gözükmüyor", 2026-09-07).
+
+            `minmax(0,1fr)` alt sınırı sıfıra çeker; track kabına sığar ve
+            tablonun kendi `overflow-x-auto` sarmalayıcısı işini yapabilir. */}
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-16">
           <div className="flex flex-col gap-16">
             <p className="type-lede">{camp.summary[locale]}</p>
 
-            <DailyFlow items={camp.dailyFlow} locale={locale} />
+            <DailyFlow days={camp.dailyFlow} locale={locale} />
 
             <IncludesExcludes excludes={camp.excludes[locale]} includes={camp.includes[locale]} />
 

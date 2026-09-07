@@ -24,10 +24,13 @@ import type { WellnessEvent } from './types'
 const REAL_CAMP = camps[0]
 
 /**
- * Gerçek retreat'in programı `camps.ts`'teki `dailyFlow`'dan gelir. Kasıtlı
- * olarak TEK bir "tipik gün" olarak sunulur: elimizde günü güne ayrılmış
- * (Cuma/Cumartesi/Pazar) doğrulanmış bir program yok, dolayısıyla üç ayrı gün
- * uydurmak yerine gerçekte bilinen akış gösterilir.
+ * Gerçek retreat'in programı `camps.ts`'teki `dailyFlow`'dan gelir ve artık
+ * GÜN GÜN: Cuma, Cumartesi, Pazar (kullanıcıdan gelen program, 2026-09-07).
+ *
+ * Önceden tek bir "Günlük Akış" günü olarak sunuluyordu çünkü elimizde güne
+ * bölünmüş doğrulanmış bir program yoktu ve üç ayrı gün uydurmak yerine
+ * bilinen tek akış gösteriliyordu. Artık gerçek program var, dolayısıyla
+ * program modalı da gün sekmeleri gösteriyor.
  */
 const realEvent: WellnessEvent = {
   id: REAL_CAMP.slug,
@@ -54,16 +57,15 @@ const realEvent: WellnessEvent = {
       en: 'A group practising yoga on a wooden deck under a shade canopy',
     },
   },
-  schedule: [
-    {
-      day: { tr: 'Günlük Akış', en: 'Daily Flow' },
-      items: REAL_CAMP.dailyFlow.map((item) => ({
-        time: item.time,
-        title: item.title,
-        description: item.desc,
-      })),
-    },
-  ],
+  schedule: REAL_CAMP.dailyFlow.map((day) => ({
+    day: day.label,
+    date: day.date,
+    items: day.items.map((item) => ({
+      time: item.time,
+      title: item.title,
+      description: item.desc,
+    })),
+  })),
   campSlug: REAL_CAMP.slug,
   isPlaceholder: false,
 }

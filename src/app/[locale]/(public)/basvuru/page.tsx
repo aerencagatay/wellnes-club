@@ -58,7 +58,11 @@ export default async function InquiryPage({
             </a>
           </div>
         ) : (
-          <div className="lg:grid lg:grid-cols-[1fr_380px] lg:gap-16">
+          /* `minmax(0,1fr)` — bkz. kamplar/[slug]/page.tsx'teki uzun not.
+             `1fr` track'i içeriğinin altına inemediği için geniş bir çocuk
+             (tablo, uzun satır) sayfayı yatayda taşırıyor. Burada henüz görünür
+             bir hata yoktu ama yapı birebir aynı; aynı tuzağın ikinci kopyası. */
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
             <Suspense fallback={null}>
               <InquiryForm camps={camps} locale={locale} />
             </Suspense>

@@ -31,7 +31,30 @@ export type PriceTier = {
 export type DailyFlowItem = {
   time: string // 'HH:MM'
   title: Localized
-  desc: Localized
+  /**
+   * İSTEĞE BAĞLI ve bu bilinçli. Kullanıcıdan gelen program (2026-09-07)
+   * yalnızca saat ve başlık içeriyor; her satıra açıklama UYDURMAK, olmayan
+   * bir taahhüt yazmak olurdu. Açıklama varsa gösterilir, yoksa satır saat +
+   * başlıktan ibaret kalır.
+   */
+  desc?: Localized
+}
+
+/**
+ * Programın BİR GÜNÜ.
+ *
+ * `dailyFlow` 2026-09-07'ye kadar TEK bir "tipik gün" listesiydi; elimizde
+ * güne bölünmüş doğrulanmış bir program olmadığı için öyle sunuluyordu.
+ * Kullanıcı üç günlük gerçek programı verince yapı da güne bölündü — artık
+ * program modalı gün sekmeleri gösteriyor ve kamp detayı günleri ayrı ayrı
+ * yazıyor.
+ */
+export type CampDay = {
+  /** Gün adı — "Cuma" / "Friday". */
+  label: Localized
+  /** ISO tarih ('YYYY-MM-DD'), biliniyorsa. */
+  date?: string
+  items: DailyFlowItem[]
 }
 
 export type CampSession = {
@@ -65,7 +88,7 @@ export type CampSession = {
   gallery: string[]
   includes: LocalizedList
   excludes: LocalizedList
-  dailyFlow: DailyFlowItem[]
+  dailyFlow: CampDay[]
   featured: boolean
 }
 

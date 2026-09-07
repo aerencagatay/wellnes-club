@@ -7,6 +7,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { EventScheduleDay } from '@/content'
 import type { AppLocale } from '@/i18n/routing'
+import { useLenis } from '@/components/motion/smooth-scroll'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
 import { cn } from '@/lib/utils/cn'
 import { formatDateLong } from '@/lib/utils/dates'
@@ -39,6 +40,7 @@ const FOCUSABLE = 'a[href], button:not([disabled])'
 export function ScheduleModal({ open, onClose, eventTitle, schedule, locale }: Props) {
   const t = useTranslations('events')
   const reduced = useReducedMotion()
+  const lenis = useLenis()
   const titleId = useId()
   const panelRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
@@ -54,6 +56,19 @@ export function ScheduleModal({ open, onClose, eventTitle, schedule, locale }: P
   useEffect(() => {
     if (!open) return
     const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null
+
+    // `body.overflow: hidden` TEK BAŞINA YETMEZ — gerçek bir hataydı.
+    //
+    // Lenis kendi `raf` döngüsünde tekerlek/dokunma girdisini dinleyip sayfayı
+    // `transform` ile kaydırıyor; bu, `overflow: hidden`'dan TAMAMEN bağımsız
+    // çalışır. Modal açıkken tekerlek çevirmek paneli değil ARKADAKİ SAYFAYI
+    // kaydırıyordu (kullanıcı bildirimi, 2026-09-07: "scroll sadece imleçle
+    // sürükleyince çalışıyor"). `smooth-scroll.tsx` bu tuzağı zaten
+    // belgelemişti; modal onu çağırmayı atlamıştı.
+    //
+    // İkisi birlikte gerekiyor: `stop()` sahte kaydırmayı, `overflow: hidden`
+    // gerçek kaydırmayı kilitler.
+    lenis.stop()
     document.body.style.overflow = 'hidden'
     closeButtonRef.current?.focus()
 
@@ -75,11 +90,12 @@ export function ScheduleModal({ open, onClose, eventTitle, schedule, locale }: P
 
     document.addEventListener('keydown', onKeyDown)
     return () => {
+      lenis.start()
       document.body.style.overflow = ''
       document.removeEventListener('keydown', onKeyDown)
       trigger?.focus()
     }
-  }, [open, onClose])
+  }, [open, onClose, lenis])
 
   // Sunucu render'ında `document` yok. Bir `mounted` durumu + efekt yerine
   // doğrudan ortam kontrolü: istemcideki ilk render'da modal kapalı olduğu
@@ -226,7 +242,7 @@ function ScheduleBody({
         <ol className="mt-4">
           {day.items.map((item) => (
             <li
-              className="grid grid-cols-[4.5rem_1fr] gap-x-5 border-t border-sand py-5 sm:grid-cols-[6rem_1fr] sm:gap-x-8"
+              className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-5 border-t border-sand py-5 sm:grid-cols-[6rem_minmax(0,1fr)] sm:gap-x-8"
               key={`${item.time}-${item.title[locale]}`}
             >
               <span className="text-sm text-muted tabular-nums">{item.time}</span>
