@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { buildWhatsAppUrl } from '@/lib/config/whatsapp'
 import { resolveErrorMessage, submitInquiry } from '@/lib/inquiry-client'
 import { formatDateRange } from '@/lib/utils/dates'
+import { formatPrice } from '@/lib/utils/price'
 import { ConsentCheckbox } from './consent-checkbox'
 import { Field, fieldDescribedBy, inputClass } from './field'
 
@@ -35,11 +36,31 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
   // Seçili kampın sattığı GECE SAYILARI, kendi fiyat kademelerinden türetilir
   // ve artan sırada gösterilir. `Set` yinelenenleri eler: aynı gece sayısı hem
   // paylaşımlı hem tek kişilik oda için ayrı kademe olarak duruyor.
-  const nightOptions = (() => {
-    const camp = camps.find((c) => c.slug === campSlug)
-    if (!camp) return [] as number[]
-    return [...new Set(camp.priceTiers.map((tier) => tier.nights))].sort((a, b) => a - b)
-  })()
+  const selectedCamp = camps.find((c) => c.slug === campSlug)
+
+  const nightOptions = selectedCamp
+    ? [...new Set(selectedCamp.priceTiers.map((tier) => tier.nights))].sort((a, b) => a - b)
+    : []
+
+  // Oda tipi ve gece sayısı KONTROLLÜ: ikisi birlikte fiyatı belirliyor ve
+  // seçim değiştiği anda gösterilen fiyatın da değişmesi gerekiyor.
+  const [roomPreference, setRoomPreference] = useState<'paylasimli' | 'tek-kisilik'>('paylasimli')
+  // Kişi sayısı da fiyata giriyor (kişi başı × kişi), bu yüzden kontrollü.
+  const [guests, setGuests] = useState(1)
+  const [nights, setNights] = useState<number>(() => nightOptions.at(-1) ?? 1)
+
+  /**
+   * Seçime karşılık gelen kişi başı fiyat.
+   *
+   * `priceTiers`'ten OKUNUR, hesaplanmaz: fiyat listesi tek kaynaktır ve
+   * burada bir çarpım/formül kurmak, tablo değiştiğinde sessizce ayrışan
+   * ikinci bir gerçek üretirdi. Kademe yoksa `undefined` döner — o birleşim
+   * satılmıyor demektir ve arayüz bunu açıkça söyler (doğrulama da aynı
+   * kuralla reddeder, bkz. validation.ts → superRefine).
+   */
+  const selectedTier = selectedCamp?.priceTiers.find(
+    (tier) => tier.nights === nights && tier.occupancy === (roomPreference === 'paylasimli' ? 'double' : 'single'),
+  )
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)
   const [failedOnce, setFailedOnce] = useState(false)
@@ -176,13 +197,17 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
             aria-describedby={fieldDescribedBy('guests', { error: guestsError })}
             aria-invalid={Boolean(guestsError)}
             className={inputClass}
-            defaultValue={1}
             id="guests"
             max={8}
             min={1}
             name="guests"
+            // Boş bırakılırsa `Number('')` sıfır verir ve toplam sıfıra düşerdi;
+            // kutu boşken hesap 1 kişi üzerinden gösterilir. Gerçek doğrulama
+            // yine sunucuda (`guestsMin`).
+            onChange={(event) => setGuests(Number(event.target.value) || 1)}
             required
             type="number"
+            value={guests}
           />
         </Field>
         <Field error={roomError} htmlFor="roomPreference" label={t('roomPreference')}>
@@ -190,9 +215,10 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
             aria-describedby={fieldDescribedBy('roomPreference', { error: roomError })}
             aria-invalid={Boolean(roomError)}
             className={inputClass}
-            defaultValue="paylasimli"
             id="roomPreference"
             name="roomPreference"
+            onChange={(event) => setRoomPreference(event.target.value as 'paylasimli' | 'tek-kisilik')}
+            value={roomPreference}
           >
             <option value="paylasimli">{t('roomShared')}</option>
             <option value="tek-kisilik">{t('roomSingle')}</option>
@@ -214,7 +240,9 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
           className={inputClass}
           id="nights"
           name="nights"
+          onChange={(event) => setNights(Number(event.target.value))}
           required
+          value={nights}
         >
           {nightOptions.map((n) => (
             <option key={n} value={n}>
@@ -223,6 +251,44 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
           ))}
         </select>
       </Field>
+
+      {/* CANLI FİYAT — seçimi belirleyen üç alanın hemen altında.
+          Fiyat oda tipi × gece sayısına göre değişiyor (dört kademe) ve kişi
+          sayısıyla çarpılıyor; kenar çubuğundaki kart ise "başlangıç fiyatı"nı
+          gösterip seçime tepki vermiyor. Ziyaretçinin seçtiği şeyin karşılığını
+          seçtiği yerde görmesi gerekiyor (kullanıcı bildirimi, 2026-09-07).
+
+          TOPLAM BİR TEKLİF DEĞİL, BİR HESAP: sayfa zaten "Ödeme bu aşamada
+          alınmaz" diyor ve ekip kontenjan/ödeme detayını sonra netleştiriyor.
+          Bu yüzden toplam, kişi başı fiyat ve çarpan AÇIKÇA gösteriliyor —
+          ziyaretçi sayının nereden geldiğini görebilsin. */}
+      {selectedCamp && (
+        <div aria-live="polite" className="border border-text bg-paper p-5">
+          {selectedTier ? (
+            <>
+              <span className="type-eyebrow">{t('priceForSelection')}</span>
+              <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.02em] text-text tabular-nums">
+                {formatPrice(selectedTier.price * guests, selectedCamp.currency, locale)}
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                {t('priceBreakdown', {
+                  guests,
+                  unit: formatPrice(selectedTier.price, selectedCamp.currency, locale),
+                })}
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                {roomPreference === 'paylasimli' ? t('roomShared') : t('roomSingle')}
+                <span aria-hidden className="mx-2">·</span>
+                {tCamp('nights', { count: nights })}
+              </p>
+            </>
+          ) : (
+            // Satılmayan birleşim: uydurma bir fiyat göstermek yerine durumu
+            // söyler. Doğrulama da aynı birleşimi reddediyor.
+            <p className="text-sm font-medium text-text">{te('unknownTier')}</p>
+          )}
+        </div>
+      )}
 
       <Field error={messageError} hint={messageHint} htmlFor="message" label={t('message')}>
         <textarea

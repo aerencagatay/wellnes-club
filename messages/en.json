@@ -211,7 +211,9 @@
       "nightsInvalid": "Choose a valid number of nights.",
       "unknownTier": "That room type and length of stay are not offered together. Please pick another combination."
     },
-    "nights": "How many nights"
+    "nights": "How many nights",
+    "priceForSelection": "FOR YOUR SELECTION",
+    "priceBreakdown": "{guests} × {unit} per person"
   },
   "inquiryPage": {
     "eyebrow": "APPLY",

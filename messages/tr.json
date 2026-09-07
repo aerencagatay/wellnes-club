@@ -211,7 +211,9 @@
       "nightsInvalid": "Geçerli bir gece sayısı seçin.",
       "unknownTier": "Bu oda tipi ve gece sayısı birlikte sunulmuyor. Lütfen başka bir seçim yapın."
     },
-    "nights": "Kaç gece"
+    "nights": "Kaç gece",
+    "priceForSelection": "SEÇİMİNİZE GÖRE",
+    "priceBreakdown": "{guests} kişi × {unit} kişi başı"
   },
   "inquiryPage": {
     "eyebrow": "BAŞVURU",
