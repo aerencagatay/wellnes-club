@@ -99,7 +99,18 @@ export function GalleryCursor() {
   return (
     <motion.span
       aria-hidden
-      className="pointer-events-none fixed top-0 left-0 z-100 block rounded-full border border-olive mix-blend-multiply"
+      // `z-200` — SAYFANIN EN ÜST KATMANI, ve bu bir hatanın düzeltmesi.
+      //
+      // Halka `z-100`'deydi; program modalı da `z-100`. Modal `document.body`ye
+      // portal ile SONRADAN ekleniyor, dolayısıyla aynı katmanda olsalar bile
+      // modal üstte boyanıyordu. Yerel imleci gizlediğimiz için (bkz. yukarıdaki
+      // not) sonuç, modalın üzerinde HİÇ imleç olmamasıydı — kullanıcı bunu
+      // "imleç kayboluyor" diye bildirdi (2026-09-07).
+      //
+      // İmlecin katmanı tartışma konusu değil: nereye giderse gitsin görünmesi
+      // gerekir, çünkü onu gizleyen biziz. Yeni bir kaplama eklerken bu değerin
+      // ALTINDA kalmalı (bugün en yükseği modal: z-100).
+      className="pointer-events-none fixed top-0 left-0 z-200 block rounded-full border border-olive mix-blend-multiply"
       style={{ x: sx, y: sy, translateX: '-50%', translateY: '-50%' }}
       animate={{
         width: active ? 52 : 26,

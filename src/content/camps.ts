@@ -95,16 +95,14 @@ export const camps: CampSession[] = [
      * program yoktu. Artık var; uydurma açıklama EKLENMEDİ — satırlar yalnızca
      * saat ve başlıktan ibaret, çünkü verilen program da öyle.
      *
-     * AKŞAM YEMEĞİ SATIRLARI — SAAT PROGRAMDA, ÜCRET PAKETTE DEĞİL.
+     * AKŞAM YEMEĞİ SATIRLARINDA AÇIKLAMA YOK — bilinçli (kullanıcı kararı,
+     * 2026-09-07). Yemeğin ücreti pakete dahil değil ve kulüp bunu soranlara
+     * kendisi söylüyor; programda tekrarlanmasını istemedi.
      *
-     * `excludes` "Öğle ve akşam yemekleri"ni paket dışı sayar ve bu DOĞRUDUR
-     * (kullanıcı teyidi, 2026-09-07): kulüp o saati toplu yemek için ayırmış
-     * ama yemeğin ücreti fiyata dahil değil. Tek başına "Akşam yemeği" yazmak
-     * sağlanan bir öğün İMA EDERDİ — katılımcı için doğrudan para demek. Bu
-     * yüzden iki satırın `desc` alanı durumu açıkça yazıyor.
-     *
-     * KAHVALTI'da böyle bir not YOK ve olmamalı: kahvaltı `includes` listesinde
-     * ("Şef hazırlığı sağlıklı kahvaltı"), yani gerçekten pakete dahil.
+     * BİLGİ SİTEDE KAYBOLMUYOR: `excludes` listesi "Öğle ve akşam yemekleri"ni
+     * paket dışı sayıyor ve kamp detayında "Dahil Değil" başlığı altında,
+     * fiyat tablosunun hemen üstünde görünüyor. Yani beyan ait olduğu yerde
+     * duruyor, program da saat cetveli olarak sade kalıyor.
      */
     dailyFlow: [
       {
@@ -113,14 +111,7 @@ export const camps: CampSession[] = [
         items: [
           { time: '17:00', title: { tr: 'Varış & yerleşme', en: 'Arrival & settling in' } },
           { time: '19:00', title: { tr: 'Akşam yoga akışı', en: 'Evening yoga flow' } },
-          {
-            time: '20:30',
-            title: { tr: 'Akşam yemeği', en: 'Dinner' },
-            desc: {
-              tr: 'Toplu masa için ayrılmış saat; yemek ücreti pakete dahil değildir.',
-              en: 'Time set aside to eat together; the meal itself is not included in the price.',
-            },
-          },
+          { time: '20:30', title: { tr: 'Akşam yemeği', en: 'Dinner' } },
         ],
       },
       {
@@ -132,14 +123,7 @@ export const camps: CampSession[] = [
           { time: '12:00', title: { tr: 'Workshop', en: 'Workshop' } },
           { time: '13:30', title: { tr: 'Serbest zaman', en: 'Free time' } },
           { time: '18:30', title: { tr: 'Gün batımı yogası', en: 'Sunset yoga' } },
-          {
-            time: '20:00',
-            title: { tr: 'Akşam yemeği', en: 'Dinner' },
-            desc: {
-              tr: 'Toplu masa için ayrılmış saat; yemek ücreti pakete dahil değildir.',
-              en: 'Time set aside to eat together; the meal itself is not included in the price.',
-            },
-          },
+          { time: '20:00', title: { tr: 'Akşam yemeği', en: 'Dinner' } },
         ],
       },
       {
