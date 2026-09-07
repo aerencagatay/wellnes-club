@@ -12,6 +12,9 @@ const validCamp = {
   campSlug: CAMP_SLUG,
   guests: 2,
   roomPreference: 'paylasimli' as const,
+  // Fiyat oda tipi × gece sayısıyla belirlendiği için `nights` zorunlu ve
+  // (kamp, oda, gece) üçlüsü gerçek bir kademeye denk gelmeli.
+  nights: 2,
   message: 'Tek başıma katılacağım.',
   consent: true as const,
 }
@@ -72,6 +75,13 @@ describe('kind: camp', () => {
 
   it('oda tercihi enum dışı değeri reddeder', () => {
     expect(parse({ ...validCamp, roomPreference: 'kral-suiti' }).success).toBe(false)
+
+    // GECE SAYISI: alan tek başına geçerli olsa bile kamp o süreyi satmıyorsa
+    // başvuru bir fiyata karşılık gelmez.
+    expect(parse({ ...validCamp, nights: 1 }).success, '1 gece paylaşımlı satılıyor').toBe(true)
+    expect(parse({ ...validCamp, nights: 0 }).success, 'sıfır gece').toBe(false)
+    expect(parse({ ...validCamp, nights: 2.5 }).success, 'kesirli gece').toBe(false)
+    expect(parse({ ...validCamp, nights: 9 }).success, 'kampın satmadığı süre').toBe(false)
   })
 })
 

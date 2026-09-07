@@ -69,12 +69,11 @@ export function CampCard({
           sizes="(max-width: 768px) 100vw, 33vw"
           src={showPoster ? camp.posterImage! : camp.heroImage}
         />
-        {/* `olive-outline`/`neutral` rozet tonları dolgusuz (şeffaf zemin) —
-            fotoğrafın üzerinde brief'in "dolgu tabanlı" gereksinimini karşılamak
-            için sarmalayıcıya `bg-background` verilir. Rozetin kendi kutusuyla
-            aynı boyutta olduğundan dolu tonlarda (olive/sand-fill) görünmez
-            kalır; şeffaf tonlarda ise rozetin iç alanı arkadan kremle dolar. */}
-        <div className="absolute top-4 left-4 bg-background">
+        {/* Sarmalayıcıya ARTIK `bg-background` VERİLMİYOR: zemin tonun kendisine
+            taşındı (bkz. ui/badge.tsx). Eskiden buradaki keskin köşeli krem
+            kutu, yuvarlak rozetin köşelerinden taşıp poster üzerinde beyaz bir
+            leke bırakıyordu. */}
+        <div className="absolute top-0 left-0">
           <Badge tone={BADGE_TONE[badge]}>{t(`badge.${badge}`)}</Badge>
         </div>
       </Link>

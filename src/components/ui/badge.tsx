@@ -10,21 +10,31 @@ import type { ReactNode } from 'react'
 // palette'te ne kırmızı ne amber var — çağıranlar (`camp-card.tsx`,
 // `camp-cta-card.tsx`) da bu görevin kapsamında olduğundan isimler burada ve
 // her iki çağıran dosyada birlikte güncellendi.
+/**
+ * SAYDAM TONLAR KENDİ ZEMİNİNİ TAŞIR (`bg-background`).
+ *
+ * Önce bunu çağıranlar yapıyordu: rozetin etrafına `bg-background` veren bir
+ * sarmalayıcı `div`. Ama rozet YUVARLAK (hap), sarmalayıcı KESKİN köşeliydi —
+ * hapın köşelerinden krem kutunun köşeleri taşıyordu ve poster üzerinde beyaz
+ * bir leke olarak görünüyordu (kullanıcı bildirimi, 2026-09-07). Zemini tonun
+ * kendisine taşımak sarmalayıcıyı gereksiz kılıyor ve leke ortadan kalkıyor.
+ */
 const TONES = {
   olive: 'bg-olive text-background',
   'sand-fill': 'bg-sand text-text font-semibold',
-  'olive-outline': 'border border-olive text-olive',
-  neutral: 'border border-text/20 text-muted',
+  'olive-outline': 'border border-olive bg-background text-olive',
+  neutral: 'border border-text/20 bg-background text-muted',
 } as const
 
 export function Badge({ tone = 'neutral', children }: { tone?: keyof typeof TONES; children: ReactNode }) {
   return (
     <span
-      // Hap biçimi (`rounded-full`) — MagicUI'nin rozet dili. Harf aralığı
-      // 0.12em'den 0.06em'e indi: rozetler kısa metinler olduğu için geniş
-      // aralık onları "2010'lar" hissi veren birer etiket bandına çeviriyordu
-      // (kullanıcı geri bildirimi, 2026-08-14).
-      className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] ${TONES[tone]}`}
+      // KESKİN KÖŞE — hap DEĞİL. Sistemde tek eğri pill butondadır (bkz.
+      // eden-design-system skill §2); rozet dolu bir mürekkep bloğudur,
+      // tıpkı etkinlik kartındaki "ÖRNEK"/kategori etiketleri gibi. Eski
+      // `rounded-full` hap, poster üzerindeki krem sarmalayıcıyla birlikte
+      // görünür bir kusur üretiyordu.
+      className={`inline-flex items-center px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] ${TONES[tone]}`}
     >
       {children}
     </span>

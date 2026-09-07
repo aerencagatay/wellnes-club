@@ -19,6 +19,23 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;')
 }
 
+/**
+ * Başvurunun (kamp, oda tipi, gece) üçlüsüne karşılık gelen kişi başı fiyat.
+ *
+ * Doğrulama bu üçlünün gerçek bir kademe olduğunu zaten garantiliyor
+ * (bkz. validation.ts → superRefine), ama e-posta şablonu doğrulamadan
+ * bağımsız çalışabilmeli: kademe bulunamazsa uydurma bir sayı yazmak yerine
+ * `undefined` döner ve çağıran bunu açıkça belirtir.
+ */
+function tierPrice(input: { campSlug: string; roomPreference: 'paylasimli' | 'tek-kisilik'; nights: number }): string | undefined {
+  const camp = getCampBySlug(input.campSlug)
+  if (!camp) return undefined
+  const occupancy = input.roomPreference === 'paylasimli' ? 'double' : 'single'
+  const tier = camp.priceTiers.find((t) => t.nights === input.nights && t.occupancy === occupancy)
+  // Para birimi KAMPTA tutuluyor, kademede değil (bkz. content/types.ts).
+  return tier ? `${tier.price.toLocaleString('tr-TR')} ${camp.currency}` : undefined
+}
+
 const ROOM_LABEL: Record<string, string> = {
   paylasimli: 'Paylaşımlı oda',
   'tek-kisilik': 'Tek kişilik oda',
@@ -54,6 +71,12 @@ export function renderInternalNotification(input: InquiryInput, referenceId: str
       ['Telefon', input.phone],
       ['Kişi sayısı', String(input.guests)],
       ['Oda tercihi', ROOM_LABEL[input.roomPreference]],
+      // GECE SAYISI VE KARŞILIK GELEN FİYAT: kampın fiyatı oda tipi × gece
+      // sayısı ile belirlendiği için ikisi olmadan e-posta hangi paketin
+      // istendiğini söylemiyordu. Fiyat `priceTiers`'ten OKUNUR, elle
+      // yazılmaz — tek kaynak orası.
+      ['Gece sayısı', String(input.nights)],
+      ['Kademe fiyatı', tierPrice(input) ?? 'kademe bulunamadı'],
       ['Mesaj', input.message?.trim() || '—'],
     )
   } else if (input.kind === 'contact') {

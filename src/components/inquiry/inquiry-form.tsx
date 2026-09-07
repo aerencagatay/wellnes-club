@@ -15,6 +15,9 @@ import { Field, fieldDescribedBy, inputClass } from './field'
 
 export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: AppLocale }) {
   const t = useTranslations('form')
+  // Gece etiketi ("2 gece") `camp` sözlüğünde: kart, tablo ve form aynı
+  // ifadeyi paylaşsın — üç ayrı yerde üç farklı yazım olmasın.
+  const tCamp = useTranslations('camp')
   const te = useTranslations('form.errors')
   const router = useRouter()
   const params = useSearchParams()
@@ -24,6 +27,19 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
   const preselected = params.get('kamp')
   const initialCamp = camps.some((camp) => camp.slug === preselected) ? preselected! : (camps[0]?.slug ?? '')
 
+  // Kamp seçimi KONTROLLÜ: gece seçenekleri seçili kampın kendi fiyat
+  // kademelerinden türetiliyor, sabit bir liste değil. Kamp satmadığı bir gece
+  // sayısını teklif etmemeli.
+  const [campSlug, setCampSlug] = useState(initialCamp)
+
+  // Seçili kampın sattığı GECE SAYILARI, kendi fiyat kademelerinden türetilir
+  // ve artan sırada gösterilir. `Set` yinelenenleri eler: aynı gece sayısı hem
+  // paylaşımlı hem tek kişilik oda için ayrı kademe olarak duruyor.
+  const nightOptions = (() => {
+    const camp = camps.find((c) => c.slug === campSlug)
+    if (!camp) return [] as number[]
+    return [...new Set(camp.priceTiers.map((tier) => tier.nights))].sort((a, b) => a - b)
+  })()
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)
   const [failedOnce, setFailedOnce] = useState(false)
@@ -42,6 +58,7 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
   const campError = translateError(errors.campSlug)
   const guestsError = translateError(errors.guests)
   const roomError = translateError(errors.roomPreference)
+  const nightsError = translateError(errors.nights)
   const messageError = translateError(errors.message)
   const consentError = translateError(errors.consent)
   const formError = translateError(errors.form)
@@ -61,6 +78,7 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
       campSlug: String(data.get('campSlug') ?? ''),
       guests: Number(data.get('guests') ?? 1),
       roomPreference: data.get('roomPreference') as 'paylasimli' | 'tek-kisilik',
+      nights: Number(data.get('nights') ?? 0),
       message: String(data.get('message') ?? '') || undefined,
       // `InquiryInput`'ta consent zod'un `z.literal(true)`'ından geldiği için tip `true`,
       // `boolean` değil. Kutu işaretlenmemişse burada `false` göndermek BİLİNÇLİDİR —
@@ -138,10 +156,11 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
           aria-describedby={fieldDescribedBy('campSlug', { error: campError })}
           aria-invalid={Boolean(campError)}
           className={inputClass}
-          defaultValue={initialCamp}
           id="campSlug"
           name="campSlug"
+          onChange={(event) => setCampSlug(event.target.value)}
           required
+          value={campSlug}
         >
           {camps.map((camp) => (
             <option key={camp.slug} value={camp.slug}>
@@ -180,6 +199,30 @@ export function InquiryForm({ camps, locale }: { camps: CampSession[]; locale: A
           </select>
         </Field>
       </div>
+
+      {/* GECE SAYISI — fiyatı belirleyen ikinci eksen (birincisi oda tipi).
+          Bu alan yoktu ve başvuru hangi fiyata yapıldığını söylemiyordu:
+          18-20 Eylül iki gece, 19-20 Eylül tek gece olarak ayrı ayrı
+          satılıyor (kullanıcı bildirimi, 2026-09-07).
+
+          Seçenekler seçili kampın KENDİ kademelerinden türetiliyor; sabit bir
+          "1 veya 2" listesi, kampın satmadığı bir süreyi teklif edebilirdi. */}
+      <Field error={nightsError} htmlFor="nights" label={t('nights')}>
+        <select
+          aria-describedby={fieldDescribedBy('nights', { error: nightsError })}
+          aria-invalid={Boolean(nightsError)}
+          className={inputClass}
+          id="nights"
+          name="nights"
+          required
+        >
+          {nightOptions.map((n) => (
+            <option key={n} value={n}>
+              {tCamp('nights', { count: n })}
+            </option>
+          ))}
+        </select>
+      </Field>
 
       <Field error={messageError} hint={messageHint} htmlFor="message" label={t('message')}>
         <textarea

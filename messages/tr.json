@@ -207,8 +207,11 @@
       "messageRequired": "Lütfen bir mesaj yazın.",
       "messageTooLong": "Mesaj en fazla 1000 karakter olabilir.",
       "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
-      "rateLimited": "Çok fazla deneme yaptınız. Lütfen birkaç dakika sonra tekrar deneyin."
-    }
+      "rateLimited": "Çok fazla deneme yaptınız. Lütfen birkaç dakika sonra tekrar deneyin.",
+      "nightsInvalid": "Geçerli bir gece sayısı seçin.",
+      "unknownTier": "Bu oda tipi ve gece sayısı birlikte sunulmuyor. Lütfen başka bir seçim yapın."
+    },
+    "nights": "Kaç gece"
   },
   "inquiryPage": {
     "eyebrow": "BAŞVURU",

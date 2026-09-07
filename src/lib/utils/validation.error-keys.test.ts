@@ -20,6 +20,9 @@ const validCamp = {
   campSlug: CAMP_SLUG,
   guests: 2,
   roomPreference: 'paylasimli' as const,
+  // Fiyat oda tipi × gece sayısıyla belirlendiği için `nights` zorunlu ve
+  // (kamp, oda, gece) üçlüsü gerçek bir kademeye denk gelmeli.
+  nights: 2,
   message: 'Tek başıma katılacağım.',
   consent: true as const,
 }

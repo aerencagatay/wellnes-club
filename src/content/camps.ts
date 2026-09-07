@@ -8,11 +8,17 @@ import type { CampSession } from './types'
  * Tarih 11-13 Eylül'den 18-20 Eylül'e KAYDI (aynı etkinlik, yeni tarih —
  * kullanıcı teyidi, 2026-09-05); ikinci bir kamp açılmadı.
  *
- * Fiyat artık tek sayı değil, dört kademe (`priceTiers`): oda tipi × gece
- * sayısı. `priceFrom` bilinçli olarak 10.500 TL'de tutuluyor — bu, tam
- * programın (2 gece, paylaşımlı oda) başlangıç fiyatı. En düşük kademe olan
- * 6.500 TL tek gecelik katılıma ait; onu `priceFrom` yapmak kartlarda tam
- * programın karşılığı olmayan bir fiyat göstermek olurdu (kullanıcı kararı).
+ * Fiyat tek sayı değil, dört kademe (`priceTiers`): oda tipi × gece sayısı.
+ *
+ * `priceFrom` EN DÜŞÜK kademedir — 6.500 TL (1 gece, paylaşımlı oda). Bir ara
+ * 10.500'de (tam program) tutuluyordu; kullanıcı 2026-09-07'de kartlarda
+ * 6.500'den başlayan fiyatın görünmesini istedi.
+ *
+ * YANILTMIYOR ÇÜNKÜ SUNUM "BAŞLANGIÇ" DİYOR: kart ve CTA bu sayıyı
+ * `camp.priceFromSuffix` ("kişi başı başlangıç fiyatı" / "per person, from")
+ * ile birlikte gösteriyor, ve tam tablo kamp detayında dört kademeyi de
+ * açıkça listeliyor. Son ekini kaldıran biri bu sayıyı tek fiyatmış gibi
+ * göstermiş olur.
  */
 export const camps: CampSession[] = [
   {
@@ -39,7 +45,7 @@ export const camps: CampSession[] = [
     teacherSlugs: ['melike-goktan'],
     capacity: 16,
     spotsLeft: 16,
-    priceFrom: 10500,
+    priceFrom: 6500,
     // Kullanıcıdan gelen fiyat listesi (2026-09-05), kişi başı TRY.
     priceTiers: [
       { occupancy: 'double', nights: 2, price: 10500 },

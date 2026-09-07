@@ -14,6 +14,7 @@ const inquiry: CampInquiry = {
   campSlug: camp.slug,
   guests: 2,
   roomPreference: 'tek-kisilik',
+  nights: 2,
   message: 'Vejetaryenim.',
   consent: true,
 }

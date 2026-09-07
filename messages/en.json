@@ -207,8 +207,11 @@
       "messageRequired": "Please write a message.",
       "messageTooLong": "Message can be at most 1000 characters.",
       "generic": "Something went wrong. Please try again.",
-      "rateLimited": "Too many attempts. Please try again in a few minutes."
-    }
+      "rateLimited": "Too many attempts. Please try again in a few minutes.",
+      "nightsInvalid": "Choose a valid number of nights.",
+      "unknownTier": "That room type and length of stay are not offered together. Please pick another combination."
+    },
+    "nights": "How many nights"
   },
   "inquiryPage": {
     "eyebrow": "APPLY",

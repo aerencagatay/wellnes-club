@@ -57,6 +57,17 @@ const campInquiry = z.object({
     .min(1, { message: 'guestsMin' })
     .max(8, { message: 'guestsMax' }),
   roomPreference: z.enum(['paylasimli', 'tek-kisilik'], { message: 'invalidRoomPreference' }),
+  /**
+   * Kaç gece kalınacağı. Kampın fiyatı oda tipi × gece sayısı ile belirlendiği
+   * için (bkz. content/types.ts → PriceTier) bu alan OLMADAN başvuru hangi
+   * fiyata yapıldığını söylemiyordu: 18-20 Eylül'ün iki gecelik ve 19-20'nin
+   * tek gecelik seçeneği ayrı ayrı satılıyor (kullanıcı bildirimi,
+   * 2026-09-07).
+   */
+  nights: z
+    .number({ message: 'nightsInvalid' })
+    .int({ message: 'nightsInvalid' })
+    .min(1, { message: 'nightsInvalid' }),
   message: z
     .string({ message: 'messageTooLong' })
     .trim()
@@ -65,6 +76,27 @@ const campInquiry = z.object({
   consent,
   turnstileToken,
 })
+  /**
+   * ÜÇLÜNÜN GERÇEKTEN SATILAN BİR KADEME OLMASI ŞART.
+   *
+   * Alanlar tek tek geçerli olsa bile birleşimleri olmayabilir — ör. tek
+   * gecelik tek kişilik oda satılmıyorsa o başvuru bir fiyata karşılık
+   * gelmez. Alan bazlı doğrulama bunu yakalayamaz, çünkü sorun alanlarda
+   * değil ARALARINDAKİ İLİŞKİDE. `superRefine` üç alanı birlikte görebildiği
+   * tek yer.
+   *
+   * Hata `nights` alanına bağlanıyor: kullanıcının değiştireceği alan
+   * pratikte bu (oda tipini seçtikten sonra gece sayısını ayarlar).
+   */
+  .superRefine((value, ctx) => {
+    const camp = getCampBySlug(value.campSlug)
+    if (!camp) return // `campSlug` kendi kuralında zaten reddedildi.
+    const occupancy = value.roomPreference === 'paylasimli' ? 'double' : 'single'
+    const tier = camp.priceTiers.find((t) => t.nights === value.nights && t.occupancy === occupancy)
+    if (!tier) {
+      ctx.addIssue({ code: 'custom', path: ['nights'], message: 'unknownTier' })
+    }
+  })
 
 const contactInquiry = z.object({
   kind: z.literal('contact'),

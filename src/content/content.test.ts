@@ -90,10 +90,16 @@ describe('içerik bütünlüğü', () => {
    * fiyattır; `priceTiers` ise detay sayfasındaki tam tablo. İkisi ayrı
    * alanlar olduğu için sessizce ayrışabilirler — biri güncellenip diğeri
    * unutulduğunda site, listede bir fiyat gösterip detayda başka bir fiyat
-   * gösterir. Aşağıdaki eşitlik bunun nöbetçisidir: `priceFrom`, tam programın
-   * (tüm geceler, paylaşımlı oda) kademesine EŞİT olmak zorundadır.
+   * gösterir.
+   *
+   * KURAL (2026-09-07'de değişti): `priceFrom`, kademelerin EN DÜŞÜĞÜNE eşit
+   * olmalıdır. Önce tam program kademesine (tüm geceler, paylaşımlı oda) eşit
+   * olması bekleniyordu; kullanıcı kartlarda "6.500'den başlayan" fiyatın
+   * görünmesini istedi. Sunum zaten "başlangıç fiyatı" diyor, dolayısıyla en
+   * düşük kademe doğru sayı — ama tablodan KOPUK bir sayı olmamalı, nöbetçi
+   * bunu koruyor.
    */
-  it('fiyat kademeleri tutarlıdır ve priceFrom tam program kademesine eşittir', () => {
+  it('fiyat kademeleri tutarlıdır ve priceFrom en düşük kademeye eşittir', () => {
     for (const camp of camps) {
       expect(camp.priceTiers.length, `${camp.slug} fiyat kademesi yok`).toBeGreaterThan(0)
 
@@ -107,11 +113,15 @@ describe('içerik bütünlüğü', () => {
         expect(tier.nights, `${label} kampın gece sayısını aşıyor`).toBeLessThanOrEqual(camp.nights)
       }
 
+      // Tam program kademesi (tüm geceler, paylaşımlı oda) VAR OLMAK zorunda —
+      // `priceFrom` artık ona eşit değil ama tablo eksik kalamaz.
       const fullProgram = camp.priceTiers.find(
         (tier) => tier.occupancy === 'double' && tier.nights === camp.nights,
       )
       expect(fullProgram, `${camp.slug}: tam program (paylaşımlı oda, ${camp.nights} gece) kademesi eksik`).toBeDefined()
-      expect(fullProgram!.price, `${camp.slug}: priceFrom tam program kademesiyle uyuşmuyor`).toBe(camp.priceFrom)
+
+      const cheapest = Math.min(...camp.priceTiers.map((tier) => tier.price))
+      expect(camp.priceFrom, `${camp.slug}: priceFrom en düşük kademeye eşit değil`).toBe(cheapest)
 
       // Tek kişilik oda, aynı gece sayısında paylaşımlı odadan ucuz olamaz —
       // ters çevrilmiş bir çift, veri girişinde yer değiştirmiş iki sayıdır.
