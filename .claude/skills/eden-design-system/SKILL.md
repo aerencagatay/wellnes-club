@@ -11,9 +11,15 @@ tekrarlamak değil, **her oturumda yeniden keşfedilmek zorunda kalınmasını
 
 ## 0. Önce şunu bilin
 
-Site `development` dalında **deneysel bir yönde**: `DESIGN.md` (Handsome Frank
-stil referansı) EDEN'in kendi posterine uyarlandı. `main`'de eski (yuvarlak
-köşeli, gölgeli) sistem duruyor. Deneysel yön beğenilmezse `main` korunur.
+Zine yönü ARTIK DENEYSEL DEĞİL: `DESIGN.md` (Handsome Frank stil referansı)
+EDEN'in kendi posterine uyarlandı ve `30a10e7` ile `main`'e alındı. Yayında
+olan sistem budur — düz yüzey, gölgesizlik, hairline çerçeve, pill CTA.
+
+Dal durumu: **tek çalışma dalı `main`.** `development` 2026-09-07'de `main`'e
+eşitlendi ve artık ayrı bir yön taşımıyor; bu belgenin önceki sürümü "site
+development dalında deneysel bir yönde, main'de eski sistem duruyor" diyordu
+ve bu ARTIK GEÇERSİZ. Eski yuvarlak köşeli/gölgeli sistem hiçbir dalda
+yaşamıyor, yalnızca `30a10e7` öncesi geçmişte.
 
 Kaynaklar:
 - `DESIGN.md` — düz yüzey felsefesi, gölgesizlik, hairline çerçeve, pill CTA
@@ -154,9 +160,16 @@ kullanın — ilki kaydırma çubuğunu içerir ve merkezi 7-8px yanlış verir.
 ## 5. Hareket azaltma — pazarlık konusu değil
 
 `prefers-reduced-motion: reduce` altında **3B tamamen KAPANIR, yavaşlatılmaz**:
-`perspective: none`, koltuk dönüşümleri `none`, imleç halkası hiç render
-edilmez, perde kurulmaz. Perspektifli hareket vestibüler rahatsızlığın en güçlü
-tetikleyicilerinden biridir; süreyi 0.01ms'e indirmek yeterli bir uyum değildir.
+`perspective: none`, koltuk dönüşümleri `none`, perde kurulmaz. Perspektifli
+hareket vestibüler rahatsızlığın en güçlü tetikleyicilerinden biridir; süreyi
+0.01ms'e indirmek yeterli bir uyum değildir.
+
+(Bu listede bir de "imleç halkası hiç render edilmez" maddesi vardı.
+`GalleryCursor` 2026-09-07'de tamamen kaldırıldı — kullanıcı isteği: halka
+yerel imleci `cursor: none` ile gizliyordu, artık sistem imleci kullanılıyor.
+**Yerel imleci gizleyen yeni bir bileşen EKLEMEYİN**; gizlenen imlecin her
+kaplamanın üzerinde görünmesini garanti etmek, zaten bir kez z-index hatasına
+yol açmıştı.)
 
 Süre kısaltmanın yetmediği iki durum daha:
 - `filter: blur()` bir başlangıç durumudur, geçiş değil — `BlurFade` bu yüzden
@@ -165,7 +178,9 @@ Süre kısaltmanın yetmediği iki durum daha:
   konumunda sabitlenir, hızlandırılmaz.
 
 `useReducedMotion()` ve `useFinePointer()` (`src/lib/hooks/`) `useSyncExternalStore`
-kullanır — efekt içinde senkron `setState` ile medya sorgusu okumayın, basamaklı
+kullanır (`useFinePointer` şu an tüketicisiz kaldı — tek kullanıcısı kaldırılan
+`GalleryCursor`'dı; kaba/ince işaretçi ayrımı gerektiren yeni bir bileşen için
+duruyor) — efekt içinde senkron `setState` ile medya sorgusu okumayın, basamaklı
 render'a ve ilk boyamada yanlış kareye yol açar.
 
 ## 6. İçerik dürüstlüğü — en katı kural
