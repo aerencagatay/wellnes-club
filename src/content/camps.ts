@@ -46,10 +46,11 @@ export const camps: CampSession[] = [
     capacity: 16,
     spotsLeft: 16,
     priceFrom: 6500,
-    // Kullanıcıdan gelen fiyat listesi (2026-09-05), kişi başı TRY.
+    // Kullanıcıdan gelen fiyat listesi (2026-09-05, tek kişilik/2 gece
+    // kademesi 2026-09-11'de 13.500 → 14.500 olarak güncellendi), kişi başı TRY.
     priceTiers: [
       { occupancy: 'double', nights: 2, price: 10500 },
-      { occupancy: 'single', nights: 2, price: 13500 },
+      { occupancy: 'single', nights: 2, price: 14500 },
       { occupancy: 'double', nights: 1, price: 6500 },
       { occupancy: 'single', nights: 1, price: 9500 },
     ],
