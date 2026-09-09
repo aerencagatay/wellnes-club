@@ -37,7 +37,7 @@ function tierPrice(input: { campSlug: string; roomPreference: 'paylasimli' | 'te
 }
 
 const ROOM_LABEL: Record<string, string> = {
-  paylasimli: 'Paylaşımlı oda',
+  paylasimli: 'Paylaşımlı oda (2 kişilik)',
   'tek-kisilik': 'Tek kişilik oda',
 }
 
