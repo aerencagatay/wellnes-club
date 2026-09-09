@@ -95,11 +95,20 @@ export const camps: CampSession[] = [
       en: ['Transport', 'Lunch and dinner', 'Alcoholic drinks', 'Personal massage and therapies', 'Travel insurance'],
     },
     /**
-     * ÜÇ GÜNLÜK PROGRAM — kullanıcıdan geldiği gibi (2026-09-07).
+     * ÜÇ GÜNLÜK PROGRAM — kullanıcıdan geldiği gibi (2026-09-07), seans
+     * başlıkları ve açıklamaları 2026-09-09'da güncellendi.
      *
-     * Önceki hâli tek bir "tipik gün"dü çünkü güne bölünmüş doğrulanmış bir
-     * program yoktu. Artık var; uydurma açıklama EKLENMEDİ — satırlar yalnızca
-     * saat ve başlıktan ibaret, çünkü verilen program da öyle.
+     * Kullanıcı bu turda dört seans için başlık + açıklama verdi ("18 Eylül",
+     * "19 Eylül Sabahı", "19 Eylül Akşamı", "20 Eylül Sabahı") ve saatlere göre
+     * yerleştirmeyi bize bıraktı. Her biri var olan bir yoga saatinin YERİNE
+     * geçti (saat sabit kaldı, yalnızca başlık/açıklama değişti) — kullanıcı
+     * saat vermediği için var olan saat cetveli değiştirilmedi.
+     *
+     * "SABAH SAYFALARI" AYRI BİR MADDE: cumartesi ve pazar sabahı bloklarında
+     * yoga açıklamasından SONRA gelen ikinci satır ("Sabah sayfalarıyla...")
+     * farklı bir aktiviteye (yazı egzersizi) ait, aynı seansın devamı değil —
+     * bu yüzden kendi saatiyle ayrı bir madde oldu, yoga açıklamasına eklenmedi.
+     * Saati verilmediği için yoga ile kahvaltı arasına (10:00) yerleştirildi.
      *
      * AKŞAM YEMEĞİ SATIRLARINDA AÇIKLAMA YOK — bilinçli (kullanıcı kararı,
      * 2026-09-07). Yemeğin ücreti pakete dahil değil ve kulüp bunu soranlara
@@ -116,7 +125,14 @@ export const camps: CampSession[] = [
         date: '2026-09-18',
         items: [
           { time: '17:00', title: { tr: 'Varış & yerleşme', en: 'Arrival & settling in' } },
-          { time: '19:00', title: { tr: 'Akşam yoga akışı', en: 'Evening yoga flow' } },
+          {
+            time: '19:00',
+            title: { tr: 'Açılış ve Tanışma', en: 'Opening & Meet-and-Greet' },
+            desc: {
+              tr: 'Yoga, nefes ve meditasyon — zihnini yavaşlat, bedenini rahatlat.',
+              en: 'Yoga, breath and meditation — slow your mind, relax your body.',
+            },
+          },
           { time: '20:30', title: { tr: 'Akşam yemeği', en: 'Dinner' } },
         ],
       },
@@ -124,11 +140,33 @@ export const camps: CampSession[] = [
         label: { tr: 'Cumartesi', en: 'Saturday' },
         date: '2026-09-19',
         items: [
-          { time: '09:00', title: { tr: 'Sabah yoga pratiği', en: 'Morning yoga practice' } },
+          {
+            time: '09:00',
+            title: { tr: 'Güne Enerjik Bir Başlangıç', en: 'An Energetic Start to the Day' },
+            desc: {
+              tr: 'Enerji veren yoga akışı, nefes ve meditasyon pratiği.',
+              en: 'An energising yoga flow, breathwork and meditation practice.',
+            },
+          },
+          {
+            time: '10:00',
+            title: { tr: 'Sabah Sayfaları', en: 'Morning Pages' },
+            desc: {
+              tr: 'Sabah sayfalarıyla düşüncelerini yazıya dök.',
+              en: 'Put your thoughts on paper with morning pages.',
+            },
+          },
           { time: '10:30', title: { tr: 'Kahvaltı', en: 'Breakfast' } },
           { time: '12:00', title: { tr: 'Workshop', en: 'Workshop' } },
           { time: '13:30', title: { tr: 'Serbest zaman', en: 'Free time' } },
-          { time: '18:30', title: { tr: 'Gün batımı yogası', en: 'Sunset yoga' } },
+          {
+            time: '18:30',
+            title: { tr: 'Gün Batımında İçe Dönüş', en: 'Turning Inward at Sunset' },
+            desc: {
+              tr: 'Gün batımında yoga akışı, derin esnemeler, nefes ve meditasyon — sinir sistemini rahatlat.',
+              en: 'A sunset yoga flow, deep stretches, breath and meditation — calming the nervous system.',
+            },
+          },
           { time: '20:00', title: { tr: 'Akşam yemeği', en: 'Dinner' } },
         ],
       },
@@ -136,7 +174,22 @@ export const camps: CampSession[] = [
         label: { tr: 'Pazar', en: 'Sunday' },
         date: '2026-09-20',
         items: [
-          { time: '09:00', title: { tr: 'Sabah yoga pratiği', en: 'Morning yoga practice' } },
+          {
+            time: '09:00',
+            title: { tr: 'Güne Yumuşak Bir Başlangıç', en: 'A Gentle Start to the Day' },
+            desc: {
+              tr: 'Nazik bir yoga akışı, nefes ve meditasyon.',
+              en: 'A gentle yoga flow, breath and meditation.',
+            },
+          },
+          {
+            time: '10:00',
+            title: { tr: 'Sabah Sayfaları', en: 'Morning Pages' },
+            desc: {
+              tr: 'Sabah sayfalarıyla farkındalığını arttır.',
+              en: 'Deepen your awareness with morning pages.',
+            },
+          },
           { time: '10:30', title: { tr: 'Kahvaltı', en: 'Breakfast' } },
           { time: '12:00', title: { tr: 'Workshop', en: 'Workshop' } },
           { time: '13:30', title: { tr: 'Kapanış & vedalaşma', en: 'Closing & goodbyes' } },
